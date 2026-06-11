@@ -210,11 +210,14 @@ function calculateSquareRoot() {
     const isExact = Number.isInteger(result);
 
     showResult(resultArea, {
-        formula: `√${formatNum(value)}`,
+        formula: `√${formatNum(value)} =`,
         value: formatResult(result),
         extra: isExact
-            ? `${formatNum(value)} is a perfect square`
-            : `≈ ${result.toFixed(10)}`,
+            ? `Perfect square: ${formatNum(value)} = ${formatResult(result)}²`
+            : `Approximation: ${result.toFixed(10)}`,
+        details: isExact
+            ? `${formatResult(result)} × ${formatResult(result)} = ${formatNum(value)}`
+            : null,
     });
 
     addHistory('sqrt', `√${formatNum(value)}`, formatResult(result));
@@ -235,11 +238,14 @@ function calculateCubeRoot() {
     const isExact = Number.isInteger(result);
 
     showResult(resultArea, {
-        formula: `∛${formatNum(value)}`,
+        formula: `∛${formatNum(value)} =`,
         value: formatResult(result),
         extra: isExact
-            ? `${formatNum(value)} is a perfect cube`
-            : `≈ ${result.toFixed(10)}`,
+            ? `Perfect cube: ${formatNum(value)} = ${formatResult(result)}³`
+            : `Approximation: ${result.toFixed(10)}`,
+        details: isExact
+            ? `${formatResult(result)} × ${formatResult(result)} × ${formatResult(result)} = ${formatNum(value)}`
+            : null,
     });
 
     addHistory('cbrt', `∛${formatNum(value)}`, formatResult(result));
@@ -279,11 +285,14 @@ function calculateNthRoot() {
     const nStr = n === 2 ? '√' : n === 3 ? '∛' : `${formatNum(n)}√`;
 
     showResult(resultArea, {
-        formula: `${nStr}${formatNum(x)}`,
+        formula: `${nStr}${formatNum(x)} =`,
         value: formatResult(result),
         extra: isExact
-            ? 'Exact integer result'
-            : `≈ ${result.toFixed(10)}`,
+            ? `Exact integer result`
+            : `Approximation: ${result.toFixed(10)}`,
+        details: isExact
+            ? `${formatResult(result)}^${formatNum(n)} = ${formatNum(x)}`
+            : null,
     });
 
     addHistory('nth', `${nStr}${formatNum(x)}`, formatResult(result));
@@ -344,14 +353,20 @@ function calculateFraction() {
     const finalDen = Math.abs(simpDen);
 
     const decimal = finalNum / finalDen;
+    const wasSimplified = simpNum !== finalNum || simpDen !== finalDen;
 
     const formulaStr = `${formatNum(a1)}/${formatNum(b1)} ${opSymbol} ${formatNum(a2)}/${formatNum(b2)}`;
-    const valueStr = finalDen === 1 ? `${formatNum(finalNum)}` : `${formatNum(finalNum)} / ${formatNum(finalDen)}`;
+    const valueStr = finalDen === 1 ? `${formatNum(finalNum)}` : `${formatNum(finalNum)}/${formatNum(finalDen)}`;
+
+    const detailsParts = [];
+    if (wasSimplified) detailsParts.push(`Simplified from ${formatNum(numResult)}/${formatNum(denResult)}`);
+    detailsParts.push(`Decimal: ${formatResult(decimal)}`);
 
     showResult(resultArea, {
-        formula: formulaStr,
+        formula: `${formulaStr} =`,
         value: valueStr,
-        extra: `Decimal: ${formatResult(decimal)}${(simpNum !== numResult / g * (simpDen < 0 ? -1 : 1) || simpDen !== Math.abs(denResult / g)) ? '' : ` • Simplified from ${numResult}/${denResult}`}`,
+        extra: wasSimplified ? detailsParts.join(' · ') : detailsParts.join(' · '),
+        details: detailsParts.join(' · '),
     });
 
     addHistory('frac', formulaStr, valueStr);
@@ -391,12 +406,17 @@ function calculatePower() {
     else if (exp === 0.5) expStr = '^½';
     else expStr = `^${formatNum(exp)}`;
 
+    const isIntResult = Number.isInteger(result) && Number.isFinite(result);
+
     showResult(resultArea, {
-        formula: `${formatNum(base)}${expStr}`,
+        formula: `${formatNum(base)}${expStr} =`,
         value: formatResult(result),
         extra: Number.isFinite(result)
-            ? `= ${formatNum(base)} raised to the power of ${formatNum(exp)}`
+            ? `${formatNum(base)} to the power of ${formatNum(exp)}`
             : 'Result is infinity or undefined',
+        details: isIntResult
+            ? `${formatNum(base)}${expStr} = ${formatResult(result)}`
+            : null,
     });
 
     addHistory('power', `${formatNum(base)}${expStr}`, formatResult(result));
@@ -426,9 +446,10 @@ function calculatePercentage() {
             }
             const result = (pct / 100) * num;
             showResult(resultArea, {
-                formula: `${formatNum(pct)}% of ${formatNum(num)}`,
+                formula: `${formatNum(pct)}% of ${formatNum(num)} =`,
                 value: formatResult(result),
-                extra: `${formatNum(pct)} ÷ 100 × ${formatNum(num)} = ${formatResult(result)}`,
+                extra: `${formatNum(pct)} ÷ 100 × ${formatNum(num)}`,
+                details: `= ${formatResult(result)}`,
             });
             addHistory('pct', `${formatNum(pct)}% of ${formatNum(num)}`, formatResult(result));
             break;
@@ -446,9 +467,10 @@ function calculatePercentage() {
             }
             const result = (x / y) * 100;
             showResult(resultArea, {
-                formula: `${formatNum(x)} is what % of ${formatNum(y)}`,
+                formula: `${formatNum(x)} is what % of ${formatNum(y)}?`,
                 value: `${formatResult(result)}%`,
-                extra: `${formatNum(x)} ÷ ${formatNum(y)} × 100 = ${formatResult(result)}%`,
+                extra: `${formatNum(x)} ÷ ${formatNum(y)} × 100`,
+                details: `= ${formatResult(result)}%`,
             });
             addHistory('pct', `${formatNum(x)} is ?% of ${formatNum(y)}`, `${formatResult(result)}%`);
             break;
@@ -466,10 +488,12 @@ function calculatePercentage() {
             }
             const change = ((newVal - oldVal) / Math.abs(oldVal)) * 100;
             const direction = change >= 0 ? 'increase' : 'decrease';
+            const diff = Math.abs(newVal - oldVal);
             showResult(resultArea, {
                 formula: `% change from ${formatNum(oldVal)} to ${formatNum(newVal)}`,
                 value: `${change >= 0 ? '+' : ''}${formatResult(change)}%`,
                 extra: `${Math.abs(change).toFixed(2)}% ${direction}`,
+                details: `${direction === 'increase' ? 'Rose' : 'Fell'} by ${formatResult(diff)} (${Math.abs(change).toFixed(2)}%)`,
             });
             addHistory('pct', `${formatNum(oldVal)} → ${formatNum(newVal)}`, `${change >= 0 ? '+' : ''}${formatResult(change)}%`);
             break;
@@ -481,14 +505,40 @@ function calculatePercentage() {
 //  UI Helpers
 // ============================================
 
-function showResult(area, { formula, value, extra }) {
+function showResult(area, { formula, value, extra, badge, details }) {
     area.classList.add('has-result');
     area.classList.remove('error');
+
+    if (!badge) {
+        if (/perfect (square|cube)/i.test(extra)) badge = extra.match(/perfect (square|cube)/i)[0].replace(/\b\w/g, c => c.toUpperCase());
+        else if (/Exact/i.test(extra)) badge = 'Exact';
+        else if (/Simplified/i.test(extra)) badge = 'Simplified';
+        else if (/increase/i.test(extra)) badge = 'Increase';
+        else if (/decrease/i.test(extra)) badge = 'Decrease';
+        else if (/Infinity/i.test(extra)) badge = 'Infinity';
+        else badge = 'Result';
+    }
+
+    const badgeClass = {
+        'Perfect Square': 'is-exact',
+        'Perfect Cube': 'is-exact',
+        'Exact': 'is-exact',
+        'Simplified': 'is-exact',
+        'Increase': 'is-info',
+        'Decrease': 'is-error',
+        'Infinity': 'is-approx',
+    }[badge] || 'is-approx';
+
     area.innerHTML = `
         <div class="result-content">
-            <div class="result-formula">${formula} =</div>
-            <div class="result-value">${value}</div>
-            ${extra ? `<div class="result-extra">${extra}</div>` : ''}
+            <div class="result-content-top">
+                <div class="result-formula">${formula}</div>
+                <span class="result-badge ${badgeClass}">${badge}</span>
+            </div>
+            <div class="result-value-wrap">
+                <div class="result-value">${value}</div>
+            </div>
+            ${details || extra ? `<div class="result-details">${details || extra}</div>` : ''}
         </div>
     `;
 }
