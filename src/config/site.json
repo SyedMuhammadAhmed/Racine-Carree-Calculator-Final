@@ -1,0 +1,13 @@
+{
+  "siteUrl": "https://example.com",
+  "siteName": "My Astro Site",
+  "siteDescription": "A production-ready Astro site built with Tailwind CSS v4.",
+  "contactEmail": "hello@example.com",
+  "googleVerification": "",
+  "bingVerification": "",
+  "yandexVerification": "",
+  "ogImage": "/og-image.png",
+  "ogImageWidth": 1200,
+  "ogImageHeight": 630,
+  "ogImageAlt": "Site preview"
+}

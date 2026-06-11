@@ -1,0 +1,17 @@
+---
+export interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<header class={className}>
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+    <a href="/" class="text-lg font-semibold">Site Name</a>
+    <ul class="flex gap-6">
+      <li><a href="/" class="text-sm text-gray-600 hover:text-gray-900">Home</a></li>
+      <li><a href="/blog" class="text-sm text-gray-600 hover:text-gray-900">Blog</a></li>
+    </ul>
+  </nav>
+</header>

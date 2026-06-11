@@ -1,0 +1,11 @@
+---
+import BaseLayout from "theme/layouts/BaseLayout.astro";
+import site from "src/config/site.json";
+---
+
+<BaseLayout title={site.siteName} description={site.siteDescription}>
+  <section class="mx-auto max-w-7xl px-4 py-24 text-center">
+    <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">{site.siteName}</h1>
+    <p class="mt-4 text-lg text-gray-600">{site.siteDescription}</p>
+  </section>
+</BaseLayout>

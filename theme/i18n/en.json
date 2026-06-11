@@ -1,0 +1,10 @@
+{
+  "site.title": "My Astro Site",
+  "site.description": "A production-ready Astro site built with Tailwind CSS v4.",
+  "nav.home": "Home",
+  "nav.blog": "Blog",
+  "nav.about": "About",
+  "nav.privacy": "Privacy Policy",
+  "nav.terms": "Terms of Service",
+  "nav.contact": "Contact"
+}

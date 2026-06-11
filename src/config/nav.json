@@ -1,0 +1,12 @@
+{
+  "header": [
+    { "label": "Home", "href": "/" },
+    { "label": "Blog", "href": "/blog" },
+    { "label": "About", "href": "/about" }
+  ],
+  "footer": [
+    { "label": "Privacy Policy", "href": "/privacy" },
+    { "label": "Terms of Service", "href": "/terms" },
+    { "label": "Contact", "href": "/contact" }
+  ]
+}
