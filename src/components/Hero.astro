@@ -1,0 +1,42 @@
+---
+import { useTranslations } from '../../theme/i18n/translations';
+
+interface Props {
+  lang?: string;
+}
+const { lang = 'en' } = Astro.props;
+const t = await useTranslations(lang);
+---
+
+<header class="hero-compact hero-compact--centered">
+    <div class="hero-badge">
+        <svg class="hero-badge-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+        {t("hero.badge", "Free Square Root & Cube Root Tool")}
+    </div>
+    <h1 class="hero-title">
+        <span class="title-line">{t("hero.title.part1", "Racine Carrée")}</span>
+        <span class="title-line gradient-text">{t("hero.title.part2", "Calculator")}</span>
+    </h1>
+    <p class="hero-subtitle">{t("hero.subtitle", "The most complete Racine Carree Calculator available. Calculate the square root or cube root of any number — positive, negative, decimal, or fraction — instantly. Get the exact decimal result, simplified radical form, step-by-step workings, and full reference tables. 100% free. No sign-up. No limits.")}</p>
+    <div class="hero-pills">
+        <span class="hero-pill">
+            <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            {t("hero.pill.instant", "Instant")}
+        </span>
+        <span class="hero-pill">
+            <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            {t("hero.pill.stepByStep", "Step-by-step")}
+        </span>
+        <span class="hero-pill">
+            <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            {t("hero.pill.private", "Private")}
+        </span>
+        <span class="hero-pill">
+            <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            {t("hero.pill.free", "100% Free")}
+        </span>
+    </div>
+    <a href="#what-is-racine" class="hero-link">{t("hero.cta", "Learn everything below")}
+        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+    </a>
+</header>

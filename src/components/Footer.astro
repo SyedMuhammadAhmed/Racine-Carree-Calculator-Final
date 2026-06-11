@@ -1,0 +1,25 @@
+---
+import { useTranslations } from '../../theme/i18n/translations';
+
+interface Props {
+  lang?: string;
+}
+const { lang = 'en' } = Astro.props;
+const t = await useTranslations(lang);
+---
+
+<footer class="footer" id="footer">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="logo-icon">√</span>
+                <span class="logo-text">{t("footer.brand", "Racine Carrée Calculator")}</span>
+            </div>
+            <p class="footer-tagline">{t("footer.tagline", "The most complete free square root and cube root tool online.")}</p>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">&copy; {new Date().getFullYear()} {t("footer.brand", "Racine Carrée Calculator")}. {t("footer.rights", "All rights reserved.")}</p>
+            <p class="footer-made">{t("footer.made", "Made with ❤️ for mathematics")}</p>
+        </div>
+    </div>
+</footer>

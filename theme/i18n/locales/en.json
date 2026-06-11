@@ -1,71 +1,94 @@
 {
   "site": {
-    "title": "My Astro Project",
-    "description": "An awesome Astro project"
+    "title": "Racine Carree Calculator — Free Square Root & Cube Root Tool Online",
+    "description": "The most complete Racine Carree Calculator available. Calculate the square root (racine carrée) or cube root (racine cubique) of any number — positive, negative, decimal, or fraction — instantly. Get the exact decimal result, simplified radical form, step-by-step workings, and full reference tables. 100% free."
   },
   "nav": {
     "home": "Home",
-    "about": "About",
-    "contact": "Contact",
-    "blog": "Blog",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy"
-  },
-  "footer": {
-    "description": "Building the future of web with Astro."
-  },
-  "common": {
-    "readMore": "Read More",
-    "learnMore": "Learn More",
-    "backToBlog": "Back to Blog",
-    "publishedOn": "Published on",
-    "by": "By",
-    "category": "Category",
-    "page": "Page",
-    "of": "of",
-    "showing": "Showing",
-    "results": "results",
-    "sendMessage": "Send Message",
-    "sending": "Sending...",
-    "messageSent": "Message sent successfully!",
-    "messageError": "There was an error sending your message. Please try again.",
-    "name": "Name",
-    "email": "Email",
-    "message": "Message",
-    "submit": "Submit",
-    "allRightsReserved": "All rights reserved.",
-    "poweredBy": "Powered by Astro"
+    "calculator": "Calculator",
+    "learn": "Learn",
+    "tables": "Tables",
+    "faq": "FAQ"
   },
   "hero": {
-    "headline": "Welcome to Our Platform",
-    "subheadline": "The best place to build your next project.",
-    "ctaText": "Get Started"
+    "badge": "Free Square Root & Cube Root Tool",
+    "title": {
+      "part1": "Racine Carrée",
+      "part2": "Calculator"
+    },
+    "subtitle": "The most complete Racine Carree Calculator available. Calculate the square root or cube root of any number — positive, negative, decimal, or fraction — instantly. Get the exact decimal result, simplified radical form, step-by-step workings, and full reference tables. 100% free. No sign-up. No limits.",
+    "pill": {
+      "instant": "Instant",
+      "stepByStep": "Step-by-step",
+      "private": "Private",
+      "free": "100% Free"
+    },
+    "cta": "Learn everything below"
   },
-  "howItWorks": {
-    "title": "How It Works",
-    "steps": [
-      {
-        "title": "Step 1: Sign Up",
-        "description": "Create a free account in seconds."
-      },
-      {
-        "title": "Step 2: Setup",
-        "description": "Configure your project settings easily."
-      },
-      {
-        "title": "Step 3: Launch",
-        "description": "Deploy to the world with one click."
+  "calc": {
+    "tab": {
+      "squareRoot": "Square Root",
+      "cubeRoot": "Cube Root",
+      "nthRoot": "Nth Root",
+      "fraction": "Fraction",
+      "power": "Power"
+    },
+    "squareRoot": {
+      "title": "Square Root",
+      "desc": "Calculate √x for any positive number"
+    },
+    "cubeRoot": {
+      "title": "Cube Root",
+      "desc": "Find ∛x for any number, including negatives"
+    },
+    "nthRoot": {
+      "title": "Nth Root",
+      "desc": "Calculate any root — 4th, 5th, or custom degree",
+      "empty": {
+        "hint": "Enter degree and number, then press Calculate"
       }
-    ]
+    },
+    "fraction": {
+      "title": "Fraction Calculator",
+      "desc": "Add, subtract, multiply, divide, and simplify fractions",
+      "1": "Fraction 1",
+      "2": "Fraction 2",
+      "empty": {
+        "hint": "Enter both fractions and press Calculate"
+      }
+    },
+    "power": {
+      "title": "Power Calculator",
+      "desc": "Raise any number to any power — squares, cubes, and more",
+      "shortcuts": "Shortcuts",
+      "empty": {
+        "hint": "Enter base and exponent, then press Calculate"
+      }
+    },
+    "label": {
+      "number": "Number to calculate",
+      "degree": "Root degree (n)",
+      "numberX": "Number (x)",
+      "baseX": "Base (x)",
+      "exponentN": "Exponent (n)"
+    },
+    "btn": {
+      "calculate": "Calculate"
+    },
+    "result": {
+      "empty": {
+        "title": "Your result will appear here",
+        "hint": "Enter a number above and press Calculate"
+      }
+    },
+    "history": {
+      "title": "Recent calculations"
+    }
   },
-  "about": {
-    "title": "About Us",
-    "description": "We are a team of passionate developers building amazing tools."
-  },
-  "contact": {
-    "title": "Contact Us",
-    "description": "Have a question? We'd love to hear from you.",
-    "successMessage": "Thanks for reaching out! We will get back to you shortly.",
-    "errorMessage": "Oops! Something went wrong."
+  "footer": {
+    "brand": "Racine Carrée Calculator",
+    "tagline": "The most complete free square root and cube root tool online.",
+    "rights": "All rights reserved.",
+    "made": "Made with ❤️ for mathematics"
   }
 }
