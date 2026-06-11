@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { getHtmlDir } from '../i18n/utils';
+import { loadTranslations } from '../i18n/translations';
 import site from '../../src/config/site.json';
 import social from '../../src/config/social.json';
 import nav from '../../src/config/nav.json';
@@ -41,6 +42,8 @@ const absoluteOgImage = new URL(ogImage, site.siteUrl).toString();
 
 // Approximate locale to standard format (e.g., "en_EN", "es_ES") if passing a simple 2-letter tag
 const mappedLocale = locale.length === 2 ? `${locale.toLowerCase()}_${locale.toUpperCase()}` : locale;
+
+const translations = loadTranslations(locale as any);
 
 // Build JSON-LD schemas
 const socialLinks = Object.values(social).filter(Boolean);
@@ -126,10 +129,10 @@ const schemas = [orgSchema, ...navSchemas, aboutSchema, contactSchema].filter(Bo
     {schemaSlot && <slot name="schema" />}
   </head>
   <body>
-    <Header />
+    <Header locale={locale} translations={translations} />
     <main class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} translations={translations} />
   </body>
 </html>
