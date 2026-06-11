@@ -1,0 +1,71 @@
+{
+  "site": {
+    "title": "My Astro Project",
+    "description": "An awesome Astro project"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "blog": "Blog",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
+  },
+  "footer": {
+    "description": "Building the future of web with Astro."
+  },
+  "common": {
+    "readMore": "Read More",
+    "learnMore": "Learn More",
+    "backToBlog": "Back to Blog",
+    "publishedOn": "Published on",
+    "by": "By",
+    "category": "Category",
+    "page": "Page",
+    "of": "of",
+    "showing": "Showing",
+    "results": "results",
+    "sendMessage": "Send Message",
+    "sending": "Sending...",
+    "messageSent": "Message sent successfully!",
+    "messageError": "There was an error sending your message. Please try again.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Submit",
+    "allRightsReserved": "All rights reserved.",
+    "poweredBy": "Powered by Astro"
+  },
+  "hero": {
+    "headline": "Welcome to Our Platform",
+    "subheadline": "The best place to build your next project.",
+    "ctaText": "Get Started"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "steps": [
+      {
+        "title": "Step 1: Sign Up",
+        "description": "Create a free account in seconds."
+      },
+      {
+        "title": "Step 2: Setup",
+        "description": "Configure your project settings easily."
+      },
+      {
+        "title": "Step 3: Launch",
+        "description": "Deploy to the world with one click."
+      }
+    ]
+  },
+  "about": {
+    "title": "About Us",
+    "description": "We are a team of passionate developers building amazing tools."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Have a question? We'd love to hear from you.",
+    "successMessage": "Thanks for reaching out! We will get back to you shortly.",
+    "errorMessage": "Oops! Something went wrong."
+  }
+}

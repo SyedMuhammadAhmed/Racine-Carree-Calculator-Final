@@ -1,0 +1,14 @@
+{
+  "sharedNav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "blog": "Blog",
+    "terms": "Terms",
+    "privacy": "Privacy"
+  },
+  "sharedButtons": {
+    "submit": "Submit",
+    "learnMore": "Learn More"
+  }
+}
