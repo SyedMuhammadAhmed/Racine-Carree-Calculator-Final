@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@source "../../theme";
+
 /* ============================================
    Racine Carrée Calculator — Light Modern Design
    ============================================ */
