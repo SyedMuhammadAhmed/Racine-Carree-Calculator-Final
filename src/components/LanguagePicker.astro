@@ -1,0 +1,71 @@
+---
+import { LOCALES, getLocalizedUrl } from '../../theme/i18n/utils';
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+
+// Simple map for language names, can be expanded or fetched from translations
+const languageNames: Record<string, string> = {
+  en: "English", hi: "हिन्दी", es: "Español", ru: "Русский",
+  fr: "Français", de: "Deutsch", it: "Italiano", pt: "Português",
+  bn: "বাংলা", ja: "日本語", ko: "한국어", ms: "Bahasa Melayu",
+  pl: "Polski", id: "Bahasa Indonesia", ar: "العربية", bg: "Български",
+  tr: "Türkçe", sv: "Svenska"
+};
+---
+
+<div class="lang-picker">
+  <select class="lang-select" onchange="window.location.href=this.value" aria-label="Select Language">
+    {LOCALES.map((locale) => {
+      // Use pathname and replace the locale part if necessary, but since this is SSG, 
+      // we can just use the base URL for the locale as the calculator is a single-page app.
+      const url = getLocalizedUrl('/', locale);
+      return (
+        <option value={url} selected={lang === locale}>
+          {languageNames[locale] || locale.toUpperCase()}
+        </option>
+      );
+    })}
+  </select>
+  <svg class="lang-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+</div>
+
+<style>
+.lang-picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+}
+.lang-select {
+  appearance: none;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 6px 12px 6px 32px;
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+.lang-select:hover {
+  border-color: var(--text-muted);
+}
+.lang-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+.lang-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+[data-theme="dark"] .lang-select {
+  background: var(--bg-hover);
+}
+</style>
