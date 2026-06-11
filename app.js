@@ -176,7 +176,7 @@ function initScrollReveal() {
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll('.feature-card, .formula-item, .about-content, .section-header').forEach(el => {
+    document.querySelectorAll('.example-card, .step-content, .law-card, .app-card, .tip-card, .article-h2, .article-h3').forEach(el => {
         el.classList.add('reveal');
         observer.observe(el);
     });
@@ -797,7 +797,7 @@ document.head.appendChild(style);
 
 // ---- Mouse glow effect on feature cards ----
 document.addEventListener('mousemove', e => {
-    const cards = document.querySelectorAll('.feature-card');
+    const cards = document.querySelectorAll('.app-card, .example-card, .law-card, .step-content, .tip-card');
     cards.forEach(card => {
         const rect = card.getBoundingClientRect();
         const x = ((e.clientX - rect.left) / rect.width) * 100;

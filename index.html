@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Racine Carrée Calculator — A premium, modern calculator for square roots, cube roots, nth roots, fractions, and more. Beautiful UI with instant results.">
-    <meta name="keywords" content="square root calculator, racine carrée, cube root, nth root, fraction calculator, math tools">
+    <meta name="description" content="The most complete Racine Carree Calculator available. Calculate the square root (racine carrée) or cube root (racine cubique) of any number — positive, negative, decimal, or fraction — instantly. Get the exact decimal result, simplified radical form, step-by-step workings, and full reference tables. 100% free.">
+    <meta name="keywords" content="racine carree calculator, racine carrée, square root calculator, cube root calculator, racine cubique, calculer racine carrée, calcul racine carrée, simplified radical form, Newton-Raphson">
     <meta name="author" content="Racine Carrée Calculator">
-    <title>Racine Carrée Calculator — Premium Math Tools</title>
+    <title>Racine Carree Calculator — Free Square Root & Cube Root Tool Online</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -38,9 +38,10 @@
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
-                <li><a href="#calculators" class="nav-link" data-section="hero">Calculators</a></li>
-                <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
-                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#calculators" class="nav-link" data-section="hero">Calculator</a></li>
+                <li><a href="#what-is-racine" class="nav-link" data-section="what-is-racine">Learn</a></li>
+                <li><a href="#reference-tables" class="nav-link" data-section="reference-tables">Tables</a></li>
+                <li><a href="#faq-section" class="nav-link" data-section="faq-section">FAQ</a></li>
             </ul>
             <div class="nav-actions">
                 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Toggle dark mode">
@@ -62,13 +63,13 @@
             <header class="hero-compact hero-compact--centered">
                 <div class="hero-badge">
                     <svg class="hero-badge-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.7 21l2.3-7-6-4.6h7.6z"/></svg>
-                    Premium Math Calculator
+                    Free Square Root & Cube Root Tool
                 </div>
                 <h1 class="hero-title">
                     <span class="title-line">Racine Carrée</span>
                     <span class="title-line gradient-text">Calculator</span>
                 </h1>
-                <p class="hero-subtitle">Instant precision with step-by-step breakdowns — see exactly how every answer is simplified, just like on paper.</p>
+                <p class="hero-subtitle">The most complete Racine Carree Calculator available. Calculate the square root or cube root of any number — positive, negative, decimal, or fraction — instantly. Get the exact decimal result, simplified radical form, step-by-step workings, and full reference tables. 100% free. No sign-up. No limits.</p>
                 <div class="hero-pills">
                     <span class="hero-pill">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
@@ -82,8 +83,12 @@
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                         Private
                     </span>
+                    <span class="hero-pill">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M2 12h20"/></svg>
+                        100% Free
+                    </span>
                 </div>
-                <a href="#features" class="hero-link">Explore features
+                <a href="#what-is-racine" class="hero-link">Learn everything below
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
                 </a>
             </header>
@@ -395,96 +400,760 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <div class="section-header">
-            <span class="section-badge">⚡ Why Choose Us</span>
-            <h2 class="section-title">Built for Speed & Precision</h2>
-            <p class="section-subtitle">Every detail crafted for the best mathematical experience.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card" id="featureInstant">
-                <div class="feature-icon">⚡</div>
-                <h3 class="feature-title">Instant Results</h3>
-                <p class="feature-desc">Get answers in under 1 millisecond. No loading, no waiting — pure speed.</p>
-            </div>
-            <div class="feature-card" id="featurePrecision">
-                <div class="feature-icon">🎯</div>
-                <h3 class="feature-title">High Precision</h3>
-                <p class="feature-desc">Results calculated to maximum floating-point precision for accuracy you can trust.</p>
-            </div>
-            <div class="feature-card" id="featureHistory">
-                <div class="feature-icon">📝</div>
-                <h3 class="feature-title">Calculation History</h3>
-                <p class="feature-desc">Every calculation is saved so you can review and reuse your recent work.</p>
-            </div>
-            <div class="feature-card" id="featureResponsive">
-                <div class="feature-icon">📱</div>
-                <h3 class="feature-title">Fully Responsive</h3>
-                <p class="feature-desc">Perfect on any device — desktop, tablet, or mobile. Calculate anywhere.</p>
-            </div>
-            <div class="feature-card" id="featureKeyboard">
-                <div class="feature-icon">⌨️</div>
-                <h3 class="feature-title">Keyboard Shortcuts</h3>
-                <p class="feature-desc">Press Enter to calculate instantly. Power users love our keyboard support.</p>
-            </div>
-            <div class="feature-card" id="featurePrivacy">
-                <div class="feature-icon">🔒</div>
-                <h3 class="feature-title">100% Private</h3>
-                <p class="feature-desc">All calculations run locally in your browser. No data ever leaves your device.</p>
-            </div>
-        </div>
-    </section>
+    <!-- =====================================================
+         ARTICLE CONTENT — SEO Rich Content Sections
+         ===================================================== -->
 
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <div class="about-container">
-            <div class="about-content">
-                <span class="section-badge">ℹ️ About</span>
-                <h2 class="section-title" style="text-align: left;">About Racine Carrée</h2>
-                <p class="about-text">
-                    <strong>Racine Carrée</strong> (French for "Square Root") is a premium, open-source calculator suite designed for students, engineers, scientists, and anyone who works with numbers.
-                </p>
-                <p class="about-text">
-                    Built with modern web technologies, it delivers instant, precise results with a beautiful interface that makes math feel effortless. Every pixel, animation, and interaction has been carefully crafted for the best possible experience.
-                </p>
-                <div class="about-highlights">
-                    <div class="highlight">
-                        <span class="highlight-icon">🌐</span>
-                        <span>Works offline</span>
+    <article class="seo-article" id="what-is-racine">
+
+        <!-- Section: What Is a Racine Carrée -->
+        <section class="article-section" id="section-what-is-square-root">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">📐</span> Definition</div>
+                <h2 class="article-h2">What Is a Racine Carrée (Square Root)?</h2>
+                <p>The term <strong>racine carrée</strong> is French for "square root" — and it is one of the most widely searched mathematical operations across both French-speaking and English-speaking communities worldwide. Whether you are a student solving algebra problems, a teacher preparing a lesson, or a professional working through an engineering calculation, the <strong>racine carree calculator</strong> on this page gives you the complete answer in seconds.</p>
+                <p>By definition, the square root (racine carrée) of a number <em>x</em> is the value <em>y</em> that satisfies:</p>
+                <div class="math-block">
+                    <span class="math-formula">y × y = x, &nbsp;which means&nbsp; y = √x</span>
+                </div>
+                <p>The symbol <strong>√</strong> is called the <em>radical sign</em>, and the number placed beneath it is the <em>radicand</em>.</p>
+
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <span class="example-expr">√16 = 4</span>
+                        <span class="example-reason">because 4 × 4 = 16</span>
                     </div>
-                    <div class="highlight">
-                        <span class="highlight-icon">🚀</span>
-                        <span>Zero dependencies</span>
+                    <div class="example-card">
+                        <span class="example-expr">√81 = 9</span>
+                        <span class="example-reason">because 9 × 9 = 81</span>
                     </div>
-                    <div class="highlight">
-                        <span class="highlight-icon">♿</span>
-                        <span>Accessible design</span>
+                    <div class="example-card">
+                        <span class="example-expr">√225 = 15</span>
+                        <span class="example-reason">because 15 × 15 = 225</span>
                     </div>
-                    <div class="highlight">
-                        <span class="highlight-icon">🎨</span>
-                        <span>Premium aesthetics</span>
+                </div>
+
+                <p>The racine carrée is the exact inverse of squaring a number. Squaring multiplies a value by itself; the square root reverses that to find the original value.</p>
+
+                <h3 class="article-h3">What Is a Perfect Square?</h3>
+                <p>A <strong>perfect square</strong> (carré parfait) is any integer whose square root is also a whole integer. Examples include 1, 4, 9, 16, 25, 36, 49, 64, 81, and 100. For numbers that are not perfect squares — such as 2, 3, 5, or 7 — the result is an <em>irrational number</em>: a non-repeating, non-terminating decimal (e.g., √2 ≈ 1.41421356...).</p>
+
+                <h3 class="article-h3">Square Root Notation</h3>
+                <p>The racine carrée can be expressed in three equivalent ways:</p>
+                <div class="table-scroll-wrapper">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll horizontally to see all columns →
+                    </div>
+                    <table class="data-table">
+                        <thead><tr><th>Notation</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td>√x (radical symbol)</td><td>√49 = 7</td></tr>
+                            <tr><td>x^(1/2) (fractional exponent)</td><td>49^(1/2) = 7</td></tr>
+                            <tr><td>x^0.5 (decimal exponent)</td><td>49^0.5 = 7</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>All three are accepted by our racine carree calculator, and all three mean exactly the same thing mathematically.</p>
+            </div>
+        </section>
+
+        <!-- Section: What Is a Racine Cubique -->
+        <section class="article-section article-section--alt" id="section-cube-root">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">🧊</span> Cube Root</div>
+                <h2 class="article-h2">What Is a Racine Cubique (Cube Root)?</h2>
+                <p>Because this tool handles both square roots and cube roots, it is important to understand what the <strong>racine cubique</strong> (cube root) is and how it differs from the racine carrée.</p>
+                <p>The racine cubique of a number <em>x</em> is the value <em>y</em> that satisfies:</p>
+                <div class="math-block">
+                    <span class="math-formula">y × y × y = y³ = x, &nbsp;which means&nbsp; y = ∛x</span>
+                </div>
+                <p>The symbol <strong>∛</strong> is the cube root radical — the same shape as √ but with a small 3 in the notch, indicating a third-order root.</p>
+
+                <div class="examples-grid">
+                    <div class="example-card"><span class="example-expr">∛8 = 2</span><span class="example-reason">because 2³ = 2 × 2 × 2 = 8</span></div>
+                    <div class="example-card"><span class="example-expr">∛27 = 3</span><span class="example-reason">because 3³ = 27</span></div>
+                    <div class="example-card"><span class="example-expr">∛125 = 5</span><span class="example-reason">because 5³ = 125</span></div>
+                    <div class="example-card"><span class="example-expr">∛(−64) = −4</span><span class="example-reason">because (−4)³ = −64</span></div>
+                </div>
+
+                <p>That last example reveals the most critical difference: the cube root of a negative number is a <em>real negative number</em>, not imaginary. The square root of a negative number, by contrast, requires the imaginary unit <strong>i</strong>.</p>
+
+                <h3 class="article-h3">Racine Carrée vs. Racine Cubique — Side-by-Side</h3>
+                <div class="table-scroll-wrapper">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll horizontally to see all columns →
+                    </div>
+                    <table class="data-table data-table--comparison">
+                        <thead><tr><th>Property</th><th>Racine Carrée (√)</th><th>Racine Cubique (∛)</th></tr></thead>
+                        <tbody>
+                            <tr><td>Symbol</td><td>√</td><td>∛</td></tr>
+                            <tr><td>Index</td><td>2 (usually omitted)</td><td>3 (always written)</td></tr>
+                            <tr><td>Defined for negative inputs</td><td>No — returns imaginary result</td><td>Yes — returns real negative</td></tr>
+                            <tr><td>Number of real solutions</td><td>1 for positive x</td><td>Always exactly 1</td></tr>
+                            <tr><td>Result sign</td><td>Always positive (principal root)</td><td>Matches sign of input</td></tr>
+                            <tr><td>Graph shape</td><td>Half-parabola (x ≥ 0 only)</td><td>S-curve through all real numbers</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: How Our Calculator Works -->
+        <section class="article-section" id="section-how-it-works">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">⚙️</span> How It Works</div>
+                <h2 class="article-h2">How Our Racine Carree Calculator Works</h2>
+                <p>Our racine carree calculator (racine cubique calculatrice for cube roots) is built for speed, completeness, and clarity. Here is exactly what it does from input to result:</p>
+
+                <div class="steps-visual">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Enter Your Number</h4>
+                            <p>Type any number: positive integers (4, 81, 144), negative integers (−9, −64), decimals (2.25, 0.64), or large numbers (1,000,000+).</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Choose Square Root or Cube Root</h4>
+                            <p>Select √ (racine carrée) or ∛ (racine cubique) from the mode selector. The calculator switches between both instantly.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Get Your Complete Result</h4>
+                            <p>Decimal result up to 10 places, simplified radical form, verification, and full step-by-step Newton-Raphson workings.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="article-h3">Calculator Features Comparison</h3>
+                <div class="table-scroll-wrapper">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll horizontally to see all columns →
+                    </div>
+                    <table class="data-table">
+                        <thead><tr><th>Feature</th><th>Our Calculator</th></tr></thead>
+                        <tbody>
+                            <tr><td>Square root + cube root in one tool</td><td class="cell-check">✅</td></tr>
+                            <tr><td>Simplified radical form</td><td class="cell-check">✅</td></tr>
+                            <tr><td>Step-by-step Newton-Raphson display</td><td class="cell-check">✅</td></tr>
+                            <tr><td>Negative number support</td><td class="cell-check">✅</td></tr>
+                            <tr><td>Precision up to 10 decimal places</td><td class="cell-check">✅</td></tr>
+                            <tr><td>Mobile and tablet optimized</td><td class="cell-check">✅</td></tr>
+                            <tr><td>100% free, no sign-up</td><td class="cell-check">✅</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Formulas and Laws -->
+        <section class="article-section article-section--alt" id="section-formulas">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">📏</span> Formulas</div>
+                <h2 class="article-h2">Formula for Racine Carrée and Racine Cubique</h2>
+
+                <h3 class="article-h3">Square Root (Racine Carrée) Formula</h3>
+                <div class="math-block">
+                    <span class="math-formula">√x = y &nbsp;⟺&nbsp; y² = x &nbsp;and&nbsp; y ≥ 0</span>
+                </div>
+                <p>This defines the <em>principal square root</em> — always the non-negative result.</p>
+
+                <h3 class="article-h3">Cube Root (Racine Cubique) Formula</h3>
+                <div class="math-block">
+                    <span class="math-formula">∛x = y &nbsp;⟺&nbsp; y³ = x &nbsp;for all real x</span>
+                </div>
+                <p>Unlike the square root, this is valid for all real numbers — positive, negative, and zero.</p>
+
+                <h3 class="article-h3">The Five Core Laws for Both Operations</h3>
+
+                <div class="law-cards">
+                    <div class="law-card">
+                        <div class="law-label">Law 1 — Product Rule</div>
+                        <div class="math-block"><span class="math-formula">ⁿ√(a × b) = ⁿ√a × ⁿ√b</span></div>
+                        <p class="law-example"><strong>Square root:</strong> √(4 × 9) = √4 × √9 = 2 × 3 = 6<br><strong>Cube root:</strong> ∛(8 × 27) = ∛8 × ∛27 = 2 × 3 = 6</p>
+                    </div>
+                    <div class="law-card">
+                        <div class="law-label">Law 2 — Quotient Rule</div>
+                        <div class="math-block"><span class="math-formula">ⁿ√(a/b) = ⁿ√a / ⁿ√b &nbsp;(b ≠ 0)</span></div>
+                        <p class="law-example"><strong>Example:</strong> √(100/25) = √100 / √25 = 10/5 = 2</p>
+                    </div>
+                    <div class="law-card">
+                        <div class="law-label">Law 3 — Root Cancellation</div>
+                        <div class="math-block"><span class="math-formula">(√a)² = a &nbsp;and&nbsp; (∛a)³ = a</span></div>
+                        <p class="law-example">This is the fundamental inverse relationship for both operations.</p>
+                    </div>
+                    <div class="law-card">
+                        <div class="law-label">Law 4 — Absolute Value (Square Root Only)</div>
+                        <div class="math-block"><span class="math-formula">√(a²) = |a|</span></div>
+                        <p class="law-example"><strong>Critical:</strong> √((−5)²) = √25 = 5, not −5. The square root is always non-negative.</p>
+                    </div>
+                    <div class="law-card">
+                        <div class="law-label">Law 5 — Sign Preservation (Cube Root Only)</div>
+                        <div class="math-block"><span class="math-formula">∛(a³) = a &nbsp;(no absolute value needed)</span></div>
+                        <p class="law-example">∛((−7)³) = ∛(−343) = −7. The cube root preserves the sign.</p>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <div class="warning-icon">⚠️</div>
+                    <div class="warning-content">
+                        <strong>The Addition Trap — Most Common Algebra Error</strong>
+                        <div class="math-block" style="margin-top: 12px;"><span class="math-formula">√(a + b) ≠ √a + √b &nbsp;(same for cube roots)</span></div>
+                        <p>Always verify: √(9+16) = √25 = 5, not √9 + √16 = 3 + 4 = 7 ✗</p>
                     </div>
                 </div>
             </div>
-            <div class="about-visual">
-                <div class="formula-showcase">
-                    <div class="formula-item">
-                        <span class="formula">√x = x<sup>1/2</sup></span>
+        </section>
+
+        <!-- Section: Step-by-Step Methods for Square Root -->
+        <section class="article-section" id="section-methods-sqrt">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">🔢</span> Methods</div>
+                <h2 class="article-h2">How to Calculate a Racine Carrée — Step-by-Step Methods</h2>
+
+                <h3 class="article-h3">1. Estimation by Perfect Squares</h3>
+                <p>The fastest mental method for <em>calculer la racine carrée</em> without any tools.</p>
+                <div class="method-example">
+                    <div class="method-title">Example: Find √55</div>
+                    <ul class="method-steps-list">
+                        <li>7² = 49 and 8² = 64, so 7 &lt; √55 &lt; 8</li>
+                        <li>55 is closer to 49, so estimate ≈ 7.4</li>
+                        <li>Test 7.42: 7.42² = 55.06 → ≈ 7.416 ✓</li>
+                    </ul>
+                </div>
+
+                <h3 class="article-h3">2. Prime Factorization Method</h3>
+                <p>Ideal for exact results and simplified radical form.</p>
+                <div class="method-example">
+                    <div class="method-title">Example: Simplify √72</div>
+                    <ul class="method-steps-list">
+                        <li>72 = 2 × 2 × 2 × 3 × 3 = 2² × 3² × 2</li>
+                        <li>Extract pairs: √72 = 2 × 3 × √2 = 6√2 ≈ 8.485</li>
+                    </ul>
+                </div>
+                <div class="method-example">
+                    <div class="method-title">Example: Simplify √180</div>
+                    <ul class="method-steps-list">
+                        <li>180 = 2² × 3² × 5</li>
+                        <li>√180 = 2 × 3 × √5 = 6√5 ≈ 13.416</li>
+                    </ul>
+                </div>
+
+                <h3 class="article-h3">3. Long Division Method</h3>
+                <p>The classic algorithm — accurate to any decimal place, no tools needed.</p>
+                <div class="method-example">
+                    <div class="method-title">Example: Calculate √529</div>
+                    <ul class="method-steps-list">
+                        <li>Group digits: 5 | 29</li>
+                        <li>First group (5): largest d where d² ≤ 5 → d = 2 (2² = 4)</li>
+                        <li>Remainder: 5 − 4 = 1; bring down 29 → 129</li>
+                        <li>Trial divisor: 40; find q: 43 × 3 = 129 ✓</li>
+                        <li>√529 = 23 ✓ — Verify: 23² = 529 ✓</li>
+                    </ul>
+                </div>
+
+                <h3 class="article-h3">4. Newton-Raphson Method (What Powers Our Calculator)</h3>
+                <div class="math-block">
+                    <span class="math-formula">x<sub>n+1</sub> = ½ (x<sub>n</sub> + S / x<sub>n</sub>)</span>
+                </div>
+                <div class="table-scroll-wrapper">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll horizontally →
                     </div>
-                    <div class="formula-item">
-                        <span class="formula">∛x = x<sup>1/3</sup></span>
+                    <table class="data-table data-table--compact">
+                        <thead><tr><th>Iteration</th><th>Value</th></tr></thead>
+                        <tbody>
+                            <tr><td>x₀</td><td>1.500000</td></tr>
+                            <tr><td>x₁</td><td>1.416667</td></tr>
+                            <tr><td>x₂</td><td>1.414216</td></tr>
+                            <tr class="table-highlight"><td>x₃</td><td>1.41421356 ✓</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Step-by-Step Methods for Cube Root -->
+        <section class="article-section article-section--alt" id="section-methods-cbrt">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">🧮</span> Cube Root Methods</div>
+                <h2 class="article-h2">How to Calculate a Racine Cubique — Step-by-Step Methods</h2>
+
+                <h3 class="article-h3">1. Estimation by Perfect Cubes</h3>
+                <div class="method-example">
+                    <div class="method-title">Example: Find ∛90</div>
+                    <ul class="method-steps-list">
+                        <li>4³ = 64 and 5³ = 125, so 4 &lt; ∛90 &lt; 5</li>
+                        <li>90 is 43% of the way from 64 to 125 → estimate ≈ 4.43</li>
+                        <li>Test 4.48: 4.48³ ≈ 89.9 ✓ → ∛90 ≈ 4.481</li>
+                    </ul>
+                </div>
+
+                <h3 class="article-h3">2. Prime Factorization for Cube Roots</h3>
+                <p>Instead of pairs, group factors into <strong>triples</strong>.</p>
+                <div class="method-example">
+                    <div class="method-title">Example: Simplify ∛54</div>
+                    <ul class="method-steps-list">
+                        <li>54 = 2 × 3 × 3 × 3 = 2 × 3³</li>
+                        <li>One triple of 3s; the 2 is unpaired</li>
+                        <li>∛54 = 3 × ∛2 = 3∛2 ≈ 3.780</li>
+                    </ul>
+                </div>
+
+                <h3 class="article-h3">3. Newton-Raphson for Cube Roots</h3>
+                <div class="math-block">
+                    <span class="math-formula">x<sub>n+1</sub> = ⅓ (2x<sub>n</sub> + S / x<sub>n</sub>²)</span>
+                </div>
+                <div class="table-scroll-wrapper">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll horizontally →
                     </div>
-                    <div class="formula-item">
-                        <span class="formula">ⁿ√x = x<sup>1/n</sup></span>
+                    <table class="data-table data-table--compact">
+                        <thead><tr><th>Iteration</th><th>Value</th></tr></thead>
+                        <tbody>
+                            <tr><td>x₀</td><td>4.000000</td></tr>
+                            <tr><td>x₁</td><td>3.791667</td></tr>
+                            <tr><td>x₂</td><td>3.684242</td></tr>
+                            <tr class="table-highlight"><td>x₃</td><td>3.684032 ✓</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Verify: 3.684032³ ≈ 50.000 ✓</p>
+            </div>
+        </section>
+
+        <!-- Section: Negative Numbers & Imaginary -->
+        <section class="article-section" id="section-negative-numbers">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">🔮</span> Complex Numbers</div>
+                <h2 class="article-h2">Square Roots of Negative Numbers and Imaginary Unit</h2>
+                <p>In the real number system, the square root of a negative number does not exist as a real value. By defining the imaginary unit <strong>i = √(−1)</strong>, we can express:</p>
+                <div class="math-block"><span class="math-formula">√(−x) = i√x</span></div>
+
+                <div class="table-scroll-wrapper">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll horizontally →
                     </div>
-                    <div class="formula-item">
-                        <span class="formula">a/b ± c/d = (ad ± bc) / bd</span>
+                    <table class="data-table data-table--compact">
+                        <thead><tr><th>Expression</th><th>Result</th></tr></thead>
+                        <tbody>
+                            <tr><td>√(−1)</td><td>i</td></tr>
+                            <tr><td>√(−4)</td><td>2i</td></tr>
+                            <tr><td>√(−9)</td><td>3i</td></tr>
+                            <tr><td>√(−25)</td><td>5i</td></tr>
+                            <tr><td>√(−49)</td><td>7i</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="article-h3">Cube Roots of Negative Numbers — Always Real</h3>
+                <div class="math-block"><span class="math-formula">∛(−x) = −∛x</span></div>
+                <div class="table-scroll-wrapper">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll horizontally →
+                    </div>
+                    <table class="data-table data-table--compact">
+                        <thead><tr><th>Expression</th><th>Result</th></tr></thead>
+                        <tbody>
+                            <tr><td>∛(−8)</td><td>−2</td></tr>
+                            <tr><td>∛(−27)</td><td>−3</td></tr>
+                            <tr><td>∛(−125)</td><td>−5</td></tr>
+                            <tr><td>∛(−1000)</td><td>−10</td></tr>
+                            <tr><td>∛(−50)</td><td>≈ −3.684</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>No imaginary numbers needed — the racine cubique always stays in the real number system.</p>
+            </div>
+        </section>
+
+        <!-- Section: Real-Life Applications -->
+        <section class="article-section article-section--alt" id="section-applications">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">🌍</span> Applications</div>
+                <h2 class="article-h2">Real-Life Applications of Racine Carrée and Racine Cubique</h2>
+
+                <div class="applications-grid">
+                    <div class="app-card">
+                        <div class="app-icon">🏗️</div>
+                        <h4>Architecture & Construction</h4>
+                        <ul>
+                            <li><strong>Room diagonal (√):</strong> A 10×10 m room has diagonal √(10²+10²) = √200 ≈ 14.14 m</li>
+                            <li><strong>Cube side from volume (∛):</strong> A 1,000 m³ storage cube has sides of ∛1000 = 10 m</li>
+                            <li><strong>Roof rafter length:</strong> √(rise² + run²) — Pythagorean theorem</li>
+                        </ul>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">⚛️</div>
+                        <h4>Physics</h4>
+                        <ul>
+                            <li><strong>Velocity from KE (√):</strong> v = √(2KE/m)</li>
+                            <li><strong>Sphere radius from volume (∛):</strong> r = ∛(3V/4π)</li>
+                            <li><strong>RMS voltage (√):</strong> V_RMS = V_peak / √2</li>
+                            <li><strong>Pendulum period (√):</strong> T = 2π√(L/g)</li>
+                        </ul>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">📊</div>
+                        <h4>Statistics & Data Science</h4>
+                        <ul>
+                            <li><strong>Standard deviation (√):</strong> σ = √[Σ(x − μ)²/N]</li>
+                            <li>Powers polling margins, A/B test significance, quality control, and every bell curve</li>
+                        </ul>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">💰</div>
+                        <h4>Finance & Investment</h4>
+                        <ul>
+                            <li><strong>Annual volatility (√):</strong> σ_annual = σ_daily × √252</li>
+                            <li><strong>Geometric mean return (∛):</strong> ∛[(1+r₁)(1+r₂)(1+r₃)] − 1</li>
+                        </ul>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">🏥</div>
+                        <h4>Medicine</h4>
+                        <ul>
+                            <li><strong>Body surface area (√):</strong> BSA = √[(height × weight)/3600]</li>
+                            <li><strong>Allometric dosing (∛):</strong> Dose ∝ Weight^(2/3)</li>
+                        </ul>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon">💻</div>
+                        <h4>Computer Science & Graphics</h4>
+                        <ul>
+                            <li><strong>CIELAB color model (∛):</strong> L* = 116 × ∛(Y/Yn) − 16</li>
+                            <li><strong>Vector normalization (√):</strong> divide by √(x²+y²+z²)</li>
+                            <li>The Quake III fast inverse square root hack (1999)</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Section: Simplification Tables -->
+        <section class="article-section" id="section-simplification">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">✨</span> Simplification</div>
+                <h2 class="article-h2">Simplifying Square Roots and Cube Roots — Radical Expressions</h2>
+                <p>Simplifying a radical means extracting all perfect power factors from under the sign. Our racine carree calculator does this automatically for both square and cube roots.</p>
+
+                <h3 class="article-h3">Square Root Simplification Table</h3>
+                <div class="table-scroll-wrapper">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll horizontally to see all columns →
+                    </div>
+                    <table class="data-table data-table--compact">
+                        <thead><tr><th>Expression</th><th>Simplified Form</th><th>Decimal</th></tr></thead>
+                        <tbody>
+                            <tr><td>√8</td><td>2√2</td><td>2.828</td></tr>
+                            <tr><td>√12</td><td>2√3</td><td>3.464</td></tr>
+                            <tr><td>√18</td><td>3√2</td><td>4.243</td></tr>
+                            <tr><td>√20</td><td>2√5</td><td>4.472</td></tr>
+                            <tr><td>√27</td><td>3√3</td><td>5.196</td></tr>
+                            <tr><td>√32</td><td>4√2</td><td>5.657</td></tr>
+                            <tr><td>√45</td><td>3√5</td><td>6.708</td></tr>
+                            <tr><td>√48</td><td>4√3</td><td>6.928</td></tr>
+                            <tr><td>√50</td><td>5√2</td><td>7.071</td></tr>
+                            <tr><td>√72</td><td>6√2</td><td>8.485</td></tr>
+                            <tr><td>√75</td><td>5√3</td><td>8.660</td></tr>
+                            <tr><td>√98</td><td>7√2</td><td>9.899</td></tr>
+                            <tr><td>√108</td><td>6√3</td><td>10.392</td></tr>
+                            <tr><td>√128</td><td>8√2</td><td>11.314</td></tr>
+                            <tr><td>√150</td><td>5√6</td><td>12.247</td></tr>
+                            <tr><td>√200</td><td>10√2</td><td>14.142</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="article-h3">Cube Root Simplification Table</h3>
+                <div class="table-scroll-wrapper">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll horizontally to see all columns →
+                    </div>
+                    <table class="data-table data-table--compact">
+                        <thead><tr><th>Expression</th><th>Simplified Form</th><th>Decimal</th></tr></thead>
+                        <tbody>
+                            <tr><td>∛16</td><td>2∛2</td><td>2.520</td></tr>
+                            <tr><td>∛24</td><td>2∛3</td><td>2.884</td></tr>
+                            <tr><td>∛32</td><td>2∛4</td><td>3.175</td></tr>
+                            <tr><td>∛54</td><td>3∛2</td><td>3.780</td></tr>
+                            <tr><td>∛72</td><td>2∛9</td><td>4.160</td></tr>
+                            <tr><td>∛81</td><td>3∛3</td><td>4.327</td></tr>
+                            <tr><td>∛108</td><td>3∛4</td><td>4.762</td></tr>
+                            <tr><td>∛128</td><td>4∛2</td><td>5.040</td></tr>
+                            <tr><td>∛135</td><td>3∛5</td><td>5.129</td></tr>
+                            <tr><td>∛192</td><td>4∛3</td><td>5.769</td></tr>
+                            <tr><td>∛250</td><td>5∛2</td><td>6.300</td></tr>
+                            <tr><td>∛375</td><td>5∛3</td><td>7.211</td></tr>
+                            <tr><td>∛500</td><td>5∛4</td><td>7.937</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Reference Tables -->
+        <section class="article-section article-section--alt" id="reference-tables">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">📋</span> Reference Tables</div>
+                <h2 class="article-h2">Standard Reference Tables — Square Roots and Cube Roots (1 to 100)</h2>
+
+                <h3 class="article-h3">Square Root Table — √1 to √100</h3>
+                <div class="table-scroll-wrapper table-scroll-wrapper--large">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll to see all values →
+                    </div>
+                    <table class="data-table data-table--reference" id="sqrtRefTable">
+                        <thead>
+                            <tr>
+                                <th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="td-bold">1</td><td class="td-bold">1.000</td><td>21</td><td>4.583</td><td>41</td><td>6.403</td><td>61</td><td>7.810</td><td>81</td><td class="td-bold">9.000</td></tr>
+                            <tr><td>2</td><td>1.414</td><td>22</td><td>4.690</td><td>42</td><td>6.481</td><td>62</td><td>7.874</td><td>82</td><td>9.055</td></tr>
+                            <tr><td>3</td><td>1.732</td><td>23</td><td>4.796</td><td>43</td><td>6.557</td><td>63</td><td>7.937</td><td>83</td><td>9.110</td></tr>
+                            <tr><td class="td-bold">4</td><td class="td-bold">2.000</td><td>24</td><td>4.899</td><td>44</td><td>6.633</td><td class="td-bold">64</td><td class="td-bold">8.000</td><td>84</td><td>9.165</td></tr>
+                            <tr><td>5</td><td>2.236</td><td class="td-bold">25</td><td class="td-bold">5.000</td><td>45</td><td>6.708</td><td>65</td><td>8.062</td><td>85</td><td>9.220</td></tr>
+                            <tr><td>6</td><td>2.449</td><td>26</td><td>5.099</td><td>46</td><td>6.782</td><td>66</td><td>8.124</td><td>86</td><td>9.274</td></tr>
+                            <tr><td>7</td><td>2.646</td><td>27</td><td>5.196</td><td>47</td><td>6.856</td><td>67</td><td>8.185</td><td>87</td><td>9.327</td></tr>
+                            <tr><td>8</td><td>2.828</td><td>28</td><td>5.292</td><td>48</td><td>6.928</td><td>68</td><td>8.246</td><td>88</td><td>9.381</td></tr>
+                            <tr><td class="td-bold">9</td><td class="td-bold">3.000</td><td>29</td><td>5.385</td><td class="td-bold">49</td><td class="td-bold">7.000</td><td>69</td><td>8.307</td><td>89</td><td>9.434</td></tr>
+                            <tr><td>10</td><td>3.162</td><td>30</td><td>5.477</td><td>50</td><td>7.071</td><td>70</td><td>8.367</td><td>90</td><td>9.487</td></tr>
+                            <tr><td>11</td><td>3.317</td><td>31</td><td>5.568</td><td>51</td><td>7.141</td><td>71</td><td>8.426</td><td>91</td><td>9.539</td></tr>
+                            <tr><td>12</td><td>3.464</td><td>32</td><td>5.657</td><td>52</td><td>7.211</td><td>72</td><td>8.485</td><td>92</td><td>9.592</td></tr>
+                            <tr><td>13</td><td>3.606</td><td>33</td><td>5.745</td><td>53</td><td>7.280</td><td>73</td><td>8.544</td><td>93</td><td>9.644</td></tr>
+                            <tr><td>14</td><td>3.742</td><td>34</td><td>5.831</td><td>54</td><td>7.348</td><td>74</td><td>8.602</td><td>94</td><td>9.695</td></tr>
+                            <tr><td>15</td><td>3.873</td><td>35</td><td>5.916</td><td>55</td><td>7.416</td><td>75</td><td>8.660</td><td>95</td><td>9.747</td></tr>
+                            <tr><td class="td-bold">16</td><td class="td-bold">4.000</td><td class="td-bold">36</td><td class="td-bold">6.000</td><td>56</td><td>7.483</td><td>76</td><td>8.718</td><td>96</td><td>9.798</td></tr>
+                            <tr><td>17</td><td>4.123</td><td>37</td><td>6.083</td><td>57</td><td>7.550</td><td>77</td><td>8.775</td><td>97</td><td>9.849</td></tr>
+                            <tr><td>18</td><td>4.243</td><td>38</td><td>6.164</td><td>58</td><td>7.616</td><td>78</td><td>8.832</td><td>98</td><td>9.899</td></tr>
+                            <tr><td>19</td><td>4.359</td><td>39</td><td>6.245</td><td>59</td><td>7.681</td><td>79</td><td>8.888</td><td>99</td><td>9.950</td></tr>
+                            <tr><td>20</td><td>4.472</td><td>40</td><td>6.325</td><td>60</td><td>7.746</td><td>80</td><td>8.944</td><td class="td-bold">100</td><td class="td-bold">10.000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-note"><strong>Bold values</strong> = perfect squares with integer results</p>
+
+                <h3 class="article-h3">Cube Root Table — ∛1 to ∛100</h3>
+                <div class="table-scroll-wrapper table-scroll-wrapper--large">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll to see all values →
+                    </div>
+                    <table class="data-table data-table--reference" id="cbrtRefTable">
+                        <thead>
+                            <tr>
+                                <th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="td-bold">1</td><td class="td-bold">1.000</td><td>21</td><td>2.759</td><td>41</td><td>3.448</td><td>61</td><td>3.936</td><td>81</td><td>4.327</td></tr>
+                            <tr><td>2</td><td>1.260</td><td>22</td><td>2.802</td><td>42</td><td>3.476</td><td>62</td><td>3.958</td><td>82</td><td>4.344</td></tr>
+                            <tr><td>3</td><td>1.442</td><td>23</td><td>2.844</td><td>43</td><td>3.503</td><td>63</td><td>3.979</td><td>83</td><td>4.362</td></tr>
+                            <tr><td>4</td><td>1.587</td><td>24</td><td>2.884</td><td>44</td><td>3.530</td><td class="td-bold">64</td><td class="td-bold">4.000</td><td>84</td><td>4.380</td></tr>
+                            <tr><td>5</td><td>1.710</td><td>25</td><td>2.924</td><td>45</td><td>3.557</td><td>65</td><td>4.021</td><td>85</td><td>4.397</td></tr>
+                            <tr><td>6</td><td>1.817</td><td>26</td><td>2.962</td><td>46</td><td>3.583</td><td>66</td><td>4.041</td><td>86</td><td>4.414</td></tr>
+                            <tr><td>7</td><td>1.913</td><td class="td-bold">27</td><td class="td-bold">3.000</td><td>47</td><td>3.609</td><td>67</td><td>4.062</td><td>87</td><td>4.431</td></tr>
+                            <tr><td class="td-bold">8</td><td class="td-bold">2.000</td><td>28</td><td>3.037</td><td>48</td><td>3.634</td><td>68</td><td>4.082</td><td>88</td><td>4.448</td></tr>
+                            <tr><td>9</td><td>2.080</td><td>29</td><td>3.072</td><td>49</td><td>3.659</td><td>69</td><td>4.102</td><td>89</td><td>4.465</td></tr>
+                            <tr><td>10</td><td>2.154</td><td>30</td><td>3.107</td><td>50</td><td>3.684</td><td>70</td><td>4.121</td><td>90</td><td>4.481</td></tr>
+                            <tr><td>11</td><td>2.224</td><td>31</td><td>3.141</td><td>51</td><td>3.708</td><td>71</td><td>4.141</td><td>91</td><td>4.498</td></tr>
+                            <tr><td>12</td><td>2.289</td><td>32</td><td>3.175</td><td>52</td><td>3.732</td><td>72</td><td>4.160</td><td>92</td><td>4.514</td></tr>
+                            <tr><td>13</td><td>2.351</td><td>33</td><td>3.208</td><td>53</td><td>3.756</td><td>73</td><td>4.179</td><td>93</td><td>4.531</td></tr>
+                            <tr><td>14</td><td>2.410</td><td>34</td><td>3.240</td><td>54</td><td>3.780</td><td>74</td><td>4.198</td><td>94</td><td>4.547</td></tr>
+                            <tr><td>15</td><td>2.466</td><td>35</td><td>3.271</td><td>55</td><td>3.803</td><td>75</td><td>4.217</td><td>95</td><td>4.563</td></tr>
+                            <tr><td>16</td><td>2.520</td><td>36</td><td>3.302</td><td>56</td><td>3.826</td><td>76</td><td>4.236</td><td>96</td><td>4.579</td></tr>
+                            <tr><td>17</td><td>2.571</td><td>37</td><td>3.332</td><td>57</td><td>3.849</td><td>77</td><td>4.254</td><td>97</td><td>4.595</td></tr>
+                            <tr><td>18</td><td>2.621</td><td>38</td><td>3.362</td><td>58</td><td>3.871</td><td>78</td><td>4.273</td><td>98</td><td>4.610</td></tr>
+                            <tr><td>19</td><td>2.668</td><td>39</td><td>3.391</td><td>59</td><td>3.893</td><td>79</td><td>4.291</td><td>99</td><td>4.626</td></tr>
+                            <tr><td>20</td><td>2.714</td><td>40</td><td>3.420</td><td>60</td><td>3.915</td><td>80</td><td>4.309</td><td class="td-bold">100</td><td class="td-bold">4.642</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-note"><strong>Bold values</strong> = perfect cubes with integer results (1, 8, 27, 64)</p>
+            </div>
+        </section>
+
+        <!-- Section: Perfect Squares & Cubes -->
+        <section class="article-section" id="section-perfect-memorization">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">🧠</span> Memorization</div>
+                <h2 class="article-h2">Perfect Squares and Cubes — The Essential Memorization Lists</h2>
+
+                <h3 class="article-h3">Perfect Squares (1–20)</h3>
+                <div class="table-scroll-wrapper">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll horizontally →
+                    </div>
+                    <table class="data-table data-table--compact">
+                        <thead><tr><th>n</th><th>n²</th><th>√n²</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>1</td><td>1</td></tr>
+                            <tr><td>2</td><td>4</td><td>2</td></tr>
+                            <tr><td>3</td><td>9</td><td>3</td></tr>
+                            <tr><td>4</td><td>16</td><td>4</td></tr>
+                            <tr><td>5</td><td>25</td><td>5</td></tr>
+                            <tr><td>6</td><td>36</td><td>6</td></tr>
+                            <tr><td>7</td><td>49</td><td>7</td></tr>
+                            <tr><td>8</td><td>64</td><td>8</td></tr>
+                            <tr><td>9</td><td>81</td><td>9</td></tr>
+                            <tr><td>10</td><td>100</td><td>10</td></tr>
+                            <tr><td>11</td><td>121</td><td>11</td></tr>
+                            <tr><td>12</td><td>144</td><td>12</td></tr>
+                            <tr><td>13</td><td>169</td><td>13</td></tr>
+                            <tr><td>14</td><td>196</td><td>14</td></tr>
+                            <tr><td>15</td><td>225</td><td>15</td></tr>
+                            <tr><td>16</td><td>256</td><td>16</td></tr>
+                            <tr><td>17</td><td>289</td><td>17</td></tr>
+                            <tr><td>18</td><td>324</td><td>18</td></tr>
+                            <tr><td>19</td><td>361</td><td>19</td></tr>
+                            <tr><td>20</td><td>400</td><td>20</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="article-h3">Perfect Cubes (1–15)</h3>
+                <div class="table-scroll-wrapper">
+                    <div class="table-scroll-hint">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Scroll horizontally →
+                    </div>
+                    <table class="data-table data-table--compact">
+                        <thead><tr><th>n</th><th>n³</th><th>∛n³</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>1</td><td>1</td></tr>
+                            <tr><td>2</td><td>8</td><td>2</td></tr>
+                            <tr><td>3</td><td>27</td><td>3</td></tr>
+                            <tr><td>4</td><td>64</td><td>4</td></tr>
+                            <tr><td>5</td><td>125</td><td>5</td></tr>
+                            <tr><td>6</td><td>216</td><td>6</td></tr>
+                            <tr><td>7</td><td>343</td><td>7</td></tr>
+                            <tr><td>8</td><td>512</td><td>8</td></tr>
+                            <tr><td>9</td><td>729</td><td>9</td></tr>
+                            <tr><td>10</td><td>1,000</td><td>10</td></tr>
+                            <tr><td>11</td><td>1,331</td><td>11</td></tr>
+                            <tr><td>12</td><td>1,728</td><td>12</td></tr>
+                            <tr><td>13</td><td>2,197</td><td>13</td></tr>
+                            <tr><td>14</td><td>2,744</td><td>14</td></tr>
+                            <tr><td>15</td><td>3,375</td><td>15</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: FAQ -->
+        <section class="article-section article-section--alt" id="faq-section">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">❓</span> FAQ</div>
+                <h2 class="article-h2">Frequently Asked Questions</h2>
+
+                <div class="faq-list">
+                    <details class="faq-item" id="faq-1">
+                        <summary class="faq-question">What does "racine carrée" mean in English?</summary>
+                        <div class="faq-answer"><p>"Racine carrée" is French for "square root." Our racine carree calculator is named to serve both French and English-speaking users worldwide. In French, "racine" means root and "carrée" means square.</p></div>
+                    </details>
+                    <details class="faq-item" id="faq-2">
+                        <summary class="faq-question">How do I use the racine carree calculator?</summary>
+                        <div class="faq-answer"><p>Simply type any number into the input box at the top of this page. The calculator instantly displays the square root (racine carrée) or cube root (racine cubique), simplified radical form, and step-by-step workings. No button press needed — results appear in real time.</p></div>
+                    </details>
+                    <details class="faq-item" id="faq-3">
+                        <summary class="faq-question">Can I calculer la racine carrée of a negative number?</summary>
+                        <div class="faq-answer"><p>Yes. When you enter a negative number, the racine carree calculator returns an imaginary result using the unit i. For example, √(−25) = 5i. For cube roots, negative inputs return real negative results: ∛(−27) = −3.</p></div>
+                    </details>
+                    <details class="faq-item" id="faq-4">
+                        <summary class="faq-question">What is the difference between racine carrée and racine cubique?</summary>
+                        <div class="faq-answer"><p>The racine carrée (√) finds y where y² = x — defined only for non-negative numbers in the reals, always returns a positive result. The racine cubique (∛) finds y where y³ = x — defined for all real numbers, preserves the sign of the input. Our calculator handles both with a single mode switch.</p></div>
+                    </details>
+                    <details class="faq-item" id="faq-5">
+                        <summary class="faq-question">How do I calculer une racine carrée manually?</summary>
+                        <div class="faq-answer"><p>Use the estimation method (bracket between perfect squares), prime factorization for exact forms, or the long division algorithm for any precision. All three methods are explained in full with worked examples above.</p></div>
+                    </details>
+                    <details class="faq-item" id="faq-6">
+                        <summary class="faq-question">Is this racine carree calculator free?</summary>
+                        <div class="faq-answer"><p>Yes — completely. No subscription, no registration, no ads interrupting your workflow. Our calcul racine carrée tool is available 24/7 on any device, at no cost.</p></div>
+                    </details>
+                    <details class="faq-item" id="faq-7">
+                        <summary class="faq-question">What is the racine carrée of 2?</summary>
+                        <div class="faq-answer"><p>√2 is an irrational number — its decimal expansion never ends and never repeats. To 10 decimal places: 1.4142135624. It is approximately 1.41421356237...</p></div>
+                    </details>
+                    <details class="faq-item" id="faq-8">
+                        <summary class="faq-question">What is the racine cubique of 0?</summary>
+                        <div class="faq-answer"><p>∛0 = 0. Zero is the only number whose cube root equals itself (0³ = 0). The same is true for the square root: √0 = 0.</p></div>
+                    </details>
+                    <details class="faq-item" id="faq-9">
+                        <summary class="faq-question">How precise is this calculator?</summary>
+                        <div class="faq-answer"><p>The racine carree calculator uses IEEE 754 double-precision floating-point arithmetic — the international standard for scientific software — giving up to 15 significant digits of accuracy. The displayed precision is up to 10 decimal places.</p></div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Pro Tips -->
+        <section class="article-section" id="section-pro-tips">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">💡</span> Pro Tips</div>
+                <h2 class="article-h2">Pro Tips for Working With Racine Carrée and Racine Cubique</h2>
+
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-number">1</div>
+                        <p><strong>Memorize perfect squares to 20 and perfect cubes to 15.</strong> These two lists unlock fast mental estimation for both operations.</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">2</div>
+                        <p><strong>Use simplified radical form in algebra.</strong> The form 6√2 (for √72) or 3∛2 (for ∛54) is more precise than a rounded decimal and is the expected format in exams.</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">3</div>
+                        <p><strong>Remember: the addition trap applies to both.</strong> √(a+b) ≠ √a + √b, and ∛(a+b) ≠ ∛a + ∛b. Most common algebra error at every level.</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">4</div>
+                        <p><strong>For negative numbers, know which tool to use.</strong> √(−x) = i√x (imaginary). ∛(−x) = −∛x (real). Our calculator handles both automatically.</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">5</div>
+                        <p><strong>Always verify by reversing the operation.</strong> After finding √x ≈ y, check y² ≈ x. After finding ∛x ≈ y, check y³ ≈ x. Our calculator displays this automatically.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Conclusion -->
+        <section class="article-section article-section--alt" id="section-conclusion">
+            <div class="article-container">
+                <div class="section-eyebrow"><span class="eyebrow-icon">🎯</span> Conclusion</div>
+                <h2 class="article-h2">Conclusion</h2>
+                <p>The <strong>racine carrée</strong> (square root) and <strong>racine cubique</strong> (cube root) are two of mathematics' most universally applied operations — present in geometry, physics, statistics, finance, medicine, computer graphics, and everyday engineering. Whether you need to calculer la racine carrée of a room diagonal, calculer une racine carrée for a standard deviation, find the racine cubique of a storage volume, or compute a three-period geometric investment return, this page gives you every tool and reference you need.</p>
+                <p>Our <strong>racine carree calculator</strong> is the most complete free tool available — combining both square root and cube root calculation, simplified radical form, step-by-step Newton-Raphson workings, imaginary number support, comprehensive reference tables, and IEEE 754 precision, all in one place at zero cost.</p>
+                <div class="cta-block">
+                    <a href="#calculators" class="cta-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+                        Use the Calculator Now
+                    </a>
+                    <p class="cta-subtitle">Enter any number and get your racine carrée or racine cubique result instantly.</p>
+                </div>
+            </div>
+        </section>
+
+    </article>
 
     <!-- Footer -->
     <footer class="footer" id="footer">
@@ -494,7 +1163,7 @@
                     <span class="logo-icon">√</span>
                     <span class="logo-text">Racine Carrée Calculator</span>
                 </div>
-                <p class="footer-tagline">Premium math tools for everyone.</p>
+                <p class="footer-tagline">The most complete free square root and cube root tool online.</p>
             </div>
             <div class="footer-bottom">
                 <p class="footer-copy">&copy; 2026 Racine Carrée Calculator. All rights reserved.</p>
