@@ -96,7 +96,7 @@ function initTabs() {
             });
 
             // Focus first input
-            const firstInput = document.querySelector(`.calc-panel[data-calc="${target}"] .calc-input`);
+            const firstInput = document.querySelector(`.calc-panel[data-calc="${target}"] .calc-input, .calc-panel[data-calc="${target}"] .frac-input`);
             if (firstInput) {
                 setTimeout(() => firstInput.focus(), 100);
             }
@@ -212,12 +212,15 @@ function calculateSquareRoot() {
     showResult(resultArea, {
         formula: `√${formatNum(value)} =`,
         value: formatResult(result),
-        extra: isExact
-            ? `Perfect square: ${formatNum(value)} = ${formatResult(result)}²`
-            : `Approximation: ${result.toFixed(10)}`,
-        details: isExact
+        badge: isExact ? 'Perfect Square' : 'Approximation',
+        breakdown: [
+            { label: 'Input', value: formatNum(value) },
+            { label: 'Result', value: formatResult(result) },
+            { label: 'Squared', value: formatResult(result * result) },
+        ],
+        summary: isExact
             ? `${formatResult(result)} × ${formatResult(result)} = ${formatNum(value)}`
-            : null,
+            : `Decimal approximation: ${result.toFixed(10)}`,
     });
 
     addHistory('sqrt', `√${formatNum(value)}`, formatResult(result));
@@ -240,12 +243,15 @@ function calculateCubeRoot() {
     showResult(resultArea, {
         formula: `∛${formatNum(value)} =`,
         value: formatResult(result),
-        extra: isExact
-            ? `Perfect cube: ${formatNum(value)} = ${formatResult(result)}³`
-            : `Approximation: ${result.toFixed(10)}`,
-        details: isExact
-            ? `${formatResult(result)} × ${formatResult(result)} × ${formatResult(result)} = ${formatNum(value)}`
-            : null,
+        badge: isExact ? 'Perfect Cube' : 'Approximation',
+        breakdown: [
+            { label: 'Input', value: formatNum(value) },
+            { label: 'Result', value: formatResult(result) },
+            { label: 'Cubed', value: formatResult(result ** 3) },
+        ],
+        summary: isExact
+            ? `${formatResult(result)}³ = ${formatNum(value)}`
+            : `Decimal approximation: ${result.toFixed(10)}`,
     });
 
     addHistory('cbrt', `∛${formatNum(value)}`, formatResult(result));
@@ -287,12 +293,15 @@ function calculateNthRoot() {
     showResult(resultArea, {
         formula: `${nStr}${formatNum(x)} =`,
         value: formatResult(result),
-        extra: isExact
-            ? `Exact integer result`
-            : `Approximation: ${result.toFixed(10)}`,
-        details: isExact
+        badge: isExact ? 'Exact' : 'Approximation',
+        breakdown: [
+            { label: 'Degree', value: formatNum(n) },
+            { label: 'Input', value: formatNum(x) },
+            { label: 'Raised', value: formatResult(Math.pow(result, n)) },
+        ],
+        summary: isExact
             ? `${formatResult(result)}^${formatNum(n)} = ${formatNum(x)}`
-            : null,
+            : `Decimal approximation: ${result.toFixed(10)}`,
     });
 
     addHistory('nth', `${nStr}${formatNum(x)}`, formatResult(result));
@@ -358,15 +367,18 @@ function calculateFraction() {
     const formulaStr = `${formatNum(a1)}/${formatNum(b1)} ${opSymbol} ${formatNum(a2)}/${formatNum(b2)}`;
     const valueStr = finalDen === 1 ? `${formatNum(finalNum)}` : `${formatNum(finalNum)}/${formatNum(finalDen)}`;
 
-    const detailsParts = [];
-    if (wasSimplified) detailsParts.push(`Simplified from ${formatNum(numResult)}/${formatNum(denResult)}`);
-    detailsParts.push(`Decimal: ${formatResult(decimal)}`);
-
     showResult(resultArea, {
         formula: `${formulaStr} =`,
         value: valueStr,
-        extra: wasSimplified ? detailsParts.join(' · ') : detailsParts.join(' · '),
-        details: detailsParts.join(' · '),
+        badge: wasSimplified ? 'Simplified' : 'Result',
+        breakdown: [
+            { label: 'Decimal', value: formatResult(decimal) },
+            { label: 'Numerator', value: formatNum(finalNum) },
+            { label: 'Denominator', value: formatNum(finalDen) },
+        ],
+        summary: wasSimplified
+            ? `Reduced from ${formatNum(numResult)}/${formatNum(denResult)}`
+            : `Equivalent decimal: ${formatResult(decimal)}`,
     });
 
     addHistory('frac', formulaStr, valueStr);
@@ -411,12 +423,15 @@ function calculatePower() {
     showResult(resultArea, {
         formula: `${formatNum(base)}${expStr} =`,
         value: formatResult(result),
-        extra: Number.isFinite(result)
-            ? `${formatNum(base)} to the power of ${formatNum(exp)}`
+        badge: isIntResult ? 'Exact' : (Number.isFinite(result) ? 'Approximation' : 'Undefined'),
+        breakdown: [
+            { label: 'Base', value: formatNum(base) },
+            { label: 'Exponent', value: formatNum(exp) },
+            { label: 'Type', value: Number.isFinite(result) ? 'Finite' : 'Infinite' },
+        ],
+        summary: Number.isFinite(result)
+            ? `${formatNum(base)} raised to the power of ${formatNum(exp)}`
             : 'Result is infinity or undefined',
-        details: isIntResult
-            ? `${formatNum(base)}${expStr} = ${formatResult(result)}`
-            : null,
     });
 
     addHistory('power', `${formatNum(base)}${expStr}`, formatResult(result));
@@ -448,8 +463,13 @@ function calculatePercentage() {
             showResult(resultArea, {
                 formula: `${formatNum(pct)}% of ${formatNum(num)} =`,
                 value: formatResult(result),
-                extra: `${formatNum(pct)} ÷ 100 × ${formatNum(num)}`,
-                details: `= ${formatResult(result)}`,
+                badge: 'Result',
+                breakdown: [
+                    { label: 'Percentage', value: `${formatNum(pct)}%` },
+                    { label: 'Of', value: formatNum(num) },
+                    { label: 'Remainder', value: formatResult(num - result) },
+                ],
+                summary: `${formatNum(pct)} ÷ 100 × ${formatNum(num)} = ${formatResult(result)}`,
             });
             addHistory('pct', `${formatNum(pct)}% of ${formatNum(num)}`, formatResult(result));
             break;
@@ -469,8 +489,13 @@ function calculatePercentage() {
             showResult(resultArea, {
                 formula: `${formatNum(x)} is what % of ${formatNum(y)}?`,
                 value: `${formatResult(result)}%`,
-                extra: `${formatNum(x)} ÷ ${formatNum(y)} × 100`,
-                details: `= ${formatResult(result)}%`,
+                badge: 'Ratio',
+                breakdown: [
+                    { label: 'Part', value: formatNum(x) },
+                    { label: 'Whole', value: formatNum(y) },
+                    { label: 'Fraction', value: formatResult(x / y) },
+                ],
+                summary: `${formatNum(x)} ÷ ${formatNum(y)} × 100 = ${formatResult(result)}%`,
             });
             addHistory('pct', `${formatNum(x)} is ?% of ${formatNum(y)}`, `${formatResult(result)}%`);
             break;
@@ -492,8 +517,13 @@ function calculatePercentage() {
             showResult(resultArea, {
                 formula: `% change from ${formatNum(oldVal)} to ${formatNum(newVal)}`,
                 value: `${change >= 0 ? '+' : ''}${formatResult(change)}%`,
-                extra: `${Math.abs(change).toFixed(2)}% ${direction}`,
-                details: `${direction === 'increase' ? 'Rose' : 'Fell'} by ${formatResult(diff)} (${Math.abs(change).toFixed(2)}%)`,
+                badge: change >= 0 ? 'Increase' : 'Decrease',
+                breakdown: [
+                    { label: 'Old value', value: formatNum(oldVal) },
+                    { label: 'New value', value: formatNum(newVal) },
+                    { label: 'Difference', value: `${change >= 0 ? '+' : '−'}${formatResult(diff)}` },
+                ],
+                summary: `${direction === 'increase' ? 'Rose' : 'Fell'} by ${formatResult(diff)} (${Math.abs(change).toFixed(2)}%)`,
             });
             addHistory('pct', `${formatNum(oldVal)} → ${formatNum(newVal)}`, `${change >= 0 ? '+' : ''}${formatResult(change)}%`);
             break;
@@ -505,40 +535,45 @@ function calculatePercentage() {
 //  UI Helpers
 // ============================================
 
-function showResult(area, { formula, value, extra, badge, details }) {
+function showResult(area, { formula, value, badge, breakdown, summary }) {
     area.classList.add('has-result');
     area.classList.remove('error');
 
-    if (!badge) {
-        if (/perfect (square|cube)/i.test(extra)) badge = extra.match(/perfect (square|cube)/i)[0].replace(/\b\w/g, c => c.toUpperCase());
-        else if (/Exact/i.test(extra)) badge = 'Exact';
-        else if (/Simplified/i.test(extra)) badge = 'Simplified';
-        else if (/increase/i.test(extra)) badge = 'Increase';
-        else if (/decrease/i.test(extra)) badge = 'Decrease';
-        else if (/Infinity/i.test(extra)) badge = 'Infinity';
-        else badge = 'Result';
-    }
-
-    const badgeClass = {
+    const statusClass = {
         'Perfect Square': 'is-exact',
         'Perfect Cube': 'is-exact',
         'Exact': 'is-exact',
         'Simplified': 'is-exact',
+        'Result': 'is-exact',
+        'Ratio': 'is-info',
         'Increase': 'is-info',
-        'Decrease': 'is-error',
-        'Infinity': 'is-approx',
+        'Decrease': 'is-decrease',
+        'Approximation': 'is-approx',
+        'Undefined': 'is-approx',
     }[badge] || 'is-approx';
 
+    const breakdownHtml = (breakdown || []).map(item => `
+        <div class="result-stat">
+            <span class="result-stat-label">${item.label}</span>
+            <span class="result-stat-value">${item.value}</span>
+        </div>
+    `).join('');
+
     area.innerHTML = `
-        <div class="result-content">
-            <div class="result-content-top">
-                <div class="result-formula">${formula}</div>
-                <span class="result-badge ${badgeClass}">${badge}</span>
+        <div class="result-filled">
+            <div class="result-panel-header">
+                <span class="result-panel-label">Result</span>
+                <span class="result-status ${statusClass}">${badge || 'Result'}</span>
             </div>
-            <div class="result-value-wrap">
-                <div class="result-value">${value}</div>
-            </div>
-            ${details || extra ? `<div class="result-details">${details || extra}</div>` : ''}
+            <div class="result-expression">${formula}</div>
+            <div class="result-answer">${value}</div>
+            ${breakdownHtml ? `<div class="result-breakdown">${breakdownHtml}</div>` : ''}
+            ${summary ? `
+                <div class="result-summary">
+                    <span class="result-summary-icon">i</span>
+                    <span>${summary}</span>
+                </div>
+            ` : ''}
         </div>
     `;
 }
@@ -548,8 +583,8 @@ function showError(area, message) {
     area.classList.remove('has-result');
     area.innerHTML = `
         <div class="result-error">
-            <span>⚠</span>
-            <span>${message}</span>
+            <span class="result-error-icon" aria-hidden="true">!</span>
+            <span class="result-error-text">${message}</span>
         </div>
     `;
 
@@ -594,16 +629,28 @@ function addHistory(type, expression, result) {
         pct: 'pctHistoryList',
     };
 
+    const countMap = {
+        sqrt: 'sqrtHistoryCount',
+        cbrt: 'cbrtHistoryCount',
+        nth: 'nthHistoryCount',
+        frac: 'fracHistoryCount',
+        power: 'powerHistoryCount',
+        pct: 'pctHistoryCount',
+    };
+
     histories[type].unshift({ expression, result });
     if (histories[type].length > MAX_HISTORY) {
         histories[type].pop();
     }
 
-    // Show history container
     const container = document.getElementById(historyMap[type]);
     container.classList.add('show');
 
-    // Render items
+    const countEl = document.getElementById(countMap[type]);
+    if (countEl) {
+        countEl.textContent = `${histories[type].length}`;
+    }
+
     const list = document.getElementById(listMap[type]);
     list.innerHTML = histories[type].map((item, i) => `
         <div class="history-item" style="animation-delay: ${i * 50}ms">
