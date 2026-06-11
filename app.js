@@ -378,24 +378,30 @@ function calculateSquareRoot() {
     }
 
     const result = Math.sqrt(value);
-    const isExact = Number.isInteger(result);
+    const isPerfectSquare = Number.isInteger(result);
+    const isRational = Number.isFinite(result);
+    const resultStr = formatResult(result);
+    const decimalPlaces = isPerfectSquare ? 0 : (resultStr.includes('.') ? resultStr.split('.')[1].length : 0);
 
     showResult(resultArea, {
         formula: `√${formatNum(value)} =`,
-        value: formatResult(result),
-        badge: isExact ? 'Perfect Square' : 'Approximation',
+        value: resultStr,
+        badge: isPerfectSquare ? 'Perfect Square' : 'Approximation',
         breakdown: [
             { label: 'Input', value: formatNum(value) },
-            { label: 'Result', value: formatResult(result) },
+            { label: 'Result', value: resultStr },
             { label: 'Squared', value: formatResult(result * result) },
+            { label: 'Type', value: isPerfectSquare ? 'Integer' : 'Irrational' },
+            { label: 'Parity', value: isPerfectSquare ? (result % 2 === 0 ? 'Even' : 'Odd') : 'N/A' },
+            { label: 'Precision', value: isPerfectSquare ? 'Exact' : `${decimalPlaces} decimals` },
         ],
-        summary: isExact
-            ? `${formatResult(result)} × ${formatResult(result)} = ${formatNum(value)}`
-            : `Decimal approximation: ${result.toFixed(10)}`,
+        summary: isPerfectSquare
+            ? `${resultStr} × ${resultStr} = ${formatNum(value)} — this is a perfect square`
+            : `Full precision: ${result.toFixed(10)} — this is an irrational number`,
         steps: buildRootFactorSteps(value, 2, '√'),
     });
 
-    addHistory('sqrt', `√${formatNum(value)}`, formatResult(result));
+    addHistory('sqrt', `√${formatNum(value)}`, resultStr);
 }
 
 // ---- Cube Root ----
@@ -411,24 +417,29 @@ function calculateCubeRoot() {
     }
 
     const result = Math.cbrt(value);
-    const isExact = Number.isInteger(result);
+    const isPerfectCube = Number.isInteger(result);
+    const resultStr = formatResult(result);
+    const isNegative = value < 0;
 
     showResult(resultArea, {
         formula: `∛${formatNum(value)} =`,
-        value: formatResult(result),
-        badge: isExact ? 'Perfect Cube' : 'Approximation',
+        value: resultStr,
+        badge: isPerfectCube ? 'Perfect Cube' : 'Approximation',
         breakdown: [
             { label: 'Input', value: formatNum(value) },
-            { label: 'Result', value: formatResult(result) },
+            { label: 'Result', value: resultStr },
             { label: 'Cubed', value: formatResult(result ** 3) },
+            { label: 'Type', value: isPerfectCube ? 'Integer' : 'Irrational' },
+            { label: 'Sign', value: isNegative ? 'Negative' : (value === 0 ? 'Zero' : 'Positive') },
+            { label: 'Domain', value: 'All reals' },
         ],
-        summary: isExact
-            ? `${formatResult(result)}³ = ${formatNum(value)}`
-            : `Decimal approximation: ${result.toFixed(10)}`,
+        summary: isPerfectCube
+            ? `${resultStr}³ = ${resultStr} × ${resultStr} × ${resultStr} = ${formatNum(value)} — perfect cube`
+            : `Full precision: ${result.toFixed(10)} — irrational number`,
         steps: buildRootFactorSteps(value, 3, '∛'),
     });
 
-    addHistory('cbrt', `∛${formatNum(value)}`, formatResult(result));
+    addHistory('cbrt', `∛${formatNum(value)}`, resultStr);
 }
 
 // ---- Nth Root ----
@@ -638,7 +649,7 @@ function setQuickPower(exp) {
 //  UI Helpers
 // ============================================
 
-const STEPS_SVG = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h4v8H5z"/><path d="M15 6h4v12h-4z"/></svg>`;
+const STEPS_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>`;
 
 function showResult(area, { formula, value, badge, breakdown, summary, steps }) {
     area.classList.add('has-result');
@@ -684,7 +695,10 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps }) 
     area.innerHTML = `
         <div class="result-filled">
             <div class="result-panel-header">
-                <span class="result-panel-label">Result</span>
+                <span class="result-panel-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Result
+                </span>
                 <span class="result-status ${statusClass}">${badge || 'Result'}</span>
             </div>
             <div class="result-expression">${formula}</div>
@@ -692,7 +706,9 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps }) 
             ${breakdownHtml ? `<div class="result-breakdown">${breakdownHtml}</div>` : ''}
             ${summary ? `
                 <div class="result-summary">
-                    <span class="result-summary-icon">i</span>
+                    <span class="result-summary-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    </span>
                     <span>${summary}</span>
                 </div>
             ` : ''}
