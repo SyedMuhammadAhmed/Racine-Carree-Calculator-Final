@@ -8,7 +8,12 @@
     "calculator": "Calculator",
     "learn": "Learn",
     "tables": "Tables",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "blog": "Blog",
+    "about": "About",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact"
   },
   "hero": {
     "badge": "Free Square Root & Cube Root Tool",

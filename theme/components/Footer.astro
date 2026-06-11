@@ -1,6 +1,7 @@
 ---
 import { getLocalizedUrl, type Locale } from '../i18n/utils';
 import type { TranslationSet } from '../i18n/translations';
+import { t } from '../i18n/translations';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import site from '../../src/config/site.json';
 import nav from '../../src/config/nav.json';
@@ -24,8 +25,7 @@ const hasSocials = Object.values(social).some(val => val && val.trim() !== '');
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div class="space-y-8 xl:col-span-1">
         <a href={homeUrl} class="flex items-center gap-2">
-          <img src="/logo.svg" alt={site.siteName} class="h-8 w-8" />
-          <span class="font-bold text-xl text-gray-900">{site.siteName}</span>
+          <span class="font-bold text-xl text-gray-900">{t(translations, 'site.title') || site.siteName}</span>
         </a>
         <p class="text-gray-500 text-base">
           {footerDesc}
@@ -70,9 +70,11 @@ const hasSocials = Object.values(social).some(val => val && val.trim() !== '');
             <nav aria-label="Footer Navigation" class="mt-4 space-y-4">
               {nav.footer.map((item) => {
                 const itemUrl = getLocalizedUrl(item.href, locale);
+                const navKey = 'nav.' + (item.href === '/' ? 'home' : item.href.replace(/^\//, ''));
+                const translatedLabel = t(translations, navKey);
                 return (
                   <a href={itemUrl} class="block text-base text-gray-500 hover:text-gray-900">
-                    {item.label}
+                    {translatedLabel !== navKey ? translatedLabel : item.label}
                   </a>
                 );
               })}
