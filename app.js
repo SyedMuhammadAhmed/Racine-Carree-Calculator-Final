@@ -9,10 +9,8 @@ const histories = {
     nth: [],
     frac: [],
     power: [],
-    pct: [],
 };
 const MAX_HISTORY = 8;
-let currentPctMode = 'of';
 let currentFracOp = '+';
 
 // ---- DOM Ready ----
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initTabs();
     initFractionOperator();
-    initPercentageTabs();
     initKeyboardShortcuts();
     initScrollReveal();
     initSmoothScroll();
@@ -149,26 +146,6 @@ function initFractionOperator() {
     });
 }
 
-// ---- Percentage Tabs ----
-function initPercentageTabs() {
-    const tabs = document.querySelectorAll('.pct-tab');
-    const panels = document.querySelectorAll('.pct-panel');
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const mode = tab.dataset.mode;
-            currentPctMode = mode;
-
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
-            panels.forEach(p => {
-                p.classList.toggle('active', p.dataset.mode === mode);
-            });
-        });
-    });
-}
-
 // ---- Keyboard Shortcuts ----
 function initKeyboardShortcuts() {
     document.addEventListener('keydown', e => {
@@ -183,7 +160,6 @@ function initKeyboardShortcuts() {
                 case 'nth-root': calculateNthRoot(); break;
                 case 'fraction': calculateFraction(); break;
                 case 'power': calculatePower(); break;
-                case 'percentage': calculatePercentage(); break;
             }
         }
     });
@@ -658,107 +634,6 @@ function setQuickPower(exp) {
     }
 }
 
-// ---- Percentage ----
-function calculatePercentage() {
-    const resultArea = document.getElementById('pctResult');
-    pulseCalcButton(document.getElementById('panelPercentage'));
-
-    switch (currentPctMode) {
-        case 'of': {
-            const pct = parseFloat(document.getElementById('pctX').value);
-            const num = parseFloat(document.getElementById('pctY').value);
-            if (isNaN(pct) || isNaN(num)) {
-                showError(resultArea, 'Please fill in both fields');
-                return;
-            }
-            const result = (pct / 100) * num;
-            showResult(resultArea, {
-                formula: `${formatNum(pct)}% of ${formatNum(num)} =`,
-                value: formatResult(result),
-                badge: 'Result',
-                breakdown: [
-                    { label: 'Percentage', value: `${formatNum(pct)}%` },
-                    { label: 'Of', value: formatNum(num) },
-                    { label: 'Remainder', value: formatResult(num - result) },
-                ],
-                summary: `${formatNum(pct)} ÷ 100 × ${formatNum(num)} = ${formatResult(result)}`,
-                steps: [
-                    { title: 'Convert percent to decimal', math: `${formatNum(pct)}% = ${formatNum(pct)} ÷ 100 = ${formatResult(pct / 100)}` },
-                    { title: 'Multiply by the number', math: `${formatResult(pct / 100)} × ${formatNum(num)} = ${formatResult(result)}` },
-                    { title: 'Final answer', math: `${formatNum(pct)}% of ${formatNum(num)} = ${formatResult(result)}` },
-                ],
-            });
-            addHistory('pct', `${formatNum(pct)}% of ${formatNum(num)}`, formatResult(result));
-            break;
-        }
-        case 'is': {
-            const x = parseFloat(document.getElementById('pctIsX').value);
-            const y = parseFloat(document.getElementById('pctIsY').value);
-            if (isNaN(x) || isNaN(y)) {
-                showError(resultArea, 'Please fill in both fields');
-                return;
-            }
-            if (y === 0) {
-                showError(resultArea, 'Total cannot be zero');
-                return;
-            }
-            const result = (x / y) * 100;
-            showResult(resultArea, {
-                formula: `${formatNum(x)} is what % of ${formatNum(y)}?`,
-                value: `${formatResult(result)}%`,
-                badge: 'Ratio',
-                breakdown: [
-                    { label: 'Part', value: formatNum(x) },
-                    { label: 'Whole', value: formatNum(y) },
-                    { label: 'Fraction', value: formatResult(x / y) },
-                ],
-                summary: `${formatNum(x)} ÷ ${formatNum(y)} × 100 = ${formatResult(result)}%`,
-                steps: [
-                    { title: 'Divide part by whole', math: `${formatNum(x)} ÷ ${formatNum(y)} = ${formatResult(x / y)}` },
-                    { title: 'Convert to percent', math: `${formatResult(x / y)} × 100 = ${formatResult(result)}%` },
-                    { title: 'Final answer', math: `${formatNum(x)} is ${formatResult(result)}% of ${formatNum(y)}` },
-                ],
-            });
-            addHistory('pct', `${formatNum(x)} is ?% of ${formatNum(y)}`, `${formatResult(result)}%`);
-            break;
-        }
-        case 'change': {
-            const oldVal = parseFloat(document.getElementById('pctOld').value);
-            const newVal = parseFloat(document.getElementById('pctNew').value);
-            if (isNaN(oldVal) || isNaN(newVal)) {
-                showError(resultArea, 'Please fill in both fields');
-                return;
-            }
-            if (oldVal === 0) {
-                showError(resultArea, 'Old value cannot be zero');
-                return;
-            }
-            const change = ((newVal - oldVal) / Math.abs(oldVal)) * 100;
-            const direction = change >= 0 ? 'increase' : 'decrease';
-            const diff = Math.abs(newVal - oldVal);
-            showResult(resultArea, {
-                formula: `% change from ${formatNum(oldVal)} to ${formatNum(newVal)}`,
-                value: `${change >= 0 ? '+' : ''}${formatResult(change)}%`,
-                badge: change >= 0 ? 'Increase' : 'Decrease',
-                breakdown: [
-                    { label: 'Old value', value: formatNum(oldVal) },
-                    { label: 'New value', value: formatNum(newVal) },
-                    { label: 'Difference', value: `${change >= 0 ? '+' : '−'}${formatResult(diff)}` },
-                ],
-                summary: `${direction === 'increase' ? 'Rose' : 'Fell'} by ${formatResult(diff)} (${Math.abs(change).toFixed(2)}%)`,
-                steps: [
-                    { title: 'Find the difference', math: `${formatNum(newVal)} − ${formatNum(oldVal)} = ${change >= 0 ? '+' : '−'}${formatResult(diff)}` },
-                    { title: 'Divide by original', math: `${formatResult(diff)} ÷ ${formatNum(Math.abs(oldVal))} = ${formatResult(Math.abs(change) / 100)}` },
-                    { title: 'Convert to percent', math: `${formatResult(Math.abs(change) / 100)} × 100 = ${formatResult(Math.abs(change))}% ${direction}` },
-                    { title: 'Final answer', math: `${change >= 0 ? '+' : ''}${formatResult(change)}% change` },
-                ],
-            });
-            addHistory('pct', `${formatNum(oldVal)} → ${formatNum(newVal)}`, `${change >= 0 ? '+' : ''}${formatResult(change)}%`);
-            break;
-        }
-    }
-}
-
 // ============================================
 //  UI Helpers
 // ============================================
@@ -867,7 +742,6 @@ function addHistory(type, expression, result) {
         nth: 'nthHistory',
         frac: 'fracHistory',
         power: 'powerHistory',
-        pct: 'pctHistory',
     };
 
     const listMap = {
@@ -876,7 +750,6 @@ function addHistory(type, expression, result) {
         nth: 'nthHistoryList',
         frac: 'fracHistoryList',
         power: 'powerHistoryList',
-        pct: 'pctHistoryList',
     };
 
     const countMap = {
@@ -885,7 +758,6 @@ function addHistory(type, expression, result) {
         nth: 'nthHistoryCount',
         frac: 'fracHistoryCount',
         power: 'powerHistoryCount',
-        pct: 'pctHistoryCount',
     };
 
     histories[type].unshift({ expression, result });

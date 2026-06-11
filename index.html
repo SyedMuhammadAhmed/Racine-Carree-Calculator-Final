@@ -58,8 +58,8 @@
 
     <!-- Above-the-fold: Hero + Calculator -->
     <section class="above-fold" id="hero">
-        <div class="above-fold-grid">
-            <header class="hero-compact">
+        <div class="above-fold-stack">
+            <header class="hero-compact hero-compact--centered">
                 <div class="hero-badge">
                     <svg class="hero-badge-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.7 21l2.3-7-6-4.6h7.6z"/></svg>
                     Premium Math Calculator
@@ -111,10 +111,6 @@
                 <button class="calc-tab" data-calc="power" id="tabPower">
                     <span class="tab-icon">xⁿ</span>
                     <span class="tab-label">Power</span>
-                </button>
-                <button class="calc-tab" data-calc="percentage" id="tabPercentage">
-                    <span class="tab-icon">%</span>
-                    <span class="tab-label">Percentage</span>
                 </button>
             </nav>
 
@@ -393,103 +389,6 @@
                 </article>
             </div>
 
-            <!-- Percentage Calculator -->
-            <div class="calc-panel" id="panelPercentage" data-calc="percentage">
-                <article class="calc-widget">
-                    <header class="calc-widget-head">
-                        <span class="calc-widget-symbol" aria-hidden="true">%</span>
-                        <div class="calc-widget-head-text">
-                            <h3 class="calc-widget-title">Percentage Calculator</h3>
-                            <p class="calc-widget-desc">Find percentages, ratios, and percentage change</p>
-                        </div>
-                    </header>
-                    <div class="calc-widget-flow">
-                        <section class="calc-step" aria-label="Input">
-                            <div class="pct-mode-tabs" id="pctModeTabs" role="tablist" aria-label="Percentage mode">
-                                <button class="pct-tab active" type="button" role="tab" data-mode="of" id="pctModeOf">X% of Y</button>
-                                <button class="pct-tab" type="button" role="tab" data-mode="is" id="pctModeIs">X is ?% of Y</button>
-                                <button class="pct-tab" type="button" role="tab" data-mode="change" id="pctModeChange">% Change</button>
-                            </div>
-                            <div class="pct-panel active" id="pctPanelOf" data-mode="of">
-                                <div class="input-row">
-                                    <div class="input-group">
-                                        <label class="input-label" for="pctX">Percentage (%)</label>
-                                        <div class="input-wrapper">
-                                            <span class="input-prefix">%</span>
-                                            <input type="number" id="pctX" class="calc-input" placeholder="e.g. 25" step="any" autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="input-group">
-                                        <label class="input-label" for="pctY">of Number</label>
-                                        <div class="input-wrapper">
-                                            <span class="input-prefix">#</span>
-                                            <input type="number" id="pctY" class="calc-input" placeholder="e.g. 200" step="any" autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pct-panel" id="pctPanelIs" data-mode="is">
-                                <div class="input-row">
-                                    <div class="input-group">
-                                        <label class="input-label" for="pctIsX">Value</label>
-                                        <div class="input-wrapper">
-                                            <span class="input-prefix">X</span>
-                                            <input type="number" id="pctIsX" class="calc-input" placeholder="e.g. 50" step="any" autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="input-group">
-                                        <label class="input-label" for="pctIsY">of Total</label>
-                                        <div class="input-wrapper">
-                                            <span class="input-prefix">Y</span>
-                                            <input type="number" id="pctIsY" class="calc-input" placeholder="e.g. 200" step="any" autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pct-panel" id="pctPanelChange" data-mode="change">
-                                <div class="input-row">
-                                    <div class="input-group">
-                                        <label class="input-label" for="pctOld">Old Value</label>
-                                        <div class="input-wrapper">
-                                            <span class="input-prefix">A</span>
-                                            <input type="number" id="pctOld" class="calc-input" placeholder="e.g. 80" step="any" autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="input-group">
-                                        <label class="input-label" for="pctNew">New Value</label>
-                                        <div class="input-wrapper">
-                                            <span class="input-prefix">B</span>
-                                            <input type="number" id="pctNew" class="calc-input" placeholder="e.g. 100" step="any" autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="calc-step calc-step--action">
-                            <button class="btn-calc-primary" id="pctCalcBtn" type="button" onclick="calculatePercentage()">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                                <span>Calculate</span>
-                            </button>
-                        </section>
-                        <section class="calc-step calc-step--results" aria-label="Results">
-                            <div class="result-panel" id="pctResult">
-                                <div class="result-empty">
-                                    <div class="result-empty-icon" aria-hidden="true">%</div>
-                                    <p class="result-empty-title">Your result will appear here</p>
-                                    <p class="result-empty-hint">Enter values and press Calculate</p>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="calc-step calc-step--history" id="pctHistory">
-                            <div class="history-header">
-                                <h4 class="history-title">Recent calculations</h4>
-                                <span class="history-count" id="pctHistoryCount"></span>
-                            </div>
-                            <div class="history-list" id="pctHistoryList"></div>
-                        </section>
-                    </div>
-                </article>
-            </div>
             </div>
                 </div>
             </main>
