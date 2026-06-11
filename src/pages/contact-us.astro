@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../theme/layouts/BaseLayout.astro';
+import ContactForm from '../../theme/components/ContactForm.astro';
+import { useTranslations } from '../../theme/i18n/translations';
+import site from '../config/site.json';
+
+const lang = 'en';
+const t = await useTranslations(lang);
+const title = t("contact.title", "Contact Us");
+const description = t("contact.description", "Get in touch with the Racine Carree Calculator team.");
+
+const canonicalUrl = `${site.siteUrl}/contact-us/`;
+---
+
+<BaseLayout 
+    title={`${title} | ${site.siteName}`}
+    description={description}
+    locale={lang}
+    canonicalUrl={canonicalUrl}
+    isContactPage={true}
+>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">{title}</h1>
+            <p class="text-xl text-gray-500">
+                Have a question, feedback, or a feature request? We'd love to hear from you. Fill out the form below and our team will get back to you as soon as possible.
+            </p>
+        </div>
+        
+        <ContactForm locale={lang} translations={t} />
+    </div>
+</BaseLayout>

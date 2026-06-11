@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../theme/layouts/BaseLayout.astro';
+import { useTranslations } from '../../theme/i18n/translations';
+import site from '../config/site.json';
+
+const lang = 'en';
+const t = await useTranslations(lang);
+const title = "Privacy Policy";
+const description = "Privacy Policy for Racine Carree Calculator.";
+const canonicalUrl = `${site.siteUrl}/privacy/`;
+---
+
+<BaseLayout 
+    title={`${title} | ${site.siteName}`}
+    description={description}
+    locale={lang}
+    canonicalUrl={canonicalUrl}
+>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-8">{title}</h1>
+        
+        <div class="prose prose-lg text-gray-600 max-w-none">
+            <p><strong>Last Updated: {new Date().toLocaleDateString()}</strong></p>
+
+            <h2>1. Introduction</h2>
+            <p>
+                At Racine Carrée Calculator, we are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner. This Privacy Policy outlines how we collect, use, and safeguard your data when you visit our website.
+            </p>
+
+            <h2>2. Information We Collect</h2>
+            <p>
+                <strong>Personal Information:</strong> We do not collect any personally identifiable information (PII) unless you voluntarily provide it to us, such as when you submit a message through our Contact form (e.g., your name and email address).
+            </p>
+            <p>
+                <strong>Non-Personal Information:</strong> When you use our calculator, we may automatically collect non-personal information such as your browser type, device type, operating system, IP address, and anonymous usage statistics through analytics tools. This helps us understand how our tool is being used and how we can improve it.
+            </p>
+
+            <h2>3. How We Use Your Information</h2>
+            <p>
+                Any information we collect is used strictly to:
+            </p>
+            <ul>
+                <li>Provide, operate, and maintain our website.</li>
+                <li>Improve, personalize, and expand our services.</li>
+                <li>Analyze how users interact with the calculator to optimize performance.</li>
+                <li>Respond to your comments, questions, and customer service requests.</li>
+            </ul>
+
+            <h2>4. Cookies and Tracking Technologies</h2>
+            <p>
+                We may use cookies, web beacons, and similar tracking technologies to track activity on our Service and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.
+            </p>
+
+            <h2>5. Data Security</h2>
+            <p>
+                We implement a variety of security measures to maintain the safety of your personal information. However, please be aware that no method of transmission over the internet, or method of electronic storage, is 100% secure. While we strive to use commercially acceptable means to protect your data, we cannot guarantee its absolute security.
+            </p>
+
+            <h2>6. Third-Party Services</h2>
+            <p>
+                We may employ third-party companies and individuals to facilitate our Service (e.g., Google Analytics for traffic analysis). These third parties have access to your data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
+            </p>
+
+            <h2>7. Children's Privacy</h2>
+            <p>
+                Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal data, please contact us.
+            </p>
+
+            <h2>8. Changes to This Privacy Policy</h2>
+            <p>
+                We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.
+            </p>
+
+            <h2>9. Contact Us</h2>
+            <p>
+                If you have any questions about this Privacy Policy, please contact us through our Contact page or at contact@example.com.
+            </p>
+        </div>
+    </div>
+</BaseLayout>

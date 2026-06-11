@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../theme/layouts/BaseLayout.astro';
+import { LOCALES } from '../../theme/i18n/utils';
+import { getCollection } from 'astro:content';
+import site from '../config/site.json';
+
+const lang = 'en';
+const title = "Sitemap";
+const description = "Sitemap of Racine Carree Calculator";
+const canonicalUrl = `${site.siteUrl}/sitemap/`;
+
+const mainPages = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about-us/" },
+  { label: "Contact Us", href: "/contact-us/" },
+  { label: "Terms of Service", href: "/terms/" },
+  { label: "Privacy Policy", href: "/privacy/" },
+  { label: "Sitemap", href: "/sitemap/" },
+];
+
+const languages = LOCALES.filter(loc => loc !== 'en').map(loc => ({
+  label: loc.toUpperCase(),
+  href: `/${loc}/`
+}));
+
+let blogPosts = [];
+try {
+  blogPosts = await getCollection('blog');
+} catch (e) {
+  // If blog collection doesn't exist yet, it will throw, handle gracefully
+  blogPosts = [];
+}
+
+const postsPerPage = 12;
+const totalBlogPages = Math.ceil(blogPosts.length / postsPerPage) || 1;
+const blogPages = Array.from({ length: totalBlogPages }).map((_, i) => ({
+  label: `Blog Page ${i + 1}`,
+  href: `/blog/${i + 1}/`
+}));
+---
+
+<BaseLayout 
+    title={`${title} | ${site.siteName}`}
+    description={description}
+    locale={lang}
+    canonicalUrl={canonicalUrl}
+>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-8">{title}</h1>
+        
+        <div class="space-y-12">
+            <section>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">Main pages</h2>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {mainPages.map(page => (
+                        <li>
+                            <a href={page.href} class="text-blue-600 hover:text-blue-800 hover:underline">{page.label}</a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">Languages</h2>
+                <ul class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {languages.map(lang => (
+                        <li>
+                            <a href={lang.href} class="text-blue-600 hover:text-blue-800 hover:underline">{lang.label}</a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">Blog pages</h2>
+                <ul class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {blogPages.map(page => (
+                        <li>
+                            <a href={page.href} class="text-blue-600 hover:text-blue-800 hover:underline">{page.label}</a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">Blog posts</h2>
+                {blogPosts.length > 0 ? (
+                    <ul class="space-y-3">
+                        {blogPosts.map(post => (
+                            <li>
+                                <a href={`/blog/${post.slug || post.id}/`} class="text-blue-600 hover:text-blue-800 hover:underline">
+                                    {post.data.title || post.slug || post.id}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p class="text-gray-500 italic">No blog posts found.</p>
+                )}
+            </section>
+        </div>
+    </div>
+</BaseLayout>
