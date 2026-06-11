@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../theme/layouts/BaseLayout.astro';
+import { useTranslations } from '../../theme/i18n/translations';
+import site from '../config/site.json';
+
+const lang = 'en';
+const t = await useTranslations(lang);
+const title = t("about.title", "About Us");
+const description = t("about.description", "Learn more about Racine Carree Calculator and our mission.");
+
+const canonicalUrl = `${site.siteUrl}/about-us/`;
+---
+
+<BaseLayout 
+    title={`${title} | ${site.siteName}`}
+    description={description}
+    locale={lang}
+    canonicalUrl={canonicalUrl}
+    isAboutPage={true}
+>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-8">{title}</h1>
+        
+        <div class="prose prose-lg text-gray-600 max-w-none">
+            <p>
+                Welcome to the Racine Carrée Calculator, the most comprehensive and free square root and cube root tool available online. Our mission is to make mathematical calculations accessible, accurate, and easy to understand for students, professionals, and enthusiasts worldwide.
+            </p>
+            <p>
+                We built this tool because we noticed a lack of calculators that provide not just the decimal answer, but also the exact simplified radical form, step-by-step explanations, and historical context. Whether you are solving a simple homework problem or dealing with complex engineering calculations, our calculator is designed to provide you with all the information you need instantly.
+            </p>
+            <p>
+                Our team is passionate about mathematics and education. We continuously update our platform to ensure the highest level of accuracy and performance. The calculator supports positive and negative numbers, decimals, fractions, and even nth roots, making it a versatile companion for all your mathematical needs.
+            </p>
+            <p>
+                Thank you for choosing Racine Carrée Calculator. If you have any suggestions or feedback, please don't hesitate to reach out to us through our contact page.
+            </p>
+        </div>
+    </div>
+</BaseLayout>
