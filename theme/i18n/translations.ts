@@ -35,3 +35,14 @@ export function t(translations: TranslationSet, key: string): any {
   }
   return current;
 }
+
+export async function useTranslations(locale: string) {
+  const translations = loadTranslations(locale as Locale);
+  return function(key: string, fallback?: string): any {
+    const val = t(translations, key);
+    if (val === key && fallback !== undefined) {
+      return fallback;
+    }
+    return val;
+  };
+}
