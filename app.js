@@ -17,6 +17,7 @@ let currentFracOp = '+';
 
 // ---- DOM Ready ----
 document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
     initNavbar();
     initTabs();
     initFractionOperator();
@@ -25,6 +26,38 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initSmoothScroll();
 });
+
+// ---- Theme ----
+function initTheme() {
+    const toggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    function applyTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (toggle) {
+            const isDark = theme === 'dark';
+            toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+            toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            toggle.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+        }
+    }
+
+    const stored = localStorage.getItem('theme');
+    const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    applyTheme(stored || preferred);
+
+    toggle?.addEventListener('click', () => {
+        const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            applyTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+}
 
 // ---- Navbar ----
 function initNavbar() {
@@ -187,13 +220,175 @@ function initSmoothScroll() {
 }
 
 // ============================================
+//  Step-by-step helpers
+// ============================================
+
+function primeFactorize(n) {
+    n = Math.round(Math.abs(n));
+    if (n <= 1) return n === 0 ? [] : [n];
+    const factors = [];
+    let d = 2;
+    while (d * d <= n) {
+        while (n % d === 0) {
+            factors.push(d);
+            n /= d;
+        }
+        d++;
+    }
+    if (n > 1) factors.push(n);
+    return factors;
+}
+
+function lcm(a, b) {
+    return Math.abs(Math.round(a) * Math.round(b)) / gcd(a, b);
+}
+
+function buildRootFactorSteps(value, degree, symbol) {
+    const steps = [];
+    const n = Math.round(value);
+    steps.push({ title: 'Set up the problem', math: `Find ${symbol}${formatNum(value)}` });
+
+    if (value === 0) {
+        steps.push({ title: 'Zero property', math: `${symbol}0 = 0` });
+        return steps;
+    }
+
+    if (!Number.isInteger(value) || value < 0 && degree % 2 === 0) {
+        steps.push({ title: 'Apply the root', math: `${symbol}${formatNum(value)} = ${formatResult(Math.pow(value, 1 / degree))}` });
+        return steps;
+    }
+
+    const absVal = Math.abs(n);
+    const factors = primeFactorize(absVal);
+    if (factors.length) {
+        steps.push({ title: 'Prime factorization', math: `${formatNum(absVal)} = ${factors.join(' × ')}` });
+
+        const counts = {};
+        factors.forEach(f => { counts[f] = (counts[f] || 0) + 1; });
+
+        const outside = [];
+        const inside = [];
+        const groupParts = [];
+
+        Object.keys(counts).map(Number).sort((a, b) => a - b).forEach(prime => {
+            const count = counts[prime];
+            const groups = Math.floor(count / degree);
+            const remainder = count % degree;
+            if (groups > 0) {
+                outside.push(Math.pow(prime, groups));
+                groupParts.push(`${prime}${groups > 1 ? `^${groups}` : ''} outside`);
+            }
+            if (remainder > 0) {
+                inside.push(Math.pow(prime, remainder));
+            }
+        });
+
+        const outsideProduct = outside.reduce((a, b) => a * b, 1) || 1;
+        const insideProduct = inside.reduce((a, b) => a * b, 1) || 1;
+        const sign = value < 0 && degree % 2 === 1 ? '−' : '';
+
+        if (inside.length === 0) {
+            steps.push({ title: `Group factors in sets of ${degree}`, math: `Every prime factor divides evenly — all come outside the radical` });
+            steps.push({ title: 'Multiply outside values', math: `${sign}${outside.map(formatNum).join(' × ')} = ${sign}${formatNum(outsideProduct)}` });
+        } else {
+            steps.push({ title: `Group factors in sets of ${degree}`, math: `Take complete groups outside; leftover stays inside` });
+            steps.push({ title: 'Simplify the radical', math: `${symbol}${formatNum(absVal)} = ${sign}${formatNum(outsideProduct)}${symbol}${formatNum(insideProduct)}` });
+            steps.push({ title: 'Decimal value', math: `≈ ${formatResult(Math.pow(value, 1 / degree))}` });
+        }
+    }
+
+    const result = Math.pow(value, 1 / degree);
+    if (Number.isInteger(result)) {
+        steps.push({ title: 'Final answer', math: `${symbol}${formatNum(value)} = ${formatResult(result)}` });
+        steps.push({ title: 'Verify', math: `${formatResult(result)}^${degree} = ${formatNum(Math.pow(result, degree))}` });
+    }
+    return steps;
+}
+
+function buildFractionSteps(a1, b1, a2, b2, op, numResult, denResult, finalNum, finalDen, g) {
+    const opSymbol = { '+': '+', '-': '−', '*': '×', '/': '÷' }[op];
+    const steps = [];
+    steps.push({ title: 'Write the problem', math: `${formatNum(a1)}/${formatNum(b1)} ${opSymbol} ${formatNum(a2)}/${formatNum(b2)}` });
+
+    if (op === '+' || op === '-') {
+        const lcd = lcm(b1, b2);
+        steps.push({ title: 'Find common denominator', math: `LCD of ${formatNum(b1)} and ${formatNum(b2)} = ${formatNum(lcd)}` });
+        const n1 = a1 * (lcd / b1);
+        const n2 = a2 * (lcd / b2);
+        steps.push({ title: 'Convert fractions', math: `${formatNum(a1)}/${formatNum(b1)} = ${formatNum(n1)}/${formatNum(lcd)} and ${formatNum(a2)}/${formatNum(b2)} = ${formatNum(n2)}/${formatNum(lcd)}` });
+        steps.push({ title: `${op === '+' ? 'Add' : 'Subtract'} numerators`, math: `${formatNum(n1)}/${formatNum(lcd)} ${opSymbol} ${formatNum(n2)}/${formatNum(lcd)} = ${formatNum(numResult)}/${formatNum(denResult)}` });
+    } else if (op === '*') {
+        steps.push({ title: 'Multiply numerators', math: `${formatNum(a1)} × ${formatNum(a2)} = ${formatNum(numResult)}` });
+        steps.push({ title: 'Multiply denominators', math: `${formatNum(b1)} × ${formatNum(b2)} = ${formatNum(denResult)}` });
+        steps.push({ title: 'Combine', math: `${formatNum(numResult)}/${formatNum(denResult)}` });
+    } else {
+        steps.push({ title: 'Multiply by reciprocal', math: `${formatNum(a1)}/${formatNum(b1)} ÷ ${formatNum(a2)}/${formatNum(b2)} = ${formatNum(a1)}/${formatNum(b1)} × ${formatNum(b2)}/${formatNum(a2)}` });
+        steps.push({ title: 'Multiply across', math: `(${formatNum(a1)} × ${formatNum(b2)}) / (${formatNum(b1)} × ${formatNum(a2)}) = ${formatNum(numResult)}/${formatNum(denResult)}` });
+    }
+
+    if (g > 1) {
+        let x = Math.abs(numResult), y = Math.abs(denResult);
+        while (y) {
+            steps.push({ title: 'Find GCD (Euclidean)', math: `${formatNum(x)} ÷ ${formatNum(y)} = ${Math.floor(x / y)} remainder ${x % y}` });
+            [x, y] = [y, x % y];
+        }
+        steps.push({ title: 'Divide by GCD', math: `${formatNum(numResult)}/${formatNum(denResult)} ÷ ${formatNum(g)}/${formatNum(g)} = ${formatNum(finalNum)}/${formatNum(finalDen)}` });
+    }
+
+    steps.push({ title: 'Final answer', math: finalDen === 1 ? `${formatNum(finalNum)}` : `${formatNum(finalNum)}/${formatNum(finalDen)}` });
+    return steps;
+}
+
+function buildPowerSteps(base, exp, result) {
+    const steps = [];
+    steps.push({ title: 'Set up the problem', math: `${formatNum(base)}^${formatNum(exp)}` });
+
+    if (Number.isInteger(exp) && exp > 0 && exp <= 12) {
+        let current = 1;
+        for (let i = 0; i < exp; i++) {
+            current *= base;
+            if (exp <= 6) {
+                steps.push({
+                    title: i === 0 ? 'Multiply step by step' : `Step ${i + 1}`,
+                    math: `${Array(i + 1).fill(formatNum(base)).join(' × ')} = ${formatResult(current)}`,
+                });
+            }
+        }
+        if (exp > 6) {
+            steps.push({ title: 'Repeated multiplication', math: `${formatNum(base)} multiplied ${formatNum(exp)} times = ${formatResult(result)}` });
+        }
+    } else if (exp === 0) {
+        steps.push({ title: 'Zero exponent rule', math: `Any non-zero number to the power 0 equals 1` });
+    } else if (exp === 0.5) {
+        steps.push({ title: 'Fractional exponent', math: `${formatNum(base)}^½ = √${formatNum(base)} = ${formatResult(result)}` });
+    } else if (exp === -1) {
+        steps.push({ title: 'Negative exponent', math: `${formatNum(base)}^−1 = 1/${formatNum(base)} = ${formatResult(result)}` });
+    } else {
+        steps.push({ title: 'Apply exponent', math: `${formatNum(base)}^${formatNum(exp)} = ${formatResult(result)}` });
+    }
+
+    steps.push({ title: 'Final answer', math: `${formatNum(base)}^${formatNum(exp)} = ${formatResult(result)}` });
+    return steps;
+}
+
+// ============================================
 //  Calculator Functions
 // ============================================
+
+function pulseCalcButton(panel) {
+    const btn = panel?.querySelector('.btn-calc-primary');
+    if (btn) {
+        btn.classList.add('is-calculating');
+        setTimeout(() => btn.classList.remove('is-calculating'), 600);
+    }
+}
 
 // ---- Square Root ----
 function calculateSquareRoot() {
     const input = document.getElementById('sqrtInput');
     const resultArea = document.getElementById('sqrtResult');
+    const panel = document.getElementById('panelSquareRoot');
+    pulseCalcButton(panel);
     const value = parseFloat(input.value);
 
     if (isNaN(value)) {
@@ -221,6 +416,7 @@ function calculateSquareRoot() {
         summary: isExact
             ? `${formatResult(result)} × ${formatResult(result)} = ${formatNum(value)}`
             : `Decimal approximation: ${result.toFixed(10)}`,
+        steps: buildRootFactorSteps(value, 2, '√'),
     });
 
     addHistory('sqrt', `√${formatNum(value)}`, formatResult(result));
@@ -230,6 +426,7 @@ function calculateSquareRoot() {
 function calculateCubeRoot() {
     const input = document.getElementById('cbrtInput');
     const resultArea = document.getElementById('cbrtResult');
+    pulseCalcButton(document.getElementById('panelCubeRoot'));
     const value = parseFloat(input.value);
 
     if (isNaN(value)) {
@@ -252,6 +449,7 @@ function calculateCubeRoot() {
         summary: isExact
             ? `${formatResult(result)}³ = ${formatNum(value)}`
             : `Decimal approximation: ${result.toFixed(10)}`,
+        steps: buildRootFactorSteps(value, 3, '∛'),
     });
 
     addHistory('cbrt', `∛${formatNum(value)}`, formatResult(result));
@@ -262,6 +460,7 @@ function calculateNthRoot() {
     const degreeInput = document.getElementById('nthDegree');
     const valueInput = document.getElementById('nthValue');
     const resultArea = document.getElementById('nthResult');
+    pulseCalcButton(document.getElementById('panelNthRoot'));
     const n = parseFloat(degreeInput.value);
     const x = parseFloat(valueInput.value);
 
@@ -302,6 +501,14 @@ function calculateNthRoot() {
         summary: isExact
             ? `${formatResult(result)}^${formatNum(n)} = ${formatNum(x)}`
             : `Decimal approximation: ${result.toFixed(10)}`,
+        steps: (() => {
+            const sym = n === 2 ? '√' : n === 3 ? '∛' : `${formatNum(n)}√`;
+            const steps = buildRootFactorSteps(x, n, sym);
+            if (n !== 2 && n !== 3) {
+                steps.splice(1, 0, { title: 'Rewrite as exponent', math: `${sym}${formatNum(x)} = ${formatNum(x)}^(1/${formatNum(n)})` });
+            }
+            return steps;
+        })(),
     });
 
     addHistory('nth', `${nStr}${formatNum(x)}`, formatResult(result));
@@ -314,6 +521,7 @@ function calculateFraction() {
     const a2 = parseFloat(document.getElementById('fracA2').value);
     const b2 = parseFloat(document.getElementById('fracB2').value);
     const resultArea = document.getElementById('fracResult');
+    pulseCalcButton(document.getElementById('panelFraction'));
 
     if ([a1, b1, a2, b2].some(isNaN)) {
         showError(resultArea, 'Please fill in all fraction fields');
@@ -379,6 +587,7 @@ function calculateFraction() {
         summary: wasSimplified
             ? `Reduced from ${formatNum(numResult)}/${formatNum(denResult)}`
             : `Equivalent decimal: ${formatResult(decimal)}`,
+        steps: buildFractionSteps(a1, b1, a2, b2, currentFracOp, numResult, denResult, finalNum, finalDen, g),
     });
 
     addHistory('frac', formulaStr, valueStr);
@@ -398,6 +607,7 @@ function calculatePower() {
     const base = parseFloat(document.getElementById('powerBase').value);
     const exp = parseFloat(document.getElementById('powerExp').value);
     const resultArea = document.getElementById('powerResult');
+    pulseCalcButton(document.getElementById('panelPower'));
 
     if (isNaN(base) || isNaN(exp)) {
         showError(resultArea, 'Please fill in both fields');
@@ -432,6 +642,7 @@ function calculatePower() {
         summary: Number.isFinite(result)
             ? `${formatNum(base)} raised to the power of ${formatNum(exp)}`
             : 'Result is infinity or undefined',
+        steps: buildPowerSteps(base, exp, result),
     });
 
     addHistory('power', `${formatNum(base)}${expStr}`, formatResult(result));
@@ -450,6 +661,7 @@ function setQuickPower(exp) {
 // ---- Percentage ----
 function calculatePercentage() {
     const resultArea = document.getElementById('pctResult');
+    pulseCalcButton(document.getElementById('panelPercentage'));
 
     switch (currentPctMode) {
         case 'of': {
@@ -470,6 +682,11 @@ function calculatePercentage() {
                     { label: 'Remainder', value: formatResult(num - result) },
                 ],
                 summary: `${formatNum(pct)} ÷ 100 × ${formatNum(num)} = ${formatResult(result)}`,
+                steps: [
+                    { title: 'Convert percent to decimal', math: `${formatNum(pct)}% = ${formatNum(pct)} ÷ 100 = ${formatResult(pct / 100)}` },
+                    { title: 'Multiply by the number', math: `${formatResult(pct / 100)} × ${formatNum(num)} = ${formatResult(result)}` },
+                    { title: 'Final answer', math: `${formatNum(pct)}% of ${formatNum(num)} = ${formatResult(result)}` },
+                ],
             });
             addHistory('pct', `${formatNum(pct)}% of ${formatNum(num)}`, formatResult(result));
             break;
@@ -496,6 +713,11 @@ function calculatePercentage() {
                     { label: 'Fraction', value: formatResult(x / y) },
                 ],
                 summary: `${formatNum(x)} ÷ ${formatNum(y)} × 100 = ${formatResult(result)}%`,
+                steps: [
+                    { title: 'Divide part by whole', math: `${formatNum(x)} ÷ ${formatNum(y)} = ${formatResult(x / y)}` },
+                    { title: 'Convert to percent', math: `${formatResult(x / y)} × 100 = ${formatResult(result)}%` },
+                    { title: 'Final answer', math: `${formatNum(x)} is ${formatResult(result)}% of ${formatNum(y)}` },
+                ],
             });
             addHistory('pct', `${formatNum(x)} is ?% of ${formatNum(y)}`, `${formatResult(result)}%`);
             break;
@@ -524,6 +746,12 @@ function calculatePercentage() {
                     { label: 'Difference', value: `${change >= 0 ? '+' : '−'}${formatResult(diff)}` },
                 ],
                 summary: `${direction === 'increase' ? 'Rose' : 'Fell'} by ${formatResult(diff)} (${Math.abs(change).toFixed(2)}%)`,
+                steps: [
+                    { title: 'Find the difference', math: `${formatNum(newVal)} − ${formatNum(oldVal)} = ${change >= 0 ? '+' : '−'}${formatResult(diff)}` },
+                    { title: 'Divide by original', math: `${formatResult(diff)} ÷ ${formatNum(Math.abs(oldVal))} = ${formatResult(Math.abs(change) / 100)}` },
+                    { title: 'Convert to percent', math: `${formatResult(Math.abs(change) / 100)} × 100 = ${formatResult(Math.abs(change))}% ${direction}` },
+                    { title: 'Final answer', math: `${change >= 0 ? '+' : ''}${formatResult(change)}% change` },
+                ],
             });
             addHistory('pct', `${formatNum(oldVal)} → ${formatNum(newVal)}`, `${change >= 0 ? '+' : ''}${formatResult(change)}%`);
             break;
@@ -535,7 +763,9 @@ function calculatePercentage() {
 //  UI Helpers
 // ============================================
 
-function showResult(area, { formula, value, badge, breakdown, summary }) {
+const STEPS_SVG = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h4v8H5z"/><path d="M15 6h4v12h-4z"/></svg>`;
+
+function showResult(area, { formula, value, badge, breakdown, summary, steps }) {
     area.classList.add('has-result');
     area.classList.remove('error');
 
@@ -559,6 +789,23 @@ function showResult(area, { formula, value, badge, breakdown, summary }) {
         </div>
     `).join('');
 
+    const stepsHtml = (steps || []).length ? `
+        <div class="result-steps">
+            <div class="result-steps-header">${STEPS_SVG} Manual simplification steps</div>
+            <ol class="result-steps-list">
+                ${steps.map((s, i) => `
+                    <li class="result-step" style="--step-i: ${i}">
+                        <span class="result-step-num">${i + 1}</span>
+                        <div class="result-step-body">
+                            <span class="result-step-title">${s.title}</span>
+                            <span class="result-step-math">${s.math}</span>
+                        </div>
+                    </li>
+                `).join('')}
+            </ol>
+        </div>
+    ` : '';
+
     area.innerHTML = `
         <div class="result-filled">
             <div class="result-panel-header">
@@ -574,8 +821,11 @@ function showResult(area, { formula, value, badge, breakdown, summary }) {
                     <span>${summary}</span>
                 </div>
             ` : ''}
+            ${stepsHtml}
         </div>
     `;
+
+    area.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function showError(area, message) {
