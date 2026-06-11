@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Racine Carrée Calculator — A premium, modern calculator for square roots, cube roots, nth roots, fractions, and more. Beautiful UI with instant results.">
+    <meta name="keywords" content="square root calculator, racine carrée, cube root, nth root, fraction calculator, math tools">
+    <meta name="author" content="Racine Carrée Calculator">
+    <title>Racine Carrée Calculator — Premium Math Tools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+        <div class="orb orb-5"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">√</span>
+                <span class="logo-text">Racine Carrée</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
+                <li><a href="#calculators" class="nav-link" data-section="calculators">Calculators</a></li>
+                <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">✨ Premium Math Calculator</div>
+            <h1 class="hero-title">
+                <span class="title-line">Racine Carrée</span>
+                <span class="title-line gradient-text">Calculator</span>
+            </h1>
+            <p class="hero-subtitle">
+                Beautiful, fast, and precise. Calculate square roots, cube roots, nth roots, fractions, and more — all in one stunning interface.
+            </p>
+            <div class="hero-actions">
+                <a href="#calculators" class="btn btn-primary" id="heroStartBtn">
+                    <span>Start Calculating</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+                <a href="#features" class="btn btn-ghost" id="heroLearnBtn">Learn More</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" id="statCalcs">6</span>
+                    <span class="stat-label">Calculator Types</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Precision</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">&lt;1ms</span>
+                    <span class="stat-label">Response Time</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card card-1">
+                <span class="card-symbol">√</span>
+                <span class="card-label">Square Root</span>
+            </div>
+            <div class="floating-card card-2">
+                <span class="card-symbol">∛</span>
+                <span class="card-label">Cube Root</span>
+            </div>
+            <div class="floating-card card-3">
+                <span class="card-symbol">ⁿ√</span>
+                <span class="card-label">Nth Root</span>
+            </div>
+            <div class="floating-card card-4">
+                <span class="card-symbol">a/b</span>
+                <span class="card-label">Fractions</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Calculators Section -->
+    <main class="calculators-section" id="calculators">
+        <div class="section-header">
+            <span class="section-badge">🧮 Calculator Suite</span>
+            <h2 class="section-title">Choose Your Calculator</h2>
+            <p class="section-subtitle">Select from our collection of precision math tools, each crafted for a specific purpose.</p>
+        </div>
+
+        <!-- Calculator Tabs -->
+        <div class="calc-tabs" id="calcTabs">
+            <button class="calc-tab active" data-calc="square-root" id="tabSquareRoot">
+                <span class="tab-icon">√</span>
+                <span class="tab-label">Square Root</span>
+            </button>
+            <button class="calc-tab" data-calc="cube-root" id="tabCubeRoot">
+                <span class="tab-icon">∛</span>
+                <span class="tab-label">Cube Root</span>
+            </button>
+            <button class="calc-tab" data-calc="nth-root" id="tabNthRoot">
+                <span class="tab-icon">ⁿ√</span>
+                <span class="tab-label">Nth Root</span>
+            </button>
+            <button class="calc-tab" data-calc="fraction" id="tabFraction">
+                <span class="tab-icon">⅟</span>
+                <span class="tab-label">Fraction (a/b)</span>
+            </button>
+            <button class="calc-tab" data-calc="power" id="tabPower">
+                <span class="tab-icon">xⁿ</span>
+                <span class="tab-label">Power</span>
+            </button>
+            <button class="calc-tab" data-calc="percentage" id="tabPercentage">
+                <span class="tab-icon">%</span>
+                <span class="tab-label">Percentage</span>
+            </button>
+        </div>
+
+        <!-- Calculator Panels -->
+        <div class="calc-panels">
+            <!-- Square Root Calculator -->
+            <div class="calc-panel active" id="panelSquareRoot" data-calc="square-root">
+                <div class="calc-card">
+                    <div class="calc-card-header">
+                        <div class="calc-card-icon">√</div>
+                        <div>
+                            <h3 class="calc-card-title">Racine Carrée (Square Root)</h3>
+                            <p class="calc-card-desc">Calculate the square root of any positive number. Enter a value and get the result instantly.</p>
+                        </div>
+                    </div>
+                    <div class="calc-body">
+                        <div class="input-group">
+                            <label class="input-label" for="sqrtInput">Enter a number</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">√</span>
+                                <input type="number" id="sqrtInput" class="calc-input" placeholder="e.g., 144" min="0" step="any" autocomplete="off">
+                            </div>
+                        </div>
+                        <button class="btn btn-calc" id="sqrtCalcBtn" onclick="calculateSquareRoot()">
+                            <span>Calculate</span>
+                            <div class="btn-shine"></div>
+                        </button>
+                        <div class="result-area" id="sqrtResult">
+                            <div class="result-placeholder">
+                                <span class="result-placeholder-icon">📐</span>
+                                <span>Enter a number and press Calculate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calc-history" id="sqrtHistory">
+                        <h4 class="history-title">Recent Calculations</h4>
+                        <div class="history-list" id="sqrtHistoryList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cube Root Calculator -->
+            <div class="calc-panel" id="panelCubeRoot" data-calc="cube-root">
+                <div class="calc-card">
+                    <div class="calc-card-header">
+                        <div class="calc-card-icon">∛</div>
+                        <div>
+                            <h3 class="calc-card-title">Cube Root Calculator</h3>
+                            <p class="calc-card-desc">Find the cube root of any number, including negatives. Perfect for volume calculations.</p>
+                        </div>
+                    </div>
+                    <div class="calc-body">
+                        <div class="input-group">
+                            <label class="input-label" for="cbrtInput">Enter a number</label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">∛</span>
+                                <input type="number" id="cbrtInput" class="calc-input" placeholder="e.g., 27" step="any" autocomplete="off">
+                            </div>
+                        </div>
+                        <button class="btn btn-calc" id="cbrtCalcBtn" onclick="calculateCubeRoot()">
+                            <span>Calculate</span>
+                            <div class="btn-shine"></div>
+                        </button>
+                        <div class="result-area" id="cbrtResult">
+                            <div class="result-placeholder">
+                                <span class="result-placeholder-icon">📦</span>
+                                <span>Enter a number and press Calculate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calc-history" id="cbrtHistory">
+                        <h4 class="history-title">Recent Calculations</h4>
+                        <div class="history-list" id="cbrtHistoryList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nth Root Calculator -->
+            <div class="calc-panel" id="panelNthRoot" data-calc="nth-root">
+                <div class="calc-card">
+                    <div class="calc-card-header">
+                        <div class="calc-card-icon">ⁿ√</div>
+                        <div>
+                            <h3 class="calc-card-title">Nth Root Calculator</h3>
+                            <p class="calc-card-desc">Calculate any root — 4th root, 5th root, or any custom degree you need.</p>
+                        </div>
+                    </div>
+                    <div class="calc-body">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="input-label" for="nthDegree">Root degree (n)</label>
+                                <div class="input-wrapper">
+                                    <span class="input-prefix">n</span>
+                                    <input type="number" id="nthDegree" class="calc-input" placeholder="e.g., 4" min="1" step="1" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label" for="nthValue">Number</label>
+                                <div class="input-wrapper">
+                                    <span class="input-prefix">x</span>
+                                    <input type="number" id="nthValue" class="calc-input" placeholder="e.g., 625" step="any" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-calc" id="nthCalcBtn" onclick="calculateNthRoot()">
+                            <span>Calculate</span>
+                            <div class="btn-shine"></div>
+                        </button>
+                        <div class="result-area" id="nthResult">
+                            <div class="result-placeholder">
+                                <span class="result-placeholder-icon">🔢</span>
+                                <span>Enter values and press Calculate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calc-history" id="nthHistory">
+                        <h4 class="history-title">Recent Calculations</h4>
+                        <div class="history-list" id="nthHistoryList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fraction Calculator -->
+            <div class="calc-panel" id="panelFraction" data-calc="fraction">
+                <div class="calc-card">
+                    <div class="calc-card-header">
+                        <div class="calc-card-icon">⅟</div>
+                        <div>
+                            <h3 class="calc-card-title">Fraction Calculator (a/b)</h3>
+                            <p class="calc-card-desc">Perform operations on fractions — add, subtract, multiply, divide, and simplify.</p>
+                        </div>
+                    </div>
+                    <div class="calc-body">
+                        <div class="fraction-layout">
+                            <div class="fraction-block">
+                                <label class="input-label">Fraction 1</label>
+                                <div class="fraction-inputs">
+                                    <div class="input-wrapper compact">
+                                        <input type="number" id="fracA1" class="calc-input" placeholder="a" step="any" autocomplete="off">
+                                    </div>
+                                    <span class="fraction-divider">/</span>
+                                    <div class="input-wrapper compact">
+                                        <input type="number" id="fracB1" class="calc-input" placeholder="b" step="any" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="operation-selector" id="fracOperator">
+                                <button class="op-btn active" data-op="+" id="fracOpAdd">+</button>
+                                <button class="op-btn" data-op="-" id="fracOpSub">−</button>
+                                <button class="op-btn" data-op="*" id="fracOpMul">×</button>
+                                <button class="op-btn" data-op="/" id="fracOpDiv">÷</button>
+                            </div>
+                            <div class="fraction-block">
+                                <label class="input-label">Fraction 2</label>
+                                <div class="fraction-inputs">
+                                    <div class="input-wrapper compact">
+                                        <input type="number" id="fracA2" class="calc-input" placeholder="a" step="any" autocomplete="off">
+                                    </div>
+                                    <span class="fraction-divider">/</span>
+                                    <div class="input-wrapper compact">
+                                        <input type="number" id="fracB2" class="calc-input" placeholder="b" step="any" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-calc" id="fracCalcBtn" onclick="calculateFraction()">
+                            <span>Calculate</span>
+                            <div class="btn-shine"></div>
+                        </button>
+                        <div class="result-area" id="fracResult">
+                            <div class="result-placeholder">
+                                <span class="result-placeholder-icon">➗</span>
+                                <span>Enter fractions and press Calculate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calc-history" id="fracHistory">
+                        <h4 class="history-title">Recent Calculations</h4>
+                        <div class="history-list" id="fracHistoryList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Power Calculator -->
+            <div class="calc-panel" id="panelPower" data-calc="power">
+                <div class="calc-card">
+                    <div class="calc-card-header">
+                        <div class="calc-card-icon">xⁿ</div>
+                        <div>
+                            <h3 class="calc-card-title">Power / Exponent Calculator</h3>
+                            <p class="calc-card-desc">Raise any number to any power — squares, cubes, or any custom exponent.</p>
+                        </div>
+                    </div>
+                    <div class="calc-body">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label class="input-label" for="powerBase">Base (x)</label>
+                                <div class="input-wrapper">
+                                    <span class="input-prefix">x</span>
+                                    <input type="number" id="powerBase" class="calc-input" placeholder="e.g., 5" step="any" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label" for="powerExp">Exponent (n)</label>
+                                <div class="input-wrapper">
+                                    <span class="input-prefix">n</span>
+                                    <input type="number" id="powerExp" class="calc-input" placeholder="e.g., 3" step="any" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quick-powers">
+                            <span class="quick-label">Quick:</span>
+                            <button class="quick-btn" onclick="setQuickPower(2)" id="quickPow2">x²</button>
+                            <button class="quick-btn" onclick="setQuickPower(3)" id="quickPow3">x³</button>
+                            <button class="quick-btn" onclick="setQuickPower(0.5)" id="quickPowHalf">x^½</button>
+                            <button class="quick-btn" onclick="setQuickPower(-1)" id="quickPowNeg1">x⁻¹</button>
+                        </div>
+                        <button class="btn btn-calc" id="powerCalcBtn" onclick="calculatePower()">
+                            <span>Calculate</span>
+                            <div class="btn-shine"></div>
+                        </button>
+                        <div class="result-area" id="powerResult">
+                            <div class="result-placeholder">
+                                <span class="result-placeholder-icon">⚡</span>
+                                <span>Enter values and press Calculate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calc-history" id="powerHistory">
+                        <h4 class="history-title">Recent Calculations</h4>
+                        <div class="history-list" id="powerHistoryList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Percentage Calculator -->
+            <div class="calc-panel" id="panelPercentage" data-calc="percentage">
+                <div class="calc-card">
+                    <div class="calc-card-header">
+                        <div class="calc-card-icon">%</div>
+                        <div>
+                            <h3 class="calc-card-title">Percentage Calculator</h3>
+                            <p class="calc-card-desc">Calculate percentages, percentage change, and find what percentage one number is of another.</p>
+                        </div>
+                    </div>
+                    <div class="calc-body">
+                        <div class="pct-mode-tabs" id="pctModeTabs">
+                            <button class="pct-tab active" data-mode="of" id="pctModeOf">X% of Y</button>
+                            <button class="pct-tab" data-mode="is" id="pctModeIs">X is ?% of Y</button>
+                            <button class="pct-tab" data-mode="change" id="pctModeChange">% Change</button>
+                        </div>
+                        <!-- X% of Y -->
+                        <div class="pct-panel active" id="pctPanelOf" data-mode="of">
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label class="input-label" for="pctX">Percentage (%)</label>
+                                    <div class="input-wrapper">
+                                        <span class="input-prefix">%</span>
+                                        <input type="number" id="pctX" class="calc-input" placeholder="e.g., 25" step="any" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label class="input-label" for="pctY">of Number</label>
+                                    <div class="input-wrapper">
+                                        <span class="input-prefix">#</span>
+                                        <input type="number" id="pctY" class="calc-input" placeholder="e.g., 200" step="any" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- X is ?% of Y -->
+                        <div class="pct-panel" id="pctPanelIs" data-mode="is">
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label class="input-label" for="pctIsX">Value</label>
+                                    <div class="input-wrapper">
+                                        <span class="input-prefix">X</span>
+                                        <input type="number" id="pctIsX" class="calc-input" placeholder="e.g., 50" step="any" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label class="input-label" for="pctIsY">of Total</label>
+                                    <div class="input-wrapper">
+                                        <span class="input-prefix">Y</span>
+                                        <input type="number" id="pctIsY" class="calc-input" placeholder="e.g., 200" step="any" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- % Change -->
+                        <div class="pct-panel" id="pctPanelChange" data-mode="change">
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label class="input-label" for="pctOld">Old Value</label>
+                                    <div class="input-wrapper">
+                                        <span class="input-prefix">A</span>
+                                        <input type="number" id="pctOld" class="calc-input" placeholder="e.g., 80" step="any" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label class="input-label" for="pctNew">New Value</label>
+                                    <div class="input-wrapper">
+                                        <span class="input-prefix">B</span>
+                                        <input type="number" id="pctNew" class="calc-input" placeholder="e.g., 100" step="any" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-calc" id="pctCalcBtn" onclick="calculatePercentage()">
+                            <span>Calculate</span>
+                            <div class="btn-shine"></div>
+                        </button>
+                        <div class="result-area" id="pctResult">
+                            <div class="result-placeholder">
+                                <span class="result-placeholder-icon">📊</span>
+                                <span>Enter values and press Calculate</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calc-history" id="pctHistory">
+                        <h4 class="history-title">Recent Calculations</h4>
+                        <div class="history-list" id="pctHistoryList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="section-header">
+            <span class="section-badge">⚡ Why Choose Us</span>
+            <h2 class="section-title">Built for Speed & Precision</h2>
+            <p class="section-subtitle">Every detail crafted for the best mathematical experience.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card" id="featureInstant">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Instant Results</h3>
+                <p class="feature-desc">Get answers in under 1 millisecond. No loading, no waiting — pure speed.</p>
+            </div>
+            <div class="feature-card" id="featurePrecision">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">High Precision</h3>
+                <p class="feature-desc">Results calculated to maximum floating-point precision for accuracy you can trust.</p>
+            </div>
+            <div class="feature-card" id="featureHistory">
+                <div class="feature-icon">📝</div>
+                <h3 class="feature-title">Calculation History</h3>
+                <p class="feature-desc">Every calculation is saved so you can review and reuse your recent work.</p>
+            </div>
+            <div class="feature-card" id="featureResponsive">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Fully Responsive</h3>
+                <p class="feature-desc">Perfect on any device — desktop, tablet, or mobile. Calculate anywhere.</p>
+            </div>
+            <div class="feature-card" id="featureKeyboard">
+                <div class="feature-icon">⌨️</div>
+                <h3 class="feature-title">Keyboard Shortcuts</h3>
+                <p class="feature-desc">Press Enter to calculate instantly. Power users love our keyboard support.</p>
+            </div>
+            <div class="feature-card" id="featurePrivacy">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">100% Private</h3>
+                <p class="feature-desc">All calculations run locally in your browser. No data ever leaves your device.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <span class="section-badge">ℹ️ About</span>
+                <h2 class="section-title" style="text-align: left;">About Racine Carrée</h2>
+                <p class="about-text">
+                    <strong>Racine Carrée</strong> (French for "Square Root") is a premium, open-source calculator suite designed for students, engineers, scientists, and anyone who works with numbers.
+                </p>
+                <p class="about-text">
+                    Built with modern web technologies, it delivers instant, precise results with a beautiful interface that makes math feel effortless. Every pixel, animation, and interaction has been carefully crafted for the best possible experience.
+                </p>
+                <div class="about-highlights">
+                    <div class="highlight">
+                        <span class="highlight-icon">🌐</span>
+                        <span>Works offline</span>
+                    </div>
+                    <div class="highlight">
+                        <span class="highlight-icon">🚀</span>
+                        <span>Zero dependencies</span>
+                    </div>
+                    <div class="highlight">
+                        <span class="highlight-icon">♿</span>
+                        <span>Accessible design</span>
+                    </div>
+                    <div class="highlight">
+                        <span class="highlight-icon">🎨</span>
+                        <span>Premium aesthetics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="formula-showcase">
+                    <div class="formula-item">
+                        <span class="formula">√x = x<sup>1/2</sup></span>
+                    </div>
+                    <div class="formula-item">
+                        <span class="formula">∛x = x<sup>1/3</sup></span>
+                    </div>
+                    <div class="formula-item">
+                        <span class="formula">ⁿ√x = x<sup>1/n</sup></span>
+                    </div>
+                    <div class="formula-item">
+                        <span class="formula">a/b ± c/d = (ad ± bc) / bd</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="logo-icon">√</span>
+                    <span class="logo-text">Racine Carrée Calculator</span>
+                </div>
+                <p class="footer-tagline">Premium math tools for everyone.</p>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2026 Racine Carrée Calculator. All rights reserved.</p>
+                <p class="footer-made">Made with ❤️ for mathematics</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
