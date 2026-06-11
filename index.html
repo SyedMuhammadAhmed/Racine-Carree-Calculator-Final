@@ -146,26 +146,27 @@
                         <div class="calc-card-icon">√</div>
                         <div>
                             <h3 class="calc-card-title">Racine Carrée (Square Root)</h3>
-                            <p class="calc-card-desc">Calculate the square root of any positive number. Enter a value and get the result instantly.</p>
+                            <p class="calc-card-desc">Calculate the square root of any positive number.</p>
                         </div>
                     </div>
                     <div class="calc-body">
+                        <div class="calc-display" id="sqrtResult">
+                            <div class="display-placeholder">
+                                <span class="display-placeholder-icon">📐</span>
+                                <span>Enter a number</span>
+                            </div>
+                        </div>
                         <div class="input-group">
-                            <label class="input-label" for="sqrtInput">Enter a number</label>
+                            <label class="input-label" for="sqrtInput">Number</label>
                             <div class="input-wrapper">
                                 <span class="input-prefix">√</span>
                                 <input type="number" id="sqrtInput" class="calc-input" placeholder="e.g., 144" min="0" step="any" autocomplete="off">
                             </div>
                         </div>
-                        <button class="btn btn-calc" id="sqrtCalcBtn" onclick="calculateSquareRoot()">
-                            <span>Calculate</span>
-                            <div class="btn-shine"></div>
-                        </button>
-                        <div class="result-area" id="sqrtResult">
-                            <div class="result-placeholder">
-                                <span class="result-placeholder-icon">📐</span>
-                                <span>Enter a number and press Calculate</span>
-                            </div>
+                        <div class="calc-actions">
+                            <button class="btn btn-calc" id="sqrtCalcBtn" onclick="calculateSquareRoot()">
+                                <span>Calculate</span>
+                            </button>
                         </div>
                     </div>
                     <div class="calc-history" id="sqrtHistory">
@@ -182,26 +183,27 @@
                         <div class="calc-card-icon">∛</div>
                         <div>
                             <h3 class="calc-card-title">Cube Root Calculator</h3>
-                            <p class="calc-card-desc">Find the cube root of any number, including negatives. Perfect for volume calculations.</p>
+                            <p class="calc-card-desc">Find the cube root of any number, including negatives.</p>
                         </div>
                     </div>
                     <div class="calc-body">
+                        <div class="calc-display" id="cbrtResult">
+                            <div class="display-placeholder">
+                                <span class="display-placeholder-icon">📦</span>
+                                <span>Enter a number</span>
+                            </div>
+                        </div>
                         <div class="input-group">
-                            <label class="input-label" for="cbrtInput">Enter a number</label>
+                            <label class="input-label" for="cbrtInput">Number</label>
                             <div class="input-wrapper">
                                 <span class="input-prefix">∛</span>
                                 <input type="number" id="cbrtInput" class="calc-input" placeholder="e.g., 27" step="any" autocomplete="off">
                             </div>
                         </div>
-                        <button class="btn btn-calc" id="cbrtCalcBtn" onclick="calculateCubeRoot()">
-                            <span>Calculate</span>
-                            <div class="btn-shine"></div>
-                        </button>
-                        <div class="result-area" id="cbrtResult">
-                            <div class="result-placeholder">
-                                <span class="result-placeholder-icon">📦</span>
-                                <span>Enter a number and press Calculate</span>
-                            </div>
+                        <div class="calc-actions">
+                            <button class="btn btn-calc" id="cbrtCalcBtn" onclick="calculateCubeRoot()">
+                                <span>Calculate</span>
+                            </button>
                         </div>
                     </div>
                     <div class="calc-history" id="cbrtHistory">
@@ -218,13 +220,19 @@
                         <div class="calc-card-icon">ⁿ√</div>
                         <div>
                             <h3 class="calc-card-title">Nth Root Calculator</h3>
-                            <p class="calc-card-desc">Calculate any root — 4th root, 5th root, or any custom degree you need.</p>
+                            <p class="calc-card-desc">Calculate any root — 4th root, 5th root, or any custom degree.</p>
                         </div>
                     </div>
                     <div class="calc-body">
+                        <div class="calc-display" id="nthResult">
+                            <div class="display-placeholder">
+                                <span class="display-placeholder-icon">🔢</span>
+                                <span>Enter values</span>
+                            </div>
+                        </div>
                         <div class="input-row">
                             <div class="input-group">
-                                <label class="input-label" for="nthDegree">Root degree (n)</label>
+                                <label class="input-label" for="nthDegree">Degree (n)</label>
                                 <div class="input-wrapper">
                                     <span class="input-prefix">n</span>
                                     <input type="number" id="nthDegree" class="calc-input" placeholder="e.g., 4" min="1" step="1" autocomplete="off">
@@ -238,15 +246,10 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-calc" id="nthCalcBtn" onclick="calculateNthRoot()">
-                            <span>Calculate</span>
-                            <div class="btn-shine"></div>
-                        </button>
-                        <div class="result-area" id="nthResult">
-                            <div class="result-placeholder">
-                                <span class="result-placeholder-icon">🔢</span>
-                                <span>Enter values and press Calculate</span>
-                            </div>
+                        <div class="calc-actions">
+                            <button class="btn btn-calc" id="nthCalcBtn" onclick="calculateNthRoot()">
+                                <span>Calculate</span>
+                            </button>
                         </div>
                     </div>
                     <div class="calc-history" id="nthHistory">
@@ -263,22 +266,22 @@
                         <div class="calc-card-icon">⅟</div>
                         <div>
                             <h3 class="calc-card-title">Fraction Calculator (a/b)</h3>
-                            <p class="calc-card-desc">Perform operations on fractions — add, subtract, multiply, divide, and simplify.</p>
+                            <p class="calc-card-desc">Add, subtract, multiply, divide, and simplify fractions.</p>
                         </div>
                     </div>
                     <div class="calc-body">
+                        <div class="calc-display" id="fracResult">
+                            <div class="display-placeholder">
+                                <span class="display-placeholder-icon">➗</span>
+                                <span>Enter fractions</span>
+                            </div>
+                        </div>
                         <div class="fraction-layout">
-                            <div class="fraction-block">
+                            <div class="frac-stacked">
                                 <label class="input-label">Fraction 1</label>
-                                <div class="fraction-inputs">
-                                    <div class="input-wrapper compact">
-                                        <input type="number" id="fracA1" class="calc-input" placeholder="a" step="any" autocomplete="off">
-                                    </div>
-                                    <span class="fraction-divider">/</span>
-                                    <div class="input-wrapper compact">
-                                        <input type="number" id="fracB1" class="calc-input" placeholder="b" step="any" autocomplete="off">
-                                    </div>
-                                </div>
+                                <input type="number" id="fracA1" class="frac-input frac-num" placeholder="a" step="any" autocomplete="off">
+                                <div class="frac-bar"></div>
+                                <input type="number" id="fracB1" class="frac-input frac-den" placeholder="b" step="any" autocomplete="off">
                             </div>
                             <div class="operation-selector" id="fracOperator">
                                 <button class="op-btn active" data-op="+" id="fracOpAdd">+</button>
@@ -286,28 +289,17 @@
                                 <button class="op-btn" data-op="*" id="fracOpMul">×</button>
                                 <button class="op-btn" data-op="/" id="fracOpDiv">÷</button>
                             </div>
-                            <div class="fraction-block">
+                            <div class="frac-stacked">
                                 <label class="input-label">Fraction 2</label>
-                                <div class="fraction-inputs">
-                                    <div class="input-wrapper compact">
-                                        <input type="number" id="fracA2" class="calc-input" placeholder="a" step="any" autocomplete="off">
-                                    </div>
-                                    <span class="fraction-divider">/</span>
-                                    <div class="input-wrapper compact">
-                                        <input type="number" id="fracB2" class="calc-input" placeholder="b" step="any" autocomplete="off">
-                                    </div>
-                                </div>
+                                <input type="number" id="fracA2" class="frac-input frac-num" placeholder="a" step="any" autocomplete="off">
+                                <div class="frac-bar"></div>
+                                <input type="number" id="fracB2" class="frac-input frac-den" placeholder="b" step="any" autocomplete="off">
                             </div>
                         </div>
-                        <button class="btn btn-calc" id="fracCalcBtn" onclick="calculateFraction()">
-                            <span>Calculate</span>
-                            <div class="btn-shine"></div>
-                        </button>
-                        <div class="result-area" id="fracResult">
-                            <div class="result-placeholder">
-                                <span class="result-placeholder-icon">➗</span>
-                                <span>Enter fractions and press Calculate</span>
-                            </div>
+                        <div class="calc-actions">
+                            <button class="btn btn-calc" id="fracCalcBtn" onclick="calculateFraction()">
+                                <span>Calculate</span>
+                            </button>
                         </div>
                     </div>
                     <div class="calc-history" id="fracHistory">
@@ -324,10 +316,16 @@
                         <div class="calc-card-icon">xⁿ</div>
                         <div>
                             <h3 class="calc-card-title">Power / Exponent Calculator</h3>
-                            <p class="calc-card-desc">Raise any number to any power — squares, cubes, or any custom exponent.</p>
+                            <p class="calc-card-desc">Raise any number to any power — squares, cubes, or custom exponents.</p>
                         </div>
                     </div>
                     <div class="calc-body">
+                        <div class="calc-display" id="powerResult">
+                            <div class="display-placeholder">
+                                <span class="display-placeholder-icon">⚡</span>
+                                <span>Enter values</span>
+                            </div>
+                        </div>
                         <div class="input-row">
                             <div class="input-group">
                                 <label class="input-label" for="powerBase">Base (x)</label>
@@ -351,15 +349,10 @@
                             <button class="quick-btn" onclick="setQuickPower(0.5)" id="quickPowHalf">x^½</button>
                             <button class="quick-btn" onclick="setQuickPower(-1)" id="quickPowNeg1">x⁻¹</button>
                         </div>
-                        <button class="btn btn-calc" id="powerCalcBtn" onclick="calculatePower()">
-                            <span>Calculate</span>
-                            <div class="btn-shine"></div>
-                        </button>
-                        <div class="result-area" id="powerResult">
-                            <div class="result-placeholder">
-                                <span class="result-placeholder-icon">⚡</span>
-                                <span>Enter values and press Calculate</span>
-                            </div>
+                        <div class="calc-actions">
+                            <button class="btn btn-calc" id="powerCalcBtn" onclick="calculatePower()">
+                                <span>Calculate</span>
+                            </button>
                         </div>
                     </div>
                     <div class="calc-history" id="powerHistory">
@@ -376,16 +369,21 @@
                         <div class="calc-card-icon">%</div>
                         <div>
                             <h3 class="calc-card-title">Percentage Calculator</h3>
-                            <p class="calc-card-desc">Calculate percentages, percentage change, and find what percentage one number is of another.</p>
+                            <p class="calc-card-desc">Calculate percentages, percentage change, and find what % one number is of another.</p>
                         </div>
                     </div>
                     <div class="calc-body">
+                        <div class="calc-display" id="pctResult">
+                            <div class="display-placeholder">
+                                <span class="display-placeholder-icon">📊</span>
+                                <span>Enter values</span>
+                            </div>
+                        </div>
                         <div class="pct-mode-tabs" id="pctModeTabs">
                             <button class="pct-tab active" data-mode="of" id="pctModeOf">X% of Y</button>
                             <button class="pct-tab" data-mode="is" id="pctModeIs">X is ?% of Y</button>
                             <button class="pct-tab" data-mode="change" id="pctModeChange">% Change</button>
                         </div>
-                        <!-- X% of Y -->
                         <div class="pct-panel active" id="pctPanelOf" data-mode="of">
                             <div class="input-row">
                                 <div class="input-group">
@@ -404,7 +402,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- X is ?% of Y -->
                         <div class="pct-panel" id="pctPanelIs" data-mode="is">
                             <div class="input-row">
                                 <div class="input-group">
@@ -423,7 +420,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- % Change -->
                         <div class="pct-panel" id="pctPanelChange" data-mode="change">
                             <div class="input-row">
                                 <div class="input-group">
@@ -442,15 +438,10 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-calc" id="pctCalcBtn" onclick="calculatePercentage()">
-                            <span>Calculate</span>
-                            <div class="btn-shine"></div>
-                        </button>
-                        <div class="result-area" id="pctResult">
-                            <div class="result-placeholder">
-                                <span class="result-placeholder-icon">📊</span>
-                                <span>Enter values and press Calculate</span>
-                            </div>
+                        <div class="calc-actions">
+                            <button class="btn btn-calc" id="pctCalcBtn" onclick="calculatePercentage()">
+                                <span>Calculate</span>
+                            </button>
                         </div>
                     </div>
                     <div class="calc-history" id="pctHistory">

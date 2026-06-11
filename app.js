@@ -498,12 +498,11 @@ function showError(area, message) {
     area.classList.remove('has-result');
     area.innerHTML = `
         <div class="result-error">
-            <span>⚠️</span>
+            <span>⚠</span>
             <span>${message}</span>
         </div>
     `;
 
-    // Shake animation
     area.style.animation = 'none';
     void area.offsetWidth;
     area.style.animation = 'shake 0.4s ease-out';
