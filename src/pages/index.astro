@@ -1,22 +1,23 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
+import BaseLayout from '../../theme/layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Calculator from '../components/Calculator.astro';
 import ContentSections from '../components/ContentSections.astro';
-import Footer from '../components/Footer.astro';
+import { useTranslations } from '../../theme/i18n/translations';
+import site from '../config/site.json';
 
 const lang = 'en';
+const t = await useTranslations(lang);
+const title = t("site.title", "Racine Carree Calculator — Free Square Root & Cube Root Tool Online");
+const description = t("site.description", "The most complete Racine Carree Calculator available. Calculate the square root (racine carrée) or cube root (racine cubique) of any number — positive, negative, decimal, or fraction — instantly. Get the exact decimal result, simplified radical form, step-by-step workings, and full reference tables. 100% free.");
 ---
 
-<Layout 
-    title="Racine Carree Calculator — Free Square Root & Cube Root Tool Online"
-    description="The most complete Racine Carree Calculator available. Calculate the square root (racine carrée) or cube root (racine cubique) of any number — positive, negative, decimal, or fraction — instantly. Get the exact decimal result, simplified radical form, step-by-step workings, and full reference tables. 100% free."
-    lang={lang}
-    dir="ltr"
+<BaseLayout 
+    title={title}
+    description={description}
+    locale={lang}
+    canonicalUrl={site.siteUrl}
 >
-    <Navbar lang={lang} />
-    
     <section class="above-fold" id="hero">
         <div class="above-fold-stack">
             <Hero lang={lang} />
@@ -25,5 +26,4 @@ const lang = 'en';
     </section>
 
     <ContentSections lang={lang} />
-    <Footer lang={lang} />
-</Layout>
+</BaseLayout>
