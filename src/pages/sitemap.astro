@@ -29,32 +29,42 @@ const languages = LOCALES.filter(loc => loc !== 'en').map(loc => ({
     locale={lang}
     canonicalUrl={canonicalUrl}
 >
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 class="text-4xl font-extrabold text-gray-900 mb-8">{title}</h1>
-        
-        <div class="space-y-12">
-            <section>
-                <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">Main pages</h2>
-                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {mainPages.map(page => (
-                        <li>
-                            <a href={page.href} class="text-blue-600 hover:text-blue-800 hover:underline">{page.label}</a>
-                        </li>
-                    ))}
-                </ul>
-            </section>
+    <div class="page-shell">
+        <section class="article-section" id="sitemap">
+            <div class="article-container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M12 22V9"/><path d="M12 2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M5 18a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2Z"/><path d="M15 18a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2Z"/></svg>
+                    </span> 
+                    Navigation
+                </div>
+                
+                <h1 class="article-h2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px;">{title}</h1>
+                <p class="hero-subtitle" style="font-weight: 600;">Full overview of Racine Carrée Calculator</p>
+                
+                <div style="margin-top: 40px; margin-bottom: 40px;">
+                    <h3 class="article-h3" style="margin-bottom: 24px;">Main Pages</h3>
+                    <div class="law-cards" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+                        {mainPages.map(page => (
+                            <a href={page.href} class="law-card" style="text-decoration: none; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                                <span style="font-weight: 600; font-size: 1.1rem; color: var(--gray-900);">{page.label}</span>
+                            </a>
+                        ))}
+                    </div>
+                </div>
 
-            <section>
-                <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">Languages</h2>
-                <ul class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {languages.map(lang => (
-                        <li>
-                            <a href={lang.href} class="text-blue-600 hover:text-blue-800 hover:underline">{lang.label}</a>
-                        </li>
-                    ))}
-                </ul>
-            </section>
+                <div style="margin-bottom: 40px;">
+                    <h3 class="article-h3" style="margin-bottom: 24px;">Languages</h3>
+                    <div class="law-cards" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
+                        {languages.map(lang => (
+                            <a href={lang.href} class="law-card" style="text-decoration: none; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                                <span style="font-weight: 600; font-size: 1.1rem; color: var(--primary-600);">{lang.label}</span>
+                            </a>
+                        ))}
+                    </div>
+                </div>
 
-        </div>
+            </div>
+        </section>
     </div>
 </BaseLayout>

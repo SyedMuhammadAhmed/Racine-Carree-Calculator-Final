@@ -8,6 +8,7 @@
   "footer": [
     { "label": "Privacy Policy", "href": "/privacy" },
     { "label": "Terms of Service", "href": "/terms" },
-    { "label": "Contact", "href": "/contact-us" }
+    { "label": "Contact", "href": "/contact-us" },
+    { "label": "Sitemap", "href": "/sitemap/" }
   ]
 }
