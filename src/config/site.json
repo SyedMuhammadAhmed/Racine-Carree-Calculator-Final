@@ -1,13 +1,13 @@
 {
-  "siteUrl": "https://example.com",
-  "siteName": "My Astro Site",
-  "siteDescription": "A production-ready Astro site built with Tailwind CSS v4.",
-  "contactEmail": "hello@example.com",
+  "siteUrl": "https://racinecarreecalculator.com",
+  "siteName": "Racine Carrée Calculator",
+  "siteDescription": "Free square root, cube root, nth root, fraction, and power calculator with step-by-step workings and reference tables.",
+  "contactEmail": "contact@racinecarreecalculator.com",
   "googleVerification": "",
   "bingVerification": "",
   "yandexVerification": "",
   "ogImage": "/og-image.png",
   "ogImageWidth": 1200,
   "ogImageHeight": 630,
-  "ogImageAlt": "Site preview"
+  "ogImageAlt": "Racine Carrée Calculator preview"
 }

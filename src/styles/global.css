@@ -447,6 +447,8 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--space-md);
+    min-height: 48px;
 }
 
 .nav-logo {
@@ -457,6 +459,8 @@ body::before {
     color: var(--text-primary);
     font-weight: 700;
     font-size: 1.1rem;
+    min-width: 0;
+    flex-shrink: 1;
 }
 
 .logo-icon {
@@ -479,6 +483,11 @@ body::before {
 }
 
 .logo-text {
+    display: inline-block;
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     background: var(--gradient-hero);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -490,9 +499,15 @@ body::before {
     display: flex;
     list-style: none;
     gap: var(--space-xs);
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 0;
 }
 
 .nav-link {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
     text-decoration: none;
     color: var(--text-secondary);
     font-size: 0.9rem;
@@ -513,6 +528,16 @@ body::before {
     align-items: center;
     gap: var(--space-sm);
     flex-shrink: 0;
+}
+
+.page-shell {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    min-height: calc(100vh - 260px);
+    margin: 0 auto;
+    padding: 104px var(--space-lg) var(--space-3xl);
 }
 
 .theme-toggle {
@@ -2721,6 +2746,52 @@ body::before {
 .footer-tagline {
     color: var(--text-secondary);
     font-size: 0.92rem;
+    margin-bottom: var(--space-lg);
+}
+
+.footer-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    transition: color var(--duration-fast) var(--ease-out), background var(--duration-fast) var(--ease-out);
+}
+
+.footer-links a:hover {
+    color: var(--primary-500);
+    background: var(--bg-hover-subtle);
+}
+
+.footer-language {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.footer-language-label {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 .footer-bottom {
@@ -2763,12 +2834,24 @@ body::before {
    =================================================================== */
 
 @media (max-width: 1024px) {
+    .logo-text {
+        max-width: 190px;
+    }
+
+    .nav-container {
+        gap: var(--space-sm);
+    }
+
+    .nav-link {
+        padding-inline: 10px;
+    }
+
     .applications-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .nav-links {
         display: none;
         position: fixed;
@@ -2796,10 +2879,17 @@ body::before {
 
     .nav-actions {
         z-index: 1001;
+        gap: 8px;
     }
 
     .nav-toggle {
         display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-shell {
+        padding: 88px var(--space-md) var(--space-2xl);
     }
 
     .above-fold {
@@ -2861,6 +2951,16 @@ body::before {
         flex-direction: column;
         gap: var(--space-sm);
         text-align: center;
+    }
+
+    .footer-controls {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .footer-language {
+        flex-direction: column;
+        gap: 8px;
     }
 
     /* Article responsive */
@@ -2939,6 +3039,20 @@ body::before {
 }
 
 @media (max-width: 480px) {
+    .nav-container {
+        padding: 0 var(--space-md);
+        gap: 8px;
+    }
+
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .nav-logo .logo-text {
+        max-width: 96px;
+    }
+
     .hero-title {
         font-size: 2rem;
     }
@@ -2965,6 +3079,16 @@ body::before {
     .data-table--reference th {
         padding: 6px 8px;
         font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .nav-logo .logo-text {
+        display: none;
+    }
+
+    .nav-actions {
+        margin-left: auto;
     }
 }
 

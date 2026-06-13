@@ -1,14 +1,16 @@
 ---
 import '../styles/global.css';
+import TranslationRuntime from '../components/TranslationRuntime.astro';
 
 interface Props {
 	title: string;
 	description: string;
 	lang?: string;
 	dir?: "ltr" | "rtl";
+	canonicalUrl?: string;
 }
 
-const { title, description, lang = "en", dir = "ltr" } = Astro.props;
+const { title, description, lang = "en", dir = "ltr", canonicalUrl } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -17,6 +19,8 @@ const { title, description, lang = "en", dir = "ltr" } = Astro.props;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content={description}>
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,6 +42,7 @@ const { title, description, lang = "en", dir = "ltr" } = Astro.props;
         <div class="orb orb-5"></div>
     </div>
     <slot />
+    <TranslationRuntime pageLocale={lang} />
     <script src="/app.js" is:inline></script>
 </body>
 </html>

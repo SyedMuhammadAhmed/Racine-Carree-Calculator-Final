@@ -1,108 +1,44 @@
 ---
-import BaseLayout from '../../../theme/layouts/BaseLayout.astro';
-import HowItWorks from '../../../theme/components/HowItWorks.astro';
-import TableSection from '../../../theme/components/TableSection.astro';
-import FAQ from '../../../theme/components/FAQ.astro';
-import { LOCALES, getLocalizedUrl } from '../../../theme/i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import Calculator from '../../components/Calculator.astro';
+import ContentSections from '../../components/ContentSections.astro';
+import Footer from '../../components/Footer.astro';
+import { LOCALES, getHtmlDir, getLocalizedUrl, getLocaleFromParams } from '../../../theme/i18n/utils';
 import { useTranslations } from '../../../theme/i18n/translations';
 import site from '../../config/site.json';
 
+export const prerender = true;
+
 export function getStaticPaths() {
-    return LOCALES
-        .filter((locale: string) => locale !== 'en')
-        .map((locale: string) => ({ params: { locale } }));
+  return LOCALES
+    .filter((locale) => locale !== 'en')
+    .map((locale) => ({ params: { locale } }));
 }
 
-const { locale } = Astro.params;
-const lang = locale as string;
-const t = await useTranslations(lang);
-
-const title = t("site.title", "Racine Carree Calculator — Free Square Root & Cube Root Tool Online");
-const description = t("site.description", "The most complete Racine Carree Calculator available.");
-const canonicalUrl = site.siteUrl + getLocalizedUrl('/', lang as any);
-
-const faqs = t("faq") || [];
-const hasFaqs = Array.isArray(faqs) && faqs.some(f => f.display !== false);
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": title,
-  "url": canonicalUrl,
-  "description": description,
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": `${site.siteUrl}/?q={search_term_string}`,
-    "query-input": "required name=search_term_string"
-  }
-};
-
-const faqSchema = hasFaqs ? {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.filter(f => f.display !== false).map(f => ({
-    "@type": "Question",
-    "name": f.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": f.answer
-    }
-  }))
-} : null;
-
-const schemas = [websiteSchema, faqSchema].filter(Boolean);
-
-const steps = [
-  { title: "Enter Number", description: "Type any positive or negative number." },
-  { title: "Select Root", description: "Choose square root, cube root, or nth root." },
-  { title: "Get Results", description: "Instantly see the exact decimal and step-by-step solution." }
-];
-
-const tableHeaders = ["Number", "Square Root", "Cube Root"];
-const tableRows = [
-  ["1", "1", "1"],
-  ["4", "2", "1.587"],
-  ["9", "3", "2.080"],
-  ["16", "4", "2.520"],
-  ["25", "5", "2.924"]
-];
+const lang = getLocaleFromParams(Astro.params);
+const sourceLang = 'en';
+const t = await useTranslations(sourceLang);
+const title = t('site.title', 'Racine Carree Calculator - Free Square Root & Cube Root Tool Online');
+const description = t('site.description', 'Calculate square roots, cube roots, nth roots, fractions, and powers with steps and reference tables.');
+const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/', lang)}`;
 ---
 
-<BaseLayout 
-    title={title}
-    description={description}
-    locale={lang}
-    canonicalUrl={canonicalUrl}
-    schemaSlot={true}
+<Layout
+  title={title}
+  description={description}
+  lang={lang}
+  dir={getHtmlDir(lang)}
+  canonicalUrl={canonicalUrl}
 >
-    <script slot="schema" type="application/ld+json" set:html={JSON.stringify(schemas)} />
-
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-center">
-        <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight mb-6">
-            <span class="block bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-                {t("hero.title.part1", "Racine Carrée")}
-            </span>
-            <span class="block">{t("hero.title.part2", "Calculator")}</span>
-        </h1>
-        <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-            {t("hero.subtitle", "Calculate the square root or cube root of any number instantly.")}
-        </p>
-    </section>
-
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl p-12 text-center shadow-inner">
-            <p class="text-gray-500 font-medium text-lg">Tool coming soon</p>
-        </div>
-    </section>
-
-    <HowItWorks sectionTitle="How It Works" steps={steps} />
-
-    <TableSection title="Common Roots Reference" headers={tableHeaders} rows={tableRows} />
-
-    {hasFaqs && (
-      <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">Frequently Asked Questions</h2>
-        <FAQ items={faqs} />
-      </section>
-    )}
-</BaseLayout>
+  <Navbar lang={lang} contentLang={sourceLang} />
+  <section class="above-fold" id="hero">
+    <div class="above-fold-stack">
+      <Hero lang={sourceLang} />
+      <Calculator lang={sourceLang} />
+    </div>
+  </section>
+  <ContentSections lang={sourceLang} />
+  <Footer lang={lang} contentLang={sourceLang} />
+</Layout>

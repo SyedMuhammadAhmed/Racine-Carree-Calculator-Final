@@ -4,7 +4,7 @@ export async function GET() {
   const llmsTxt = `
 # ${site.siteName}
 Site: ${site.siteUrl}
-Contact: ${site.contactEmail || 'contact@example.com'}
+Contact: ${site.contactEmail || 'contact@racinecarreecalculator.com'}
 Sitemap: ${site.siteUrl}/sitemap-index.xml
 
 ## AI Usage Policy

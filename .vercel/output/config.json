@@ -41,6 +41,34 @@
 			"dest": "_render"
 		},
 		{
+			"src": "^/about-us/$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/contact-us/$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/llms\\.txt/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/privacy/$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/robots\\.txt/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sitemap/$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/terms/$",
+			"dest": "_render"
+		},
+		{
 			"src": "^/$",
 			"dest": "_render"
 		},

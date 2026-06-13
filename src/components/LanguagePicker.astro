@@ -1,71 +1,158 @@
 ---
-import { LOCALES, getLocalizedUrl } from '../../theme/i18n/utils';
+import { DEFAULT_LOCALE, LOCALES, getLocalizedUrl, type Locale } from '../../theme/i18n/utils';
+
 interface Props {
   lang: string;
+  id?: string;
 }
-const { lang } = Astro.props;
 
-// Simple map for language names, can be expanded or fetched from translations
-const languageNames: Record<string, string> = {
-  en: "English", hi: "हिन्दी", es: "Español", ru: "Русский",
-  fr: "Français", de: "Deutsch", it: "Italiano", pt: "Português",
-  bn: "বাংলা", ja: "日本語", ko: "한국어", ms: "Bahasa Melayu",
-  pl: "Polski", id: "Bahasa Indonesia", ar: "العربية", bg: "Български",
-  tr: "Türkçe", sv: "Svenska"
+const { lang, id = `language-picker-${Math.random().toString(36).slice(2)}` } = Astro.props;
+
+const languageNames: Record<Locale, string> = {
+  en: 'English',
+  hi: 'हिन्दी',
+  es: 'Español',
+  ru: 'Русский',
+  fr: 'Français',
+  de: 'Deutsch',
+  it: 'Italiano',
+  pt: 'Português',
+  bn: 'বাংলা',
+  ja: '日本語',
+  ko: '한국어',
+  ms: 'Bahasa Melayu',
+  pl: 'Polski',
+  id: 'Bahasa Indonesia',
+  ar: 'العربية',
+  bg: 'Български',
+  tr: 'Türkçe',
+  sv: 'Svenska',
 };
+
+const localePrefixPattern = new RegExp(`^/(${LOCALES.join('|')})(?=/|$)`);
+const pathLocale = Astro.url.pathname.match(localePrefixPattern)?.[1];
+const requestedLocale = Astro.url.searchParams.get('lang') || pathLocale || lang;
+const activeLocale = LOCALES.includes(requestedLocale as Locale)
+  ? requestedLocale as Locale
+  : DEFAULT_LOCALE;
+
+const currentPathWithoutLocale = Astro.url.pathname.replace(localePrefixPattern, '') || '/';
+const isHomePath = currentPathWithoutLocale === '/';
+
+function getLanguageUrl(locale: Locale) {
+  if (isHomePath) {
+    return getLocalizedUrl('/', locale);
+  }
+
+  const params = new URLSearchParams(Astro.url.searchParams);
+  if (locale === DEFAULT_LOCALE) {
+    params.delete('lang');
+  } else {
+    params.set('lang', locale);
+  }
+
+  const query = params.toString();
+  return `${currentPathWithoutLocale}${query ? `?${query}` : ''}`;
+}
 ---
 
 <div class="lang-picker">
-  <select class="lang-select" onchange="window.location.href=this.value" aria-label="Select Language">
-    {LOCALES.map((locale) => {
-      // Use pathname and replace the locale part if necessary, but since this is SSG, 
-      // we can just use the base URL for the locale as the calculator is a single-page app.
-      const url = getLocalizedUrl('/', locale);
-      return (
-        <option value={url} selected={lang === locale}>
-          {languageNames[locale] || locale.toUpperCase()}
-        </option>
-      );
-    })}
+  <label class="sr-only" for={id}>Select language</label>
+  <svg class="lang-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+  <select id={id} class="lang-select" data-language-select aria-label="Select language">
+    {LOCALES.map((locale) => (
+      <option value={getLanguageUrl(locale)} data-locale={locale} selected={activeLocale === locale}>
+        {languageNames[locale]}
+      </option>
+    ))}
   </select>
-  <svg class="lang-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
 </div>
 
 <style>
-.lang-picker {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-right: 12px;
-}
-.lang-select {
-  appearance: none;
-  background: var(--bg-card);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 6px 12px 6px 32px;
-  font-family: var(--font-primary);
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  outline: none;
-}
-.lang-select:hover {
-  border-color: var(--text-muted);
-}
-.lang-select:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-}
-.lang-icon {
-  position: absolute;
-  left: 10px;
-  color: var(--text-muted);
-  pointer-events: none;
-}
-[data-theme="dark"] .lang-select {
-  background: var(--bg-hover);
-}
+  .lang-picker {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 152px;
+    max-width: 100%;
+  }
+
+  .lang-select {
+    width: 100%;
+    height: 40px;
+    appearance: none;
+    background: var(--bg-glass-strong);
+    color: var(--text-primary);
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+    padding: 0 30px 0 34px;
+    font-family: var(--font-primary);
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    outline: none;
+    text-overflow: ellipsis;
+  }
+
+  .lang-select:hover {
+    border-color: var(--border-accent);
+    background: var(--bg-surface);
+  }
+
+  .lang-select:focus-visible {
+    border-color: var(--primary-400);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+  }
+
+  .lang-picker::after {
+    content: '';
+    position: absolute;
+    right: 12px;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: translateY(-2px) rotate(45deg);
+    pointer-events: none;
+  }
+
+  .lang-icon {
+    position: absolute;
+    left: 11px;
+    color: var(--text-muted);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  [dir="rtl"] .lang-select {
+    padding: 0 34px 0 30px;
+  }
+
+  [dir="rtl"] .lang-icon {
+    left: auto;
+    right: 11px;
+  }
+
+  [dir="rtl"] .lang-picker::after {
+    right: auto;
+    left: 12px;
+  }
+
+  @media (max-width: 560px) {
+    .lang-picker {
+      width: 116px;
+    }
+
+    .lang-select {
+      font-size: 0.78rem;
+      padding-inline-start: 30px;
+      padding-inline-end: 24px;
+    }
+
+    .lang-icon {
+      width: 14px;
+      height: 14px;
+    }
+  }
 </style>

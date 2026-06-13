@@ -1,8 +1,8 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { getHtmlDir } from '../i18n/utils';
-import { loadTranslations } from '../i18n/translations';
+import Navbar from '../../src/components/Navbar.astro';
+import Footer from '../../src/components/Footer.astro';
+import TranslationRuntime from '../../src/components/TranslationRuntime.astro';
+import { DEFAULT_LOCALE, LOCALES, getHtmlDir, type Locale } from '../i18n/utils';
 import site from '../../src/config/site.json';
 import social from '../../src/config/social.json';
 import nav from '../../src/config/nav.json';
@@ -34,16 +34,19 @@ const {
   schemaSlot = false,
 } = Astro.props;
 
+const requestedLocale = Astro.url.searchParams.get('lang') || locale;
+const activeLocale = LOCALES.includes(requestedLocale as Locale)
+  ? requestedLocale as Locale
+  : DEFAULT_LOCALE;
+
 // Calculate HTML direction (LTR/RTL) based on locale
-const htmlDir = getHtmlDir(locale as any);
+const htmlDir = getHtmlDir(activeLocale);
 
 // Absolute URL for Open Graph/Twitter Images
 const absoluteOgImage = new URL(ogImage, site.siteUrl).toString();
 
 // Approximate locale to standard format (e.g., "en_EN", "es_ES") if passing a simple 2-letter tag
-const mappedLocale = locale.length === 2 ? `${locale.toLowerCase()}_${locale.toUpperCase()}` : locale;
-
-const translations = loadTranslations(locale as any);
+const mappedLocale = activeLocale.length === 2 ? `${activeLocale.toLowerCase()}_${activeLocale.toUpperCase()}` : activeLocale;
 
 // Build JSON-LD schemas
 const socialLinks = Object.values(social).filter(Boolean);
@@ -88,7 +91,7 @@ const contactSchema = isContactPage ? {
 const schemas = [orgSchema, ...navSchemas, aboutSchema, contactSchema].filter(Boolean);
 ---
 
-<html lang={locale} dir={htmlDir}>
+<html lang={activeLocale} dir={htmlDir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -100,7 +103,7 @@ const schemas = [orgSchema, ...navSchemas, aboutSchema, contactSchema].filter(Bo
     <meta name="robots" content={robots} />
     <meta name="googlebot" content={robots} />
     
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     
     {site.googleVerification && <meta name="google-site-verification" content={site.googleVerification} />}
     {site.bingVerification && <meta name="msvalidate.01" content={site.bingVerification} />}
@@ -129,10 +132,19 @@ const schemas = [orgSchema, ...navSchemas, aboutSchema, contactSchema].filter(Bo
     {schemaSlot && <slot name="schema" />}
   </head>
   <body>
-    <Header locale={locale} translations={translations} />
-    <main class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="bg-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="orb orb-4"></div>
+      <div class="orb orb-5"></div>
+    </div>
+    <Navbar lang={activeLocale} />
+    <main class="page-shell">
       <slot />
     </main>
-    <Footer locale={locale} translations={translations} />
+    <Footer lang={activeLocale} />
+    <TranslationRuntime pageLocale={activeLocale} />
+    <script src="/app.js" is:inline></script>
   </body>
 </html>
