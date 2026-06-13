@@ -1,0 +1,269 @@
+---
+import { useTranslations } from '../../theme/i18n/translations';
+
+interface Props {
+  lang?: string;
+}
+const { lang = 'en' } = Astro.props;
+const t = await useTranslations(lang);
+---
+
+<div class="interactive-diagram-container" id="geomDiagramContainer">
+  <div class="diagram-header">
+    <h3 class="diagram-title">{t('diagram.title', 'Interactive Geometry: Area vs Volume')}</h3>
+    <div class="diagram-controls">
+      <button class="diagram-toggle active" data-mode="square" type="button">
+        Square (x²)
+      </button>
+      <button class="diagram-toggle" data-mode="cube" type="button">
+        Cube (x³)
+      </button>
+    </div>
+  </div>
+
+  <div class="diagram-stage">
+    <!-- SVG Canvas -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" class="geom-svg">
+      
+      <!-- Definitions for gradients -->
+      <defs>
+        <linearGradient id="neonCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#22d3ee" />
+          <stop offset="100%" stop-color="#06b6d4" />
+        </linearGradient>
+        <linearGradient id="neonPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#a78bfa" />
+          <stop offset="100%" stop-color="#7c3aed" />
+        </linearGradient>
+      </defs>
+
+      <!-- Square Group (2D) -->
+      <g id="squareGroup" class="geom-group active">
+        <!-- Base Square -->
+        <rect x="-50" y="-50" width="100" height="100" fill="url(#neonPurple)" fill-opacity="0.1" stroke="url(#neonPurple)" stroke-width="2" stroke-linejoin="round" />
+        
+        <!-- Dimension Lines -->
+        <g stroke="#a78bfa" stroke-dasharray="4,4" stroke-width="1.5">
+          <line x1="-50" y1="60" x2="50" y2="60" />
+          <line x1="-60" y1="-50" x2="-60" y2="50" />
+        </g>
+        
+        <!-- Labels -->
+        <text x="0" y="75" fill="#a78bfa" font-size="14" font-weight="600" text-anchor="middle" font-family="monospace">x (width)</text>
+        <text x="-70" y="0" fill="#a78bfa" font-size="14" font-weight="600" text-anchor="middle" font-family="monospace" transform="rotate(-90 -70 0)">x (height)</text>
+        <text x="0" y="5" fill="#a78bfa" font-size="20" font-weight="800" text-anchor="middle" font-family="monospace">x²</text>
+      </g>
+
+      <!-- Cube Group (3D Isometric) -->
+      <g id="cubeGroup" class="geom-group hidden">
+        <!-- Back Face -->
+        <polygon points="-30,-70 50,-70 50,10 -30,10" fill="url(#neonCyan)" fill-opacity="0.05" stroke="url(#neonCyan)" stroke-dasharray="3,3" stroke-width="1.5" />
+        
+        <!-- Connecting Edges -->
+        <line x1="-50" y1="-50" x2="-30" y2="-70" stroke="url(#neonCyan)" stroke-width="1.5" />
+        <line x1="30" y1="-50" x2="50" y2="-70" stroke="url(#neonCyan)" stroke-width="1.5" />
+        <line x1="-50" y1="30" x2="-30" y2="10" stroke="url(#neonCyan)" stroke-width="1.5" />
+        <line x1="30" y1="30" x2="50" y2="10" stroke="url(#neonCyan)" stroke-width="1.5" />
+        
+        <!-- Front Face -->
+        <rect x="-50" y="-50" width="80" height="80" fill="url(#neonCyan)" fill-opacity="0.15" stroke="url(#neonCyan)" stroke-width="2" stroke-linejoin="round" />
+        
+        <!-- Dimension Labels -->
+        <text x="-10" y="45" fill="#22d3ee" font-size="14" font-weight="600" text-anchor="middle" font-family="monospace">x</text>
+        <text x="-60" y="-10" fill="#22d3ee" font-size="14" font-weight="600" text-anchor="middle" font-family="monospace" transform="rotate(-90 -60 -10)">x</text>
+        <text x="-40" y="-60" fill="#22d3ee" font-size="14" font-weight="600" text-anchor="middle" font-family="monospace">x</text>
+        <text x="-10" y="-5" fill="#22d3ee" font-size="22" font-weight="800" text-anchor="middle" font-family="monospace">x³</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="diagram-info">
+    <div id="infoSquare" class="info-card active">
+      <div class="info-formula">Area = x²</div>
+      <p class="info-desc">
+        A square is a 2-dimensional shape. Its area is calculated by multiplying its width by its height. The square root (√) is the reverse operation: finding the side length (x) from the area.
+      </p>
+    </div>
+    <div id="infoCube" class="info-card hidden">
+      <div class="info-formula">Volume = x³</div>
+      <p class="info-desc">
+        A cube is a 3-dimensional object. Its volume is calculated by multiplying width × height × depth. The cube root (∛) is the reverse operation: finding the edge length (x) from the volume.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .interactive-diagram-container {
+    background: var(--neutral-900);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-medium);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    margin: var(--space-xl) 0;
+    font-family: var(--font-sans);
+  }
+
+  .diagram-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .diagram-title {
+    color: var(--neutral-100);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+  }
+
+  .diagram-controls {
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px;
+    border-radius: var(--radius-md);
+  }
+
+  .diagram-toggle {
+    background: transparent;
+    border: none;
+    color: var(--neutral-400);
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+  }
+
+  .diagram-toggle.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--neutral-50);
+  }
+
+  .diagram-stage {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #1f2937 0%, #111827 100%);
+    position: relative;
+  }
+
+  .geom-svg {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+  }
+
+  .geom-group {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform-origin: center;
+  }
+
+  .geom-group.hidden {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+  }
+
+  .geom-group.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .diagram-info {
+    padding: var(--space-lg);
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    min-height: 140px;
+  }
+
+  .info-card {
+    display: none;
+    text-align: center;
+  }
+
+  .info-card.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .info-formula {
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    color: var(--neutral-50);
+    margin-bottom: var(--space-sm);
+  }
+
+  .info-desc {
+    color: var(--neutral-300);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .diagram-header {
+      flex-direction: column;
+      gap: var(--space-md);
+      text-align: center;
+    }
+    .diagram-stage {
+      height: 250px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('geomDiagramContainer');
+    if (!container) return;
+
+    const toggles = container.querySelectorAll('.diagram-toggle');
+    const squareGroup = document.getElementById('squareGroup');
+    const cubeGroup = document.getElementById('cubeGroup');
+    const infoSquare = document.getElementById('infoSquare');
+    const infoCube = document.getElementById('infoCube');
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        // Reset active states
+        toggles.forEach(t => t.classList.remove('active'));
+        toggle.classList.add('active');
+
+        const mode = toggle.getAttribute('data-mode');
+        
+        if (mode === 'square') {
+          squareGroup.classList.replace('hidden', 'active');
+          cubeGroup.classList.replace('active', 'hidden');
+          infoSquare.classList.replace('hidden', 'active');
+          infoCube.classList.replace('active', 'hidden');
+          infoSquare.style.display = 'block';
+          infoCube.style.display = 'none';
+        } else {
+          cubeGroup.classList.replace('hidden', 'active');
+          squareGroup.classList.replace('active', 'hidden');
+          infoCube.classList.replace('hidden', 'active');
+          infoSquare.classList.replace('active', 'hidden');
+          infoCube.style.display = 'block';
+          infoSquare.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

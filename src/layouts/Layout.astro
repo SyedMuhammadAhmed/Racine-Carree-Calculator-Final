@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import TranslationRuntime from '../components/TranslationRuntime.astro';
+import site from '../config/site.json';
 
 interface Props {
 	title: string;
@@ -11,6 +12,22 @@ interface Props {
 }
 
 const { title, description, lang = "en", dir = "ltr", canonicalUrl } = Astro.props;
+
+// JSON-LD Schema Construction
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": site.siteName,
+  "url": canonicalUrl || site.siteUrl,
+  "description": description,
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+};
 ---
 
 <!DOCTYPE html>
@@ -19,9 +36,23 @@ const { title, description, lang = "en", dir = "ltr", canonicalUrl } = Astro.pro
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content={description}>
+    
+    <!-- Open Graph & Twitter -->
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={canonicalUrl || site.siteUrl}>
+    <meta property="og:image" content={`${site.siteUrl}${site.ogImage}`}>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    
     {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <title>{title}</title>
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
