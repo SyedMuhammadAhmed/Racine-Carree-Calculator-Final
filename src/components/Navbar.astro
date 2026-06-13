@@ -20,6 +20,12 @@ const currentPathWithoutLocale = Astro.url.pathname.replace(localePrefixPattern,
 const isHomePath = currentPathWithoutLocale === '/';
 const homeUrl = getLocalizedUrl('/', activeLocale);
 const sectionHref = (id: string) => isHomePath ? `#${id}` : `${homeUrl}#${id}`;
+const pageHref = (path: string) => {
+  if (activeLocale === DEFAULT_LOCALE) return path;
+  const params = new URLSearchParams();
+  params.set('lang', activeLocale);
+  return `${path}?${params.toString()}`;
+};
 const t = await useTranslations(contentLocale);
 const brand = t('footer.brand', 'Racine Carrée Calculator');
 ---
@@ -32,10 +38,8 @@ const brand = t('footer.brand', 'Racine Carrée Calculator');
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href={sectionHref('hero')} class:list={['nav-link', { active: isHomePath }]} data-section="hero">{t('nav.home', 'Home')}</a></li>
-      <li><a href={sectionHref('calculators')} class="nav-link" data-section="calculators">{t('nav.calculator', 'Calculator')}</a></li>
-      <li><a href={sectionHref('what-is-racine')} class="nav-link" data-section="what-is-racine">{t('nav.learn', 'Learn')}</a></li>
-      <li><a href={sectionHref('reference-tables')} class="nav-link" data-section="reference-tables">{t('nav.tables', 'Tables')}</a></li>
-      <li><a href={sectionHref('faq-section')} class="nav-link" data-section="faq-section">{t('nav.faq', 'FAQ')}</a></li>
+      <li><a href={pageHref('/privacy/')} class="nav-link" data-section="privacy">{t('nav.privacy', 'Privacy Policy')}</a></li>
+      <li><a href={pageHref('/terms/')} class="nav-link" data-section="terms">{t('nav.terms', 'Terms of Service')}</a></li>
     </ul>
     <div class="nav-actions">
       <LanguagePicker lang={activeLocale} id="header-language-picker" />

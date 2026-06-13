@@ -3127,3 +3127,51 @@ body::before {
 input[type="number"] {
     -moz-appearance: textfield;
 }
+
+/* --- Back to Top Button --- */
+.back-to-top {
+    position: fixed;
+    bottom: var(--space-xl);
+    right: var(--space-lg);
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background: var(--bg-surface);
+    color: var(--primary-500);
+    border: 1px solid var(--border-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: all var(--duration-normal) var(--ease-spring);
+    z-index: 999;
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--bg-hover-subtle);
+    color: var(--primary-600);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-accent);
+}
+
+/* --- Premium Checkmark --- */
+.premium-check {
+    color: var(--green-500);
+    width: 22px;
+    height: 22px;
+    margin: 0 auto;
+    display: block;
+}
