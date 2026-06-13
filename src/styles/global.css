@@ -2854,17 +2854,18 @@ body::before {
    RESPONSIVE
    =================================================================== */
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .logo-text {
-        max-width: 190px;
+        max-width: 180px;
     }
 
     .nav-container {
-        gap: var(--space-sm);
+        gap: 10px;
     }
 
     .nav-link {
         padding-inline: 10px;
+        font-size: 0.85rem;
     }
 
     .applications-grid {
@@ -2872,7 +2873,7 @@ body::before {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .nav-links {
         display: none;
         position: fixed;

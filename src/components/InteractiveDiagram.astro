@@ -10,8 +10,11 @@ const t = await useTranslations(lang);
 
 <div class="interactive-diagram-container" id="geomDiagramContainer">
   <div class="diagram-header">
-    <h3 class="diagram-title">{t('diagram.title', 'Interactive Geometry: Area vs Volume')}</h3>
-    <div class="diagram-controls">
+    <h3 class="diagram-title">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="title-icon"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      {t('diagram.title', 'Interactive Geometry: Area vs Volume')}
+    </h3>
+    <div class="diagram-controls" role="group" aria-label="Toggle diagram mode">
       <button class="diagram-toggle active" data-mode="square" type="button">
         Square (x²)
       </button>
@@ -25,67 +28,55 @@ const t = await useTranslations(lang);
     <!-- SVG Canvas -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" class="geom-svg">
       
-      <!-- Definitions for gradients -->
-      <defs>
-        <linearGradient id="neonCyan" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#22d3ee" />
-          <stop offset="100%" stop-color="#06b6d4" />
-        </linearGradient>
-        <linearGradient id="neonPurple" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#a78bfa" />
-          <stop offset="100%" stop-color="#7c3aed" />
-        </linearGradient>
-      </defs>
-
       <!-- Square Group (2D) -->
       <g id="squareGroup" class="geom-group active">
         <!-- Base Square -->
-        <rect x="-50" y="-50" width="100" height="100" fill="url(#neonPurple)" fill-opacity="0.1" stroke="url(#neonPurple)" stroke-width="2" stroke-linejoin="round" />
+        <rect x="-50" y="-50" width="100" height="100" class="svg-shape primary-stroke" fill="var(--primary-500)" fill-opacity="0.1" stroke-width="2" stroke-linejoin="round" />
         
         <!-- Dimension Lines -->
-        <g stroke="#a78bfa" stroke-dasharray="4,4" stroke-width="1.5">
+        <g class="svg-dash primary-stroke" stroke-dasharray="4,4" stroke-width="1.5">
           <line x1="-50" y1="60" x2="50" y2="60" />
           <line x1="-60" y1="-50" x2="-60" y2="50" />
         </g>
         
         <!-- Labels -->
-        <text x="0" y="75" fill="#a78bfa" font-size="14" font-weight="600" text-anchor="middle" font-family="monospace">x (width)</text>
-        <text x="-70" y="0" fill="#a78bfa" font-size="14" font-weight="600" text-anchor="middle" font-family="monospace" transform="rotate(-90 -70 0)">x (height)</text>
-        <text x="0" y="5" fill="#a78bfa" font-size="20" font-weight="800" text-anchor="middle" font-family="monospace">x²</text>
+        <text x="0" y="75" class="svg-text primary-fill">x (width)</text>
+        <text x="-75" y="0" class="svg-text primary-fill" transform="rotate(-90 -75 0)">x (height)</text>
+        <text x="0" y="5" class="svg-text-large primary-fill">x²</text>
       </g>
 
       <!-- Cube Group (3D Isometric) -->
       <g id="cubeGroup" class="geom-group hidden">
         <!-- Back Face -->
-        <polygon points="-30,-70 50,-70 50,10 -30,10" fill="url(#neonCyan)" fill-opacity="0.05" stroke="url(#neonCyan)" stroke-dasharray="3,3" stroke-width="1.5" />
+        <polygon points="-30,-70 50,-70 50,10 -30,10" class="svg-shape accent-stroke" fill="var(--accent-500)" fill-opacity="0.05" stroke-dasharray="3,3" stroke-width="1.5" />
         
         <!-- Connecting Edges -->
-        <line x1="-50" y1="-50" x2="-30" y2="-70" stroke="url(#neonCyan)" stroke-width="1.5" />
-        <line x1="30" y1="-50" x2="50" y2="-70" stroke="url(#neonCyan)" stroke-width="1.5" />
-        <line x1="-50" y1="30" x2="-30" y2="10" stroke="url(#neonCyan)" stroke-width="1.5" />
-        <line x1="30" y1="30" x2="50" y2="10" stroke="url(#neonCyan)" stroke-width="1.5" />
+        <line x1="-50" y1="-50" x2="-30" y2="-70" class="accent-stroke" stroke-width="1.5" />
+        <line x1="30" y1="-50" x2="50" y2="-70" class="accent-stroke" stroke-width="1.5" />
+        <line x1="-50" y1="30" x2="-30" y2="10" class="accent-stroke" stroke-width="1.5" />
+        <line x1="30" y1="30" x2="50" y2="10" class="accent-stroke" stroke-width="1.5" />
         
         <!-- Front Face -->
-        <rect x="-50" y="-50" width="80" height="80" fill="url(#neonCyan)" fill-opacity="0.15" stroke="url(#neonCyan)" stroke-width="2" stroke-linejoin="round" />
+        <rect x="-50" y="-50" width="80" height="80" class="svg-shape accent-stroke" fill="var(--accent-500)" fill-opacity="0.15" stroke-width="2" stroke-linejoin="round" />
         
         <!-- Dimension Labels -->
-        <text x="-10" y="45" fill="#22d3ee" font-size="14" font-weight="600" text-anchor="middle" font-family="monospace">x</text>
-        <text x="-60" y="-10" fill="#22d3ee" font-size="14" font-weight="600" text-anchor="middle" font-family="monospace" transform="rotate(-90 -60 -10)">x</text>
-        <text x="-40" y="-60" fill="#22d3ee" font-size="14" font-weight="600" text-anchor="middle" font-family="monospace">x</text>
-        <text x="-10" y="-5" fill="#22d3ee" font-size="22" font-weight="800" text-anchor="middle" font-family="monospace">x³</text>
+        <text x="-10" y="50" class="svg-text accent-fill">x (width)</text>
+        <text x="-70" y="-10" class="svg-text accent-fill" transform="rotate(-90 -70 -10)">x (height)</text>
+        <text x="-40" y="-60" class="svg-text accent-fill" transform="rotate(-45 -40 -60) translate(0, -10)">x (depth)</text>
+        <text x="-10" y="-5" class="svg-text-large accent-fill">x³</text>
       </g>
     </svg>
   </div>
 
   <div class="diagram-info">
     <div id="infoSquare" class="info-card active">
-      <div class="info-formula">Area = x²</div>
+      <div class="info-formula primary-text">Area = x²</div>
       <p class="info-desc">
         A square is a 2-dimensional shape. Its area is calculated by multiplying its width by its height. The square root (√) is the reverse operation: finding the side length (x) from the area.
       </p>
     </div>
     <div id="infoCube" class="info-card hidden">
-      <div class="info-formula">Volume = x³</div>
+      <div class="info-formula accent-text">Volume = x³</div>
       <p class="info-desc">
         A cube is a 3-dimensional object. Its volume is calculated by multiplying width × height × depth. The cube root (∛) is the reverse operation: finding the edge length (x) from the volume.
       </p>
@@ -95,13 +86,18 @@ const t = await useTranslations(lang);
 
 <style>
   .interactive-diagram-container {
-    background: var(--neutral-900);
+    background: var(--bg-card);
     border-radius: var(--radius-xl);
-    border: 1px solid var(--border-medium);
+    border: 1px solid var(--border-default);
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-sm);
     margin: var(--space-xl) 0;
     font-family: var(--font-sans);
+    transition: box-shadow var(--duration-normal) var(--ease-out);
+  }
+  
+  .interactive-diagram-container:hover {
+    box-shadow: var(--shadow-md);
   }
 
   .diagram-header {
@@ -109,33 +105,41 @@ const t = await useTranslations(lang);
     justify-content: space-between;
     align-items: center;
     padding: var(--space-md) var(--space-lg);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-glass-strong);
   }
 
   .diagram-title {
-    color: var(--neutral-100);
+    color: var(--text-main);
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .title-icon {
+    color: var(--primary-500);
   }
 
   .diagram-controls {
     display: flex;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.05);
+    gap: 4px;
+    background: var(--bg-subtle);
     padding: 4px;
     border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
   }
 
   .diagram-toggle {
     background: transparent;
     border: none;
-    color: var(--neutral-400);
-    padding: 6px 12px;
-    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding: 6px 14px;
+    font-size: 0.85rem;
     font-weight: 600;
     border-radius: var(--radius-sm);
     cursor: pointer;
@@ -143,8 +147,13 @@ const t = await useTranslations(lang);
   }
 
   .diagram-toggle.active {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--neutral-50);
+    background: var(--bg-card);
+    color: var(--primary-500);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  [data-mode="cube"].active {
+    color: var(--accent-500);
   }
 
   .diagram-stage {
@@ -153,37 +162,62 @@ const t = await useTranslations(lang);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at center, #1f2937 0%, #111827 100%);
+    background: var(--bg-body);
+    background-image: radial-gradient(var(--border-subtle) 1px, transparent 1px);
+    background-size: 20px 20px;
     position: relative;
   }
 
   .geom-svg {
     width: 100%;
     height: 100%;
-    max-width: 300px;
+    max-width: 320px;
+  }
+
+  /* Dynamic Theme Colors for SVGs */
+  .primary-stroke { stroke: var(--primary-500); }
+  .primary-fill { fill: var(--primary-500); }
+  .accent-stroke { stroke: var(--accent-500); }
+  .accent-fill { fill: var(--accent-500); }
+  
+  .primary-text { color: var(--primary-500); }
+  .accent-text { color: var(--accent-500); }
+
+  .svg-text {
+    font-size: 13px;
+    font-weight: 600;
+    text-anchor: middle;
+    font-family: var(--font-mono);
+  }
+  
+  .svg-text-large {
+    font-size: 24px;
+    font-weight: 800;
+    text-anchor: middle;
+    font-family: var(--font-mono);
   }
 
   .geom-group {
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center;
   }
 
   .geom-group.hidden {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.9) translateY(10px);
     pointer-events: none;
   }
 
   .geom-group.active {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
   }
 
   .diagram-info {
     padding: var(--space-lg);
-    background: rgba(0, 0, 0, 0.2);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    min-height: 140px;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-subtle);
+    min-height: 150px;
   }
 
   .info-card {
@@ -200,15 +234,14 @@ const t = await useTranslations(lang);
     font-size: 1.5rem;
     font-weight: 800;
     font-family: var(--font-mono);
-    color: var(--neutral-50);
     margin-bottom: var(--space-sm);
   }
 
   .info-desc {
-    color: var(--neutral-300);
+    color: var(--text-muted);
     font-size: 0.95rem;
     line-height: 1.6;
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
   }
 
@@ -224,7 +257,7 @@ const t = await useTranslations(lang);
       text-align: center;
     }
     .diagram-stage {
-      height: 250px;
+      height: 280px;
     }
   }
 </style>
@@ -253,15 +286,11 @@ const t = await useTranslations(lang);
           cubeGroup.classList.replace('active', 'hidden');
           infoSquare.classList.replace('hidden', 'active');
           infoCube.classList.replace('active', 'hidden');
-          infoSquare.style.display = 'block';
-          infoCube.style.display = 'none';
         } else {
           cubeGroup.classList.replace('hidden', 'active');
           squareGroup.classList.replace('active', 'hidden');
           infoCube.classList.replace('hidden', 'active');
           infoSquare.classList.replace('active', 'hidden');
-          infoCube.style.display = 'block';
-          infoSquare.style.display = 'none';
         }
       });
     });

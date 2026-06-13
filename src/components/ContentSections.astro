@@ -1,6 +1,8 @@
 ---
 import { useTranslations } from '../../theme/i18n/translations';
 import InteractiveDiagram from './InteractiveDiagram.astro';
+import PythagoreanDiagram from './PythagoreanDiagram.astro';
+import FractionRootDiagram from './FractionRootDiagram.astro';
 
 interface Props {
   lang?: string;
@@ -180,6 +182,8 @@ const t = await useTranslations(lang);
                 <p>Unlike the square root, this is valid for all real numbers — positive, negative, and zero.</p>
 
                 <h3 class="article-h3">The Five Core Laws for Both Operations</h3>
+                
+                <FractionRootDiagram lang={lang} />
 
                 <div class="law-cards">
                     <div class="law-card">
@@ -421,6 +425,8 @@ const t = await useTranslations(lang);
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span> Applications</div>
                 <h2 class="article-h2">Real-Life Applications of Racine Carrée and Racine Cubique</h2>
+                
+                <PythagoreanDiagram lang={lang} />
 
                 <div class="applications-grid">
                     <div class="app-card">

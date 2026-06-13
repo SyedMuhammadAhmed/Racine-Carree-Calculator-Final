@@ -1,0 +1,292 @@
+---
+import { useTranslations } from '../../theme/i18n/translations';
+
+interface Props {
+  lang?: string;
+}
+const { lang = 'en' } = Astro.props;
+const t = await useTranslations(lang);
+---
+
+<div class="interactive-diagram-container" id="pythagoreanDiagramContainer">
+  <div class="diagram-header">
+    <h3 class="diagram-title">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="title-icon"><path d="M12 2 2 22h20L12 2Z"/></svg>
+      {t('diagram.pythagorean.title', 'Interactive Geometry: Pythagorean Theorem')}
+    </h3>
+    <div class="diagram-controls" role="group" aria-label="Toggle diagram mode">
+      <button class="diagram-toggle active" data-mode="hypotenuse" type="button">
+        Find Hypotenuse (c)
+      </button>
+      <button class="diagram-toggle" data-mode="leg" type="button">
+        Find Leg (a)
+      </button>
+    </div>
+  </div>
+
+  <div class="diagram-stage">
+    <!-- SVG Canvas -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" class="geom-svg">
+      
+      <!-- Right Triangle Base -->
+      <polygon points="40,20 40,120 160,120" fill="var(--bg-glass-strong)" stroke="var(--border-strong)" stroke-width="2" stroke-linejoin="round"/>
+      
+      <!-- Right Angle Indicator -->
+      <polyline points="40,105 55,105 55,120" fill="none" stroke="var(--border-strong)" stroke-width="1.5"/>
+
+      <!-- Group: Find Hypotenuse (Active) -->
+      <g id="hypoGroup" class="geom-group active">
+        <!-- Highlighted Hypotenuse -->
+        <line x1="40" y1="20" x2="160" y2="120" stroke="var(--primary-500)" stroke-width="4" stroke-linecap="round"/>
+        
+        <!-- Known Legs -->
+        <line x1="40" y1="20" x2="40" y2="120" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4,4"/>
+        <line x1="40" y1="120" x2="160" y2="120" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4,4"/>
+        
+        <!-- Labels -->
+        <text x="25" y="75" class="svg-text muted-text" style="text-anchor: end;">a</text>
+        <text x="100" y="140" class="svg-text muted-text">b</text>
+        <text x="100" y="70" class="svg-text-large primary-fill" transform="rotate(39.8 100 70) translate(0, -15)">c = ?</text>
+      </g>
+
+      <!-- Group: Find Leg (Hidden) -->
+      <g id="legGroup" class="geom-group hidden">
+        <!-- Highlighted Leg 'a' -->
+        <line x1="40" y1="20" x2="40" y2="120" stroke="var(--accent-500)" stroke-width="4" stroke-linecap="round"/>
+        
+        <!-- Known Sides -->
+        <line x1="40" y1="20" x2="160" y2="120" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4,4"/>
+        <line x1="40" y1="120" x2="160" y2="120" stroke="var(--text-muted)" stroke-width="2" stroke-dasharray="4,4"/>
+        
+        <!-- Labels -->
+        <text x="100" y="70" class="svg-text muted-text" transform="rotate(39.8 100 70) translate(0, -15)">c</text>
+        <text x="100" y="140" class="svg-text muted-text">b</text>
+        <text x="25" y="75" class="svg-text-large accent-fill" style="text-anchor: end;">a = ?</text>
+      </g>
+      
+    </svg>
+  </div>
+
+  <div class="diagram-info">
+    <div id="infoHypo" class="info-card active">
+      <div class="info-formula primary-text">c = √(a² + b²)</div>
+      <p class="info-desc">
+        To find the length of the hypotenuse (c), square the lengths of both legs (a and b), add them together, and calculate the square root of the result.
+      </p>
+    </div>
+    <div id="infoLeg" class="info-card hidden">
+      <div class="info-formula accent-text">a = √(c² - b²)</div>
+      <p class="info-desc">
+        To find the length of a missing leg (a), square the hypotenuse (c) and the known leg (b). Subtract the leg's square from the hypotenuse's square, then calculate the square root.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Reuses the exact same robust styling variables as InteractiveDiagram.astro */
+  .interactive-diagram-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-default);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin: var(--space-xl) 0;
+    font-family: var(--font-sans);
+    transition: box-shadow var(--duration-normal) var(--ease-out);
+  }
+  
+  .interactive-diagram-container:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .diagram-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-glass-strong);
+  }
+
+  .diagram-title {
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .title-icon {
+    color: var(--primary-500);
+  }
+
+  .diagram-controls {
+    display: flex;
+    gap: 4px;
+    background: var(--bg-subtle);
+    padding: 4px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .diagram-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--duration-fast);
+  }
+
+  .diagram-toggle.active {
+    background: var(--bg-card);
+    color: var(--primary-500);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  [data-mode="leg"].active {
+    color: var(--accent-500);
+  }
+
+  .diagram-stage {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-body);
+    background-image: radial-gradient(var(--border-subtle) 1px, transparent 1px);
+    background-size: 20px 20px;
+    position: relative;
+  }
+
+  .geom-svg {
+    width: 100%;
+    height: 100%;
+    max-width: 380px;
+  }
+
+  .primary-fill { fill: var(--primary-500); }
+  .accent-fill { fill: var(--accent-500); }
+  .muted-text { fill: var(--text-muted); }
+  
+  .primary-text { color: var(--primary-500); }
+  .accent-text { color: var(--accent-500); }
+
+  .svg-text {
+    font-size: 14px;
+    font-weight: 600;
+    text-anchor: middle;
+    font-family: var(--font-mono);
+  }
+  
+  .svg-text-large {
+    font-size: 18px;
+    font-weight: 800;
+    text-anchor: middle;
+    font-family: var(--font-mono);
+  }
+
+  .geom-group {
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .geom-group.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .geom-group.active {
+    opacity: 1;
+  }
+
+  .diagram-info {
+    padding: var(--space-lg);
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-subtle);
+    min-height: 140px;
+  }
+
+  .info-card {
+    display: none;
+    text-align: center;
+  }
+
+  .info-card.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .info-formula {
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    margin-bottom: var(--space-sm);
+  }
+
+  .info-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .diagram-header {
+      flex-direction: column;
+      gap: var(--space-md);
+      text-align: center;
+    }
+    .diagram-stage {
+      height: 250px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('pythagoreanDiagramContainer');
+    if (!container) return;
+
+    const toggles = container.querySelectorAll('.diagram-toggle');
+    const hypoGroup = document.getElementById('hypoGroup');
+    const legGroup = document.getElementById('legGroup');
+    const infoHypo = document.getElementById('infoHypo');
+    const infoLeg = document.getElementById('infoLeg');
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        toggles.forEach(t => t.classList.remove('active'));
+        toggle.classList.add('active');
+
+        const mode = toggle.getAttribute('data-mode');
+        
+        if (mode === 'hypotenuse') {
+          hypoGroup.classList.replace('hidden', 'active');
+          legGroup.classList.replace('active', 'hidden');
+          infoHypo.classList.replace('hidden', 'active');
+          infoLeg.classList.replace('active', 'hidden');
+        } else {
+          legGroup.classList.replace('hidden', 'active');
+          hypoGroup.classList.replace('active', 'hidden');
+          infoLeg.classList.replace('hidden', 'active');
+          infoHypo.classList.replace('active', 'hidden');
+        }
+      });
+    });
+  });
+</script>
