@@ -51,7 +51,7 @@ const t = await useTranslations(lang);
                                 <label class="input-label" for="sqrtInput">{t("calc.label.number", "Number to calculate")}</label>
                                 <div class="input-wrapper">
                                     <span class="input-prefix">√</span>
-                                    <input type="number" id="sqrtInput" class="calc-input" placeholder="e.g. 144" min="0" step="any" autocomplete="off">
+                                    <input type="number" inputmode="decimal" id="sqrtInput" class="calc-input" placeholder="e.g. 144" min="0" step="any" autocomplete="off">
                                 </div>
                             </div>
                         </section>
@@ -97,7 +97,7 @@ const t = await useTranslations(lang);
                                 <label class="input-label" for="cbrtInput">{t("calc.label.number", "Number to calculate")}</label>
                                 <div class="input-wrapper">
                                     <span class="input-prefix">∛</span>
-                                    <input type="number" id="cbrtInput" class="calc-input" placeholder="e.g. 27" step="any" autocomplete="off">
+                                    <input type="number" inputmode="decimal" id="cbrtInput" class="calc-input" placeholder="e.g. 27" step="any" autocomplete="off">
                                 </div>
                             </div>
                         </section>
@@ -144,14 +144,14 @@ const t = await useTranslations(lang);
                                     <label class="input-label" for="nthDegree">{t("calc.label.degree", "Root degree (n)")}</label>
                                     <div class="input-wrapper">
                                         <span class="input-prefix">n</span>
-                                        <input type="number" id="nthDegree" class="calc-input" placeholder="e.g. 4" min="1" step="1" autocomplete="off">
+                                        <input type="number" inputmode="decimal" id="nthDegree" class="calc-input" placeholder="e.g. 4" min="1" step="1" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="input-group">
                                     <label class="input-label" for="nthValue">{t("calc.label.numberX", "Number (x)")}</label>
                                     <div class="input-wrapper">
                                         <span class="input-prefix">x</span>
-                                        <input type="number" id="nthValue" class="calc-input" placeholder="e.g. 625" step="any" autocomplete="off">
+                                        <input type="number" inputmode="decimal" id="nthValue" class="calc-input" placeholder="e.g. 625" step="any" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -198,9 +198,9 @@ const t = await useTranslations(lang);
                                 <div class="frac-block">
                                     <span class="frac-block-label">{t("calc.fraction.1", "Fraction 1")}</span>
                                     <div class="frac-stacked">
-                                        <input type="number" id="fracA1" class="frac-input frac-num" placeholder="a" step="any" autocomplete="off" aria-label="Fraction 1 numerator">
+                                        <input type="number" inputmode="decimal" id="fracA1" class="frac-input frac-num" placeholder="a" step="any" autocomplete="off" aria-label="Fraction 1 numerator">
                                         <div class="frac-bar"></div>
-                                        <input type="number" id="fracB1" class="frac-input frac-den" placeholder="b" step="any" autocomplete="off" aria-label="Fraction 1 denominator">
+                                        <input type="number" inputmode="decimal" id="fracB1" class="frac-input frac-den" placeholder="b" step="any" autocomplete="off" aria-label="Fraction 1 denominator">
                                     </div>
                                 </div>
                                 <div class="operation-selector" id="fracOperator" role="group" aria-label="Operation">
@@ -212,9 +212,9 @@ const t = await useTranslations(lang);
                                 <div class="frac-block">
                                     <span class="frac-block-label">{t("calc.fraction.2", "Fraction 2")}</span>
                                     <div class="frac-stacked">
-                                        <input type="number" id="fracA2" class="frac-input frac-num" placeholder="a" step="any" autocomplete="off" aria-label="Fraction 2 numerator">
+                                        <input type="number" inputmode="decimal" id="fracA2" class="frac-input frac-num" placeholder="a" step="any" autocomplete="off" aria-label="Fraction 2 numerator">
                                         <div class="frac-bar"></div>
-                                        <input type="number" id="fracB2" class="frac-input frac-den" placeholder="b" step="any" autocomplete="off" aria-label="Fraction 2 denominator">
+                                        <input type="number" inputmode="decimal" id="fracB2" class="frac-input frac-den" placeholder="b" step="any" autocomplete="off" aria-label="Fraction 2 denominator">
                                     </div>
                                 </div>
                             </div>
@@ -262,14 +262,14 @@ const t = await useTranslations(lang);
                                     <label class="input-label" for="powerBase">{t("calc.label.baseX", "Base (x)")}</label>
                                     <div class="input-wrapper">
                                         <span class="input-prefix">x</span>
-                                        <input type="number" id="powerBase" class="calc-input" placeholder="e.g. 5" step="any" autocomplete="off">
+                                        <input type="number" inputmode="decimal" id="powerBase" class="calc-input" placeholder="e.g. 5" step="any" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="input-group">
                                     <label class="input-label" for="powerExp">{t("calc.label.exponentN", "Exponent (n)")}</label>
                                     <div class="input-wrapper">
                                         <span class="input-prefix">n</span>
-                                        <input type="number" id="powerExp" class="calc-input" placeholder="e.g. 3" step="any" autocomplete="off">
+                                        <input type="number" inputmode="decimal" id="powerExp" class="calc-input" placeholder="e.g. 3" step="any" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
