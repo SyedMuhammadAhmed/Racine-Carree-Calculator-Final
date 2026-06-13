@@ -18,22 +18,71 @@ const canonicalUrl = `${site.siteUrl}/about-us/`;
     canonicalUrl={canonicalUrl}
     isAboutPage={true}
 >
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 class="text-4xl font-extrabold text-gray-900 mb-8">{title}</h1>
-        
-        <div class="prose prose-lg text-gray-600 max-w-none">
-            <p>
-                Welcome to the Racine Carrée Calculator, the most comprehensive and free square root and cube root tool available online. Our mission is to make mathematical calculations accessible, accurate, and easy to understand for students, professionals, and enthusiasts worldwide.
-            </p>
-            <p>
-                We built this tool because we noticed a lack of calculators that provide not just the decimal answer, but also the exact simplified radical form, step-by-step explanations, and historical context. Whether you are solving a simple homework problem or dealing with complex engineering calculations, our calculator is designed to provide you with all the information you need instantly.
-            </p>
-            <p>
-                Our team is passionate about mathematics and education. We continuously update our platform to ensure the highest level of accuracy and performance. The calculator supports positive and negative numbers, decimals, fractions, and even nth roots, making it a versatile companion for all your mathematical needs.
-            </p>
-            <p>
-                Thank you for choosing Racine Carrée Calculator. If you have any suggestions or feedback, please don't hesitate to reach out to us through our contact page.
-            </p>
-        </div>
+    <div class="page-shell">
+        <section class="article-section" id="about-us">
+            <div class="article-container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </span> 
+                    Our Mission
+                </div>
+                
+                <h1 class="article-h2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 24px;">{title}</h1>
+                
+                <p class="hero-subtitle" style="max-width: 100%; text-align: left; margin-bottom: 40px; font-size: 1.15rem;">
+                    Welcome to the Racine Carrée Calculator, the most comprehensive and free square root and cube root tool available online. Our mission is to make mathematical calculations accessible, accurate, and beautifully simple for students, professionals, and enthusiasts worldwide.
+                </p>
+
+                <div class="law-cards" style="margin-bottom: 48px;">
+                    <div class="law-card">
+                        <div class="law-header">
+                            <div class="law-number">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                            </div>
+                            <div>
+                                <div class="law-label">Why We Built This</div>
+                            </div>
+                        </div>
+                        <p class="law-example">We noticed a lack of calculators that provide not just the decimal answer, but also the exact simplified radical form, step-by-step mathematical explanations, and the historical context behind the formulas.</p>
+                    </div>
+
+                    <div class="law-card">
+                        <div class="law-header">
+                            <div class="law-number">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                            </div>
+                            <div>
+                                <div class="law-label">Global Accessibility</div>
+                            </div>
+                        </div>
+                        <p class="law-example">Whether you are solving a simple algebra homework problem, evaluating standard deviations in statistics, or dealing with complex engineering calculations, our calculator delivers all the information you need instantly, completely free of charge.</p>
+                    </div>
+
+                    <div class="law-card law-card--full">
+                        <div class="law-header">
+                            <div class="law-number">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+                            </div>
+                            <div>
+                                <div class="law-label">Continuous Improvement</div>
+                            </div>
+                        </div>
+                        <p class="law-example">Our team is passionate about mathematics, clean design, and education. We continuously update our platform to ensure the highest level of accuracy and performance. The calculator supports positive and negative numbers, decimals, fractions, and even nth roots, making it an incredibly versatile companion for all your mathematical needs.</p>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <div class="warning-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <div class="warning-content">
+                        <strong>Get in Touch</strong>
+                        <p style="margin-top: 8px;">Thank you for choosing Racine Carrée Calculator. If you have any suggestions, feature requests, or feedback, please don't hesitate to reach out to us through our <a href="/contact-us" style="color: var(--primary-500); font-weight: 600; text-decoration: underline;">Contact Page</a>.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </div>
 </BaseLayout>

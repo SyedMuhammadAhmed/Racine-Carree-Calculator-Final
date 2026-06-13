@@ -1360,13 +1360,34 @@ body::before {
 .result-steps-header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
-    margin-bottom: var(--space-md);
+    margin-bottom: 0;
+    padding: 8px 0;
     font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--primary-500);
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+}
+
+.result-steps-header::-webkit-details-marker {
+    display: none;
+}
+
+.result-steps[open] .result-steps-header {
+    margin-bottom: var(--space-md);
+}
+
+.steps-chevron {
+    transition: transform var(--duration-normal) var(--ease-spring);
+}
+
+.result-steps[open] .steps-chevron {
+    transform: rotate(180deg);
 }
 
 .result-steps-header svg {

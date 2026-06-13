@@ -38,6 +38,8 @@ const brand = t('footer.brand', 'Racine Carrée Calculator');
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href={sectionHref('hero')} class:list={['nav-link', { active: isHomePath }]} data-section="hero">{t('nav.home', 'Home')}</a></li>
+      <li><a href={pageHref('/about-us/')} class="nav-link" data-section="about">{t('nav.about', 'About Us')}</a></li>
+      <li><a href={pageHref('/contact-us/')} class="nav-link" data-section="contact">{t('nav.contact', 'Contact')}</a></li>
       <li><a href={pageHref('/privacy/')} class="nav-link" data-section="privacy">{t('nav.privacy', 'Privacy Policy')}</a></li>
       <li><a href={pageHref('/terms/')} class="nav-link" data-section="terms">{t('nav.terms', 'Terms of Service')}</a></li>
     </ul>

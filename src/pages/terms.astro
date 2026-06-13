@@ -16,56 +16,53 @@ const canonicalUrl = `${site.siteUrl}/terms/`;
     locale={lang}
     canonicalUrl={canonicalUrl}
 >
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 class="text-4xl font-extrabold text-gray-900 mb-8">{title}</h1>
-        
-        <div class="prose prose-lg text-gray-600 max-w-none">
-            <p><strong>Last Updated: {new Date().toLocaleDateString()}</strong></p>
+    <div class="page-shell">
+        <section class="article-section" id="terms-of-service">
+            <div class="article-container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    </span> 
+                    Legal Agreement
+                </div>
+                
+                <h1 class="article-h2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px;">{title}</h1>
+                <p class="hero-subtitle" style="font-weight: 600;">Last Updated: {new Date().toLocaleDateString()}</p>
+                
+                <p style="margin-bottom: 40px; font-size: 1.1rem; line-height: 1.8;">
+                    By accessing and using the Racine Carrée Calculator ("the Service"), you agree to be bound by these Terms of Service. Please read them carefully. If you do not agree to these terms in full, please do not use our website or services.
+                </p>
 
-            <h2>1. Acceptance of Terms</h2>
-            <p>
-                By accessing and using the Racine Carrée Calculator ("the Service"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our website or services.
-            </p>
+                <h3 class="article-h3">1. Use of the Service</h3>
+                <p style="margin-bottom: 24px;">The Racine Carrée Calculator provides advanced mathematical tools, step-by-step algorithms, and reference tables for informational and educational purposes. You may use the Service freely for personal, academic, or professional calculations.</p>
+                
+                <div class="warning-box" style="margin-bottom: 32px;">
+                    <div class="warning-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+                    <div class="warning-content">
+                        <strong>Restricted Actions</strong>
+                        <p style="margin-top: 8px;">You agree not to use the Service for any unlawful purpose, to attempt to scrape or harvest data automatically (without written permission), or in any way that could damage, disable, overburden, or impair our servers or networks.</p>
+                    </div>
+                </div>
 
-            <h2>2. Use of the Service</h2>
-            <p>
-                The Racine Carrée Calculator provides mathematical tools and reference tables for informational and educational purposes. You may use the Service freely for personal, academic, or professional calculations. You agree not to use the Service for any unlawful purpose or in any way that could damage, disable, overburden, or impair our servers or networks.
-            </p>
+                <h3 class="article-h3">2. Intellectual Property</h3>
+                <p style="margin-bottom: 32px;">All content, design elements, visual aesthetics, algorithms, mathematical breakdowns, and underlying code on this website are the exclusive property of Racine Carrée Calculator. They are protected by applicable copyright and intellectual property laws. You may not copy, reproduce, distribute, or create derivative works from any part of the Service (such as copying our UI design or calculators) without our express written permission.</p>
 
-            <h2>3. Intellectual Property</h2>
-            <p>
-                All content, design elements, algorithms, and code on this website are the property of Racine Carrée Calculator and are protected by applicable intellectual property laws. You may not copy, reproduce, distribute, or create derivative works from any part of the Service without our express written permission.
-            </p>
+                <h3 class="article-h3">3. Disclaimer of Warranties</h3>
+                <p style="margin-bottom: 32px;">The Service is provided on an <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> basis. While we strive for absolute accuracy in our mathematical calculations and algorithms (such as the Newton-Raphson implementation), we make no warranties, expressed or implied, regarding the 100% accuracy, reliability, or uninterrupted availability of the Service. Any reliance you place on the results generated by the calculator—whether for homework, engineering tasks, or financial calculations—is strictly at your own risk.</p>
 
-            <h2>4. Disclaimer of Warranties</h2>
-            <p>
-                The Service is provided on an "AS IS" and "AS AVAILABLE" basis. While we strive for absolute accuracy in our calculations, we make no warranties, expressed or implied, regarding the accuracy, reliability, or availability of the Service. Any reliance you place on the results generated by the calculator is strictly at your own risk.
-            </p>
+                <h3 class="article-h3">4. Limitation of Liability</h3>
+                <p style="margin-bottom: 32px;">In no event shall Racine Carrée Calculator, its developers, partners, or affiliates be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of, or inability to use, the Service. This includes, but is not limited to, damages for loss of profits, data corruption, academic penalties, or other intangible losses resulting from mathematical errors or website downtime.</p>
 
-            <h2>5. Limitation of Liability</h2>
-            <p>
-                In no event shall Racine Carrée Calculator, its developers, or affiliates be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of, or inability to use, the Service. This includes, but is not limited to, damages for loss of profits, data, or other intangible losses.
-            </p>
+                <h3 class="article-h3">5. Third-Party Links</h3>
+                <p style="margin-bottom: 32px;">Our Service may contain links to third-party websites or services that are not owned or controlled by Racine Carrée Calculator. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites. You acknowledge and agree that we shall not be responsible or liable for any damage or loss caused by your use of any such content or services available on or through any such websites.</p>
 
-            <h2>6. Third-Party Links</h2>
-            <p>
-                Our Service may contain links to third-party websites or services that are not owned or controlled by Racine Carrée Calculator. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services.
-            </p>
+                <h3 class="article-h3">6. Changes to Terms</h3>
+                <p style="margin-bottom: 32px;">We reserve the right, at our sole discretion, to modify or replace these Terms of Service at any time. Any changes will be posted on this page with an updated "Last Updated" date. Your continued use of the Service after any such changes constitutes your formal acceptance of the new Terms of Service.</p>
 
-            <h2>7. Changes to Terms</h2>
-            <p>
-                We reserve the right to modify or replace these Terms of Service at any time. Any changes will be posted on this page with an updated "Last Updated" date. Your continued use of the Service after any such changes constitutes your acceptance of the new Terms of Service.
-            </p>
+                <h3 class="article-h3">7. Governing Law & Contact</h3>
+                <p>These terms and conditions are governed by and construed in accordance with the laws of the applicable jurisdiction. If you have any questions, concerns, or legal inquiries about these Terms of Service, please contact us through our <a href="/contact-us" style="color: var(--primary-500); font-weight: 600; text-decoration: underline;">Contact page</a> or at <strong>{site.contactEmail}</strong>.</p>
 
-            <h2>8. Governing Law</h2>
-            <p>
-                These terms and conditions are governed by and construed in accordance with the laws of the applicable jurisdiction, without regard to its conflict of law provisions.
-            </p>
-
-            <h2>9. Contact Us</h2>
-            <p>
-                If you have any questions about these Terms of Service, please contact us through our Contact page or at {site.contactEmail}.
-            </p>
-        </div>
+            </div>
+        </section>
     </div>
 </BaseLayout>

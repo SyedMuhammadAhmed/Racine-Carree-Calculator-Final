@@ -676,9 +676,14 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps }) 
         </div>
     `).join('');
 
+    const CHEVRON_SVG = `<svg class="steps-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
+
     const stepsHtml = (steps || []).length ? `
-        <div class="result-steps">
-            <div class="result-steps-header">${STEPS_SVG} Manual simplification steps</div>
+        <details class="result-steps">
+            <summary class="result-steps-header">
+                <span style="display:flex;align-items:center;gap:8px">${STEPS_SVG} Manual simplification steps</span>
+                ${CHEVRON_SVG}
+            </summary>
             <ol class="result-steps-list">
                 ${steps.map((s, i) => `
                     <li class="result-step" style="--step-i: ${i}">
@@ -690,7 +695,7 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps }) 
                     </li>
                 `).join('')}
             </ol>
-        </div>
+        </details>
     ` : '';
 
     area.innerHTML = `
