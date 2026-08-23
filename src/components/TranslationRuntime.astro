@@ -111,17 +111,22 @@ const includedLanguages = LOCALES.join(',');
 
     function loadGoogleTranslate(locale) {
       window.googleTranslateElementInit = function () {
-        new window.google.translate.TranslateElement({
-          pageLanguage: defaultLocale,
-          includedLanguages: includedLanguages,
-          autoDisplay: false
-        }, 'google_translate_element');
+        try {
+          new window.google.translate.TranslateElement({
+            pageLanguage: defaultLocale,
+            includedLanguages: includedLanguages,
+            autoDisplay: false
+          }, 'google_translate_element');
+        } catch (e) {}
 
-        [200, 700, 1400].forEach(function (delay) {
-          window.setTimeout(function () {
-            triggerGoogleCombo(locale);
-          }, delay);
-        });
+        // Fast retry without artificial 1.4s delays
+        var checkCount = 0;
+        var interval = setInterval(function () {
+          checkCount++;
+          if (triggerGoogleCombo(locale) || checkCount > 10) {
+            clearInterval(interval);
+          }
+        }, 100);
       };
 
       if (window.google && window.google.translate && window.google.translate.TranslateElement) {
@@ -142,8 +147,14 @@ const includedLanguages = LOCALES.join(',');
       locale = normalizeLocale(locale);
       updateDocumentState(locale);
 
-      if (locale === defaultLocale) {
-        localStorage.removeItem('preferredLocale');
+      // If page is already statically rendered in the requested locale, do not run Google Translate
+      var currentPathLang = getPathLocale();
+      if (locale === defaultLocale || currentPathLang === locale || pageLocale === locale) {
+        if (locale === defaultLocale) {
+          localStorage.removeItem('preferredLocale');
+        } else {
+          localStorage.setItem('preferredLocale', locale);
+        }
         clearTranslateCookie();
         return;
       }
