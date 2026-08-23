@@ -1,5 +1,7 @@
 import site from '../config/site.json';
 
+export const prerender = true;
+
 export async function GET() {
   const llmsTxt = `
 # ${site.siteName}
