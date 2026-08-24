@@ -7,18 +7,14 @@ const histories = {
     sqrt: [],
     cbrt: [],
     nth: [],
-    frac: [],
-    power: [],
 };
 const MAX_HISTORY = 8;
-let currentFracOp = '+';
 
 // ---- DOM Ready ----
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initNavbar();
-    initTabs();
-    initFractionOperator();
+    initDropdowns();
     initKeyboardShortcuts();
     initScrollReveal();
     initSmoothScroll();
@@ -63,6 +59,8 @@ function initNavbar() {
     const toggle = document.getElementById('navToggle');
     const links = document.getElementById('navLinks');
 
+    if (!navbar || !toggle || !links) return;
+
     // Scroll effect
     window.addEventListener('scroll', () => {
         navbar.classList.toggle('scrolled', window.scrollY > 40);
@@ -76,7 +74,7 @@ function initNavbar() {
     });
 
     // Close on link click
-    links.querySelectorAll('.nav-link').forEach(link => {
+    links.querySelectorAll('.nav-link:not(.dropdown-trigger)').forEach(link => {
         link.addEventListener('click', () => {
             toggle.classList.remove('active');
             links.classList.remove('open');
@@ -102,47 +100,52 @@ function initNavbar() {
     }, { passive: true });
 }
 
-// ---- Calculator Tabs ----
-function initTabs() {
-    const tabs = document.querySelectorAll('.calc-tab');
-    const panels = document.querySelectorAll('.calc-panel');
+// ---- Dropdown Menus ----
+function initDropdowns() {
+    const dropdowns = document.querySelectorAll('.nav-dropdown');
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const target = tab.dataset.calc;
+    dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (!trigger || !menu) return;
 
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
-            panels.forEach(p => {
-                if (p.dataset.calc === target) {
-                    p.classList.add('active');
-                    p.style.animation = 'none';
-                    // Trigger reflow
-                    void p.offsetWidth;
-                    p.style.animation = '';
-                } else {
-                    p.classList.remove('active');
-                }
+        // Toggle on click
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const isOpen = dropdown.classList.contains('open');
+            // Close all dropdowns first
+            document.querySelectorAll('.nav-dropdown.open').forEach(d => {
+                d.classList.remove('open');
+                d.querySelector('.dropdown-trigger')?.setAttribute('aria-expanded', 'false');
             });
+            if (!isOpen) {
+                dropdown.classList.add('open');
+                trigger.setAttribute('aria-expanded', 'true');
+            }
+        });
 
-            // Focus first input
-            const firstInput = document.querySelector(`.calc-panel[data-calc="${target}"] .calc-input, .calc-panel[data-calc="${target}"] .frac-input`);
-            if (firstInput) {
-                setTimeout(() => firstInput.focus(), 100);
+        // Hover on desktop
+        dropdown.addEventListener('mouseenter', () => {
+            if (window.innerWidth >= 768) {
+                dropdown.classList.add('open');
+                trigger.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            if (window.innerWidth >= 768) {
+                dropdown.classList.remove('open');
+                trigger.setAttribute('aria-expanded', 'false');
             }
         });
     });
-}
 
-// ---- Fraction Operator ----
-function initFractionOperator() {
-    const buttons = document.querySelectorAll('#fracOperator .op-btn');
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            buttons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFracOp = btn.dataset.op;
+    // Close all dropdowns when clicking outside
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.nav-dropdown.open').forEach(d => {
+            d.classList.remove('open');
+            d.querySelector('.dropdown-trigger')?.setAttribute('aria-expanded', 'false');
         });
     });
 }
@@ -151,16 +154,18 @@ function initFractionOperator() {
 function initKeyboardShortcuts() {
     document.addEventListener('keydown', e => {
         if (e.key === 'Enter') {
-            const activePanel = document.querySelector('.calc-panel.active');
-            if (!activePanel) return;
+            // Determine which calculator is on the current page
+            const sqrtInput = document.getElementById('sqrtInput');
+            const cbrtInput = document.getElementById('cbrtInput');
+            const nthDegree = document.getElementById('nthDegree');
+            const nthValue = document.getElementById('nthValue');
 
-            const calc = activePanel.dataset.calc;
-            switch (calc) {
-                case 'square-root': calculateSquareRoot(); break;
-                case 'cube-root': calculateCubeRoot(); break;
-                case 'nth-root': calculateNthRoot(); break;
-                case 'fraction': calculateFraction(); break;
-                case 'power': calculatePower(); break;
+            if (sqrtInput && document.activeElement === sqrtInput) {
+                calculateSquareRoot();
+            } else if (cbrtInput && document.activeElement === cbrtInput) {
+                calculateCubeRoot();
+            } else if (nthDegree && (document.activeElement === nthDegree || document.activeElement === nthValue)) {
+                calculateNthRoot();
             }
         }
     });
@@ -216,8 +221,13 @@ function primeFactorize(n) {
     return factors;
 }
 
-function lcm(a, b) {
-    return Math.abs(Math.round(a) * Math.round(b)) / gcd(a, b);
+function gcd(a, b) {
+    a = Math.abs(Math.round(a));
+    b = Math.abs(Math.round(b));
+    while (b) {
+        [a, b] = [b, a % b];
+    }
+    return a || 1;
 }
 
 function buildRootFactorSteps(value, degree, symbol) {
@@ -279,72 +289,6 @@ function buildRootFactorSteps(value, degree, symbol) {
         steps.push({ title: 'Final answer', math: `${symbol}${formatNum(value)} = ${formatResult(result)}` });
         steps.push({ title: 'Verify', math: `${formatResult(result)}^${degree} = ${formatNum(Math.pow(result, degree))}` });
     }
-    return steps;
-}
-
-function buildFractionSteps(a1, b1, a2, b2, op, numResult, denResult, finalNum, finalDen, g) {
-    const opSymbol = { '+': '+', '-': '−', '*': '×', '/': '÷' }[op];
-    const steps = [];
-    steps.push({ title: 'Write the problem', math: `${formatNum(a1)}/${formatNum(b1)} ${opSymbol} ${formatNum(a2)}/${formatNum(b2)}` });
-
-    if (op === '+' || op === '-') {
-        const lcd = lcm(b1, b2);
-        steps.push({ title: 'Find common denominator', math: `LCD of ${formatNum(b1)} and ${formatNum(b2)} = ${formatNum(lcd)}` });
-        const n1 = a1 * (lcd / b1);
-        const n2 = a2 * (lcd / b2);
-        steps.push({ title: 'Convert fractions', math: `${formatNum(a1)}/${formatNum(b1)} = ${formatNum(n1)}/${formatNum(lcd)} and ${formatNum(a2)}/${formatNum(b2)} = ${formatNum(n2)}/${formatNum(lcd)}` });
-        steps.push({ title: `${op === '+' ? 'Add' : 'Subtract'} numerators`, math: `${formatNum(n1)}/${formatNum(lcd)} ${opSymbol} ${formatNum(n2)}/${formatNum(lcd)} = ${formatNum(numResult)}/${formatNum(denResult)}` });
-    } else if (op === '*') {
-        steps.push({ title: 'Multiply numerators', math: `${formatNum(a1)} × ${formatNum(a2)} = ${formatNum(numResult)}` });
-        steps.push({ title: 'Multiply denominators', math: `${formatNum(b1)} × ${formatNum(b2)} = ${formatNum(denResult)}` });
-        steps.push({ title: 'Combine', math: `${formatNum(numResult)}/${formatNum(denResult)}` });
-    } else {
-        steps.push({ title: 'Multiply by reciprocal', math: `${formatNum(a1)}/${formatNum(b1)} ÷ ${formatNum(a2)}/${formatNum(b2)} = ${formatNum(a1)}/${formatNum(b1)} × ${formatNum(b2)}/${formatNum(a2)}` });
-        steps.push({ title: 'Multiply across', math: `(${formatNum(a1)} × ${formatNum(b2)}) / (${formatNum(b1)} × ${formatNum(a2)}) = ${formatNum(numResult)}/${formatNum(denResult)}` });
-    }
-
-    if (g > 1) {
-        let x = Math.abs(numResult), y = Math.abs(denResult);
-        while (y) {
-            steps.push({ title: 'Find GCD (Euclidean)', math: `${formatNum(x)} ÷ ${formatNum(y)} = ${Math.floor(x / y)} remainder ${x % y}` });
-            [x, y] = [y, x % y];
-        }
-        steps.push({ title: 'Divide by GCD', math: `${formatNum(numResult)}/${formatNum(denResult)} ÷ ${formatNum(g)}/${formatNum(g)} = ${formatNum(finalNum)}/${formatNum(finalDen)}` });
-    }
-
-    steps.push({ title: 'Final answer', math: finalDen === 1 ? `${formatNum(finalNum)}` : `${formatNum(finalNum)}/${formatNum(finalDen)}` });
-    return steps;
-}
-
-function buildPowerSteps(base, exp, result) {
-    const steps = [];
-    steps.push({ title: 'Set up the problem', math: `${formatNum(base)}^${formatNum(exp)}` });
-
-    if (Number.isInteger(exp) && exp > 0 && exp <= 12) {
-        let current = 1;
-        for (let i = 0; i < exp; i++) {
-            current *= base;
-            if (exp <= 6) {
-                steps.push({
-                    title: i === 0 ? 'Multiply step by step' : `Step ${i + 1}`,
-                    math: `${Array(i + 1).fill(formatNum(base)).join(' × ')} = ${formatResult(current)}`,
-                });
-            }
-        }
-        if (exp > 6) {
-            steps.push({ title: 'Repeated multiplication', math: `${formatNum(base)} multiplied ${formatNum(exp)} times = ${formatResult(result)}` });
-        }
-    } else if (exp === 0) {
-        steps.push({ title: 'Zero exponent rule', math: `Any non-zero number to the power 0 equals 1` });
-    } else if (exp === 0.5) {
-        steps.push({ title: 'Fractional exponent', math: `${formatNum(base)}^½ = √${formatNum(base)} = ${formatResult(result)}` });
-    } else if (exp === -1) {
-        steps.push({ title: 'Negative exponent', math: `${formatNum(base)}^−1 = 1/${formatNum(base)} = ${formatResult(result)}` });
-    } else {
-        steps.push({ title: 'Apply exponent', math: `${formatNum(base)}^${formatNum(exp)} = ${formatResult(result)}` });
-    }
-
-    steps.push({ title: 'Final answer', math: `${formatNum(base)}^${formatNum(exp)} = ${formatResult(result)}` });
     return steps;
 }
 
@@ -502,150 +446,6 @@ function calculateNthRoot() {
     addHistory('nth', `${nStr}${formatNum(x)}`, formatResult(result));
 }
 
-// ---- Fraction ----
-function calculateFraction() {
-    const a1 = parseFloat(document.getElementById('fracA1').value);
-    const b1 = parseFloat(document.getElementById('fracB1').value);
-    const a2 = parseFloat(document.getElementById('fracA2').value);
-    const b2 = parseFloat(document.getElementById('fracB2').value);
-    const resultArea = document.getElementById('fracResult');
-    pulseCalcButton(document.getElementById('panelFraction'));
-
-    if ([a1, b1, a2, b2].some(isNaN)) {
-        showError(resultArea, 'Please fill in all fraction fields');
-        return;
-    }
-
-    if (b1 === 0 || b2 === 0) {
-        showError(resultArea, 'Denominator cannot be zero');
-        return;
-    }
-
-    if (currentFracOp === '/' && a2 === 0) {
-        showError(resultArea, 'Cannot divide by zero');
-        return;
-    }
-
-    let numResult, denResult;
-    const opSymbol = { '+': '+', '-': '−', '*': '×', '/': '÷' }[currentFracOp];
-
-    switch (currentFracOp) {
-        case '+':
-            numResult = a1 * b2 + a2 * b1;
-            denResult = b1 * b2;
-            break;
-        case '-':
-            numResult = a1 * b2 - a2 * b1;
-            denResult = b1 * b2;
-            break;
-        case '*':
-            numResult = a1 * a2;
-            denResult = b1 * b2;
-            break;
-        case '/':
-            numResult = a1 * b2;
-            denResult = b1 * a2;
-            break;
-    }
-
-    // Simplify
-    const g = gcd(Math.abs(numResult), Math.abs(denResult));
-    const simpNum = numResult / g;
-    const simpDen = denResult / g;
-
-    // Ensure negative sign is in numerator
-    const finalNum = simpDen < 0 ? -simpNum : simpNum;
-    const finalDen = Math.abs(simpDen);
-
-    const decimal = finalNum / finalDen;
-    const wasSimplified = simpNum !== finalNum || simpDen !== finalDen;
-
-    const formulaStr = `${formatNum(a1)}/${formatNum(b1)} ${opSymbol} ${formatNum(a2)}/${formatNum(b2)}`;
-    const valueStr = finalDen === 1 ? `${formatNum(finalNum)}` : `${formatNum(finalNum)}/${formatNum(finalDen)}`;
-
-    showResult(resultArea, {
-        formula: `${formulaStr} =`,
-        value: valueStr,
-        badge: wasSimplified ? 'Simplified' : 'Result',
-        breakdown: [
-            { label: 'Decimal', value: formatResult(decimal) },
-            { label: 'Numerator', value: formatNum(finalNum) },
-            { label: 'Denominator', value: formatNum(finalDen) },
-        ],
-        summary: wasSimplified
-            ? `Reduced from ${formatNum(numResult)}/${formatNum(denResult)}`
-            : `Equivalent decimal: ${formatResult(decimal)}`,
-        steps: buildFractionSteps(a1, b1, a2, b2, currentFracOp, numResult, denResult, finalNum, finalDen, g),
-    });
-
-    addHistory('frac', formulaStr, valueStr);
-}
-
-function gcd(a, b) {
-    a = Math.abs(Math.round(a));
-    b = Math.abs(Math.round(b));
-    while (b) {
-        [a, b] = [b, a % b];
-    }
-    return a || 1;
-}
-
-// ---- Power ----
-function calculatePower() {
-    const base = parseFloat(document.getElementById('powerBase').value);
-    const exp = parseFloat(document.getElementById('powerExp').value);
-    const resultArea = document.getElementById('powerResult');
-    pulseCalcButton(document.getElementById('panelPower'));
-
-    if (isNaN(base) || isNaN(exp)) {
-        showError(resultArea, 'Please fill in both fields');
-        return;
-    }
-
-    if (base === 0 && exp < 0) {
-        showError(resultArea, 'Cannot raise 0 to a negative power');
-        return;
-    }
-
-    const result = Math.pow(base, exp);
-
-    let expStr;
-    if (exp === 2) expStr = '²';
-    else if (exp === 3) expStr = '³';
-    else if (exp === -1) expStr = '⁻¹';
-    else if (exp === 0.5) expStr = '^½';
-    else expStr = `^${formatNum(exp)}`;
-
-    const isIntResult = Number.isInteger(result) && Number.isFinite(result);
-
-    showResult(resultArea, {
-        formula: `${formatNum(base)}${expStr} =`,
-        value: formatResult(result),
-        badge: isIntResult ? 'Exact' : (Number.isFinite(result) ? 'Approximation' : 'Undefined'),
-        breakdown: [
-            { label: 'Base', value: formatNum(base) },
-            { label: 'Exponent', value: formatNum(exp) },
-            { label: 'Type', value: Number.isFinite(result) ? 'Finite' : 'Infinite' },
-        ],
-        summary: Number.isFinite(result)
-            ? `${formatNum(base)} raised to the power of ${formatNum(exp)}`
-            : 'Result is infinity or undefined',
-        steps: buildPowerSteps(base, exp, result),
-    });
-
-    addHistory('power', `${formatNum(base)}${expStr}`, formatResult(result));
-}
-
-function setQuickPower(exp) {
-    document.getElementById('powerExp').value = exp;
-    const base = document.getElementById('powerBase');
-    if (base.value) {
-        calculatePower();
-    } else {
-        base.focus();
-    }
-}
-
 // ============================================
 //  UI Helpers
 // ============================================
@@ -762,24 +562,18 @@ function addHistory(type, expression, result) {
         sqrt: 'sqrtHistory',
         cbrt: 'cbrtHistory',
         nth: 'nthHistory',
-        frac: 'fracHistory',
-        power: 'powerHistory',
     };
 
     const listMap = {
         sqrt: 'sqrtHistoryList',
         cbrt: 'cbrtHistoryList',
         nth: 'nthHistoryList',
-        frac: 'fracHistoryList',
-        power: 'powerHistoryList',
     };
 
     const countMap = {
         sqrt: 'sqrtHistoryCount',
         cbrt: 'cbrtHistoryCount',
         nth: 'nthHistoryCount',
-        frac: 'fracHistoryCount',
-        power: 'powerHistoryCount',
     };
 
     histories[type].unshift({ expression, result });
@@ -788,7 +582,7 @@ function addHistory(type, expression, result) {
     }
 
     const container = document.getElementById(historyMap[type]);
-    container.classList.add('show');
+    if (container) container.classList.add('show');
 
     const countEl = document.getElementById(countMap[type]);
     if (countEl) {
@@ -796,12 +590,14 @@ function addHistory(type, expression, result) {
     }
 
     const list = document.getElementById(listMap[type]);
-    list.innerHTML = histories[type].map((item, i) => `
-        <div class="history-item" style="animation-delay: ${i * 50}ms">
-            <span class="history-expression">${item.expression}</span>
-            <span class="history-result">= ${item.result}</span>
-        </div>
-    `).join('');
+    if (list) {
+        list.innerHTML = histories[type].map((item, i) => `
+            <div class="history-item" style="animation-delay: ${i * 50}ms">
+                <span class="history-expression">${item.expression}</span>
+                <span class="history-result">= ${item.result}</span>
+            </div>
+        `).join('');
+    }
 }
 
 // Add shake keyframe dynamically

@@ -5,9 +5,8 @@ import site from '../config/site.json';
 
 const lang = 'en';
 const t = await useTranslations(lang);
-const title = t("about.title", "About Us");
-const description = t("about.description", "Learn more about Racine Carree Calculator and our mission.");
-
+const title = "About Racine Carree Calculatorr";
+const description = "Learn about Racine Carree Calculatorr — our mission, what we offer, who this site is for, and our commitment to mathematical accuracy.";
 const canonicalUrl = `${site.siteUrl}/about-us/`;
 ---
 
@@ -25,63 +24,95 @@ const canonicalUrl = `${site.siteUrl}/about-us/`;
                     <span class="eyebrow-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </span> 
-                    Our Mission
+                    Our Story
                 </div>
                 
-                <h1 class="article-h2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 24px;">{title}</h1>
+                <h1 class="article-h2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 24px;">About Racine Carree Calculatorr</h1>
                 
                 <p class="hero-subtitle" style="max-width: 100%; text-align: left; margin-bottom: 40px; font-size: 1.15rem;">
-                    Welcome to the Racine Carrée Calculator, the most comprehensive and free square root and cube root tool available online. Our mission is to make mathematical calculations accessible, accurate, and beautifully simple for students, professionals, and enthusiasts worldwide.
+                    Racine Carree Calculatorr is a free, no-sign-up online tool built for one purpose: to make square root, cube root, and nth root calculations fast, accurate, and genuinely useful. Whether you're a student working through algebra homework, a teacher looking for a quick-reference tool, or a professional who needs a reliable answer in seconds, this site is designed for you.
                 </p>
 
+                <!-- Our Mission -->
+                <h2 class="article-h2">Our Mission</h2>
+                <p>Most online calculators give you a number and stop there. We think that's not enough. Our goal is to give you the answer and help you understand it — with step-by-step breakdowns, simplified radical forms, and clear explanations you can actually learn from.</p>
+                <p>We built this site because we were frustrated by tools that were either too basic (just a decimal, no context), too cluttered (ads everywhere, confusing interfaces), or too academic (buried in jargon that doesn't help anyone). So we made something better: a clean, fast calculator backed by real educational content — and we keep it completely free.</p>
+
+                <!-- What We Offer -->
+                <h2 class="article-h2" style="margin-top: 48px;">What We Offer</h2>
                 <div class="law-cards" style="margin-bottom: 48px;">
                     <div class="law-card">
                         <div class="law-header">
-                            <div class="law-number">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                            </div>
-                            <div>
-                                <div class="law-label">Why We Built This</div>
-                            </div>
+                            <div class="law-number"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                            <div><div class="law-label">Three Specialized Calculators</div></div>
                         </div>
-                        <p class="law-example">We noticed a lack of calculators that provide not just the decimal answer, but also the exact simplified radical form, step-by-step mathematical explanations, and the historical context behind the formulas.</p>
+                        <p class="law-example">A dedicated <a href="/" style="color: var(--primary-500); font-weight: 600;">Racine Carrée (Square Root) Calculator</a>, a <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">Racine Cubique (Cube Root) Calculator</a>, and an <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">Nth Root Calculator</a> that handles any index — all giving you instant, precise results.</p>
                     </div>
-
                     <div class="law-card">
                         <div class="law-header">
-                            <div class="law-number">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                            </div>
-                            <div>
-                                <div class="law-label">Global Accessibility</div>
-                            </div>
+                            <div class="law-number"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+                            <div><div class="law-label">Step-by-Step Explanations</div></div>
                         </div>
-                        <p class="law-example">Whether you are solving a simple algebra homework problem, evaluating standard deviations in statistics, or dealing with complex engineering calculations, our calculator delivers all the information you need instantly, completely free of charge.</p>
+                        <p class="law-example">Every calculation comes with optional step-by-step workings — so you don't just see the answer, you see how to get there.</p>
                     </div>
-
+                    <div class="law-card">
+                        <div class="law-header">
+                            <div class="law-number"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                            <div><div class="law-label">In-Depth Educational Content</div></div>
+                        </div>
+                        <p class="law-example">Each calculator page includes a complete guide covering notation, formulas, core laws, manual methods, reference tables, and FAQs — written in plain English, not textbook jargon.</p>
+                    </div>
                     <div class="law-card law-card--full">
                         <div class="law-header">
-                            <div class="law-number">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
-                            </div>
-                            <div>
-                                <div class="law-label">Continuous Improvement</div>
-                            </div>
+                            <div class="law-number"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+                            <div><div class="law-label">100% Free, No Sign-Up</div></div>
                         </div>
-                        <p class="law-example">Our team is passionate about mathematics, clean design, and education. We continuously update our platform to ensure the highest level of accuracy and performance. The calculator supports positive and negative numbers, decimals, fractions, and even nth roots, making it an incredibly versatile companion for all your mathematical needs.</p>
+                        <p class="law-example">No accounts, no paywalls, no usage limits. Use it as many times as you want, on any device.</p>
                     </div>
                 </div>
 
-                <div class="warning-box">
+                <!-- Who This Site Is For -->
+                <h2 class="article-h2">Who This Site Is For</h2>
+                <div class="applications-grid" style="margin-bottom: 48px;">
+                    <div class="app-card">
+                        <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
+                        <h4>Students</h4>
+                        <p>Working through algebra, geometry, or statistics assignments who need quick answers and clear explanations.</p>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                        <h4>Teachers & Tutors</h4>
+                        <p>Looking for a reliable classroom or homework-help tool.</p>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                        <h4>Professionals</h4>
+                        <p>Engineers, architects, data analysts, or anyone who runs into roots in daily work and needs a fast, trustworthy answer.</p>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                        <h4>Curious Minds</h4>
+                        <p>Anyone who wants to understand what square roots actually are, not just get a number from a search engine.</p>
+                    </div>
+                </div>
+
+                <!-- Why "Racine Carrée"? -->
+                <h2 class="article-h2">Why "Racine Carrée"?</h2>
+                <p>"Racine carrée" is the French term for square root — and it turns out a large number of English-speaking users search for it this way. Whether from French class, bilingual schooling, or just how they first learned the term, the search volume is real and significant. We named the site to meet those users exactly where they are, while providing everything in English so it's useful to everyone.</p>
+
+                <!-- Our Commitment to Accuracy -->
+                <h2 class="article-h2" style="margin-top: 48px;">Our Commitment to Accuracy</h2>
+                <p>Every calculator on this site is built to deliver mathematically precise results. We use high-precision floating-point arithmetic, show up to 10 decimal places where applicable, and include verification steps so you can check answers independently. If you ever spot something that doesn't look right, please let us know through our <a href="/contact-us/" style="color: var(--primary-500); font-weight: 600;">Contact Page</a> — accuracy is not something we compromise on.</p>
+
+                <div class="warning-box" style="margin-top: 40px;">
                     <div class="warning-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                     </div>
                     <div class="warning-content">
                         <strong>Get in Touch</strong>
-                        <p style="margin-top: 8px;">Thank you for choosing Racine Carrée Calculator. If you have any suggestions, feature requests, or feedback, please don't hesitate to reach out to us through our <a href="/contact-us" style="color: var(--primary-500); font-weight: 600; text-decoration: underline;">Contact Page</a>.</p>
+                        <p style="margin-top: 8px;">Thank you for choosing Racine Carrée Calculator. If you have any suggestions, feature requests, or feedback, please don't hesitate to reach out through our <a href="/contact-us/" style="color: var(--primary-500); font-weight: 600; text-decoration: underline;">Contact Page</a>.</p>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>

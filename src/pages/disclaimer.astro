@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../theme/layouts/BaseLayout.astro';
+import { useTranslations } from '../../theme/i18n/translations';
+import site from '../config/site.json';
+
+const lang = 'en';
+const t = await useTranslations(lang);
+const title = "Disclaimer";
+const description = "Disclaimer for Racine Carree Calculatorr — important information about the use of our calculator tools and content.";
+const canonicalUrl = `${site.siteUrl}/disclaimer/`;
+---
+
+<BaseLayout 
+    title={`${title} | ${site.siteName}`}
+    description={description}
+    locale={lang}
+    canonicalUrl={canonicalUrl}
+>
+    <div class="page-shell">
+        <section class="article-section" id="disclaimer">
+            <div class="article-container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </span> 
+                    Legal Notice
+                </div>
+                
+                <h1 class="article-h2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px;">Disclaimer</h1>
+                <p class="hero-subtitle" style="font-weight: 600;">Last Updated: August 2026</p>
+                
+                <p style="margin-top: 24px; margin-bottom: 32px;">Please read this Disclaimer carefully before using Racine Carree Calculatorr (racinecarreecalculator.com).</p>
+
+                <h2 class="article-h2">1. For Informational and Educational Purposes Only</h2>
+                <p>All content and calculator results provided on this Site are intended for informational and educational purposes only. They are not a substitute for professional mathematical, financial, engineering, or scientific advice.</p>
+
+                <h2 class="article-h2">2. No Guarantee of Accuracy</h2>
+                <p>While we make every effort to ensure that the calculators and content on this Site are accurate and up to date, we do not warrant or guarantee the completeness, reliability, or accuracy of any information provided. Errors may occur due to floating-point arithmetic limitations, browser behavior, or edge cases we have not yet accounted for.</p>
+
+                <h2 class="article-h2">3. Use at Your Own Risk</h2>
+                <p>Your use of this Site and reliance on any information or calculator results is strictly at your own risk. We are not responsible for any decisions, actions, or outcomes based on the use of this Site.</p>
+
+                <h2 class="article-h2">4. Not Professional Advice</h2>
+                <p>The content on this Site does not constitute professional advice of any kind — including mathematical tutoring, engineering consultation, financial planning, or academic guidance. If you need professional-grade accuracy, please consult a qualified expert.</p>
+
+                <h2 class="article-h2">5. External Links</h2>
+                <p>This Site may contain links to external websites for informational purposes. We do not endorse, control, or take responsibility for the content or practices of any third-party websites.</p>
+
+                <h2 class="article-h2">6. Changes to This Disclaimer</h2>
+                <p>We reserve the right to update or modify this Disclaimer at any time. Any changes will be reflected on this page with an updated "Last Updated" date.</p>
+
+                <h2 class="article-h2">7. Limitation of Liability</h2>
+                <p>To the maximum extent permitted by applicable law, Racine Carree Calculatorr and its creators shall not be held liable for any loss or damage — direct, indirect, incidental, or consequential — arising from the use of, or inability to use, this Site or its content.</p>
+
+                <h2 class="article-h2">8. Contact</h2>
+                <p>If you have any questions or concerns about this Disclaimer, please contact us at <a href="mailto:contact@racinecarreecalculator.com" style="color: var(--primary-500); font-weight: 600;">contact@racinecarreecalculator.com</a> or through our <a href="/contact-us/" style="color: var(--primary-500); font-weight: 600;">Contact Page</a>.</p>
+            </div>
+        </section>
+    </div>
+</BaseLayout>
