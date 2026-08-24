@@ -49,18 +49,10 @@ const isCalculatorSubPage = isCubiquePage || isNthRootPage;
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <li role="none"><a href={pageHref('/racine-cubique-calculator/')} class:list={['dropdown-item', { active: isCubiquePage }]} role="menuitem">
-                        <span class="dropdown-item-icon">∛</span>
-                        <span class="dropdown-item-text">
-                            <span class="dropdown-item-title">Racine Cubique Calculator</span>
-                            <span class="dropdown-item-desc">Calculate cube roots instantly</span>
-                        </span>
+                        Racine Cubique Calculator
                     </a></li>
                     <li role="none"><a href={pageHref('/nth-root-calculator/')} class:list={['dropdown-item', { active: isNthRootPage }]} role="menuitem">
-                        <span class="dropdown-item-icon">ⁿ√</span>
-                        <span class="dropdown-item-text">
-                            <span class="dropdown-item-title">Nth Root Calculator</span>
-                            <span class="dropdown-item-desc">Any root — 4th, 5th, or custom</span>
-                        </span>
+                        Nth Root Calculator
                     </a></li>
                 </ul>
             </li>
@@ -84,19 +76,19 @@ const isCalculatorSubPage = isCubiquePage || isNthRootPage;
 
 <nav class="mobile-bottom-nav" id="mobileBottomNav">
     <a href={sectionHref('hero')} class:list={['mobile-nav-item', { active: isHomePath }]} data-section="hero">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         <span>{t('nav.home', 'Home')}</span>
     </a>
     <a href={pageHref('/racine-cubique-calculator/')} class:list={['mobile-nav-item', { active: isCubiquePage }]}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
         <span>∛ Cube</span>
     </a>
     <a href={pageHref('/nth-root-calculator/')} class:list={['mobile-nav-item', { active: isNthRootPage }]}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
         <span>ⁿ√ Root</span>
     </a>
     <a href={pageHref('/about-us/')} class="mobile-nav-item" data-section="about">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
         <span>{t('nav.about', 'About')}</span>
     </a>
 </nav>
