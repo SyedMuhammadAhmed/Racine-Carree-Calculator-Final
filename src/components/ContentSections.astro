@@ -3,15 +3,6 @@ interface Props {
   lang?: string;
 }
 const { lang = 'en' } = Astro.props;
-
-const sqrtRows = Array.from({ length: 20 }, (_, rowIndex) => {
-  return Array.from({ length: 5 }, (_, colIndex) => {
-    const n = (rowIndex + 1) + colIndex * 20;
-    const val = Math.sqrt(n).toFixed(3);
-    const isPerfect = Number.isInteger(Math.sqrt(n));
-    return { n, val, isPerfect };
-  });
-});
 ---
 
 <article class="seo-article" id="what-is-racine">
@@ -342,34 +333,57 @@ const sqrtRows = Array.from({ length: 20 }, (_, rowIndex) => {
 
                 <h3 class="article-h3">1–25</h3>
                 <div class="table-scroll-wrapper table-scroll-wrapper--large">
-        <!-- Section: Reference Table 1-100 -->
-        <section class="article-section article-section--alt" id="reference-tables">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span> Reference Tables</div>
-                <h2 class="article-h2">Standard Reference Table — Square Roots 1 to 100</h2>
-                <p>Bookmark this section for quick lookups. Values are rounded to three decimal places where the number isn't a perfect square.</p>
-
-                <div class="table-scroll-wrapper table-scroll-wrapper--large" style="max-height: 500px; overflow-y: auto; border: 1px solid var(--border-light); border-radius: var(--radius-md);">
                     <div class="table-scroll-hint"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8L22 12L18 16"/><path d="M6 8L2 12L6 16"/><line x1="2" y1="12" x2="22" y2="12"/></svg> Scroll →</div>
-                    <table class="data-table data-table--reference" style="margin-bottom: 0;">
-                        <thead style="position: sticky; top: 0; z-index: 10; background: var(--bg-surface-elevated);">
-                            <tr>
-                                <th>n</th><th>√n</th>
-                                <th>n</th><th>√n</th>
-                                <th>n</th><th>√n</th>
-                                <th>n</th><th>√n</th>
-                                <th>n</th><th>√n</th>
-                            </tr>
-                        </thead>
+                    <table class="data-table data-table--reference">
+                        <thead><tr><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th></tr></thead>
                         <tbody>
-                            {sqrtRows.map((row) => (
-                                <tr>
-                                    {row.map(({ n, val, isPerfect }) => (
-                                        <td class:list={[{ 'td-bold': isPerfect }]}>{n}</td>
-                                        <td class:list={[{ 'td-bold': isPerfect }]}>{val}</td>
-                                    ))}
-                                </tr>
-                            ))}
+                            <tr><td class="td-bold">1</td><td class="td-bold">1.000</td><td>6</td><td>2.449</td><td>11</td><td>3.317</td><td class="td-bold">16</td><td class="td-bold">4.000</td><td>21</td><td>4.583</td></tr>
+                            <tr><td>2</td><td>1.414</td><td>7</td><td>2.646</td><td>12</td><td>3.464</td><td>17</td><td>4.123</td><td>22</td><td>4.690</td></tr>
+                            <tr><td>3</td><td>1.732</td><td>8</td><td>2.828</td><td>13</td><td>3.606</td><td>18</td><td>4.243</td><td>23</td><td>4.796</td></tr>
+                            <tr><td class="td-bold">4</td><td class="td-bold">2.000</td><td class="td-bold">9</td><td class="td-bold">3.000</td><td>14</td><td>3.742</td><td>19</td><td>4.359</td><td>24</td><td>4.899</td></tr>
+                            <tr><td>5</td><td>2.236</td><td>10</td><td>3.162</td><td>15</td><td>3.873</td><td>20</td><td>4.472</td><td class="td-bold">25</td><td class="td-bold">5.000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="article-h3">26–50</h3>
+                <div class="table-scroll-wrapper table-scroll-wrapper--large">
+                    <table class="data-table data-table--reference">
+                        <thead><tr><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th></tr></thead>
+                        <tbody>
+                            <tr><td>26</td><td>5.099</td><td>31</td><td>5.568</td><td class="td-bold">36</td><td class="td-bold">6.000</td><td>41</td><td>6.403</td><td>46</td><td>6.782</td></tr>
+                            <tr><td>27</td><td>5.196</td><td>32</td><td>5.657</td><td>37</td><td>6.083</td><td>42</td><td>6.481</td><td>47</td><td>6.856</td></tr>
+                            <tr><td>28</td><td>5.292</td><td>33</td><td>5.745</td><td>38</td><td>6.164</td><td>43</td><td>6.557</td><td>48</td><td>6.928</td></tr>
+                            <tr><td>29</td><td>5.385</td><td>34</td><td>5.831</td><td>39</td><td>6.245</td><td>44</td><td>6.633</td><td class="td-bold">49</td><td class="td-bold">7.000</td></tr>
+                            <tr><td>30</td><td>5.477</td><td>35</td><td>5.916</td><td>40</td><td>6.325</td><td>45</td><td>6.708</td><td>50</td><td>7.071</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="article-h3">51–75</h3>
+                <div class="table-scroll-wrapper table-scroll-wrapper--large">
+                    <table class="data-table data-table--reference">
+                        <thead><tr><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th></tr></thead>
+                        <tbody>
+                            <tr><td>51</td><td>7.141</td><td>56</td><td>7.483</td><td>61</td><td>7.810</td><td>66</td><td>8.124</td><td>71</td><td>8.426</td></tr>
+                            <tr><td>52</td><td>7.211</td><td>57</td><td>7.550</td><td>62</td><td>7.874</td><td>67</td><td>8.185</td><td>72</td><td>8.485</td></tr>
+                            <tr><td>53</td><td>7.280</td><td>58</td><td>7.616</td><td>63</td><td>7.937</td><td>68</td><td>8.246</td><td>73</td><td>8.544</td></tr>
+                            <tr><td>54</td><td>7.348</td><td>59</td><td>7.681</td><td class="td-bold">64</td><td class="td-bold">8.000</td><td>69</td><td>8.307</td><td>74</td><td>8.602</td></tr>
+                            <tr><td>55</td><td>7.416</td><td>60</td><td>7.746</td><td>65</td><td>8.062</td><td>70</td><td>8.367</td><td>75</td><td>8.660</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="article-h3">76–100</h3>
+                <div class="table-scroll-wrapper table-scroll-wrapper--large">
+                    <table class="data-table data-table--reference">
+                        <thead><tr><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th></tr></thead>
+                        <tbody>
+                            <tr><td>76</td><td>8.718</td><td class="td-bold">81</td><td class="td-bold">9.000</td><td>86</td><td>9.274</td><td>91</td><td>9.539</td><td>96</td><td>9.798</td></tr>
+                            <tr><td>77</td><td>8.775</td><td>82</td><td>9.055</td><td>87</td><td>9.327</td><td>92</td><td>9.592</td><td>97</td><td>9.849</td></tr>
+                            <tr><td>78</td><td>8.832</td><td>83</td><td>9.110</td><td>88</td><td>9.381</td><td>93</td><td>9.644</td><td>98</td><td>9.899</td></tr>
+                            <tr><td>79</td><td>8.888</td><td>84</td><td>9.165</td><td>89</td><td>9.434</td><td>94</td><td>9.695</td><td>99</td><td>9.950</td></tr>
+                            <tr><td>80</td><td>8.944</td><td>85</td><td>9.220</td><td>90</td><td>9.487</td><td>95</td><td>9.747</td><td class="td-bold">100</td><td class="td-bold">10.000</td></tr>
                         </tbody>
                     </table>
                 </div>
