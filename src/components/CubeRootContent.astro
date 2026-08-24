@@ -3,6 +3,16 @@ interface Props {
   lang?: string;
 }
 const { lang = 'en' } = Astro.props;
+
+const cbrtRows = Array.from({ length: 20 }, (_, rowIndex) => {
+  return Array.from({ length: 5 }, (_, colIndex) => {
+    const n = (rowIndex + 1) + colIndex * 20;
+    const val = Math.pow(n, 1/3).toFixed(3);
+    const root = Math.round(Math.pow(n, 1/3));
+    const isPerfect = (root * root * root) === n;
+    return { n, val, isPerfect };
+  });
+});
 ---
 
 <article class="seo-article" id="what-is-cubique">
@@ -278,62 +288,34 @@ const { lang = 'en' } = Astro.props;
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span> Reference Tables</div>
                 <h2 class="article-h2">Standard Reference Table — Cube Roots 1 to 100</h2>
+                <p>Bookmark this section for quick lookups. Values are rounded to three decimal places where the number isn't a perfect cube.</p>
 
-                <h3 class="article-h3">1–25</h3>
-                <div class="table-scroll-wrapper table-scroll-wrapper--large">
-                    <table class="data-table data-table--reference">
-                        <thead><tr><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th></tr></thead>
+                <div class="table-scroll-wrapper table-scroll-wrapper--large" style="max-height: 500px; overflow-y: auto; border: 1px solid var(--border-light); border-radius: var(--radius-md);">
+                    <div class="table-scroll-hint"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8L22 12L18 16"/><path d="M6 8L2 12L6 16"/><line x1="2" y1="12" x2="22" y2="12"/></svg> Scroll →</div>
+                    <table class="data-table data-table--reference" style="margin-bottom: 0;">
+                        <thead style="position: sticky; top: 0; z-index: 10; background: var(--bg-surface-elevated);">
+                            <tr>
+                                <th>n</th><th>∛n</th>
+                                <th>n</th><th>∛n</th>
+                                <th>n</th><th>∛n</th>
+                                <th>n</th><th>∛n</th>
+                                <th>n</th><th>∛n</th>
+                            </tr>
+                        </thead>
                         <tbody>
-                            <tr><td class="td-bold">1</td><td class="td-bold">1.000</td><td>6</td><td>1.817</td><td>11</td><td>2.224</td><td>16</td><td>2.520</td><td>21</td><td>2.759</td></tr>
-                            <tr><td>2</td><td>1.260</td><td>7</td><td>1.913</td><td>12</td><td>2.289</td><td>17</td><td>2.571</td><td>22</td><td>2.802</td></tr>
-                            <tr><td>3</td><td>1.442</td><td class="td-bold">8</td><td class="td-bold">2.000</td><td>13</td><td>2.351</td><td>18</td><td>2.621</td><td>23</td><td>2.844</td></tr>
-                            <tr><td>4</td><td>1.587</td><td>9</td><td>2.080</td><td>14</td><td>2.410</td><td>19</td><td>2.668</td><td>24</td><td>2.884</td></tr>
-                            <tr><td>5</td><td>1.710</td><td>10</td><td>2.154</td><td>15</td><td>2.466</td><td>20</td><td>2.714</td><td>25</td><td>2.924</td></tr>
+                            {cbrtRows.map((row) => (
+                                <tr>
+                                    {row.map(({ n, val, isPerfect }) => (
+                                        <td class:list={[{ 'td-bold': isPerfect }]}>{n}</td>
+                                        <td class:list={[{ 'td-bold': isPerfect }]}>{val}</td>
+                                    ))}
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
-
-                <h3 class="article-h3">26–50</h3>
-                <div class="table-scroll-wrapper table-scroll-wrapper--large">
-                    <table class="data-table data-table--reference">
-                        <thead><tr><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th></tr></thead>
-                        <tbody>
-                            <tr><td>26</td><td>2.962</td><td>31</td><td>3.141</td><td>36</td><td>3.302</td><td>41</td><td>3.448</td><td>46</td><td>3.583</td></tr>
-                            <tr><td class="td-bold">27</td><td class="td-bold">3.000</td><td>32</td><td>3.175</td><td>37</td><td>3.332</td><td>42</td><td>3.476</td><td>47</td><td>3.609</td></tr>
-                            <tr><td>28</td><td>3.037</td><td>33</td><td>3.208</td><td>38</td><td>3.362</td><td>43</td><td>3.503</td><td>48</td><td>3.634</td></tr>
-                            <tr><td>29</td><td>3.072</td><td>34</td><td>3.240</td><td>39</td><td>3.391</td><td>44</td><td>3.530</td><td>49</td><td>3.659</td></tr>
-                            <tr><td>30</td><td>3.107</td><td>35</td><td>3.271</td><td>40</td><td>3.420</td><td>45</td><td>3.557</td><td>50</td><td>3.684</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3 class="article-h3">51–75</h3>
-                <div class="table-scroll-wrapper table-scroll-wrapper--large">
-                    <table class="data-table data-table--reference">
-                        <thead><tr><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th></tr></thead>
-                        <tbody>
-                            <tr><td>51</td><td>3.708</td><td>56</td><td>3.826</td><td>61</td><td>3.936</td><td>66</td><td>4.041</td><td>71</td><td>4.141</td></tr>
-                            <tr><td>52</td><td>3.733</td><td>57</td><td>3.849</td><td>62</td><td>3.958</td><td>67</td><td>4.062</td><td>72</td><td>4.160</td></tr>
-                            <tr><td>53</td><td>3.756</td><td>58</td><td>3.871</td><td>63</td><td>3.979</td><td>68</td><td>4.082</td><td>73</td><td>4.179</td></tr>
-                            <tr><td>54</td><td>3.780</td><td>59</td><td>3.893</td><td class="td-bold">64</td><td class="td-bold">4.000</td><td>69</td><td>4.102</td><td>74</td><td>4.198</td></tr>
-                            <tr><td>55</td><td>3.803</td><td>60</td><td>3.915</td><td>65</td><td>4.021</td><td>70</td><td>4.121</td><td>75</td><td>4.217</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3 class="article-h3">76–100</h3>
-                <div class="table-scroll-wrapper table-scroll-wrapper--large">
-                    <table class="data-table data-table--reference">
-                        <thead><tr><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th><th>n</th><th>∛n</th></tr></thead>
-                        <tbody>
-                            <tr><td>76</td><td>4.236</td><td>81</td><td>4.327</td><td>86</td><td>4.414</td><td>91</td><td>4.498</td><td>96</td><td>4.579</td></tr>
-                            <tr><td>77</td><td>4.254</td><td>82</td><td>4.344</td><td>87</td><td>4.431</td><td>92</td><td>4.514</td><td>97</td><td>4.595</td></tr>
-                            <tr><td>78</td><td>4.273</td><td>83</td><td>4.362</td><td>88</td><td>4.448</td><td>93</td><td>4.531</td><td>98</td><td>4.610</td></tr>
-                            <tr><td>79</td><td>4.291</td><td>84</td><td>4.380</td><td>89</td><td>4.465</td><td>94</td><td>4.547</td><td>99</td><td>4.626</td></tr>
-                            <tr><td>80</td><td>4.309</td><td>85</td><td>4.397</td><td>90</td><td>4.481</td><td>95</td><td>4.563</td><td class="td-bold">100</td><td class="td-bold">4.642</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+            </div>
+        </section>
             </div>
         </section>
 
