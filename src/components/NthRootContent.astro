@@ -214,13 +214,34 @@ const { lang = 'en' } = Astro.props;
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> FAQs</div>
                 <h2 class="article-h2">Frequently Asked Questions</h2>
                 <div class="faq-list">
-                    <div class="faq-item"><h3 class="article-h3">How do I use the Nth Root Calculator?</h3><p>Enter your number (radicand) in the first box, enter your index (n) in the second box, and click Calculate. The tool returns your answer instantly, along with a simplified form where one exists.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">What is the index of a root?</h3><p>The index is the small number that shows how many times a value must be multiplied by itself to reach the radicand. For square roots the index is 2 (usually left unwritten), for cube roots it's 3, and for any other root it's written explicitly.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">Can I find the nth root of a negative number?</h3><p>It depends on whether your index is even or odd. Odd indexes (3, 5, 7...) give a real negative answer. Even indexes (2, 4, 6...) have no real answer for a negative radicand.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">What's the nth root symbol?</h3><p>It's the standard radical symbol (√) with a small number placed in the notch to indicate the index — for example, ⁴√ for a 4th root or ⁵√ for a 5th root.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">How do I find a root on a physical calculator?</h3><p>Most scientific calculators have a dedicated ˣ√y button, usually accessed through a shift or second-function key. If yours doesn't, you can raise your number to the power of (1 ÷ n) using the regular exponent button instead.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">Does the nth root calculator work for square and cube roots too?</h3><p>Yes — since square roots and cube roots are just the nth root with n = 2 and n = 3, this calculator works for those too. For dedicated tools, see our <a href="/" style="color: var(--primary-500); font-weight: 600;">Racine Carrée Calculator</a> and <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">Racine Cubique Calculator</a>.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">Is this calculator free to use?</h3><p>Yes — no sign-up, no downloads, no usage limits.</p></div>
+                    <details class="faq-item">
+                        <summary class="faq-question">How do I use the Nth Root Calculator?</summary>
+                        <div class="faq-answer"><p>Enter your number (radicand) in the first box, enter your index (n) in the second box, and click Calculate. The tool returns your answer instantly, along with a simplified form where one exists.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">What is the index of a root?</summary>
+                        <div class="faq-answer"><p>The index is the small number that shows how many times a value must be multiplied by itself to reach the radicand. For square roots the index is 2 (usually left unwritten), for cube roots it's 3, and for any other root it's written explicitly.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Can I find the nth root of a negative number?</summary>
+                        <div class="faq-answer"><p>It depends on whether your index is even or odd. Odd indexes (3, 5, 7...) give a real negative answer. Even indexes (2, 4, 6...) have no real answer for a negative radicand.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">What's the nth root symbol?</summary>
+                        <div class="faq-answer"><p>It's the standard radical symbol (√) with a small number placed in the notch to indicate the index — for example, ⁴√ for a 4th root or ⁵√ for a 5th root.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">How do I find a root on a physical calculator?</summary>
+                        <div class="faq-answer"><p>Most scientific calculators have a dedicated ˣ√y button, usually accessed through a shift or second-function key. If yours doesn't, you can raise your number to the power of (1 ÷ n) using the regular exponent button instead.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Does the nth root calculator work for square and cube roots too?</summary>
+                        <div class="faq-answer"><p>Yes — since square roots and cube roots are just the nth root with n = 2 and n = 3, this calculator works for those too. For dedicated tools, see our <a href="/" style="color: var(--primary-500); font-weight: 600;">Racine Carrée Calculator</a> and <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">Racine Cubique Calculator</a>.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Is this calculator free to use?</summary>
+                        <div class="faq-answer"><p>Yes — no sign-up, no downloads, no usage limits.</p></div>
+                    </details>
                 </div>
             </div>
         </section>

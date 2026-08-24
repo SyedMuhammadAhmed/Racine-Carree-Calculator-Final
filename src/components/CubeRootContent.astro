@@ -362,13 +362,34 @@ const { lang = 'en' } = Astro.props;
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> FAQs</div>
                 <h2 class="article-h2">Frequently Asked Questions</h2>
                 <div class="faq-list">
-                    <div class="faq-item"><h3 class="article-h3">How do I use the Racine Cubique Calculator?</h3><p>Type any number into the box above and click Calculate. The tool instantly returns the cube root, including a simplified form where one exists, and it correctly handles negative numbers as real values.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">Can I calculate cube roots manually?</h3><p>Yes. For perfect cubes, prime factorization works cleanly. For everything else, estimation (finding which two perfect cubes your number falls between) gets you close fast.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">What does "racine cubique" mean?</h3><p>It's French for "cube root." A racine cubique calculator and a cube root calculator do exactly the same job.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">Can cube roots of negative numbers be calculated?</h3><p>Yes, and this is one of the biggest differences between cube roots and square roots. The cube root of a negative number is simply a negative real number — for example, ∛-8 = -2. No imaginary numbers involved.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">Can I calculate cube roots of decimals or large numbers?</h3><p>Yes. The calculator handles decimals, whole numbers, and large values with full precision.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">What's the difference between a cube root and a square root?</h3><p>A square root asks what number times itself equals your value. A cube root asks what number times itself three times equals your value. See the comparison table above for a full breakdown.</p></div>
-                    <div class="faq-item"><h3 class="article-h3">Is this calculator free to use?</h3><p>Yes — no sign-up, no downloads, no usage limits.</p></div>
+                    <details class="faq-item">
+                        <summary class="faq-question">How do I use the Racine Cubique Calculator?</summary>
+                        <div class="faq-answer"><p>Type any number into the box above and click Calculate. The tool instantly returns the cube root, including a simplified form where one exists, and it correctly handles negative numbers as real values.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Can I calculate cube roots manually?</summary>
+                        <div class="faq-answer"><p>Yes. For perfect cubes, prime factorization works cleanly. For everything else, estimation (finding which two perfect cubes your number falls between) gets you close fast.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">What does "racine cubique" mean?</summary>
+                        <div class="faq-answer"><p>It's French for "cube root." A racine cubique calculator and a cube root calculator do exactly the same job.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Can cube roots of negative numbers be calculated?</summary>
+                        <div class="faq-answer"><p>Yes, and this is one of the biggest differences between cube roots and square roots. The cube root of a negative number is simply a negative real number — for example, ∛-8 = -2. No imaginary numbers involved.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Can I calculate cube roots of decimals or large numbers?</summary>
+                        <div class="faq-answer"><p>Yes. The calculator handles decimals, whole numbers, and large values with full precision.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">What's the difference between a cube root and a square root?</summary>
+                        <div class="faq-answer"><p>A square root asks what number times itself equals your value. A cube root asks what number times itself three times equals your value. See the comparison table above for a full breakdown.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Is this calculator free to use?</summary>
+                        <div class="faq-answer"><p>Yes — no sign-up, no downloads, no usage limits.</p></div>
+                    </details>
                 </div>
             </div>
         </section>
