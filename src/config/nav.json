@@ -1,14 +1,22 @@
 {
   "header": [
     { "label": "Home", "href": "/" },
-    { "label": "Calculator", "href": "/#calculators" },
-    { "label": "About", "href": "/about-us" },
-    { "label": "Contact", "href": "/contact-us" }
+    {
+      "label": "Calculators",
+      "href": "/#calculators",
+      "children": [
+        { "label": "Racine Cubique Calculator", "href": "/racine-cubique-calculator/" },
+        { "label": "Nth Root Calculator", "href": "/nth-root-calculator/" }
+      ]
+    },
+    { "label": "About", "href": "/about-us/" },
+    { "label": "Contact", "href": "/contact-us/" }
   ],
   "footer": [
-    { "label": "Privacy Policy", "href": "/privacy" },
-    { "label": "Terms of Service", "href": "/terms" },
-    { "label": "Contact", "href": "/contact-us" },
+    { "label": "Privacy Policy", "href": "/privacy/" },
+    { "label": "Terms & Conditions", "href": "/terms/" },
+    { "label": "Disclaimer", "href": "/disclaimer/" },
+    { "label": "Contact", "href": "/contact-us/" },
     { "label": "Sitemap", "href": "/sitemap/" }
   ]
 }

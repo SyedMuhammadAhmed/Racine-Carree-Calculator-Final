@@ -37,14 +37,17 @@ const brand = t('footer.brand', 'Racine Carrée Calculator');
         <span class="logo-icon">√</span>
         <span class="logo-text">{brand}</span>
       </div>
-      <p class="footer-tagline">{t('footer.tagline', 'The most complete free square root and cube root tool online.')}</p>
+      <p class="footer-tagline">{t('footer.tagline', 'The most complete free square root, cube root, and nth root tool online.')}</p>
       <div class="footer-controls">
         <nav class="footer-links" aria-label="Footer navigation">
           <a href={sectionHref('hero')}>{t('nav.home', 'Home')}</a>
+          <a href={pageHref('/racine-cubique-calculator/')}>Racine Cubique</a>
+          <a href={pageHref('/nth-root-calculator/')}>Nth Root</a>
           <a href={pageHref('/about-us/')}>{t('nav.about', 'About')}</a>
           <a href={pageHref('/contact-us/')}>{t('nav.contact', 'Contact')}</a>
           <a href={pageHref('/privacy/')}>{t('nav.privacy', 'Privacy Policy')}</a>
-          <a href={pageHref('/terms/')}>{t('nav.terms', 'Terms of Service')}</a>
+          <a href={pageHref('/terms/')}>Terms & Conditions</a>
+          <a href={pageHref('/disclaimer/')}>Disclaimer</a>
           <a href={pageHref('/sitemap/')}>{t('nav.sitemap', 'Sitemap')}</a>
         </nav>
         <div class="footer-language">
