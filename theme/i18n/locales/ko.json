@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "Racine Carree 계산기 — 온라인 무료 제곱근 및 세제곱근 도구",
+    "description": "가장 완벽한 Racine Carree 계산기를 사용할 수 있습니다. 양수, 음수, 소수, 분수 등 모든 숫자의 제곱근(racine carrée) 또는 세제곱근(racine cubique)을 즉시 계산합니다. 정확한 소수점 결과, 단순화된 근수 형식, 단계별 작업 및 전체 참조 표를 얻으세요. 100% 무료입니다."
+  },
+  "nav": {
+    "home": "홈",
+    "calculator": "계산기",
+    "learn": "배우다",
+    "tables": "테이블",
+    "faq": "FAQ",
+    "blog": "블로그",
+    "about": "소개",
+    "privacy": "개인 정보 보호 정책",
+    "terms": "서비스 약관",
+    "contact": "연락처"
+  },
+  "hero": {
+    "badge": "무료 제곱근 및 세제곱근 도구",
+    "title": {
+      "part1": "라신 카레",
+      "part2": "계산기"
+    },
+    "subtitle": "가장 완벽한 Racine Carree 계산기를 사용할 수 있습니다. 양수, 음수, 소수, 분수 등 모든 숫자의 제곱근이나 세제곱근을 즉시 계산합니다. 정확한 소수점 결과, 단순화된 근수 형식, 단계별 작업 및 전체 참조 표를 얻으세요. 100% 무료입니다. 가입이 없습니다. 제한이 없습니다.",
+    "pill": {
+      "instant": "인스턴트",
+      "stepByStep": "단계별",
+      "private": "비공개",
+      "free": "100% 무료"
+    },
+    "cta": "아래에서 모든 것을 알아보세요"
+  },
+  "calc": {
+    "tab": {
+      "squareRoot": "제곱근",
+      "cubeRoot": "큐브 루트",
+      "nthRoot": "N번째 루트",
+      "fraction": "분수",
+      "power": "힘"
+    },
+    "squareRoot": {
+      "title": "제곱근",
+      "desc": "임의의 양수에 대해 √x를 계산하세요."
+    },
+    "cubeRoot": {
+      "title": "큐브 루트",
+      "desc": "음수를 포함하여 모든 숫자에 대해 ∛x를 찾습니다."
+    },
+    "nthRoot": {
+      "title": "N번째 루트",
+      "desc": "임의의 근(4차, 5차 또는 맞춤 도수) 계산",
+      "empty": {
+        "hint": "학위와 숫자를 입력하고 계산을 누르세요"
+      }
+    },
+    "fraction": [
+      null,
+      "분수 1",
+      "분수 2"
+    ],
+    "power": {
+      "title": "전력 계산기",
+      "desc": "정사각형, 큐브 등 원하는 숫자의 거듭제곱을 올리세요.",
+      "shortcuts": "단축키",
+      "empty": {
+        "hint": "밑수와 지수를 입력한 후 계산을 누르세요."
+      }
+    },
+    "label": {
+      "number": "계산할 숫자",
+      "degree": "루트 차수(n)",
+      "numberX": "숫자(x)",
+      "baseX": "베이스(x)",
+      "exponentN": "지수(n)"
+    },
+    "btn": {
+      "calculate": "계산하다"
+    },
+    "result": {
+      "empty": {
+        "title": "결과가 여기에 표시됩니다",
+        "hint": "위에 숫자를 입력하고 계산을 누르세요"
+      }
+    },
+    "history": {
+      "title": "최근 계산"
+    }
+  },
+  "footer": {
+    "brand": "라신 카레 계산기",
+    "tagline": "온라인에서 가장 완벽한 무료 제곱근 및 세제곱근 도구입니다.",
+    "language": "언어",
+    "rights": "모든 권리 보유.",
+    "made": "수학을 위해 ❤️으로 제작되었습니다"
+  }
+}

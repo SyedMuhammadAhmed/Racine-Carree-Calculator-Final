@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "Kalkulator Racine Carree — Alat Akar Kuasa Dua & Akar Kiub Percuma Dalam Talian",
+    "description": "Kalkulator Racine Carree yang paling lengkap tersedia. Kira punca kuasa dua (racine carrée) atau punca kubus (racine cubique) bagi sebarang nombor — positif, negatif, perpuluhan atau pecahan — serta-merta. Dapatkan hasil perpuluhan yang tepat, bentuk radikal yang dipermudahkan, kerja langkah demi langkah dan jadual rujukan penuh. 100% percuma."
+  },
+  "nav": {
+    "home": "Rumah",
+    "calculator": "Kalkulator",
+    "learn": "Belajar",
+    "tables": "Meja",
+    "faq": "Soalan Lazim",
+    "blog": "Blog",
+    "about": "Tentang",
+    "privacy": "Dasar Privasi",
+    "terms": "Syarat Perkhidmatan",
+    "contact": "Kenalan"
+  },
+  "hero": {
+    "badge": "Alat Akar Kuasa Dua & Akar Kiub Percuma",
+    "title": {
+      "part1": "Racine Carrée",
+      "part2": "Kalkulator"
+    },
+    "subtitle": "Kalkulator Racine Carree yang paling lengkap tersedia. Kira punca kuasa dua atau punca kubus bagi sebarang nombor — positif, negatif, perpuluhan atau pecahan — serta-merta. Dapatkan hasil perpuluhan yang tepat, bentuk radikal yang dipermudahkan, kerja langkah demi langkah dan jadual rujukan penuh. 100% percuma. Tiada pendaftaran. Tiada had.",
+    "pill": {
+      "instant": "segera",
+      "stepByStep": "Langkah demi langkah",
+      "private": "Persendirian",
+      "free": "100% Percuma"
+    },
+    "cta": "Pelajari semuanya di bawah"
+  },
+  "calc": {
+    "tab": {
+      "squareRoot": "Akar Kuasa Dua",
+      "cubeRoot": "Akar Kubus",
+      "nthRoot": "Akar Ke-N",
+      "fraction": "Pecahan",
+      "power": "kuasa"
+    },
+    "squareRoot": {
+      "title": "Akar Kuasa Dua",
+      "desc": "Kira √x untuk sebarang nombor positif"
+    },
+    "cubeRoot": {
+      "title": "Akar Kubus",
+      "desc": "Cari ∛x untuk sebarang nombor, termasuk negatif"
+    },
+    "nthRoot": {
+      "title": "Akar Ke-N",
+      "desc": "Kira mana-mana punca - darjah ke-4, ke-5 atau tersuai",
+      "empty": {
+        "hint": "Masukkan darjah dan nombor, kemudian tekan Kira"
+      }
+    },
+    "fraction": [
+      null,
+      "Pecahan 1",
+      "Pecahan 2"
+    ],
+    "power": {
+      "title": "Kalkulator Kuasa",
+      "desc": "Naikkan sebarang nombor kepada sebarang kuasa — segi empat sama, kiub dan banyak lagi",
+      "shortcuts": "Jalan pintas",
+      "empty": {
+        "hint": "Masukkan asas dan eksponen, kemudian tekan Kira"
+      }
+    },
+    "label": {
+      "number": "Nombor untuk dikira",
+      "degree": "Darjah akar (n)",
+      "numberX": "Nombor (x)",
+      "baseX": "Tapak (x)",
+      "exponentN": "Eksponen (n)"
+    },
+    "btn": {
+      "calculate": "Kira"
+    },
+    "result": {
+      "empty": {
+        "title": "Keputusan anda akan dipaparkan di sini",
+        "hint": "Masukkan nombor di atas dan tekan Kira"
+      }
+    },
+    "history": {
+      "title": "Pengiraan terkini"
+    }
+  },
+  "footer": {
+    "brand": "Kalkulator Racine Carrée",
+    "tagline": "Alat punca kuasa dua dan punca kubus percuma paling lengkap dalam talian.",
+    "language": "Bahasa",
+    "rights": "Semua hak terpelihara.",
+    "made": "Dibuat dengan ❤️ untuk matematik"
+  }
+}

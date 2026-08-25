@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "Racine Carree Calculator — Gratis verktyg för kvadratrot och kubrot online",
+    "description": "Den mest kompletta Racine Carree-kalkylatorn som finns. Beräkna kvadratroten (racine carrée) eller kubroten (racine cubique) av valfritt tal – positivt, negativt, decimalt eller bråktal – direkt. Få det exakta decimalresultatet, förenklad radikal form, steg-för-steg-funktioner och fullständiga referenstabeller. 100% gratis."
+  },
+  "nav": {
+    "home": "Hem",
+    "calculator": "Miniräknare",
+    "learn": "Lär dig",
+    "tables": "Tabeller",
+    "faq": "FAQ",
+    "blog": "Blogg",
+    "about": "Om",
+    "privacy": "Sekretesspolicy",
+    "terms": "Användarvillkor",
+    "contact": "Kontakta"
+  },
+  "hero": {
+    "badge": "Gratis verktyg för kvadratrot och kubrot",
+    "title": {
+      "part1": "Racine Carrée",
+      "part2": "Miniräknare"
+    },
+    "subtitle": "Den mest kompletta Racine Carree-kalkylatorn som finns. Beräkna kvadratroten eller kubikroten av valfritt tal – positivt, negativt, decimalt eller bråktal – direkt. Få det exakta decimalresultatet, förenklad radikal form, steg-för-steg-funktioner och fullständiga referenstabeller. 100% gratis. Ingen anmälan. Inga gränser.",
+    "pill": {
+      "instant": "Omedelbar",
+      "stepByStep": "Steg-för-steg",
+      "private": "Privat",
+      "free": "100 % gratis"
+    },
+    "cta": "Lär dig allt nedan"
+  },
+  "calc": {
+    "tab": {
+      "squareRoot": "Fyrkantsrot",
+      "cubeRoot": "Kubrot",
+      "nthRoot": "N:te roten",
+      "fraction": "Bråkdel",
+      "power": "Kraft"
+    },
+    "squareRoot": {
+      "title": "Fyrkantsrot",
+      "desc": "Beräkna √x för ett positivt tal"
+    },
+    "cubeRoot": {
+      "title": "Kubrot",
+      "desc": "Hitta ∛x för valfritt tal, inklusive negativ"
+    },
+    "nthRoot": {
+      "title": "N:te roten",
+      "desc": "Beräkna valfri rot - 4:e, 5:e eller anpassade grad",
+      "empty": {
+        "hint": "Ange grad och nummer och tryck sedan på Beräkna"
+      }
+    },
+    "fraction": [
+      null,
+      "Bråk 1",
+      "Bråk 2"
+    ],
+    "power": {
+      "title": "Strömkalkylator",
+      "desc": "Höj valfritt tal till valfri makt – rutor, kuber och mer",
+      "shortcuts": "Genvägar",
+      "empty": {
+        "hint": "Ange bas och exponent och tryck sedan på Beräkna"
+      }
+    },
+    "label": {
+      "number": "Antal att beräkna",
+      "degree": "Rotgrad (n)",
+      "numberX": "Antal (x)",
+      "baseX": "Bas (x)",
+      "exponentN": "Exponent (n)"
+    },
+    "btn": {
+      "calculate": "Beräkna"
+    },
+    "result": {
+      "empty": {
+        "title": "Ditt resultat kommer att visas här",
+        "hint": "Ange ett nummer ovan och tryck på Beräkna"
+      }
+    },
+    "history": {
+      "title": "Senaste beräkningar"
+    }
+  },
+  "footer": {
+    "brand": "Racine Carrée miniräknare",
+    "tagline": "Det mest kompletta gratis verktyget för kvadratrot och kubrot online.",
+    "language": "Språk",
+    "rights": "Alla rättigheter reserverade.",
+    "made": "Tillverkad med ❤️ för matematik"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "Racine Carree-Rechner – kostenloses Quadratwurzel- und Kubikwurzel-Tool online",
+    "description": "Der umfassendste verfügbare Racine-Carree-Rechner. Berechnen Sie sofort die Quadratwurzel (racine carrée) oder Kubikwurzel (racine cubique) einer beliebigen Zahl – positiv, negativ, dezimal oder gebrochen. Erhalten Sie das genaue Dezimalergebnis, eine vereinfachte Wurzelform, Schritt-für-Schritt-Anweisungen und vollständige Referenztabellen. 100 % kostenlos."
+  },
+  "nav": {
+    "home": "Zuhause",
+    "calculator": "Rechner",
+    "learn": "Lernen",
+    "tables": "Tische",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "about": "Über",
+    "privacy": "Datenschutzrichtlinie",
+    "terms": "Nutzungsbedingungen",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "badge": "Kostenloses Quadratwurzel- und Kubikwurzel-Tool",
+    "title": {
+      "part1": "Racine Carrée",
+      "part2": "Rechner"
+    },
+    "subtitle": "Der umfassendste verfügbare Racine-Carree-Rechner. Berechnen Sie sofort die Quadratwurzel oder Kubikwurzel einer beliebigen Zahl – positiv, negativ, dezimal oder gebrochen. Erhalten Sie das genaue Dezimalergebnis, eine vereinfachte Wurzelform, Schritt-für-Schritt-Anweisungen und vollständige Referenztabellen. 100 % kostenlos. Keine Anmeldung. Keine Grenzen.",
+    "pill": {
+      "instant": "Sofort",
+      "stepByStep": "Schritt für Schritt",
+      "private": "Privat",
+      "free": "100 % kostenlos"
+    },
+    "cta": "Erfahren Sie unten alles"
+  },
+  "calc": {
+    "tab": {
+      "squareRoot": "Quadratwurzel",
+      "cubeRoot": "Kubikwurzel",
+      "nthRoot": "N-te Wurzel",
+      "fraction": "Bruchteil",
+      "power": "Macht"
+    },
+    "squareRoot": {
+      "title": "Quadratwurzel",
+      "desc": "Berechnen Sie √x für jede positive Zahl"
+    },
+    "cubeRoot": {
+      "title": "Kubikwurzel",
+      "desc": "Finden Sie ∛x für eine beliebige Zahl, einschließlich negativer Zahlen"
+    },
+    "nthRoot": {
+      "title": "N-te Wurzel",
+      "desc": "Berechnen Sie eine beliebige Wurzel – 4., 5. oder benutzerdefinierter Grad",
+      "empty": {
+        "hint": "Geben Sie Grad und Zahl ein und drücken Sie dann Berechnen"
+      }
+    },
+    "fraction": [
+      null,
+      "Fraktion 1",
+      "Fraktion 2"
+    ],
+    "power": {
+      "title": "Leistungsrechner",
+      "desc": "Erhöhen Sie eine beliebige Zahl auf eine beliebige Potenz – Quadrate, Würfel und mehr",
+      "shortcuts": "Verknüpfungen",
+      "empty": {
+        "hint": "Geben Sie Basis und Exponent ein und drücken Sie dann Berechnen"
+      }
+    },
+    "label": {
+      "number": "Zu berechnende Zahl",
+      "degree": "Wurzelgrad (n)",
+      "numberX": "Anzahl (x)",
+      "baseX": "Basis (x)",
+      "exponentN": "Exponent (n)"
+    },
+    "btn": {
+      "calculate": "Berechnen"
+    },
+    "result": {
+      "empty": {
+        "title": "Ihr Ergebnis erscheint hier",
+        "hint": "Geben Sie oben eine Zahl ein und klicken Sie auf Berechnen"
+      }
+    },
+    "history": {
+      "title": "Aktuelle Berechnungen"
+    }
+  },
+  "footer": {
+    "brand": "Racine Carrée-Rechner",
+    "tagline": "Das umfassendste kostenlose Quadratwurzel- und Kubikwurzel-Tool online.",
+    "language": "Sprache",
+    "rights": "Alle Rechte vorbehalten.",
+    "made": "Hergestellt mit ❤️ für Mathematik"
+  }
+}

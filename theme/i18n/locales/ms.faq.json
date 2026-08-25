@@ -1,0 +1,32 @@
+[
+  {
+    "display": true,
+    "question": "Apakah projek ini?",
+    "answer": "Ini adalah projek Astro yang hebat dengan sokongan i18n."
+  },
+  {
+    "display": true,
+    "question": "Bagaimana cara saya menggunakannya?",
+    "answer": "Hanya menavigasi halaman dan nikmati kandungan setempat."
+  },
+  {
+    "display": true,
+    "question": "Adakah ia percuma?",
+    "answer": "Ya, ia adalah percuma untuk digunakan."
+  },
+  {
+    "display": true,
+    "question": "Adakah saya perlu mendaftar?",
+    "answer": "Tiada pendaftaran diperlukan untuk melihat kandungan."
+  },
+  {
+    "display": true,
+    "question": "Apakah bahasa yang disokong?",
+    "answer": "Kami menyokong 18 bahasa yang berbeza di luar kotak."
+  },
+  {
+    "display": true,
+    "question": "Bagaimanakah saya melaporkan pepijat?",
+    "answer": "Sila gunakan borang hubungan untuk menghubungi pasukan kami."
+  }
+]

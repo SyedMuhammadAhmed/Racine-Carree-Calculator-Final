@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "Racine Carree Hesap Makinesi — Çevrimiçi Ücretsiz Karekök ve Küp Kök Aracı",
+    "description": "Mevcut en eksiksiz Racine Carree Hesap Makinesi. Herhangi bir sayının (pozitif, negatif, ondalık veya kesirli) karekökünü (racine carrée) veya küpkökünü (racine cubique) anında hesaplayın. Tam ondalık sonucu, basitleştirilmiş radikal formu, adım adım çalışmaları ve tam referans tablolarını edinin. %100 ücretsiz."
+  },
+  "nav": {
+    "home": "Ana sayfa",
+    "calculator": "Hesap Makinesi",
+    "learn": "Öğren",
+    "tables": "Tablolar",
+    "faq": "SSS",
+    "blog": "Blog",
+    "about": "Hakkında",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Hizmet Şartları",
+    "contact": "İletişim"
+  },
+  "hero": {
+    "badge": "Ücretsiz Karekök ve Küp Kök Aracı",
+    "title": {
+      "part1": "Racine Carrée",
+      "part2": "Hesap Makinesi"
+    },
+    "subtitle": "Mevcut en eksiksiz Racine Carree Hesap Makinesi. Herhangi bir sayının (pozitif, negatif, ondalık veya kesirli) karekökünü veya küpkökünü anında hesaplayın. Tam ondalık sonucu, basitleştirilmiş radikal formu, adım adım çalışmaları ve tam referans tablolarını edinin. %100 ücretsiz. Kayıt yok. Sınır yok.",
+    "pill": {
+      "instant": "Anında",
+      "stepByStep": "Adım adım",
+      "private": "Özel",
+      "free": "%100 Ücretsiz"
+    },
+    "cta": "Aşağıdaki her şeyi öğrenin"
+  },
+  "calc": {
+    "tab": {
+      "squareRoot": "Karekök",
+      "cubeRoot": "Küp Kökü",
+      "nthRoot": "N'inci Kök",
+      "fraction": "Kesir",
+      "power": "Güç"
+    },
+    "squareRoot": {
+      "title": "Karekök",
+      "desc": "Herhangi bir pozitif sayı için √x'i hesaplayın"
+    },
+    "cubeRoot": {
+      "title": "Küp Kökü",
+      "desc": "Negatifler dahil herhangi bir sayı için ∛x'i bulun"
+    },
+    "nthRoot": {
+      "title": "N'inci Kök",
+      "desc": "Herhangi bir kökü hesaplayın — 4., 5. veya özel derece",
+      "empty": {
+        "hint": "Dereceyi ve sayıyı girin, ardından Hesapla'ya basın"
+      }
+    },
+    "fraction": [
+      null,
+      "Kesir 1",
+      "Kesir 2"
+    ],
+    "power": {
+      "title": "Güç Hesaplayıcı",
+      "desc": "Herhangi bir sayıyı herhangi bir kuvvete yükseltin (kareler, küpler ve daha fazlası)",
+      "shortcuts": "Kısayollar",
+      "empty": {
+        "hint": "Tabanı ve üssü girin, ardından Hesapla'ya basın"
+      }
+    },
+    "label": {
+      "number": "Hesaplanacak sayı",
+      "degree": "Kök derecesi (n)",
+      "numberX": "Sayı (x)",
+      "baseX": "Taban (x)",
+      "exponentN": "Üs (n)"
+    },
+    "btn": {
+      "calculate": "Hesapla"
+    },
+    "result": {
+      "empty": {
+        "title": "Sonucunuz burada görünecek",
+        "hint": "Yukarıya bir sayı girin ve Hesapla'ya basın"
+      }
+    },
+    "history": {
+      "title": "Son hesaplamalar"
+    }
+  },
+  "footer": {
+    "brand": "Racine Carrée Hesap Makinesi",
+    "tagline": "Çevrimiçi olarak en eksiksiz ücretsiz karekök ve küpkök aracı.",
+    "language": "Dil",
+    "rights": "Tüm hakları saklıdır.",
+    "made": "Matematik için ❤️ ile yapıldı"
+  }
+}

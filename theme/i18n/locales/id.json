@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "Kalkulator Racine Carree — Alat Akar Kuadrat & Akar Kubus Online Gratis",
+    "description": "Kalkulator Racine Carree terlengkap yang tersedia. Hitung akar kuadrat (racine carrée) atau akar pangkat tiga (racine cubique) dari bilangan apa pun — positif, negatif, desimal, atau pecahan — secara instan. Dapatkan hasil desimal yang tepat, bentuk radikal yang disederhanakan, cara kerja langkah demi langkah, dan tabel referensi lengkap. 100% gratis."
+  },
+  "nav": {
+    "home": "Rumah",
+    "calculator": "Kalkulator",
+    "learn": "Belajar",
+    "tables": "Tabel",
+    "faq": "Pertanyaan Umum",
+    "blog": "blog",
+    "about": "Tentang",
+    "privacy": "Kebijakan Privasi",
+    "terms": "Ketentuan Layanan",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "badge": "Alat Akar Kuadrat & Akar Kubus Gratis",
+    "title": {
+      "part1": "Racine Carrée",
+      "part2": "Kalkulator"
+    },
+    "subtitle": "Kalkulator Racine Carree terlengkap yang tersedia. Hitung akar kuadrat atau akar pangkat tiga dari bilangan apa pun — positif, negatif, desimal, atau pecahan — secara instan. Dapatkan hasil desimal yang tepat, bentuk radikal yang disederhanakan, cara kerja langkah demi langkah, dan tabel referensi lengkap. 100% gratis. Tidak ada pendaftaran. Tidak ada batasan.",
+    "pill": {
+      "instant": "Instan",
+      "stepByStep": "Langkah demi langkah",
+      "private": "Pribadi",
+      "free": "100% Gratis"
+    },
+    "cta": "Pelajari semuanya di bawah ini"
+  },
+  "calc": {
+    "tab": {
+      "squareRoot": "Akar Kuadrat",
+      "cubeRoot": "Akar Kubus",
+      "nthRoot": "Akar ke-N",
+      "fraction": "Pecahan",
+      "power": "Kekuatan"
+    },
+    "squareRoot": {
+      "title": "Akar Kuadrat",
+      "desc": "Hitung √x untuk sembarang bilangan positif"
+    },
+    "cubeRoot": {
+      "title": "Akar Kubus",
+      "desc": "Temukan ∛x untuk bilangan apa pun, termasuk negatif"
+    },
+    "nthRoot": {
+      "title": "Akar ke-N",
+      "desc": "Hitung akar apa pun — tingkat ke-4, ke-5, atau khusus",
+      "empty": {
+        "hint": "Masukkan derajat dan angka, lalu tekan Hitung"
+      }
+    },
+    "fraction": [
+      null,
+      "pecahan 1",
+      "Pecahan 2"
+    ],
+    "power": {
+      "title": "Kalkulator Daya",
+      "desc": "Naikkan angka berapa pun ke pangkat apa pun — kotak, kubus, dan lainnya",
+      "shortcuts": "Jalan pintas",
+      "empty": {
+        "hint": "Masukkan basis dan eksponen, lalu tekan Hitung"
+      }
+    },
+    "label": {
+      "number": "Nomor untuk dihitung",
+      "degree": "Derajat akar (n)",
+      "numberX": "Nomor (x)",
+      "baseX": "Basis (x)",
+      "exponentN": "Eksponen (n)"
+    },
+    "btn": {
+      "calculate": "Hitung"
+    },
+    "result": {
+      "empty": {
+        "title": "Hasil Anda akan muncul di sini",
+        "hint": "Masukkan angka di atas dan tekan Hitung"
+      }
+    },
+    "history": {
+      "title": "Perhitungan terkini"
+    }
+  },
+  "footer": {
+    "brand": "Kalkulator Racine Carrée",
+    "tagline": "Alat akar kuadrat dan akar pangkat tiga gratis terlengkap secara online.",
+    "language": "Bahasa",
+    "rights": "Semua hak dilindungi undang-undang.",
+    "made": "Dibuat dengan ❤️ untuk matematika"
+  }
+}

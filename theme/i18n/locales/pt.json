@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "Calculadora Racine Carree – Ferramenta online gratuita para raiz quadrada e raiz cúbica",
+    "description": "A calculadora Racine Carree mais completa disponível. Calcule a raiz quadrada (racine carrée) ou a raiz cúbica (racine cubique) de qualquer número - positivo, negativo, decimal ou fração - instantaneamente. Obtenha o resultado decimal exato, forma radical simplificada, funcionamento passo a passo e tabelas de referência completas. 100% grátis."
+  },
+  "nav": {
+    "home": "Página inicial",
+    "calculator": "Calculadora",
+    "learn": "Aprenda",
+    "tables": "Tabelas",
+    "faq": "Perguntas frequentes",
+    "blog": "Blogue",
+    "about": "Sobre",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Serviço",
+    "contact": "Contato"
+  },
+  "hero": {
+    "badge": "Ferramenta gratuita de raiz quadrada e raiz cúbica",
+    "title": {
+      "part1": "Racine Carrée",
+      "part2": "Calculadora"
+    },
+    "subtitle": "A calculadora Racine Carree mais completa disponível. Calcule a raiz quadrada ou cúbica de qualquer número – positivo, negativo, decimal ou fração – instantaneamente. Obtenha o resultado decimal exato, forma radical simplificada, funcionamento passo a passo e tabelas de referência completas. 100% grátis. Sem inscrição. Sem limites.",
+    "pill": {
+      "instant": "Instantâneo",
+      "stepByStep": "Passo a passo",
+      "private": "Privado",
+      "free": "100% grátis"
+    },
+    "cta": "Aprenda tudo abaixo"
+  },
+  "calc": {
+    "tab": {
+      "squareRoot": "Raiz Quadrada",
+      "cubeRoot": "Raiz Cúbica",
+      "nthRoot": "Enésima Raiz",
+      "fraction": "Fração",
+      "power": "Poder"
+    },
+    "squareRoot": {
+      "title": "Raiz Quadrada",
+      "desc": "Calcule √x para qualquer número positivo"
+    },
+    "cubeRoot": {
+      "title": "Raiz Cúbica",
+      "desc": "Encontre ∛x para qualquer número, incluindo negativos"
+    },
+    "nthRoot": {
+      "title": "Enésima Raiz",
+      "desc": "Calcule qualquer raiz - 4º, 5º ou grau personalizado",
+      "empty": {
+        "hint": "Insira o grau e o número e pressione Calcular"
+      }
+    },
+    "fraction": [
+      null,
+      "Fração 1",
+      "Fração 2"
+    ],
+    "power": {
+      "title": "Calculadora de potência",
+      "desc": "Eleve qualquer número a qualquer potência — quadrados, cubos e muito mais",
+      "shortcuts": "Atalhos",
+      "empty": {
+        "hint": "Insira base e expoente e pressione Calcular"
+      }
+    },
+    "label": {
+      "number": "Número a calcular",
+      "degree": "Grau de raiz (n)",
+      "numberX": "Número (x)",
+      "baseX": "Base (x)",
+      "exponentN": "Expoente (n)"
+    },
+    "btn": {
+      "calculate": "Calcular"
+    },
+    "result": {
+      "empty": {
+        "title": "Seu resultado aparecerá aqui",
+        "hint": "Digite um número acima e pressione Calcular"
+      }
+    },
+    "history": {
+      "title": "Cálculos recentes"
+    }
+  },
+  "footer": {
+    "brand": "Calculadora Racine Carrée",
+    "tagline": "A ferramenta gratuita de raiz quadrada e raiz cúbica mais completa online.",
+    "language": "Idioma",
+    "rights": "Todos os direitos reservados.",
+    "made": "Feito com ❤️ para matemática"
+  }
+}

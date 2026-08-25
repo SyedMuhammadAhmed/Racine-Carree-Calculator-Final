@@ -1,0 +1,32 @@
+[
+  {
+    "display": true,
+    "question": "O que é esse projeto?",
+    "answer": "Este é um projeto Astro incrível com suporte i18n."
+  },
+  {
+    "display": true,
+    "question": "Como faço para usá-lo?",
+    "answer": "Basta navegar pelas páginas e aproveitar o conteúdo localizado."
+  },
+  {
+    "display": true,
+    "question": "É grátis?",
+    "answer": "Sim, é totalmente gratuito."
+  },
+  {
+    "display": true,
+    "question": "Preciso me inscrever?",
+    "answer": "Não é necessário se inscrever para visualizar o conteúdo."
+  },
+  {
+    "display": true,
+    "question": "Quais idiomas são suportados?",
+    "answer": "Oferecemos suporte para 18 idiomas diferentes prontos para uso."
+  },
+  {
+    "display": true,
+    "question": "Como faço para relatar um bug?",
+    "answer": "Utilize o formulário de contato para entrar em contato com nossa equipe."
+  }
+]

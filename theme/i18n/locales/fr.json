@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "Calculateur de racines carrées — Outil gratuit de racine carrée et de racine cubique en ligne",
+    "description": "Le calculateur Racine Carree le plus complet disponible. Calculez instantanément la racine carrée (racine carrée) ou la racine cubique (racine cubique) de n'importe quel nombre (positif, négatif, décimal ou fraction). Obtenez le résultat décimal exact, la forme radicale simplifiée, le fonctionnement étape par étape et les tableaux de référence complets. 100% gratuit."
+  },
+  "nav": {
+    "home": "Accueil",
+    "calculator": "Calculatrice",
+    "learn": "Apprendre",
+    "tables": "Tableaux",
+    "faq": "FAQ",
+    "blog": "Blogue",
+    "about": "À propos",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "contact": "Contacter"
+  },
+  "hero": {
+    "badge": "Outil gratuit de racine carrée et de racine cubique",
+    "title": {
+      "part1": "Racine Carrée",
+      "part2": "Calculatrice"
+    },
+    "subtitle": "Le calculateur Racine Carree le plus complet disponible. Calculez instantanément la racine carrée ou la racine cubique de n'importe quel nombre (positif, négatif, décimal ou fraction). Obtenez le résultat décimal exact, la forme radicale simplifiée, le fonctionnement étape par étape et les tableaux de référence complets. 100% gratuit. Aucune inscription. Aucune limite.",
+    "pill": {
+      "instant": "Instantané",
+      "stepByStep": "Pas à pas",
+      "private": "Privé",
+      "free": "100% Gratuit"
+    },
+    "cta": "Apprenez tout ci-dessous"
+  },
+  "calc": {
+    "tab": {
+      "squareRoot": "Racine carrée",
+      "cubeRoot": "Racine cubique",
+      "nthRoot": "Nième racine",
+      "fraction": "Fraction",
+      "power": "Puissance"
+    },
+    "squareRoot": {
+      "title": "Racine carrée",
+      "desc": "Calculer √x pour tout nombre positif"
+    },
+    "cubeRoot": {
+      "title": "Racine cubique",
+      "desc": "Trouvez ∛x pour n'importe quel nombre, y compris les négatifs"
+    },
+    "nthRoot": {
+      "title": "Nième racine",
+      "desc": "Calculez n'importe quelle racine - 4ème, 5ème ou degré personnalisé",
+      "empty": {
+        "hint": "Entrez le degré et le nombre, puis appuyez sur Calculer"
+      }
+    },
+    "fraction": [
+      null,
+      "Fraction 1",
+      "Fraction 2"
+    ],
+    "power": {
+      "title": "Calculateur de puissance",
+      "desc": "Élevez n'importe quel nombre à n'importe quelle puissance : carrés, cubes et plus encore",
+      "shortcuts": "Raccourcis",
+      "empty": {
+        "hint": "Entrez la base et l'exposant, puis appuyez sur Calculer"
+      }
+    },
+    "label": {
+      "number": "Nombre à calculer",
+      "degree": "Degré racine (n)",
+      "numberX": "Nombre (x)",
+      "baseX": "Socle (x)",
+      "exponentN": "Exposant (n)"
+    },
+    "btn": {
+      "calculate": "Calculer"
+    },
+    "result": {
+      "empty": {
+        "title": "Votre résultat apparaîtra ici",
+        "hint": "Entrez un nombre ci-dessus et appuyez sur Calculer"
+      }
+    },
+    "history": {
+      "title": "Calculs récents"
+    }
+  },
+  "footer": {
+    "brand": "Calculatrice Racine Carrée",
+    "tagline": "L'outil gratuit de racine carrée et de racine cubique le plus complet en ligne.",
+    "language": "Langue",
+    "rights": "Tous droits réservés.",
+    "made": "Réalisé avec ❤️ pour les mathématiques"
+  }
+}

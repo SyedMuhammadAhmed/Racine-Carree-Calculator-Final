@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "Kalkulator Racine Carree — bezpłatne narzędzie do pierwiastkowania kwadratowego i sześciennego online",
+    "description": "Najbardziej kompletny dostępny kalkulator Racine Carree. Natychmiast oblicz pierwiastek kwadratowy (racine carrée) lub pierwiastek sześcienny (racine cubique) dowolnej liczby — dodatniej, ujemnej, dziesiętnej lub ułamkowej. Uzyskaj dokładny wynik dziesiętny, uproszczoną formę pierwiastkową, obliczenia krok po kroku i pełne tabele referencyjne. 100% za darmo."
+  },
+  "nav": {
+    "home": "Dom",
+    "calculator": "Kalkulator",
+    "learn": "Ucz się",
+    "tables": "Stoły",
+    "faq": "Często zadawane pytania",
+    "blog": "Blog",
+    "about": "O",
+    "privacy": "Polityka prywatności",
+    "terms": "Warunki świadczenia usług",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "badge": "Bezpłatne narzędzie do pierwiastkowania kwadratowego i sześciennego",
+    "title": {
+      "part1": "Racine Carrée",
+      "part2": "Kalkulator"
+    },
+    "subtitle": "Najbardziej kompletny dostępny kalkulator Racine Carree. Natychmiast oblicz pierwiastek kwadratowy lub pierwiastek sześcienny dowolnej liczby — dodatniej, ujemnej, dziesiętnej lub ułamkowej. Uzyskaj dokładny wynik dziesiętny, uproszczoną formę pierwiastkową, obliczenia krok po kroku i pełne tabele referencyjne. 100% za darmo. Brak rejestracji. Żadnych ograniczeń.",
+    "pill": {
+      "instant": "Natychmiastowe",
+      "stepByStep": "Krok po kroku",
+      "private": "Prywatny",
+      "free": "100% za darmo"
+    },
+    "cta": "Dowiedz się wszystkiego poniżej"
+  },
+  "calc": {
+    "tab": {
+      "squareRoot": "Pierwiastek kwadratowy",
+      "cubeRoot": "Korzeń sześcianu",
+      "nthRoot": "N-ty korzeń",
+      "fraction": "Ułamek",
+      "power": "Moc"
+    },
+    "squareRoot": {
+      "title": "Pierwiastek kwadratowy",
+      "desc": "Oblicz √x dla dowolnej liczby dodatniej"
+    },
+    "cubeRoot": {
+      "title": "Korzeń sześcianu",
+      "desc": "Znajdź ∛x dla dowolnej liczby, łącznie z liczbami ujemnymi"
+    },
+    "nthRoot": {
+      "title": "N-ty korzeń",
+      "desc": "Oblicz dowolny pierwiastek — stopień czwarty, piąty lub niestandardowy",
+      "empty": {
+        "hint": "Wprowadź stopień i liczbę, a następnie naciśnij przycisk Oblicz"
+      }
+    },
+    "fraction": [
+      null,
+      "Frakcja 1",
+      "Frakcja 2"
+    ],
+    "power": {
+      "title": "Kalkulator mocy",
+      "desc": "Podnieś dowolną liczbę do dowolnej potęgi — kwadratów, sześcianów i nie tylko",
+      "shortcuts": "Skróty",
+      "empty": {
+        "hint": "Wprowadź podstawę i wykładnik, a następnie naciśnij Oblicz"
+      }
+    },
+    "label": {
+      "number": "Liczba do obliczenia",
+      "degree": "Stopień korzenia (n)",
+      "numberX": "Liczba (x)",
+      "baseX": "Podstawa (x)",
+      "exponentN": "Wykładnik (n)"
+    },
+    "btn": {
+      "calculate": "Oblicz"
+    },
+    "result": {
+      "empty": {
+        "title": "Twój wynik pojawi się tutaj",
+        "hint": "Wpisz liczbę powyżej i naciśnij Oblicz"
+      }
+    },
+    "history": {
+      "title": "Najnowsze obliczenia"
+    }
+  },
+  "footer": {
+    "brand": "Kalkulator Racine Carrée",
+    "tagline": "Najbardziej kompletne, bezpłatne narzędzie online do obliczania pierwiastka kwadratowego i sześciennego.",
+    "language": "Język",
+    "rights": "Wszelkie prawa zastrzeżone.",
+    "made": "Wykonane z ❤️ dla matematyki"
+  }
+}

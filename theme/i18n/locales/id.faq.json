@@ -1,0 +1,32 @@
+[
+  {
+    "display": true,
+    "question": "Proyek apa ini?",
+    "answer": "Ini adalah proyek Astro yang luar biasa dengan dukungan i18n."
+  },
+  {
+    "display": true,
+    "question": "Bagaimana cara menggunakannya?",
+    "answer": "Cukup navigasikan halamannya dan nikmati konten yang dilokalkan."
+  },
+  {
+    "display": true,
+    "question": "Apakah ini gratis?",
+    "answer": "Ya, ini sepenuhnya gratis untuk digunakan."
+  },
+  {
+    "display": true,
+    "question": "Apakah saya perlu mendaftar?",
+    "answer": "Tidak diperlukan pendaftaran untuk melihat konten."
+  },
+  {
+    "display": true,
+    "question": "Bahasa apa saja yang didukung?",
+    "answer": "Kami mendukung 18 bahasa berbeda."
+  },
+  {
+    "display": true,
+    "question": "Bagaimana cara melaporkan bug?",
+    "answer": "Silakan gunakan formulir kontak untuk menghubungi tim kami."
+  }
+]

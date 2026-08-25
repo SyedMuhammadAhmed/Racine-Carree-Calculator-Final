@@ -1,0 +1,32 @@
+[
+  {
+    "display": true,
+    "question": "이 프로젝트는 무엇입니까?",
+    "answer": "이것은 i18n을 지원하는 멋진 Astro 프로젝트입니다."
+  },
+  {
+    "display": true,
+    "question": "어떻게 사용하나요?",
+    "answer": "간단히 페이지를 탐색하고 현지화된 콘텐츠를 즐겨보세요."
+  },
+  {
+    "display": true,
+    "question": "무료인가요?",
+    "answer": "예, 완전히 무료로 사용할 수 있습니다."
+  },
+  {
+    "display": true,
+    "question": "가입해야 하나요?",
+    "answer": "콘텐츠를 보려면 가입이 필요하지 않습니다."
+  },
+  {
+    "display": true,
+    "question": "어떤 언어가 지원되나요?",
+    "answer": "우리는 기본적으로 18개의 다양한 언어를 지원합니다."
+  },
+  {
+    "display": true,
+    "question": "버그를 신고하려면 어떻게 해야 하나요?",
+    "answer": "우리 팀에 연락하려면 문의 양식을 사용하세요."
+  }
+]

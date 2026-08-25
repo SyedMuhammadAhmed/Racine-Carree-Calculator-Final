@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "Calcolatrice Racine Carree: strumento online gratuito per radice quadrata e radice cubica",
+    "description": "Il calcolatore Racine Carree più completo disponibile. Calcola istantaneamente la radice quadrata (racine carrée) o la radice cubica (racine cubique) di qualsiasi numero: positivo, negativo, decimale o frazione. Ottieni il risultato decimale esatto, la forma radicale semplificata, il funzionamento passo passo e le tabelle di riferimento complete. 100% gratuito."
+  },
+  "nav": {
+    "home": "Casa",
+    "calculator": "Calcolatrice",
+    "learn": "Impara",
+    "tables": "Tabelle",
+    "faq": "Domande frequenti",
+    "blog": "Blog",
+    "about": "Circa",
+    "privacy": "Informativa sulla privacy",
+    "terms": "Termini di servizio",
+    "contact": "Contatto"
+  },
+  "hero": {
+    "badge": "Strumento gratuito per radice quadrata e radice cubica",
+    "title": {
+      "part1": "Racine Carrée",
+      "part2": "Calcolatrice"
+    },
+    "subtitle": "Il calcolatore Racine Carree più completo disponibile. Calcola istantaneamente la radice quadrata o cubica di qualsiasi numero: positivo, negativo, decimale o frazione. Ottieni il risultato decimale esatto, la forma radicale semplificata, il funzionamento passo passo e le tabelle di riferimento complete. 100% gratuito. Nessuna registrazione. Nessun limite.",
+    "pill": {
+      "instant": "Istantaneo",
+      "stepByStep": "Passo dopo passo",
+      "private": "Privato",
+      "free": "100% gratuito"
+    },
+    "cta": "Scopri tutto di seguito"
+  },
+  "calc": {
+    "tab": {
+      "squareRoot": "Radice quadrata",
+      "cubeRoot": "Radice cubica",
+      "nthRoot": "Ennesima radice",
+      "fraction": "Frazione",
+      "power": "Potenza"
+    },
+    "squareRoot": {
+      "title": "Radice quadrata",
+      "desc": "Calcola √x per qualsiasi numero positivo"
+    },
+    "cubeRoot": {
+      "title": "Radice cubica",
+      "desc": "Trova ∛x per qualsiasi numero, compresi i negativi"
+    },
+    "nthRoot": {
+      "title": "Ennesima radice",
+      "desc": "Calcola qualsiasi radice: 4°, 5° o grado personalizzato",
+      "empty": {
+        "hint": "Immettere il grado e il numero, quindi premere Calcola"
+      }
+    },
+    "fraction": [
+      null,
+      "Frazione 1",
+      "Frazione 2"
+    ],
+    "power": {
+      "title": "Calcolatore di potenza",
+      "desc": "Eleva qualsiasi numero a qualsiasi potenza: quadrati, cubi e altro",
+      "shortcuts": "Scorciatoie",
+      "empty": {
+        "hint": "Inserisci base ed esponente, quindi premi Calcola"
+      }
+    },
+    "label": {
+      "number": "Numero da calcolare",
+      "degree": "Grado della radice (n)",
+      "numberX": "Numero (x)",
+      "baseX": "Base (x)",
+      "exponentN": "Esponente (n)"
+    },
+    "btn": {
+      "calculate": "Calcola"
+    },
+    "result": {
+      "empty": {
+        "title": "Il tuo risultato apparirà qui",
+        "hint": "Inserisci un numero qui sopra e premi Calcola"
+      }
+    },
+    "history": {
+      "title": "Calcoli recenti"
+    }
+  },
+  "footer": {
+    "brand": "Calcolatrice Racine Carrée",
+    "tagline": "Lo strumento gratuito per radici quadrate e cubiche più completo online.",
+    "language": "Lingua",
+    "rights": "Tutti i diritti riservati.",
+    "made": "Fatto con ❤️ per la matematica"
+  }
+}

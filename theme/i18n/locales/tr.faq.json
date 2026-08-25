@@ -1,0 +1,32 @@
+[
+  {
+    "display": true,
+    "question": "Bu proje nedir?",
+    "answer": "Bu, i18n desteğine sahip harika bir Astro projesidir."
+  },
+  {
+    "display": true,
+    "question": "Nasıl kullanırım?",
+    "answer": "Sayfalarda gezinin ve yerelleştirilmiş içeriğin keyfini çıkarın."
+  },
+  {
+    "display": true,
+    "question": "Ücretsiz mi?",
+    "answer": "Evet kullanımı tamamen ücretsizdir."
+  },
+  {
+    "display": true,
+    "question": "Kaydolmam gerekiyor mu?",
+    "answer": "İçeriği görüntülemek için kayıt olmanıza gerek yoktur."
+  },
+  {
+    "display": true,
+    "question": "Hangi diller destekleniyor?",
+    "answer": "Kutudan çıktığı haliyle 18 farklı dili destekliyoruz."
+  },
+  {
+    "display": true,
+    "question": "Bir hatayı nasıl bildirebilirim?",
+    "answer": "Ekibimize ulaşmak için lütfen iletişim formunu kullanın."
+  }
+]

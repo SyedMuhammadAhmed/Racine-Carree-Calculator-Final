@@ -1,0 +1,32 @@
+[
+  {
+    "display": true,
+    "question": "Co to za projekt?",
+    "answer": "To niesamowity projekt Astro z obsługą i18n."
+  },
+  {
+    "display": true,
+    "question": "Jak z niego korzystać?",
+    "answer": "Po prostu poruszaj się po stronach i ciesz się zlokalizowaną zawartością."
+  },
+  {
+    "display": true,
+    "question": "Czy to jest bezpłatne?",
+    "answer": "Tak, korzystanie z niego jest całkowicie bezpłatne."
+  },
+  {
+    "display": true,
+    "question": "Czy muszę się rejestrować?",
+    "answer": "Aby zobaczyć zawartość, nie jest wymagana rejestracja."
+  },
+  {
+    "display": true,
+    "question": "Jakie języki są obsługiwane?",
+    "answer": "Standardowo obsługujemy 18 różnych języków."
+  },
+  {
+    "display": true,
+    "question": "Jak zgłosić błąd?",
+    "answer": "Aby skontaktować się z naszym zespołem, skorzystaj z formularza kontaktowego."
+  }
+]
