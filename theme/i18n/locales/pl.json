@@ -53,11 +53,15 @@
         "hint": "Wprowadź stopień i liczbę, a następnie naciśnij przycisk Oblicz"
       }
     },
-    "fraction": [
-      null,
-      "Frakcja 1",
-      "Frakcja 2"
-    ],
+    "fraction": {
+      "1": "Frakcja 1",
+      "2": "Frakcja 2",
+      "title": "Kalkulator ułamków",
+      "desc": "Dodawaj, odejmij, mnóż, dziel i upraszczaj ułamki zwykłe",
+      "empty": {
+        "hint": "Wpisz oba ułamki i naciśnij Oblicz"
+      }
+    },
     "power": {
       "title": "Kalkulator mocy",
       "desc": "Podnieś dowolną liczbę do dowolnej potęgi — kwadratów, sześcianów i nie tylko",

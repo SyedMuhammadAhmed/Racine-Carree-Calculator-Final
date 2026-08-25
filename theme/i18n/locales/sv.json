@@ -53,11 +53,15 @@
         "hint": "Ange grad och nummer och tryck sedan på Beräkna"
       }
     },
-    "fraction": [
-      null,
-      "Bråk 1",
-      "Bråk 2"
-    ],
+    "fraction": {
+      "1": "Bråk 1",
+      "2": "Bråk 2",
+      "title": "Bråkräknare",
+      "desc": "Addera, subtrahera, multiplicera, dividera och förenkla bråk",
+      "empty": {
+        "hint": "Ange båda bråken och tryck på Beräkna"
+      }
+    },
     "power": {
       "title": "Strömkalkylator",
       "desc": "Höj valfritt tal till valfri makt – rutor, kuber och mer",

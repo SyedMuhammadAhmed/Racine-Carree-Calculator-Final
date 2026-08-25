@@ -53,11 +53,15 @@
         "hint": "Ingrese el grado y el número, luego presione Calcular"
       }
     },
-    "fraction": [
-      null,
-      "Fracción 1",
-      "Fracción 2"
-    ],
+    "fraction": {
+      "1": "Fracción 1",
+      "2": "Fracción 2",
+      "title": "Calculadora de fracciones",
+      "desc": "Sumar, restar, multiplicar, dividir y simplificar fracciones",
+      "empty": {
+        "hint": "Ingrese ambas fracciones y presione Calcular"
+      }
+    },
     "power": {
       "title": "Calculadora de potencia",
       "desc": "Eleva cualquier número a cualquier potencia: cuadrados, cubos y más",

@@ -53,11 +53,15 @@
         "hint": "Entrez le degré et le nombre, puis appuyez sur Calculer"
       }
     },
-    "fraction": [
-      null,
-      "Fraction 1",
-      "Fraction 2"
-    ],
+    "fraction": {
+      "1": "Fraction 1",
+      "2": "Fraction 2",
+      "title": "Calculateur de fractions",
+      "desc": "Ajouter, soustraire, multiplier, diviser et simplifier des fractions",
+      "empty": {
+        "hint": "Entrez les deux fractions et appuyez sur Calculer"
+      }
+    },
     "power": {
       "title": "Calculateur de puissance",
       "desc": "Élevez n'importe quel nombre à n'importe quelle puissance : carrés, cubes et plus encore",

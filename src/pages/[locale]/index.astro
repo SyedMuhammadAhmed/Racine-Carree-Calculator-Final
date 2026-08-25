@@ -18,8 +18,7 @@ export function getStaticPaths() {
 }
 
 const lang = getLocaleFromParams(Astro.params);
-const sourceLang = 'en';
-const t = await useTranslations(sourceLang);
+const t = await useTranslations(lang);
 const title = t('site.title', 'Racine Carree Calculator - Free Square Root & Cube Root Tool Online');
 const description = t('site.description', 'Calculate square roots, cube roots, nth roots, fractions, and powers with steps and reference tables.');
 const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/', lang)}`;
@@ -32,13 +31,19 @@ const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/', lang)}`;
   dir={getHtmlDir(lang)}
   canonicalUrl={canonicalUrl}
 >
-  <Navbar lang={lang} contentLang={sourceLang} />
+  <div class="notranslate" translate="no">
+    <Navbar lang={lang} contentLang={lang} />
+  </div>
   <section class="above-fold" id="hero">
     <div class="above-fold-stack">
-      <Hero lang={sourceLang} />
-      <Calculator lang={sourceLang} />
+      <div class="notranslate" translate="no">
+        <Hero lang={lang} />
+        <Calculator lang={lang} />
+      </div>
     </div>
   </section>
-  <ContentSections lang={sourceLang} />
-  <Footer lang={lang} contentLang={sourceLang} />
+  <ContentSections lang={lang} />
+  <div class="notranslate" translate="no">
+    <Footer lang={lang} contentLang={lang} />
+  </div>
 </Layout>

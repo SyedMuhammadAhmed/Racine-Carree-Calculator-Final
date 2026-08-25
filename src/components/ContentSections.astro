@@ -13,7 +13,7 @@ const { lang = 'en' } = Astro.props;
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> Complete Guide</div>
                 <h2 class="article-h2">What Is Racine Carrée (Square Root)?</h2>
                 <p>Racine carrée is the French word for square root, and it's the term thousands of people type into Google every month — even when they're searching in English. If that's how you found this page, you're in the right place. Our racine carree calculator above gives you the answer in one click, and everything below explains what a square root actually is, how to work one out by hand, and why this little math operation shows up everywhere from geometry class to engineering.</p>
-                <p>A square root is a number that, when multiplied by itself, gives you another number. Here's the simplest way to picture it: if you multiply 5 by itself (5 × 5), you get 25. So we say the square root of 25 is 5.</p>
+                <p>A square root is a number that, when multiplied by itself, gives you another number. Here's the simplest way to picture it: if you multiply 5 by itself (5 × 5), you get 25. So we say the square root of 25 is 5. This same principle extends to higher-degree roots — for example, a <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">cube root (racine cubique)</a> multiplies a number by itself three times, and an <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth root</a> generalizes the idea to any degree.</p>
                 <p>In French, "racine carrée" means exactly this — square root. So when someone searches "racine carree calculator," they're looking for the same tool as someone who searches "square root calculator." Same math, different language.</p>
 
                 <div class="examples-grid">
@@ -119,32 +119,37 @@ const { lang = 'en' } = Astro.props;
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Core Laws</div>
                 <h2 class="article-h2">The Five Core Laws of Square Roots</h2>
-                <p>Once you know the basics, these five rules make working with square roots much faster.</p>
+                <p>Once you know the basics, these five rules make working with square roots much faster. They also apply to <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">cube roots</a> and <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth roots</a> with slight modifications — master them here and you'll recognize the pattern everywhere.</p>
                 <div class="law-cards">
                     <div class="law-card">
                         <div class="law-header"><div class="law-number">1</div><div><div class="law-label">Product Rule</div><div class="law-subtitle">Split products inside radicals</div></div></div>
                         <div class="math-block"><span class="math-formula">√(a × b) = √a × √b</span></div>
-                        <p class="law-example">√4 × √9 = 2 × 3 = 6, and √(4×9) = √36 = 6. Same answer either way.</p>
+                        <p class="law-example"><strong>Example:</strong> √4 × √9 = 2 × 3 = 6, and √(4×9) = √36 = 6. Same answer either way.</p>
+                        <p class="law-explanation">The product rule lets you break a complicated square root into simpler pieces. Instead of finding √36 directly, you can split 36 into 4 × 9, take each root separately, and multiply the results. This is the foundation of simplifying radicals — whenever you see a number under the radical sign, look for perfect square factors you can pull out. It's how our calculator simplifies expressions like √72 into 6√2.</p>
                     </div>
                     <div class="law-card">
                         <div class="law-header"><div class="law-number">2</div><div><div class="law-label">Quotient Rule</div><div class="law-subtitle">Split quotients inside radicals</div></div></div>
                         <div class="math-block"><span class="math-formula">√(a ÷ b) = √a ÷ √b</span></div>
-                        <p class="law-example">√16 ÷ √4 = 4 ÷ 2 = 2, and √(16÷4) = √4 = 2.</p>
+                        <p class="law-example"><strong>Example:</strong> √16 ÷ √4 = 4 ÷ 2 = 2, and √(16÷4) = √4 = 2.</p>
+                        <p class="law-explanation">The quotient rule is the product rule's mirror image — it lets you take the square root of a fraction by rooting the top and bottom separately. This is particularly useful in algebra when you need to simplify expressions like √(50/2). Instead of dividing first, you can write √50 ÷ √2, simplify √50 to 5√2, and then cancel √2 to get 5.</p>
                     </div>
                     <div class="law-card">
-                        <div class="law-header"><div class="law-number">3</div><div><div class="law-label">Power Rule</div><div class="law-subtitle">Squaring and square root cancel</div></div></div>
-                        <div class="math-block"><span class="math-formula">√(a²) = a (for a positive number)</span></div>
-                        <p class="law-example">Squaring and taking the square root undo each other.</p>
+                        <div class="law-header"><div class="law-number">3</div><div><div class="law-label">Power Rule</div><div class="law-subtitle">Squaring and square root cancel each other</div></div></div>
+                        <div class="math-block"><span class="math-formula">√(a²) = a (for a ≥ 0)</span></div>
+                        <p class="law-example"><strong>Example:</strong> √(7²) = √49 = 7. The square and the square root undo each other.</p>
+                        <p class="law-explanation">This is the most intuitive law: squaring a number and then taking its square root brings you right back to where you started. Think of them as mathematical inverses — one builds a square, the other finds the side length. This relationship is why the racine carrée calculator can "reverse" any squaring operation. Note that for negative inputs, √(a²) gives |a| (the absolute value), because a square root always returns the non-negative result.</p>
                     </div>
                     <div class="law-card">
-                        <div class="law-header"><div class="law-number">4</div><div><div class="law-label">Multiplying Two Square Roots</div><div class="law-subtitle">Root times itself equals the radicand</div></div></div>
+                        <div class="law-header"><div class="law-number">4</div><div><div class="law-label">Self-Multiplication Rule</div><div class="law-subtitle">A root times itself equals the radicand</div></div></div>
                         <div class="math-block"><span class="math-formula">√a × √a = a</span></div>
-                        <p class="law-example">√7 × √7 = 7.</p>
+                        <p class="law-example"><strong>Example:</strong> √7 × √7 = 7. √13 × √13 = 13. It always works.</p>
+                        <p class="law-explanation">This rule is really just the definition of a square root stated in reverse: if √a is "the number that multiplied by itself gives a," then multiplying √a by √a must give you a. It's especially handy for rationalizing denominators — when you have 1/√5, you multiply top and bottom by √5 to get √5/5, eliminating the radical from the denominator. You'll see this trick constantly in algebra and precalculus.</p>
                     </div>
-                    <div class="law-card law-card--full">
-                        <div class="law-header"><div class="law-number">5</div><div><div class="law-label">Square Root of 1 and 0</div><div class="law-subtitle">These never change</div></div></div>
-                        <div class="math-block"><span class="math-formula">√1 = 1, &nbsp;and&nbsp; √0 = 0</span></div>
-                        <p class="law-example">These two never change no matter what.</p>
+                    <div class="law-card">
+                        <div class="law-header"><div class="law-number">5</div><div><div class="law-label">Identity Values</div><div class="law-subtitle">The square roots of 0 and 1 never change</div></div></div>
+                        <div class="math-block"><span class="math-formula">√1 = 1 &nbsp;and&nbsp; √0 = 0</span></div>
+                        <p class="law-example"><strong>Example:</strong> No matter what context — algebra, physics, finance — √1 is always 1 and √0 is always 0.</p>
+                        <p class="law-explanation">These are the two "fixed point" values for the square root function. √1 = 1 because 1 × 1 = 1, and √0 = 0 because 0 × 0 = 0. While they look trivial, they're important in proofs and as boundary conditions. For instance, when checking whether a formula works at its extremes, plugging in 0 or 1 should always give a sensible answer — and these identities guarantee that it does.</p>
                     </div>
                 </div>
             </div>
@@ -157,8 +162,8 @@ const { lang = 'en' } = Astro.props;
                 <h2 class="article-h2">How to Calculate Racine Carrée — Different Methods</h2>
                 <p>There's more than one way to find a square root. Here are the four you're most likely to see in school or at work.</p>
 
-                <h3 class="article-h3">1. Using This Calculator (Fastest)</h3>
-                <p>Type the number in, click calculate, done. This is the method almost everyone reaches for once they know it, especially with decimals or large numbers.</p>
+                <h3 class="article-h3">1. Using This Racine Carrée Calculator (Fastest)</h3>
+                <p>Type the number in, click calculate, done. This is the method almost everyone reaches for once they know it, especially with decimals or large numbers. You can also use our <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">cube root calculator</a> for third-degree roots or the <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth root calculator</a> for any custom degree.</p>
 
                 <h3 class="article-h3">2. Prime Factorization Method (Best for Perfect Squares)</h3>
                 <p>This method works by breaking a number down into its prime factors and pairing them up.</p>
@@ -249,12 +254,10 @@ const { lang = 'en' } = Astro.props;
                         <tbody>
                             <tr><td>Symbol</td><td>√</td><td>∛</td></tr>
                             <tr><td>Multiplications</td><td>2 (x × x)</td><td>3 (x × x × x)</td></tr>
-                            <tr><td>Example</td><td>√25 = 5 (5×5=25)</td><td>∛27 = 3 (3×3×3=27)</td></tr>
-                            <tr><td>Negative numbers</td><td>No real answer (needs "i")</td><td>Real answer exists (∛-27 = -3)</td></tr>
+                            <tr><td>Example</td><td>√25 = 5</td><td>∛27 = 3</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p>If you need to work out a cube root specifically, our <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">Racine Cubique Calculator</a> walks through it in full.</p>
             </div>
         </section>
 
@@ -263,37 +266,45 @@ const { lang = 'en' } = Astro.props;
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span> Applications</div>
                 <h2 class="article-h2">Real-Life Applications of Racine Carrée</h2>
-                <p>Square roots aren't just a classroom exercise — they show up in plenty of everyday and professional situations:</p>
+                <p>Square roots are foundational in modern life. Here are five areas where understanding them gives you a real advantage:</p>
                 <div class="applications-grid">
                     <div class="app-card">
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="15" y1="22" x2="15" y2="2"/><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg></div>
-                        <h4>Construction & Architecture</h4>
-                        <p>Finding the diagonal length of a square room or plot of land uses the Pythagorean theorem, which relies on square roots.</p>
+                        <div class="app-card-content">
+                            <h4>Construction &amp; Architecture</h4>
+                            <p>Used in the Pythagorean theorem (√(a² + b²)) to check if corners are perfectly square and to measure structural rafters.</p>
+                        </div>
                     </div>
                     <div class="app-card">
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-                        <h4>Finance</h4>
-                        <p>Standard deviation, a key measure of risk in investing, is calculated using a square root.</p>
+                        <div class="app-card-content">
+                            <h4>Finance &amp; Investing</h4>
+                            <p>Standard deviation—the key metric for measuring portfolio risk—is the square root of variance.</p>
+                        </div>
                     </div>
                     <div class="app-card">
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4"/></svg></div>
-                        <h4>Physics</h4>
-                        <p>Formulas for speed, energy, and gravity often involve square roots.</p>
+                        <div class="app-card-content">
+                            <h4>Physics &amp; Engineering</h4>
+                            <p>Found in critical formulas for velocity, kinetic energy, and wave speed across all STEM disciplines.</p>
+                        </div>
                     </div>
                     <div class="app-card">
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-                        <h4>Computer Science</h4>
-                        <p>Distance calculations in graphics and games (how far apart two points are on a screen) use the square root formula.</p>
+                        <div class="app-card-content">
+                            <h4>Computer Science</h4>
+                            <p>Essential for calculating Euclidean distances in game physics, machine learning, and image processing.</p>
+                        </div>
                     </div>
                     <div class="app-card">
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-                        <h4>Everyday Measuring</h4>
-                        <p>If you know the area of a square patch of land or fabric, the square root tells you the length of each side.</p>
+                        <div class="app-card-content">
+                            <h4>Everyday Measuring</h4>
+                            <p>Used to find side lengths when you already know the area of a square lot, carpet, or garden patch.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-
         </section>
 
         <!-- Section: Simplification Table -->
@@ -328,62 +339,113 @@ const { lang = 'en' } = Astro.props;
         <section class="article-section article-section--alt" id="reference-tables">
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span> Reference Tables</div>
-                <h2 class="article-h2">Standard Reference Table — Square Roots 1 to 100</h2>
-                <p>Bookmark this section for quick lookups. Values are rounded to three decimal places where the number isn't a perfect square.</p>
-
-                <h3 class="article-h3">1–25</h3>
+                <h2 class="article-h2">Complete Reference Table — Square Roots 1 to 100</h2>
+                <p>Bookmark this section for quick lookups. Perfect squares are highlighted in bold. Values are rounded to three decimal places. For <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">cube root reference tables</a>, see our dedicated racine cubique page.</p>
                 <div class="table-scroll-wrapper table-scroll-wrapper--large">
-                    <div class="table-scroll-hint"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8L22 12L18 16"/><path d="M6 8L2 12L6 16"/><line x1="2" y1="12" x2="22" y2="12"/></svg> Scroll →</div>
-                    <table class="data-table data-table--reference">
-                        <thead><tr><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th></tr></thead>
+                    <div class="table-scroll-hint"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M18 13l-6 6-6-6"/></svg> Scroll to see all 100 values ↓</div>
+                    <table class="data-table data-table--reference data-table--vertical">
+                        <thead><tr><th>Number (n)</th><th>Square Root (√n)</th><th>Type</th></tr></thead>
                         <tbody>
-                            <tr><td class="td-bold">1</td><td class="td-bold">1.000</td><td>6</td><td>2.449</td><td>11</td><td>3.317</td><td class="td-bold">16</td><td class="td-bold">4.000</td><td>21</td><td>4.583</td></tr>
-                            <tr><td>2</td><td>1.414</td><td>7</td><td>2.646</td><td>12</td><td>3.464</td><td>17</td><td>4.123</td><td>22</td><td>4.690</td></tr>
-                            <tr><td>3</td><td>1.732</td><td>8</td><td>2.828</td><td>13</td><td>3.606</td><td>18</td><td>4.243</td><td>23</td><td>4.796</td></tr>
-                            <tr><td class="td-bold">4</td><td class="td-bold">2.000</td><td class="td-bold">9</td><td class="td-bold">3.000</td><td>14</td><td>3.742</td><td>19</td><td>4.359</td><td>24</td><td>4.899</td></tr>
-                            <tr><td>5</td><td>2.236</td><td>10</td><td>3.162</td><td>15</td><td>3.873</td><td>20</td><td>4.472</td><td class="td-bold">25</td><td class="td-bold">5.000</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3 class="article-h3">26–50</h3>
-                <div class="table-scroll-wrapper table-scroll-wrapper--large">
-                    <table class="data-table data-table--reference">
-                        <thead><tr><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th></tr></thead>
-                        <tbody>
-                            <tr><td>26</td><td>5.099</td><td>31</td><td>5.568</td><td class="td-bold">36</td><td class="td-bold">6.000</td><td>41</td><td>6.403</td><td>46</td><td>6.782</td></tr>
-                            <tr><td>27</td><td>5.196</td><td>32</td><td>5.657</td><td>37</td><td>6.083</td><td>42</td><td>6.481</td><td>47</td><td>6.856</td></tr>
-                            <tr><td>28</td><td>5.292</td><td>33</td><td>5.745</td><td>38</td><td>6.164</td><td>43</td><td>6.557</td><td>48</td><td>6.928</td></tr>
-                            <tr><td>29</td><td>5.385</td><td>34</td><td>5.831</td><td>39</td><td>6.245</td><td>44</td><td>6.633</td><td class="td-bold">49</td><td class="td-bold">7.000</td></tr>
-                            <tr><td>30</td><td>5.477</td><td>35</td><td>5.916</td><td>40</td><td>6.325</td><td>45</td><td>6.708</td><td>50</td><td>7.071</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3 class="article-h3">51–75</h3>
-                <div class="table-scroll-wrapper table-scroll-wrapper--large">
-                    <table class="data-table data-table--reference">
-                        <thead><tr><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th></tr></thead>
-                        <tbody>
-                            <tr><td>51</td><td>7.141</td><td>56</td><td>7.483</td><td>61</td><td>7.810</td><td>66</td><td>8.124</td><td>71</td><td>8.426</td></tr>
-                            <tr><td>52</td><td>7.211</td><td>57</td><td>7.550</td><td>62</td><td>7.874</td><td>67</td><td>8.185</td><td>72</td><td>8.485</td></tr>
-                            <tr><td>53</td><td>7.280</td><td>58</td><td>7.616</td><td>63</td><td>7.937</td><td>68</td><td>8.246</td><td>73</td><td>8.544</td></tr>
-                            <tr><td>54</td><td>7.348</td><td>59</td><td>7.681</td><td class="td-bold">64</td><td class="td-bold">8.000</td><td>69</td><td>8.307</td><td>74</td><td>8.602</td></tr>
-                            <tr><td>55</td><td>7.416</td><td>60</td><td>7.746</td><td>65</td><td>8.062</td><td>70</td><td>8.367</td><td>75</td><td>8.660</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3 class="article-h3">76–100</h3>
-                <div class="table-scroll-wrapper table-scroll-wrapper--large">
-                    <table class="data-table data-table--reference">
-                        <thead><tr><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th><th>n</th><th>√n</th></tr></thead>
-                        <tbody>
-                            <tr><td>76</td><td>8.718</td><td class="td-bold">81</td><td class="td-bold">9.000</td><td>86</td><td>9.274</td><td>91</td><td>9.539</td><td>96</td><td>9.798</td></tr>
-                            <tr><td>77</td><td>8.775</td><td>82</td><td>9.055</td><td>87</td><td>9.327</td><td>92</td><td>9.592</td><td>97</td><td>9.849</td></tr>
-                            <tr><td>78</td><td>8.832</td><td>83</td><td>9.110</td><td>88</td><td>9.381</td><td>93</td><td>9.644</td><td>98</td><td>9.899</td></tr>
-                            <tr><td>79</td><td>8.888</td><td>84</td><td>9.165</td><td>89</td><td>9.434</td><td>94</td><td>9.695</td><td>99</td><td>9.950</td></tr>
-                            <tr><td>80</td><td>8.944</td><td>85</td><td>9.220</td><td>90</td><td>9.487</td><td>95</td><td>9.747</td><td class="td-bold">100</td><td class="td-bold">10.000</td></tr>
+                            <tr class="tr-perfect"><td>1</td><td>1.000</td><td><span class="badge-perfect">Perfect Square</span></td></tr>
+                            <tr><td>2</td><td>1.414</td><td>Irrational</td></tr>
+                            <tr><td>3</td><td>1.732</td><td>Irrational</td></tr>
+                            <tr class="tr-perfect"><td>4</td><td>2.000</td><td><span class="badge-perfect">Perfect Square</span></td></tr>
+                            <tr><td>5</td><td>2.236</td><td>Irrational</td></tr>
+                            <tr><td>6</td><td>2.449</td><td>Irrational</td></tr>
+                            <tr><td>7</td><td>2.646</td><td>Irrational</td></tr>
+                            <tr><td>8</td><td>2.828</td><td>Irrational</td></tr>
+                            <tr class="tr-perfect"><td>9</td><td>3.000</td><td><span class="badge-perfect">Perfect Square</span></td></tr>
+                            <tr><td>10</td><td>3.162</td><td>Irrational</td></tr>
+                            <tr><td>11</td><td>3.317</td><td>Irrational</td></tr>
+                            <tr><td>12</td><td>3.464</td><td>Irrational</td></tr>
+                            <tr><td>13</td><td>3.606</td><td>Irrational</td></tr>
+                            <tr><td>14</td><td>3.742</td><td>Irrational</td></tr>
+                            <tr><td>15</td><td>3.873</td><td>Irrational</td></tr>
+                            <tr class="tr-perfect"><td>16</td><td>4.000</td><td><span class="badge-perfect">Perfect Square</span></td></tr>
+                            <tr><td>17</td><td>4.123</td><td>Irrational</td></tr>
+                            <tr><td>18</td><td>4.243</td><td>Irrational</td></tr>
+                            <tr><td>19</td><td>4.359</td><td>Irrational</td></tr>
+                            <tr><td>20</td><td>4.472</td><td>Irrational</td></tr>
+                            <tr><td>21</td><td>4.583</td><td>Irrational</td></tr>
+                            <tr><td>22</td><td>4.690</td><td>Irrational</td></tr>
+                            <tr><td>23</td><td>4.796</td><td>Irrational</td></tr>
+                            <tr><td>24</td><td>4.899</td><td>Irrational</td></tr>
+                            <tr class="tr-perfect"><td>25</td><td>5.000</td><td><span class="badge-perfect">Perfect Square</span></td></tr>
+                            <tr><td>26</td><td>5.099</td><td>Irrational</td></tr>
+                            <tr><td>27</td><td>5.196</td><td>Irrational</td></tr>
+                            <tr><td>28</td><td>5.292</td><td>Irrational</td></tr>
+                            <tr><td>29</td><td>5.385</td><td>Irrational</td></tr>
+                            <tr><td>30</td><td>5.477</td><td>Irrational</td></tr>
+                            <tr><td>31</td><td>5.568</td><td>Irrational</td></tr>
+                            <tr><td>32</td><td>5.657</td><td>Irrational</td></tr>
+                            <tr><td>33</td><td>5.745</td><td>Irrational</td></tr>
+                            <tr><td>34</td><td>5.831</td><td>Irrational</td></tr>
+                            <tr><td>35</td><td>5.916</td><td>Irrational</td></tr>
+                            <tr class="tr-perfect"><td>36</td><td>6.000</td><td><span class="badge-perfect">Perfect Square</span></td></tr>
+                            <tr><td>37</td><td>6.083</td><td>Irrational</td></tr>
+                            <tr><td>38</td><td>6.164</td><td>Irrational</td></tr>
+                            <tr><td>39</td><td>6.245</td><td>Irrational</td></tr>
+                            <tr><td>40</td><td>6.325</td><td>Irrational</td></tr>
+                            <tr><td>41</td><td>6.403</td><td>Irrational</td></tr>
+                            <tr><td>42</td><td>6.481</td><td>Irrational</td></tr>
+                            <tr><td>43</td><td>6.557</td><td>Irrational</td></tr>
+                            <tr><td>44</td><td>6.633</td><td>Irrational</td></tr>
+                            <tr><td>45</td><td>6.708</td><td>Irrational</td></tr>
+                            <tr><td>46</td><td>6.782</td><td>Irrational</td></tr>
+                            <tr><td>47</td><td>6.856</td><td>Irrational</td></tr>
+                            <tr><td>48</td><td>6.928</td><td>Irrational</td></tr>
+                            <tr class="tr-perfect"><td>49</td><td>7.000</td><td><span class="badge-perfect">Perfect Square</span></td></tr>
+                            <tr><td>50</td><td>7.071</td><td>Irrational</td></tr>
+                            <tr><td>51</td><td>7.141</td><td>Irrational</td></tr>
+                            <tr><td>52</td><td>7.211</td><td>Irrational</td></tr>
+                            <tr><td>53</td><td>7.280</td><td>Irrational</td></tr>
+                            <tr><td>54</td><td>7.348</td><td>Irrational</td></tr>
+                            <tr><td>55</td><td>7.416</td><td>Irrational</td></tr>
+                            <tr><td>56</td><td>7.483</td><td>Irrational</td></tr>
+                            <tr><td>57</td><td>7.550</td><td>Irrational</td></tr>
+                            <tr><td>58</td><td>7.616</td><td>Irrational</td></tr>
+                            <tr><td>59</td><td>7.681</td><td>Irrational</td></tr>
+                            <tr><td>60</td><td>7.746</td><td>Irrational</td></tr>
+                            <tr><td>61</td><td>7.810</td><td>Irrational</td></tr>
+                            <tr><td>62</td><td>7.874</td><td>Irrational</td></tr>
+                            <tr><td>63</td><td>7.937</td><td>Irrational</td></tr>
+                            <tr class="tr-perfect"><td>64</td><td>8.000</td><td><span class="badge-perfect">Perfect Square</span></td></tr>
+                            <tr><td>65</td><td>8.062</td><td>Irrational</td></tr>
+                            <tr><td>66</td><td>8.124</td><td>Irrational</td></tr>
+                            <tr><td>67</td><td>8.185</td><td>Irrational</td></tr>
+                            <tr><td>68</td><td>8.246</td><td>Irrational</td></tr>
+                            <tr><td>69</td><td>8.307</td><td>Irrational</td></tr>
+                            <tr><td>70</td><td>8.367</td><td>Irrational</td></tr>
+                            <tr><td>71</td><td>8.426</td><td>Irrational</td></tr>
+                            <tr><td>72</td><td>8.485</td><td>Irrational</td></tr>
+                            <tr><td>73</td><td>8.544</td><td>Irrational</td></tr>
+                            <tr><td>74</td><td>8.602</td><td>Irrational</td></tr>
+                            <tr><td>75</td><td>8.660</td><td>Irrational</td></tr>
+                            <tr><td>76</td><td>8.718</td><td>Irrational</td></tr>
+                            <tr><td>77</td><td>8.775</td><td>Irrational</td></tr>
+                            <tr><td>78</td><td>8.832</td><td>Irrational</td></tr>
+                            <tr><td>79</td><td>8.888</td><td>Irrational</td></tr>
+                            <tr><td>80</td><td>8.944</td><td>Irrational</td></tr>
+                            <tr class="tr-perfect"><td>81</td><td>9.000</td><td><span class="badge-perfect">Perfect Square</span></td></tr>
+                            <tr><td>82</td><td>9.055</td><td>Irrational</td></tr>
+                            <tr><td>83</td><td>9.110</td><td>Irrational</td></tr>
+                            <tr><td>84</td><td>9.165</td><td>Irrational</td></tr>
+                            <tr><td>85</td><td>9.220</td><td>Irrational</td></tr>
+                            <tr><td>86</td><td>9.274</td><td>Irrational</td></tr>
+                            <tr><td>87</td><td>9.327</td><td>Irrational</td></tr>
+                            <tr><td>88</td><td>9.381</td><td>Irrational</td></tr>
+                            <tr><td>89</td><td>9.434</td><td>Irrational</td></tr>
+                            <tr><td>90</td><td>9.487</td><td>Irrational</td></tr>
+                            <tr><td>91</td><td>9.539</td><td>Irrational</td></tr>
+                            <tr><td>92</td><td>9.592</td><td>Irrational</td></tr>
+                            <tr><td>93</td><td>9.644</td><td>Irrational</td></tr>
+                            <tr><td>94</td><td>9.695</td><td>Irrational</td></tr>
+                            <tr><td>95</td><td>9.747</td><td>Irrational</td></tr>
+                            <tr><td>96</td><td>9.798</td><td>Irrational</td></tr>
+                            <tr><td>97</td><td>9.849</td><td>Irrational</td></tr>
+                            <tr><td>98</td><td>9.899</td><td>Irrational</td></tr>
+                            <tr><td>99</td><td>9.950</td><td>Irrational</td></tr>
+                            <tr class="tr-perfect"><td>100</td><td>10.000</td><td><span class="badge-perfect">Perfect Square</span></td></tr>
                         </tbody>
                     </table>
                 </div>

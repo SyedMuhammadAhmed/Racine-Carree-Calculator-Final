@@ -148,13 +148,8 @@ const includedLanguages = LOCALES.join(',');
       updateDocumentState(locale);
 
       // If page is already statically rendered in the requested locale, do not run Google Translate
-      var currentPathLang = getPathLocale();
-      if (locale === defaultLocale || currentPathLang === locale || pageLocale === locale) {
-        if (locale === defaultLocale) {
-          localStorage.removeItem('preferredLocale');
-        } else {
-          localStorage.setItem('preferredLocale', locale);
-        }
+      if (locale === defaultLocale) {
+        localStorage.removeItem('preferredLocale');
         clearTranslateCookie();
         return;
       }

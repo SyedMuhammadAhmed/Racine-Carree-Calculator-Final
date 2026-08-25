@@ -53,11 +53,15 @@
         "hint": "Masukkan darjah dan nombor, kemudian tekan Kira"
       }
     },
-    "fraction": [
-      null,
-      "Pecahan 1",
-      "Pecahan 2"
-    ],
+    "fraction": {
+      "1": "Pecahan 1",
+      "2": "Pecahan 2",
+      "title": "Kalkulator Pecahan",
+      "desc": "Tambah, tolak, darab, bahagi dan mudahkan pecahan",
+      "empty": {
+        "hint": "Masukkan kedua-dua pecahan dan tekan Kira"
+      }
+    },
     "power": {
       "title": "Kalkulator Kuasa",
       "desc": "Naikkan sebarang nombor kepada sebarang kuasa — segi empat sama, kiub dan banyak lagi",

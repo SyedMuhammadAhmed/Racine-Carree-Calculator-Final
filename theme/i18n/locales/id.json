@@ -53,11 +53,15 @@
         "hint": "Masukkan derajat dan angka, lalu tekan Hitung"
       }
     },
-    "fraction": [
-      null,
-      "pecahan 1",
-      "Pecahan 2"
-    ],
+    "fraction": {
+      "1": "pecahan 1",
+      "2": "Pecahan 2",
+      "title": "Kalkulator Pecahan",
+      "desc": "Menambah, mengurangi, mengalikan, membagi, dan menyederhanakan pecahan",
+      "empty": {
+        "hint": "Masukkan kedua pecahan dan tekan Hitung"
+      }
+    },
     "power": {
       "title": "Kalkulator Daya",
       "desc": "Naikkan angka berapa pun ke pangkat apa pun — kotak, kubus, dan lainnya",

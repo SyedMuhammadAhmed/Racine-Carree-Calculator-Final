@@ -80,31 +80,37 @@ const { lang = 'en' } = Astro.props;
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Core Laws</div>
                 <h2 class="article-h2">The Five Core Laws of Cube Roots</h2>
+                <p>These five rules mirror the <a href="/#section-laws" style="color: var(--primary-500); font-weight: 600;">square root laws</a> you may already know — but adapted for the third degree. Once you master them, the <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth root calculator</a> generalizes the same patterns even further.</p>
                 <div class="law-cards">
                     <div class="law-card">
                         <div class="law-header"><div class="law-number">1</div><div><div class="law-label">Product Rule</div><div class="law-subtitle">Split products inside radicals</div></div></div>
                         <div class="math-block"><span class="math-formula">∛(a × b) = ∛a × ∛b</span></div>
-                        <p class="law-example">∛8 × ∛27 = 2 × 3 = 6, and ∛(8×27) = ∛216 = 6. Same answer.</p>
+                        <p class="law-example"><strong>Example:</strong> ∛8 × ∛27 = 2 × 3 = 6, and ∛(8×27) = ∛216 = 6. Same answer.</p>
+                        <p class="law-explanation">Just like with <a href="/" style="color: var(--primary-500); font-weight: 600;">square roots (racine carrée)</a>, you can break a complicated cube root into simpler pieces. Instead of computing ∛216 directly, factor it as 8 × 27, compute each cube root separately, and multiply. This is the go-to technique for simplifying expressions like ∛(24) = ∛(8×3) = 2∛3.</p>
                     </div>
                     <div class="law-card">
                         <div class="law-header"><div class="law-number">2</div><div><div class="law-label">Quotient Rule</div><div class="law-subtitle">Split quotients inside radicals</div></div></div>
                         <div class="math-block"><span class="math-formula">∛(a ÷ b) = ∛a ÷ ∛b</span></div>
-                        <p class="law-example">∛64 ÷ ∛8 = 4 ÷ 2 = 2, and ∛(64÷8) = ∛8 = 2.</p>
+                        <p class="law-example"><strong>Example:</strong> ∛64 ÷ ∛8 = 4 ÷ 2 = 2, and ∛(64÷8) = ∛8 = 2.</p>
+                        <p class="law-explanation">The mirror of the product rule — take the cube root of a fraction by rooting the numerator and denominator separately. Particularly useful when simplifying algebraic expressions like ∛(125/8) = ∛125 ÷ ∛8 = 5/2.</p>
                     </div>
                     <div class="law-card">
-                        <div class="law-header"><div class="law-number">3</div><div><div class="law-label">Power Rule</div><div class="law-subtitle">Cubing and cube root cancel</div></div></div>
+                        <div class="law-header"><div class="law-number">3</div><div><div class="law-label">Power Rule</div><div class="law-subtitle">Cubing and cube root cancel each other</div></div></div>
                         <div class="math-block"><span class="math-formula">∛(a³) = a</span></div>
-                        <p class="law-example">Cubing a number and taking its cube root undo each other, for any real number — positive or negative.</p>
+                        <p class="law-example"><strong>Example:</strong> ∛(5³) = ∛125 = 5. Cubing and cube-rooting undo each other.</p>
+                        <p class="law-explanation">Unlike square roots, which only return non-negative values, the power rule for cube roots works for <em>all</em> real numbers — positive, negative, and zero. ∛((-3)³) = ∛(-27) = -3. This is a key difference from the <a href="/" style="color: var(--primary-500); font-weight: 600;">racine carrée</a> (which needs absolute value for negatives).</p>
                     </div>
                     <div class="law-card">
-                        <div class="law-header"><div class="law-number">4</div><div><div class="law-label">Cubing a Cube Root</div><div class="law-subtitle">Root cubed equals the radicand</div></div></div>
+                        <div class="law-header"><div class="law-number">4</div><div><div class="law-label">Self-Cube Rule</div><div class="law-subtitle">Cubing a cube root returns the radicand</div></div></div>
                         <div class="math-block"><span class="math-formula">(∛a)³ = a</span></div>
-                        <p class="law-example">(∛5)³ = 5.</p>
+                        <p class="law-example"><strong>Example:</strong> (∛5)³ = 5. (∛12)³ = 12. It always works.</p>
+                        <p class="law-explanation">This is the definition of cube root stated in reverse. If ∛a is "the number that, when cubed, gives a," then cubing ∛a must give you a back. This identity is used to rationalize cube-root denominators and appears in solving cubic equations.</p>
                     </div>
-                    <div class="law-card law-card--full">
-                        <div class="law-header"><div class="law-number">5</div><div><div class="law-label">Cube Root of 1 and 0</div><div class="law-subtitle">These never change</div></div></div>
-                        <div class="math-block"><span class="math-formula">∛1 = 1, &nbsp;and&nbsp; ∛0 = 0</span></div>
-                        <p class="law-example">These never change.</p>
+                    <div class="law-card">
+                        <div class="law-header"><div class="law-number">5</div><div><div class="law-label">Identity Values</div><div class="law-subtitle">The cube roots of 0 and 1 never change</div></div></div>
+                        <div class="math-block"><span class="math-formula">∛1 = 1 &nbsp;and&nbsp; ∛0 = 0</span></div>
+                        <p class="law-example"><strong>Example:</strong> No matter the context, ∛1 is always 1 and ∛0 is always 0.</p>
+                        <p class="law-explanation">These are the fixed points of the cube root function. ∛1 = 1 because 1³ = 1, and ∛0 = 0 because 0³ = 0. They serve as boundary conditions in proofs and as sanity checks for formulas — plug in 0 or 1, and you should always get a sensible answer.</p>
                     </div>
                 </div>
             </div>
@@ -116,8 +122,8 @@ const { lang = 'en' } = Astro.props;
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></span> Methods</div>
                 <h2 class="article-h2">How to Calculate Racine Cubique — Different Methods</h2>
 
-                <h3 class="article-h3">1. Using This Calculator (Fastest)</h3>
-                <p>Type in your number, click Calculate, done. This is the method most people reach for once they know it exists — especially for decimals or large numbers where hand methods get slow.</p>
+                <h3 class="article-h3">1. Using This Racine Cubique Calculator (Fastest)</h3>
+                <p>Type in your number, click Calculate, done. This is the method most people reach for once they know it exists — especially for decimals or large numbers where hand methods get slow. You can also use our <a href="/" style="color: var(--primary-500); font-weight: 600;">square root calculator</a> for second-degree roots or the <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth root calculator</a> for any custom degree.</p>
 
                 <h3 class="article-h3">2. Prime Factorization Method (Best for Perfect Cubes)</h3>
                 <p>This method breaks a number into its prime factors and groups them in sets of three.</p>
@@ -217,31 +223,42 @@ const { lang = 'en' } = Astro.props;
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span> Applications</div>
                 <h2 class="article-h2">Real-Life Applications of Racine Cubique</h2>
+                <p>While <a href="/" style="color: var(--primary-500); font-weight: 600;">square roots (racine carrée)</a> deal with two-dimensional problems, cube roots shine whenever the problem involves three dimensions:</p>
                 <div class="applications-grid">
                     <div class="app-card">
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="15" y1="22" x2="15" y2="2"/><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg></div>
-                        <h4>Architecture & 3D Design</h4>
-                        <p>If you know the volume of a cube-shaped space, the cube root gives you the length of each side.</p>
+                        <div class="app-card-content">
+                            <h4>Architecture &amp; 3D Design</h4>
+                            <p>Architects and designers use cube roots to find the edge length of cubic spaces from a known volume. If a client wants a 64 m³ storage room in a cube shape, ∛64 = 4 m per side. This applies to water tanks, HVAC ducts, and any three-dimensional space planning.</p>
+                        </div>
                     </div>
                     <div class="app-card">
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-                        <h4>Shipping & Packaging</h4>
-                        <p>Companies use cube roots to figure out box dimensions from a target volume.</p>
+                        <div class="app-card-content">
+                            <h4>Shipping &amp; Packaging</h4>
+                            <p>Logistics companies calculate box dimensions from a target volume using cube roots. If a parcel must fit exactly 1,000 cm³, the cube root tells them each side needs to be ∛1000 = 10 cm. This feeds directly into shipping cost formulas that use "dimensional weight."</p>
+                        </div>
                     </div>
                     <div class="app-card">
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4"/></svg></div>
-                        <h4>Physics & Engineering</h4>
-                        <p>Formulas involving volume, density, and scaling in three dimensions often rely on cube roots.</p>
+                        <div class="app-card-content">
+                            <h4>Physics &amp; Engineering</h4>
+                            <p>Volume-related formulas in fluid dynamics, thermodynamics, and materials science frequently involve cube roots. For instance, the radius of a sphere from its volume (r = ∛(3V/4π)) is a cube root operation. Scaling laws also use cube roots — doubling the volume of a structure doesn't double its dimensions.</p>
+                        </div>
                     </div>
                     <div class="app-card">
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-                        <h4>Finance</h4>
-                        <p>Compound growth rates over time can be calculated using cube roots when working backward from a total return.</p>
+                        <div class="app-card-content">
+                            <h4>Finance &amp; Growth Rates</h4>
+                            <p>When you know a total return over three years and want the annual compound growth rate, you need a cube root. If an investment grows from $1,000 to $1,331 in three years, the annual rate is ∛(1.331) - 1 ≈ 10%. This concept extends to <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth roots for longer periods</a>.</p>
+                        </div>
                     </div>
                     <div class="app-card">
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-                        <h4>Everyday Measuring</h4>
-                        <p>If you know how much a cube-shaped container holds, the cube root tells you its dimensions without needing to measure by hand.</p>
+                        <div class="app-card-content">
+                            <h4>Everyday Measuring &amp; DIY</h4>
+                            <p>If you know how much a cube-shaped container holds — say, a 27-liter fish tank — the cube root tells you the dimensions: ∛27 = 3, so each edge is roughly 30 cm. No ruler needed, just the racine cubique.</p>
+                        </div>
                     </div>
                 </div>
             </div>

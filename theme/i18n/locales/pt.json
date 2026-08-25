@@ -53,11 +53,15 @@
         "hint": "Insira o grau e o número e pressione Calcular"
       }
     },
-    "fraction": [
-      null,
-      "Fração 1",
-      "Fração 2"
-    ],
+    "fraction": {
+      "1": "Fração 1",
+      "2": "Fração 2",
+      "title": "Calculadora de frações",
+      "desc": "Adicionar, subtrair, multiplicar, dividir e simplificar frações",
+      "empty": {
+        "hint": "Insira ambas as frações e pressione Calcular"
+      }
+    },
     "power": {
       "title": "Calculadora de potência",
       "desc": "Eleve qualquer número a qualquer potência — quadrados, cubos e muito mais",

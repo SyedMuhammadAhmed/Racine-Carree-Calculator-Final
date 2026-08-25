@@ -2168,6 +2168,19 @@ body::before {
 
 .table-scroll-wrapper--large {
     max-height: 520px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+}
+
+.table-scroll-wrapper--large .table-scroll-hint {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+}
+
+.table-scroll-wrapper--large .data-table thead {
+    top: 0;
 }
 
 .table-scroll-hint {
@@ -2287,6 +2300,80 @@ body::before {
     color: var(--primary-500) !important;
 }
 
+/* Vertical reference table (1→100 in order) */
+.data-table--vertical {
+    font-size: 0.9rem;
+}
+
+.data-table--vertical td,
+.data-table--vertical th {
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.data-table--vertical th {
+    font-size: 0.74rem;
+}
+
+.data-table--vertical td:first-child {
+    font-weight: 700;
+    color: var(--text-primary);
+    min-width: 70px;
+}
+
+.data-table--vertical td:nth-child(2) {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--primary-600);
+    min-width: 120px;
+}
+
+[data-theme="dark"] .data-table--vertical td:nth-child(2) {
+    color: var(--primary-300);
+}
+
+.data-table--vertical td:nth-child(3) {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Perfect square row highlight */
+.tr-perfect td {
+    background: rgba(124, 58, 237, 0.05) !important;
+}
+
+.tr-perfect td:first-child {
+    color: var(--primary-600) !important;
+}
+
+[data-theme="dark"] .tr-perfect td {
+    background: rgba(139, 92, 246, 0.1) !important;
+}
+
+/* Perfect square badge */
+.badge-perfect {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    background: var(--primary-50);
+    color: var(--primary-600);
+    border: 1px solid var(--primary-100);
+    border-radius: var(--radius-full);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+[data-theme="dark"] .badge-perfect {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--primary-200);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
 .table-highlight td {
     background: rgba(34, 197, 94, 0.08) !important;
     font-weight: 700;
@@ -2390,10 +2477,11 @@ body::before {
    =================================================================== */
 
 .law-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: var(--space-xl);
     margin: var(--space-2xl) 0;
+    counter-reset: law-counter;
 }
 
 .law-card {
@@ -2401,7 +2489,7 @@ body::before {
     backdrop-filter: blur(12px);
     border: 1px solid var(--border-medium);
     border-radius: var(--radius-xl);
-    padding: var(--space-2xl) var(--space-xl);
+    padding: var(--space-2xl) var(--space-xl) var(--space-2xl) var(--space-2xl);
     box-shadow: 0 4px 24px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.6);
     transition: all var(--duration-slow) var(--ease-spring);
     position: relative;
@@ -2487,7 +2575,7 @@ body::before {
 }
 
 .law-card--full {
-    grid-column: 1 / -1;
+    /* no special width needed in single-column layout */
 }
 
 .law-card .math-block {
@@ -2527,6 +2615,13 @@ body::before {
 
 [data-theme="dark"] .law-example {
     background: var(--neutral-50);
+}
+
+.law-explanation {
+    font-size: 0.94rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin: var(--space-md) 0 0 0;
 }
 
 .law-example strong {
@@ -2629,8 +2724,8 @@ body::before {
    =================================================================== */
 
 .applications-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: var(--space-lg);
     margin: var(--space-xl) 0;
 }
@@ -2639,11 +2734,20 @@ body::before {
     background: var(--bg-surface);
     border: 1px solid var(--border-default);
     border-radius: var(--radius-xl);
-    padding: var(--space-xl);
+    padding: var(--space-xl) var(--space-2xl);
     box-shadow: var(--shadow-sm);
     transition: all var(--duration-normal) var(--ease-out);
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xl);
+}
+
+@media (max-width: 600px) {
+    .app-card {
+        flex-direction: column;
+    }
 }
 
 .app-card::before {
@@ -2670,7 +2774,27 @@ body::before {
 
 .app-icon {
     font-size: 2rem;
-    margin-bottom: var(--space-md);
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    background: var(--primary-50);
+    border: 1px solid var(--primary-100);
+    color: var(--primary-500);
+}
+
+[data-theme="dark"] .app-icon {
+    background: rgba(139, 92, 246, 0.12);
+    border-color: rgba(139, 92, 246, 0.25);
+    color: var(--primary-300);
+}
+
+.app-card-content {
+    flex: 1;
+    min-width: 0;
 }
 
 .app-card h4 {

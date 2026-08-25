@@ -53,11 +53,15 @@
         "hint": "Dereceyi ve sayıyı girin, ardından Hesapla'ya basın"
       }
     },
-    "fraction": [
-      null,
-      "Kesir 1",
-      "Kesir 2"
-    ],
+    "fraction": {
+      "1": "Kesir 1",
+      "2": "Kesir 2",
+      "title": "Kesir Hesaplayıcı",
+      "desc": "Kesirleri toplama, çıkarma, çarpma, bölme ve basitleştirme",
+      "empty": {
+        "hint": "Her iki kesri de girin ve Hesapla'ya basın"
+      }
+    },
     "power": {
       "title": "Güç Hesaplayıcı",
       "desc": "Herhangi bir sayıyı herhangi bir kuvvete yükseltin (kareler, küpler ve daha fazlası)",

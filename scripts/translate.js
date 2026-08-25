@@ -62,14 +62,12 @@ function unflattenObject(data) {
       let current = result;
       for (let i = 0; i < keys.length; i++) {
         const k = keys[i];
-        // If next key is numeric, initialize as an array. Otherwise, as an object.
-        const isNextInteger = i + 1 < keys.length && !isNaN(Number(keys[i + 1]));
 
         if (i === keys.length - 1) {
           current[k] = data[key];
         } else {
           if (current[k] === undefined) {
-            current[k] = isNextInteger ? [] : {};
+            current[k] = {};
           }
           current = current[k];
         }

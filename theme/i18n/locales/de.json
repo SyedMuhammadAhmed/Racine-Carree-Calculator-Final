@@ -53,11 +53,15 @@
         "hint": "Geben Sie Grad und Zahl ein und drücken Sie dann Berechnen"
       }
     },
-    "fraction": [
-      null,
-      "Fraktion 1",
-      "Fraktion 2"
-    ],
+    "fraction": {
+      "1": "Fraktion 1",
+      "2": "Fraktion 2",
+      "title": "Bruchrechner",
+      "desc": "Brüche addieren, subtrahieren, multiplizieren, dividieren und vereinfachen",
+      "empty": {
+        "hint": "Geben Sie beide Brüche ein und drücken Sie Berechnen"
+      }
+    },
     "power": {
       "title": "Leistungsrechner",
       "desc": "Erhöhen Sie eine beliebige Zahl auf eine beliebige Potenz – Quadrate, Würfel und mehr",
