@@ -72,8 +72,11 @@ const breadcrumbSchema = {
 
 <style>
   .breadcrumbs-nav {
-    padding: var(--space-sm) 0;
-    margin-bottom: var(--space-md);
+    position: relative;
+    z-index: 10;
+    padding-top: var(--space-md);
+    padding-bottom: var(--space-xs);
+    margin-bottom: var(--space-sm);
   }
 
   .breadcrumbs-container {
