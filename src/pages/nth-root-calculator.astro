@@ -9,8 +9,31 @@ import site from '../config/site.json';
 
 const lang = 'en';
 const title = 'Nth Root Calculator - Free Root Calculator for Any Index';
-const description = 'Calculate any root — 4th, 5th, 6th, or custom index — instantly with our free Nth Root Calculator. Get exact results, simplified forms, and step-by-step explanations.';
+const description = 'Calculate any root (4th, 5th, or custom index) instantly with our free Nth Root Calculator. Get exact results, simplified forms, and step-by-step work.';
 const canonicalUrl = `${site.siteUrl}/nth-root-calculator/`;
+
+const nthFaqs = [
+  {
+    question: "How do I use the Nth Root Calculator?",
+    answer: "Enter your number (radicand) in the first box and the desired root degree (index n) in the second box, then click Calculate for instant results."
+  },
+  {
+    question: "What is the index of a root?",
+    answer: "The index is the degree of the root (the number 'n' in ⁿ√x). An index of 2 represents a square root, 3 is a cube root, 4 is a fourth root, and so on."
+  },
+  {
+    question: "Can I find the nth root of a negative number?",
+    answer: "If the index n is odd (e.g., 3, 5, 7), a real negative solution exists. If the index n is even (e.g., 2, 4, 6), there is no real solution."
+  },
+  {
+    question: "Does the nth root calculator work for square and cube roots too?",
+    answer: "Yes! Set the index n = 2 for square roots or n = 3 for cube roots."
+  },
+  {
+    question: "Is this calculator free to use?",
+    answer: "Yes, the Nth Root Calculator is 100% free with no registration required."
+  }
+];
 ---
 
 <Layout
@@ -19,6 +42,7 @@ const canonicalUrl = `${site.siteUrl}/nth-root-calculator/`;
   lang={lang}
   dir={getHtmlDir(lang)}
   canonicalUrl={canonicalUrl}
+  faqItems={nthFaqs}
 >
   <Navbar lang={lang} />
   <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Nth Root Calculator', url: '/nth-root-calculator/' }]} />

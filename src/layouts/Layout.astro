@@ -3,31 +3,112 @@ import '../styles/global.css';
 import TranslationRuntime from '../components/TranslationRuntime.astro';
 import site from '../config/site.json';
 
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 interface Props {
 	title: string;
 	description: string;
 	lang?: string;
 	dir?: "ltr" | "rtl";
 	canonicalUrl?: string;
+	faqItems?: FAQItem[];
 }
 
-const { title, description, lang = "en", dir = "ltr", canonicalUrl } = Astro.props;
+const { title, description, lang = "en", dir = "ltr", canonicalUrl, faqItems } = Astro.props;
 
-// JSON-LD Schema Construction
-const schema = {
+// JSON-LD WebApplication / SoftwareApplication Schema
+const webAppSchema = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
+  "@type": ["SoftwareApplication", "WebApplication"],
   "name": site.siteName,
   "url": canonicalUrl || site.siteUrl,
   "description": description,
   "applicationCategory": "EducationalApplication",
+  "applicationSubCategory": "Math Calculator",
   "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Requires HTML5 web browser.",
+  "softwareVersion": "2.0.0",
+  "featureList": [
+    "Square root calculator with step-by-step breakdown",
+    "Cube root (racine cubique) solver for positive and negative numbers",
+    "Nth root calculator for any root degree index",
+    "Simplified radical expression converter",
+    "Interactive reference table 1 to 100"
+  ],
   "offers": {
     "@type": "Offer",
     "price": "0",
-    "priceCurrency": "USD"
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
   }
 };
+
+// JSON-LD MathSolver Schema for Google Rich Results
+const mathSolverSchema = {
+  "@context": "https://schema.org",
+  "@type": "MathSolver",
+  "name": `${title} — Step-by-Step Math Solver`,
+  "url": canonicalUrl || site.siteUrl,
+  "description": description,
+  "mathSolverType": "SquareRootSolver",
+  "educationalLevel": ["ElementarySchool", "MiddleSchool", "HighSchool", "College"]
+};
+
+// JSON-LD WebSite Schema
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": site.siteName,
+  "url": site.siteUrl,
+  "description": site.siteDescription
+};
+
+// JSON-LD HowTo Schema for Calculator Usage
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": `How to Calculate Roots with ${site.siteName}`,
+  "description": "Step-by-step guide to calculating square, cube, and nth roots instantly online.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Enter Your Number",
+      "text": "Type your number (radicand) into the calculator input box."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Click Calculate",
+      "text": "Press the Calculate button to process your mathematical expression."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "View Detailed Results",
+      "text": "Get the exact decimal result, simplified radical form, and step-by-step solution."
+    }
+  ]
+};
+
+// JSON-LD FAQPage Schema (if FAQ items exist)
+const faqPageSchema = faqItems && faqItems.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+} : null;
+
+const schemas = [webAppSchema, mathSolverSchema, webSiteSchema, howToSchema, faqPageSchema].filter(Boolean);
 ---
 
 <!DOCTYPE html>
@@ -52,7 +133,7 @@ const schema = {
     <title>{title}</title>
     
     <!-- JSON-LD Schema -->
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://translate.google.com">

@@ -9,8 +9,31 @@ import site from '../config/site.json';
 
 const lang = 'en';
 const title = 'Racine Cubique Calculator - Free Cube Root Calculator Online';
-const description = 'Calculate cube roots instantly with our free Racine Cubique Calculator. Get exact decimal results, simplified radical forms, and step-by-step explanations for any number.';
+const description = 'Calculate cube roots instantly with our free Racine Cubique Calculator. Get exact decimal results, simplified radicals, and step-by-step workings.';
 const canonicalUrl = `${site.siteUrl}/racine-cubique-calculator/`;
+
+const cbrtFaqs = [
+  {
+    question: "How do I use the Racine Cubique Calculator?",
+    answer: "Enter your number into the input field and click Calculate to receive instant exact decimal values, simplified cube roots, and step-by-step solutions."
+  },
+  {
+    question: "Can cube roots of negative numbers be calculated?",
+    answer: "Yes! Unlike square roots, cube roots of negative numbers have real solutions because multiplying three negative numbers results in a negative value (e.g., ∛(-27) = -3)."
+  },
+  {
+    question: "What does \"racine cubique\" mean?",
+    answer: "Racine cubique is the French term for cube root — finding a value that, when multiplied by itself three times, produces the given number."
+  },
+  {
+    question: "What is the difference between a cube root and a square root?",
+    answer: "A square root asks what number multiplied 2 times equals x (index 2). A cube root asks what number multiplied 3 times equals x (index 3)."
+  },
+  {
+    question: "Is this calculator free to use?",
+    answer: "Yes, our Racine Cubique Calculator is 100% free with unlimited calculations."
+  }
+];
 ---
 
 <Layout
@@ -19,6 +42,7 @@ const canonicalUrl = `${site.siteUrl}/racine-cubique-calculator/`;
   lang={lang}
   dir={getHtmlDir(lang)}
   canonicalUrl={canonicalUrl}
+  faqItems={cbrtFaqs}
 >
   <Navbar lang={lang} />
   <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Racine Cubique Calculator', url: '/racine-cubique-calculator/' }]} />

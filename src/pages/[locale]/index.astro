@@ -23,6 +23,29 @@ const t = await useTranslations(lang);
 const title = t('site.title', 'Racine Carree Calculator - Free Square Root & Cube Root Tool Online');
 const description = t('site.description', 'Calculate square roots, cube roots, nth roots, fractions, and powers with steps and reference tables.');
 const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/', lang)}`;
+
+const sqrtFaqs = [
+  {
+    question: "How do I use the Racine Carree Calculator?",
+    answer: "Type your number into the input box above, click Calculate, and get instant exact decimal results, simplified radical form (e.g., √72 = 6√2), and step-by-step working out."
+  },
+  {
+    question: "Can I calculate square roots manually?",
+    answer: "Yes! Popular manual methods include prime factorization (best for perfect squares like √144 = 12), long division method (exact digit-by-digit calculation), and the Newton-Raphson estimation method."
+  },
+  {
+    question: "What does \"racine carrée\" mean?",
+    answer: "Racine carrée is the French term for square root. In mathematics, it represents a number that, when multiplied by itself, yields the original radicand (e.g., racine carrée de 25 est 5)."
+  },
+  {
+    question: "Can the calculator handle negative numbers?",
+    answer: "In real-number mathematics, square roots of negative numbers are undefined (no real number multiplied by itself gives a negative). In complex mathematics, √(-x) yields an imaginary result involving i."
+  },
+  {
+    question: "Is this calculator free to use?",
+    answer: "Yes, our Racine Carrée Calculator is 100% free with no registration, software download, or sign-up required."
+  }
+];
 ---
 
 <Layout
@@ -31,6 +54,7 @@ const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/', lang)}`;
   lang={lang}
   dir={getHtmlDir(lang)}
   canonicalUrl={canonicalUrl}
+  faqItems={sqrtFaqs}
 >
   <div class="notranslate" translate="no">
     <Navbar lang={lang} contentLang={lang} />
