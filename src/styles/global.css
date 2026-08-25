@@ -2383,6 +2383,44 @@ body::before {
     background: rgba(34, 197, 94, 0.12) !important;
 }
 
+/* Footer social links */
+.footer-brand-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.social-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    background: var(--bg-hover-subtle);
+    color: var(--primary-500);
+    border: 1px solid var(--border-default);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.social-icon-btn:hover {
+    background: #1877f2;
+    color: #ffffff;
+    border-color: #1877f2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(24, 119, 242, 0.4);
+}
+
 .cell-check {
     text-align: center;
     font-size: 1.15rem;
