@@ -7,6 +7,7 @@ import ContentSections from '../../components/ContentSections.astro';
 import Footer from '../../components/Footer.astro';
 import { LOCALES, getHtmlDir, getLocalizedUrl, getLocaleFromParams } from '../../../theme/i18n/utils';
 import { useTranslations } from '../../../theme/i18n/translations';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import site from '../../config/site.json';
 
 export const prerender = true;
@@ -34,6 +35,7 @@ const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/', lang)}`;
   <div class="notranslate" translate="no">
     <Navbar lang={lang} contentLang={lang} />
   </div>
+  <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: lang.toUpperCase(), url: getLocalizedUrl('/', lang) }]} />
   <section class="above-fold" id="hero">
     <div class="above-fold-stack">
       <div class="notranslate" translate="no">

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import NthRootContent from '../components/NthRootContent.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { getHtmlDir } from '../../theme/i18n/utils';
 import site from '../config/site.json';
 
@@ -20,6 +21,7 @@ const canonicalUrl = `${site.siteUrl}/nth-root-calculator/`;
   canonicalUrl={canonicalUrl}
 >
   <Navbar lang={lang} />
+  <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Nth Root Calculator', url: '/nth-root-calculator/' }]} />
   <section class="above-fold" id="hero">
     <div class="above-fold-stack">
       <header class="hero-compact hero-compact--centered">
