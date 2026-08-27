@@ -6,11 +6,11 @@ import site from '../config/site.json';
 
 const lang = 'en';
 const title = "Sitemap";
-const description = "Explore the complete sitemap of Racine Carrée Calculator to find all square root, cube root, and nth root calculation pages.";
+const description = "Explore the complete sitemap of Racine Carree Calculatorr to find all square root, cube root, and nth root calculation pages.";
 const canonicalUrl = `${site.siteUrl}/sitemap/`;
 
 const mainPages = [
-  { label: "Home — Racine Carrée Calculator", href: "/" },
+  { label: "Home — Racine Carree Calculatorr", href: "/" },
   { label: "Racine Cubique Calculator", href: "/racine-cubique-calculator/" },
   { label: "Nth Root Calculator", href: "/nth-root-calculator/" },
   { label: "About Us", href: "/about-us/" },
@@ -45,10 +45,10 @@ const languages = LOCALES.filter(loc => loc !== 'en').map(loc => ({
                 </div>
                 
                 <h1 class="article-h2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px;">{title}</h1>
-                <p class="hero-subtitle" style="font-weight: 600;">Full overview of Racine Carrée Calculator</p>
+                <p class="hero-subtitle" style="font-weight: 600;">Full overview of Racine Carree Calculatorr</p>
                 
                 <div style="margin-top: 40px; margin-bottom: 40px;">
-                    <h3 class="article-h3" style="margin-bottom: 24px;">Main Pages</h3>
+                    <h2 class="article-h3" style="margin-bottom: 24px;">Main Pages</h2>
                     <div class="law-cards" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
                         {mainPages.map(page => (
                             <a href={page.href} class="law-card" style="text-decoration: none; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; transition: transform 0.2s ease, box-shadow 0.2s ease;">
@@ -59,7 +59,7 @@ const languages = LOCALES.filter(loc => loc !== 'en').map(loc => ({
                 </div>
 
                 <div style="margin-bottom: 40px;">
-                    <h3 class="article-h3" style="margin-bottom: 24px;">Languages</h3>
+                    <h2 class="article-h3" style="margin-bottom: 24px;">Languages</h2>
                     <div class="law-cards" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
                         {languages.map(lang => (
                             <a href={lang.href} class="law-card" style="text-decoration: none; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; transition: transform 0.2s ease, box-shadow 0.2s ease;">

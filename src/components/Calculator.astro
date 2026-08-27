@@ -8,7 +8,7 @@ const { lang = 'en' } = Astro.props;
 const t = await useTranslations(lang);
 ---
 
-<main class="calc-stage" id="calculators">
+<section class="calc-stage" id="calculators" aria-label="Square Root Calculator">
     <div class="calc-stage-glow" aria-hidden="true"></div>
     <div class="calc-suite" id="calcSuite">
         <!-- Square Root Calculator — Standalone (no tabs) -->
@@ -17,34 +17,34 @@ const t = await useTranslations(lang);
                 <header class="calc-widget-head">
                     <span class="calc-widget-symbol" aria-hidden="true">√</span>
                     <div class="calc-widget-head-text">
-                        <h3 class="calc-widget-title">{t("calc.squareRoot.title", "Square Root Calculator")}</h3>
+                        <h2 class="calc-widget-title">{t("calc.squareRoot.title", "Square Root Calculator")}</h2>
                         <p class="calc-widget-desc">{t("calc.squareRoot.desc", "Calculate √x for any positive number")}</p>
                     </div>
                 </header>
                 <div class="calc-widget-flow">
-                    <section class="calc-step" aria-label="Input">
+                    <section class="calc-step" aria-label="Input field">
                         <div class="input-group">
                             <div class="calc-tooltip">
                                 <label class="input-label" for="sqrtInput">{t("calc.label.number", "Number to calculate")}</label>
-                                <span class="calc-tooltip-icon" aria-label="Help">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                <span class="calc-tooltip-icon" role="img" aria-label="Input instructions">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                                     <span class="tooltip-text">Enter any positive number to find its square root. Works with whole numbers, decimals, and large values.</span>
                                 </span>
                             </div>
                             <div class="input-wrapper">
-                                <span class="input-prefix">√</span>
-                                <input type="number" inputmode="decimal" id="sqrtInput" class="calc-input" placeholder="e.g. 144" step="any" autocomplete="off">
+                                <span class="input-prefix" aria-hidden="true">√</span>
+                                <input type="number" inputmode="decimal" id="sqrtInput" class="calc-input" placeholder="e.g. 144" step="any" autocomplete="off" aria-label={t("calc.label.number", "Number to calculate")}>
                             </div>
                         </div>
                     </section>
-                    <section class="calc-step calc-step--action">
-                        <button class="btn-calc-primary" id="sqrtCalcBtn" type="button" onclick="calculateSquareRoot()">
-                            <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    <section class="calc-step calc-step--action" aria-label="Calculate action">
+                        <button class="btn-calc-primary" id="sqrtCalcBtn" type="button" onclick="calculateSquareRoot()" aria-label="Calculate Square Root">
+                            <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                             <span>{t("calc.btn.calculate", "Calculate Square Root")}</span>
                         </button>
                     </section>
-                    <section class="calc-step calc-step--results" aria-label="Results">
-                        <div class="result-panel" id="sqrtResult">
+                    <section class="calc-step calc-step--results" aria-label="Calculation results">
+                        <div class="result-panel" id="sqrtResult" aria-live="polite" aria-atomic="true">
                             <div class="result-empty">
                                 <div class="result-empty-icon" aria-hidden="true">√</div>
                                 <p class="result-empty-title">{t("calc.result.empty.title", "Your result will appear here")}</p>
@@ -52,9 +52,9 @@ const t = await useTranslations(lang);
                             </div>
                         </div>
                     </section>
-                    <section class="calc-step calc-step--history" id="sqrtHistory">
+                    <section class="calc-step calc-step--history" id="sqrtHistory" aria-label="Recent calculations history">
                         <div class="history-header">
-                            <h4 class="history-title">{t("calc.history.title", "Recent calculations")}</h4>
+                            <h3 class="history-title">{t("calc.history.title", "Recent calculations")}</h3>
                             <span class="history-count" id="sqrtHistoryCount"></span>
                         </div>
                         <div class="history-list" id="sqrtHistoryList"></div>
@@ -63,4 +63,4 @@ const t = await useTranslations(lang);
             </article>
         </div>
     </div>
-</main>
+</section>

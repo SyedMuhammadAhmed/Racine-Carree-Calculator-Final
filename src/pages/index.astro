@@ -47,12 +47,14 @@ const sqrtFaqs = [
   faqItems={sqrtFaqs}
 >
   <Navbar lang={lang} />
-  <section class="above-fold" id="hero">
-    <div class="above-fold-stack">
-      <Hero lang={lang} />
-      <Calculator lang={lang} />
-    </div>
-  </section>
-  <ContentSections lang={lang} />
+  <main id="main-content">
+    <section class="above-fold" id="hero">
+      <div class="above-fold-stack">
+        <Hero lang={lang} />
+        <Calculator lang={lang} />
+      </div>
+    </section>
+    <ContentSections lang={lang} />
+  </main>
   <Footer lang={lang} />
 </Layout>

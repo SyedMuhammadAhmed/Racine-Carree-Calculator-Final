@@ -613,16 +613,24 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ---- Mouse glow effect on feature cards ----
+// ---- Mouse glow effect on feature cards (optimized with rAF & delegation) ----
+let mouseMoveTicking = false;
 document.addEventListener('mousemove', e => {
-    const cards = document.querySelectorAll('.app-card, .example-card, .law-card, .step-content, .tip-card');
-    cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--mouse-y', `${y}%`);
-    });
-});
+    if (!mouseMoveTicking) {
+        window.requestAnimationFrame(() => {
+            const card = e.target.closest ? e.target.closest('.app-card, .example-card, .law-card, .step-content, .tip-card') : null;
+            if (card) {
+                const rect = card.getBoundingClientRect();
+                if (rect.height > 0) {
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    card.style.setProperty('--mouse-y', `${y}%`);
+                }
+            }
+            mouseMoveTicking = false;
+        });
+        mouseMoveTicking = true;
+    }
+}, { passive: true });
 
 // ---- Back to Top ----
 function initBackToTop() {
