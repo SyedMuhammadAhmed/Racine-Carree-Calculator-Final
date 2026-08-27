@@ -131,6 +131,10 @@ const schemas = [webAppSchema, mathSolverSchema, webSiteSchema, howToSchema, faq
     {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <title>{title}</title>
+
+    {site.googleVerification && <meta name="google-site-verification" content={site.googleVerification} />}
+    {site.bingVerification && <meta name="msvalidate.01" content={site.bingVerification} />}
+    {site.yandexVerification && <meta name="yandex-verification" content={site.yandexVerification} />}
     
     <!-- JSON-LD Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
