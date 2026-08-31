@@ -3637,69 +3637,7 @@ input[type="number"] {
 }
 
 @media (max-width: 768px) {
-    /* 1. Mobile Bottom Navigation Bar */
-    .mobile-bottom-nav {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: var(--bg-glass-strong);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-top: 1px solid var(--border-default);
-        z-index: 1000;
-        padding-bottom: env(safe-area-inset-bottom, 0px); /* For iPhone notch */
-        height: calc(64px + env(safe-area-inset-bottom, 0px));
-        box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
-    }
-
-    .mobile-nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        color: var(--text-muted);
-        text-decoration: none;
-        flex: 1;
-        height: 100%;
-        padding: 8px 0;
-        transition: color var(--duration-fast) var(--ease-out);
-        /* Minimum touch target size 48px achieved by flex: 1 and height */
-    }
-
-    .mobile-nav-item svg {
-        transition: transform var(--duration-fast) var(--ease-out);
-    }
-
-    .mobile-nav-item span {
-        font-size: 0.65rem;
-        font-weight: 600;
-    }
-
-    .mobile-nav-item.active,
-    .mobile-nav-item:active {
-        color: var(--primary-500);
-    }
-
-    .mobile-nav-item.active svg {
-        transform: translateY(-2px);
-    }
-
-    /* Adjust page container to not be hidden by the bottom nav */
-    body {
-        padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
-    }
-
-    /* 2. Hide Desktop hamburger toggle since we have bottom nav */
-    .nav-toggle {
-        display: none !important;
-    }
-
-    /* 3. Sticky Mobile Header & Reduced Vertical Space */
+    /* 1. Sticky Mobile Header & Reduced Vertical Space */
     .navbar {
         position: sticky;
         top: 0;
