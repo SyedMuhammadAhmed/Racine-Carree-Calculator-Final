@@ -20,8 +20,8 @@ export function getStaticPaths() {
 
 const lang = getLocaleFromParams(Astro.params);
 const t = await useTranslations(lang);
-const title = t('site.title', 'Racine Carree Calculator - Free Square Root & Cube Root Tool Online');
-const description = t('site.description', 'Calculate square roots, cube roots, nth roots, fractions, and powers with steps and reference tables.');
+const title = t('site.title', 'Racine Carree Calculator | Online Square Root Calculator');
+const description = t('site.description', 'Calculate square roots with exact decimals, simplified radicals, step-by-step workings, and reference tables.');
 const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/', lang)}`;
 
 const sqrtFaqs = [

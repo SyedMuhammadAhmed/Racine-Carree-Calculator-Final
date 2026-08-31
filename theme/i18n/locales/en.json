@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Racine Carree Calculator — Free Square Root & Cube Root Tool Online",
-    "description": "Free online Racine Carrée Calculator. Calculate square roots, cube roots, and nth roots with exact decimals, simplified radicals, and steps."
+    "title": "Racine Carree Calculator | Online Square Root Calculator",
+    "description": "Free online Racine Carrée Calculator. Calculate square roots with exact decimals, simplified radicals, step-by-step workings, and reference tables."
   },
   "nav": {
     "home": "Home",
@@ -54,10 +54,10 @@
       }
     },
     "fraction": {
-      "title": "Fraction Calculator",
-      "desc": "Add, subtract, multiply, divide, and simplify fractions",
       "1": "Fraction 1",
       "2": "Fraction 2",
+      "title": "Fraction Calculator",
+      "desc": "Add, subtract, multiply, divide, and simplify fractions",
       "empty": {
         "hint": "Enter both fractions and press Calculate"
       }
