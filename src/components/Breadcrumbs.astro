@@ -13,11 +13,13 @@ interface Props {
 
 const { items, className = '' } = Astro.props;
 
+const currentUrl = Astro.url.href;
+
 // Build JSON-LD BreadcrumbList Schema for Google Search
 const schemaItems = items.map((item, index) => {
   const itemUrl = item.url 
     ? (item.url.startsWith('http') ? item.url : new URL(item.url, site.siteUrl).toString())
-    : site.siteUrl;
+    : currentUrl;
     
   return {
     "@type": "ListItem",

@@ -61,6 +61,14 @@ const openGraphAlternateLocales = getOpenGraphAlternateLocales(alternateLinks, a
 // Build JSON-LD schemas
 const socialLinks = Object.values(social).filter(Boolean);
 
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": site.siteName,
+  "url": absoluteUrl('/'),
+  "description": site.siteDescription
+};
+
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -98,7 +106,7 @@ const contactSchema = isContactPage ? {
   url: canonicalUrl
 } : null;
 
-const schemas = [orgSchema, ...navSchemas, aboutSchema, contactSchema].filter(Boolean);
+const schemas = [webSiteSchema, orgSchema, ...navSchemas, aboutSchema, contactSchema].filter(Boolean);
 ---
 
 <html lang={activeLocale} dir={htmlDir}>
