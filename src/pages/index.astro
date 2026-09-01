@@ -9,11 +9,13 @@ import { getHtmlDir } from '../../theme/i18n/utils';
 import { useTranslations } from '../../theme/i18n/translations';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../config/site.json';
+import { getHomeAlternateLinks } from '../utils/seo';
 
 const lang = 'en';
 const t = await useTranslations(lang);
 const title = t('site.title', 'Racine Carree Calculator | Online Square Root Calculator');
 const description = t('site.description', 'Calculate square roots with exact decimals, simplified radicals, step-by-step workings, and reference tables.');
+const alternateLinks = getHomeAlternateLinks();
 const sqrtFaqs = [
   {
     question: "How do I use the Racine Carree Calculator?",
@@ -44,6 +46,7 @@ const sqrtFaqs = [
   lang={lang}
   dir={getHtmlDir(lang)}
   canonicalUrl={`${site.siteUrl}/`}
+  alternateLinks={alternateLinks}
   faqItems={sqrtFaqs}
 >
   <Navbar lang={lang} />

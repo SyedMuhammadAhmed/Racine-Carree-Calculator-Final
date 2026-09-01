@@ -23,12 +23,7 @@ const currentPathWithoutLocale = Astro.url.pathname.replace(localePrefixPattern,
 const isHomePath = currentPathWithoutLocale === '/';
 const homeUrl = getLocalizedUrl('/', activeLocale);
 const sectionHref = (id: string) => isHomePath ? `#${id}` : `${homeUrl}#${id}`;
-const pageHref = (path: string) => {
-  if (activeLocale === DEFAULT_LOCALE) return path;
-  const params = new URLSearchParams();
-  params.set('lang', activeLocale);
-  return `${path}?${params.toString()}`;
-};
+const pageHref = (path: string) => path;
 const t = await useTranslations(contentLocale);
 const brand = t('footer.brand', 'Racine Carrée Calculator');
 const description = t('site.description', 'Free online Racine Carrée Calculator. Calculate square roots with exact decimals, simplified radicals, step-by-step workings, and reference tables.');

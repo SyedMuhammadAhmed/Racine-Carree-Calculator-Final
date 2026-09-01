@@ -7,6 +7,14 @@ import site from '../../src/config/site.json';
 import social from '../../src/config/social.json';
 import nav from '../../src/config/nav.json';
 import '../../src/styles/global.css';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/jetbrains-mono';
+import {
+  absoluteUrl,
+  getOpenGraphAlternateLocales,
+  getOpenGraphLocale,
+  type AlternateLink,
+} from '../../src/utils/seo';
 
 interface Props {
   title: string;
@@ -19,6 +27,7 @@ interface Props {
   isAboutPage?: boolean;
   isContactPage?: boolean;
   schemaSlot?: boolean;
+  alternateLinks?: AlternateLink[];
 }
 
 const {
@@ -32,6 +41,7 @@ const {
   isAboutPage = false,
   isContactPage = false,
   schemaSlot = false,
+  alternateLinks = [],
 } = Astro.props;
 
 const requestedLocale = Astro.url.searchParams.get('lang') || locale;
@@ -43,10 +53,10 @@ const activeLocale = LOCALES.includes(requestedLocale as Locale)
 const htmlDir = getHtmlDir(activeLocale);
 
 // Absolute URL for Open Graph/Twitter Images
-const absoluteOgImage = new URL(ogImage, site.siteUrl).toString();
+const absoluteOgImage = absoluteUrl(ogImage);
 
-// Approximate locale to standard format (e.g., "en_EN", "es_ES") if passing a simple 2-letter tag
-const mappedLocale = activeLocale.length === 2 ? `${activeLocale.toLowerCase()}_${activeLocale.toUpperCase()}` : activeLocale;
+const mappedLocale = getOpenGraphLocale(activeLocale);
+const openGraphAlternateLocales = getOpenGraphAlternateLocales(alternateLinks, activeLocale);
 
 // Build JSON-LD schemas
 const socialLinks = Object.values(social).filter(Boolean);
@@ -55,11 +65,11 @@ const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: site.siteName,
-  url: site.siteUrl,
+  url: absoluteUrl('/'),
   legalName: site.siteName,
   logo: {
     "@type": "ImageObject",
-    url: new URL('/logo.png', site.siteUrl).toString(),
+    url: absoluteUrl('/logo.png'),
   },
   description: site.siteDescription,
   sameAs: socialLinks
@@ -69,7 +79,7 @@ const navSchemas = nav.header.map((item: any) => ({
   "@context": "https://schema.org",
   "@type": "SiteNavigationElement",
   name: item.label,
-  url: new URL(item.href, site.siteUrl).toString()
+  url: absoluteUrl(item.href)
 }));
 
 const aboutSchema = isAboutPage ? {
@@ -99,6 +109,7 @@ const schemas = [orgSchema, ...navSchemas, aboutSchema, contactSchema].filter(Bo
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {alternateLinks.map((link) => <link rel="alternate" hreflang={link.hreflang} href={link.href} />)}
     
     <meta name="robots" content={robots} />
     <meta name="googlebot" content={robots} />
@@ -115,6 +126,7 @@ const schemas = [orgSchema, ...navSchemas, aboutSchema, contactSchema].filter(Bo
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content={site.siteName} />
     <meta property="og:locale" content={mappedLocale} />
+    {openGraphAlternateLocales.map((locale) => <meta property="og:locale:alternate" content={locale} />)}
     <meta property="og:image" content={absoluteOgImage} />
     <meta property="og:image:width" content={site.ogImageWidth.toString()} />
     <meta property="og:image:height" content={site.ogImageHeight.toString()} />
@@ -125,16 +137,8 @@ const schemas = [orgSchema, ...navSchemas, aboutSchema, contactSchema].filter(Bo
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteOgImage} />
+    <meta name="twitter:image:alt" content={site.ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
-
-    <!-- Font Loading Optimization -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-    </noscript>
     <script is:inline>
         (function () {
             var t = localStorage.getItem('theme');

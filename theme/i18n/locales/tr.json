@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Racine Carree Hesap Makinesi — Çevrimiçi Ücretsiz Karekök ve Küp Kök Aracı",
-    "description": "Mevcut en eksiksiz Racine Carree Hesap Makinesi. Herhangi bir pozitif sayının (ondalık veya kesirli) karekökünü (racine carrée) anında hesaplayın. Tam ondalık sonucu, basitleştirilmiş radikal formu, adım adım çalışmaları ve tam referans tablolarını edinin. %100 ücretsiz."
+    "title": "Racine Carree karekök hesap makinesi",
+    "description": "Karekökleri anında hesaplayın; doğru sonuçlar, sade radikaller, çözüm adımları ve ücretsiz tablolar alın."
   },
   "nav": {
     "home": "Ana sayfa",

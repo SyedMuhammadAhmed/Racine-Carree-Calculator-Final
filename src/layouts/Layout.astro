@@ -4,6 +4,12 @@ import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
 import TranslationRuntime from '../components/TranslationRuntime.astro';
 import site from '../config/site.json';
+import {
+  absoluteUrl,
+  getOpenGraphAlternateLocales,
+  getOpenGraphLocale,
+  type AlternateLink,
+} from '../utils/seo';
 
 export interface FAQItem {
   question: string;
@@ -17,17 +23,38 @@ interface Props {
 	dir?: "ltr" | "rtl";
 	canonicalUrl?: string;
 	faqItems?: FAQItem[];
+	robots?: string;
+	alternateLinks?: AlternateLink[];
+	ogImage?: string;
+	mathSolverType?: string;
 }
 
-const { title, description, lang = "en", dir = "ltr", canonicalUrl, faqItems } = Astro.props;
+const {
+  title,
+  description,
+  lang = "en",
+  dir = "ltr",
+  canonicalUrl,
+  faqItems,
+  robots = "index, follow",
+  alternateLinks = [],
+  ogImage = site.ogImage,
+  mathSolverType = "SquareRootSolver",
+} = Astro.props;
+
+const pageUrl = canonicalUrl || absoluteUrl('/');
+const absoluteOgImage = absoluteUrl(ogImage);
+const openGraphLocale = getOpenGraphLocale(lang);
+const openGraphAlternateLocales = getOpenGraphAlternateLocales(alternateLinks, lang);
 
 // JSON-LD WebApplication / SoftwareApplication Schema
 const webAppSchema = {
   "@context": "https://schema.org",
   "@type": ["SoftwareApplication", "WebApplication"],
-  "name": site.siteName,
-  "url": canonicalUrl || site.siteUrl,
+  "name": title,
+  "url": pageUrl,
   "description": description,
+  "inLanguage": lang,
   "applicationCategory": "EducationalApplication",
   "applicationSubCategory": "Math Calculator",
   "operatingSystem": "All",
@@ -53,9 +80,10 @@ const mathSolverSchema = {
   "@context": "https://schema.org",
   "@type": "MathSolver",
   "name": `${title} — Step-by-Step Math Solver`,
-  "url": canonicalUrl || site.siteUrl,
+  "url": pageUrl,
   "description": description,
-  "mathSolverType": "SquareRootSolver",
+  "inLanguage": lang,
+  "mathSolverType": mathSolverType,
   "educationalLevel": ["ElementarySchool", "MiddleSchool", "HighSchool", "College"]
 };
 
@@ -64,7 +92,7 @@ const webSiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": site.siteName,
-  "url": site.siteUrl,
+  "url": absoluteUrl('/'),
   "description": site.siteDescription
 };
 
@@ -100,6 +128,7 @@ const howToSchema = {
 const faqPageSchema = faqItems && faqItems.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "inLanguage": lang,
   "mainEntity": faqItems.map(item => ({
     "@type": "Question",
     "name": item.question,
@@ -120,18 +149,29 @@ const schemas = [webAppSchema, mathSolverSchema, webSiteSchema, howToSchema, faq
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content={description}>
     <meta name="theme-color" content="#7c3aed">
+    <meta name="robots" content={robots}>
+    <meta name="googlebot" content={robots}>
     
     <!-- Open Graph & Twitter -->
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
     <meta property="og:type" content="website">
-    <meta property="og:url" content={canonicalUrl || site.siteUrl}>
-    <meta property="og:image" content={`${site.siteUrl}${site.ogImage}`}>
+    <meta property="og:url" content={pageUrl}>
+    <meta property="og:site_name" content={site.siteName}>
+    <meta property="og:locale" content={openGraphLocale}>
+    {openGraphAlternateLocales.map((locale) => <meta property="og:locale:alternate" content={locale} />)}
+    <meta property="og:image" content={absoluteOgImage}>
+    <meta property="og:image:width" content={site.ogImageWidth.toString()}>
+    <meta property="og:image:height" content={site.ogImageHeight.toString()}>
+    <meta property="og:image:alt" content={site.ogImageAlt}>
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={absoluteOgImage}>
+    <meta name="twitter:image:alt" content={site.ogImageAlt}>
     
-    {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
+    <link rel="canonical" href={pageUrl}>
+    {alternateLinks.map((link) => <link rel="alternate" hreflang={link.hreflang} href={link.href} />)}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <title>{title}</title>
 

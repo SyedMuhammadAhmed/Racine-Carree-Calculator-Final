@@ -9,6 +9,7 @@ import { LOCALES, getHtmlDir, getLocalizedUrl, getLocaleFromParams } from '../..
 import { useTranslations } from '../../../theme/i18n/translations';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import site from '../../config/site.json';
+import { getHomeAlternateLinks } from '../../utils/seo';
 
 export const prerender = true;
 
@@ -23,6 +24,7 @@ const t = await useTranslations(lang);
 const title = t('site.title', 'Racine Carree Calculator | Online Square Root Calculator');
 const description = t('site.description', 'Calculate square roots with exact decimals, simplified radicals, step-by-step workings, and reference tables.');
 const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/', lang)}`;
+const alternateLinks = getHomeAlternateLinks();
 
 const sqrtFaqs = [
   {
@@ -54,6 +56,7 @@ const sqrtFaqs = [
   lang={lang}
   dir={getHtmlDir(lang)}
   canonicalUrl={canonicalUrl}
+  alternateLinks={alternateLinks}
   faqItems={sqrtFaqs}
 >
   <div class="notranslate" translate="no">
