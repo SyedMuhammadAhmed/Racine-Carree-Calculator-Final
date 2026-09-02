@@ -4014,4 +4014,211 @@ input[type="number"] {
     color: #ffffff;
 }
 
+/* Scroll Offset for In-page Navigation */
+.article-section,
+.article-h2,
+.article-h3,
+[id^="section-"],
+[id^="method-"],
+[id^="step-"],
+[id^="app-"] {
+    scroll-margin-top: 92px;
+}
+
+/* Table of Contents Modern Styling */
+.toc-wrapper {
+    margin: 20px auto 36px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.toc-card {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.toc-card:hover {
+    border-color: var(--primary-300);
+    box-shadow: var(--shadow-md);
+}
+
+.toc-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px;
+    cursor: pointer;
+    user-select: none;
+    background: var(--bg-surface);
+    transition: background var(--transition-fast);
+    list-style: none;
+}
+
+.toc-summary::-webkit-details-marker {
+    display: none;
+}
+
+.toc-summary:hover {
+    background: rgba(124, 58, 237, 0.04);
+}
+
+.toc-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.toc-icon-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--primary-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.toc-heading {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.toc-count-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    background: var(--bg-muted);
+    color: var(--text-muted);
+}
+
+.toc-toggle-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-500);
+    flex-shrink: 0;
+}
+
+.toc-toggle-show {
+    display: inline;
+}
+
+.toc-toggle-hide {
+    display: none;
+}
+
+details[open] .toc-toggle-show {
+    display: none;
+}
+
+details[open] .toc-toggle-hide {
+    display: inline;
+}
+
+.toc-chevron {
+    transition: transform 0.25s ease;
+}
+
+details[open] .toc-chevron {
+    transform: rotate(180deg);
+}
+
+.toc-content {
+    padding: 16px 22px 24px;
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-surface-elevated);
+}
+
+.toc-list {
+    list-style: none;
+    counter-reset: toc-counter;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.toc-item {
+    counter-increment: toc-counter;
+}
+
+.toc-link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    line-height: 1.45;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+}
+
+.toc-link::before {
+    content: counter(toc-counter) ".";
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--primary-500);
+    min-width: 18px;
+}
+
+.toc-link:hover {
+    color: var(--primary-600);
+    background: rgba(124, 58, 237, 0.06);
+    transform: translateX(3px);
+}
+
+.toc-sublist {
+    list-style: none;
+    padding: 4px 0 6px 28px;
+    margin: 4px 0 4px 10px;
+    border-left: 2px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.toc-sublink {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    line-height: 1.4;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+}
+
+.toc-sublink::before {
+    content: "•";
+    color: var(--primary-400);
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.toc-sublink:hover {
+    color: var(--primary-600);
+    background: rgba(124, 58, 237, 0.05);
+    transform: translateX(2px);
+}
+
+
 
