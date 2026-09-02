@@ -1,22 +1,63 @@
-# Global security & caching headers
+# ==========================================================
+# Racine Carrée Calculator — Cloudflare Pages Headers
+# High Performance Caching, Security & HTTP/2 Optimizations
+# ==========================================================
+
+# Global rules for HTML documents & pages
 /*
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Cache-Control: public, max-age=3600, must-revalidate
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Timing-Allow-Origin: *
+  Cache-Control: public, max-age=0, must-revalidate, s-maxage=86400, stale-while-revalidate=604800
 
-# Cache static assets (images, scripts, styles, fonts) immutably for 1 year on CDN edge
+# Cache hashed Vite / Astro bundles immutably for 1 year
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Cache optimized content images immutably for 1 year
 /images/*
   Cache-Control: public, max-age=31536000, immutable
+  Timing-Allow-Origin: *
 
-/app.js
-  Cache-Control: public, max-age=3600, must-revalidate
+# Static asset extensions: immutable caching
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
 
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# Specific public assets
 /favicon.svg
   Cache-Control: public, max-age=31536000, immutable
 
@@ -26,22 +67,25 @@
 /logo.png
   Cache-Control: public, max-age=31536000, immutable
 
+/app.js
+  Cache-Control: public, max-age=3600, must-revalidate
+
 /og-image.png
   Cache-Control: public, max-age=86400, must-revalidate
 
-/*.webp
-  Cache-Control: public, max-age=31536000, immutable
+# Sitemaps & robots
+/sitemap-index.xml
+  Cache-Control: public, max-age=86400, must-revalidate
+  Content-Type: application/xml; charset=utf-8
 
-/*.woff2
-  Cache-Control: public, max-age=31536000, immutable
+/sitemap-*.xml
+  Cache-Control: public, max-age=86400, must-revalidate
+  Content-Type: application/xml; charset=utf-8
 
-/*.css
-  Cache-Control: public, max-age=31536000, immutable
+/robots.txt
+  Cache-Control: public, max-age=86400, must-revalidate
 
-/*.js
-  Cache-Control: public, max-age=31536000, immutable
-
-# LLMs.txt and crawler files
+# AI & LLM discovery files
 /llms.txt
   Cache-Control: public, max-age=86400, must-revalidate
   Content-Type: text/plain; charset=utf-8
@@ -49,6 +93,3 @@
 /llms-full.txt
   Cache-Control: public, max-age=86400, must-revalidate
   Content-Type: text/plain; charset=utf-8
-
-/robots.txt
-  Cache-Control: public, max-age=86400, must-revalidate

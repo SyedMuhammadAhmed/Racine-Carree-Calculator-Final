@@ -72,30 +72,69 @@ const webSiteSchema = {
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${site.siteUrl}/#organization`,
   name: site.siteName,
   url: absoluteUrl('/'),
   legalName: site.siteName,
   logo: {
     "@type": "ImageObject",
     url: absoluteUrl('/logo.png'),
+    caption: site.siteName
   },
+  image: absoluteUrl('/og-image.png'),
   description: site.siteDescription,
-  sameAs: socialLinks
+  founder: {
+    "@type": "Person",
+    name: "Syed Muhammad Ahmed",
+    jobTitle: "Founder & Creator",
+    url: absoluteUrl('/about-us/'),
+    image: absoluteUrl('/images/syed-muhammad-ahmed-racine-carree-calculator.jpg'),
+    sameAs: [
+      "https://www.linkedin.com/company/144823222/",
+      "https://www.behance.net/syedmuahmed17"
+    ]
+  },
+  sameAs: socialLinks,
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: site.contactEmail,
+    contactType: "customer support"
+  }
 };
 
-const navSchemas = nav.header.map((item: any) => ({
+const navigationList = [
+  { name: "Home", url: absoluteUrl('/') },
+  { name: "Racine Carree Calculator", url: absoluteUrl('/') },
+  { name: "Racine Cubique Calculator", url: absoluteUrl('/racine-cubique-calculator/') },
+  { name: "Nth Root Calculator", url: absoluteUrl('/nth-root-calculator/') },
+  { name: "About Us", url: absoluteUrl('/about-us/') },
+  { name: "Contact Us", url: absoluteUrl('/contact-us/') }
+];
+
+const siteNavigationSchema = {
   "@context": "https://schema.org",
-  "@type": "SiteNavigationElement",
-  name: item.label,
-  url: absoluteUrl(item.href)
-}));
+  "@type": "ItemList",
+  name: "Site Navigation",
+  itemListElement: navigationList.map((item, index) => ({
+    "@type": "SiteNavigationElement",
+    position: index + 1,
+    name: item.name,
+    url: item.url
+  }))
+};
 
 const aboutSchema = isAboutPage ? {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: title,
   description,
-  url: canonicalUrl
+  url: canonicalUrl,
+  mainEntity: {
+    "@type": "Person",
+    name: "Syed Muhammad Ahmed",
+    jobTitle: "Founder & Creator",
+    image: absoluteUrl('/images/syed-muhammad-ahmed-racine-carree-calculator.jpg')
+  }
 } : null;
 
 const contactSchema = isContactPage ? {
@@ -106,7 +145,7 @@ const contactSchema = isContactPage ? {
   url: canonicalUrl
 } : null;
 
-const schemas = [webSiteSchema, orgSchema, ...navSchemas, aboutSchema, contactSchema].filter(Boolean);
+const schemas = [webSiteSchema, orgSchema, siteNavigationSchema, aboutSchema, contactSchema].filter(Boolean);
 ---
 
 <html lang={activeLocale} dir={htmlDir}>
@@ -114,6 +153,13 @@ const schemas = [webSiteSchema, orgSchema, ...navSchemas, aboutSchema, contactSc
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
+    <!-- Preconnect & DNS Prefetch to Required Origins -->
+    <link rel="preconnect" href={site.siteUrl} crossorigin />
+    <link rel="dns-prefetch" href={site.siteUrl} />
+    <link rel="preconnect" href="https://www.linkedin.com" />
+    <link rel="dns-prefetch" href="https://www.linkedin.com" />
+    <link rel="preconnect" href="https://www.youtube.com" />
+    <link rel="dns-prefetch" href="https://www.youtube.com" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />

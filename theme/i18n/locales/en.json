@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Racine Carree Calculator | Online Square Root Calculator",
-    "description": "Free online Racine Carrée Calculator. Calculate square roots instantly with exact decimals, simplified radical forms, step-by-step math solutions & reference tables."
+    "description": "Free online Racine Carree Calculator. Calculate square roots instantly with exact decimals, simplified radicals, and step-by-step mathematical solutions."
   },
   "nav": {
     "home": "Home",
@@ -18,7 +18,7 @@
   "hero": {
     "badge": "Free Square Root & Cube Root Tool",
     "title": {
-      "part1": "Racine Carrée",
+      "part1": "Racine Carree",
       "part2": "Calculator"
     },
     "subtitle": "The most complete Racine Carree Calculator available. Calculate the square root or cube root of any number — positive, negative, decimal, or fraction — instantly. Get the exact decimal result, simplified radical form, step-by-step workings, and full reference tables. 100% free. No sign-up. No limits.",
@@ -91,7 +91,7 @@
     }
   },
   "footer": {
-    "brand": "Racine Carrée Calculator",
+    "brand": "Racine Carree Calculator",
     "tagline": "The most complete free square root and cube root tool online.",
     "language": "Language",
     "rights": "All rights reserved.",

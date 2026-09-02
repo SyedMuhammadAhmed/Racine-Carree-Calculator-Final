@@ -116,6 +116,7 @@ const year = new Date().getFullYear();
           <a href={pageHref('/privacy/')}>{t('nav.privacy', 'Privacy Policy')}</a>
           <a href={pageHref('/terms/')}>Terms &amp; Conditions</a>
           <a href={pageHref('/disclaimer/')}>Disclaimer</a>
+          <a href="https://www.dmca.com/Protection/Status.aspx?url=https://www.racinecarreecalculatorr.com" target="_blank" rel="noopener noreferrer" class="dmca-legal-link">DMCA Protection</a>
         </nav>
       </div>
 
@@ -133,6 +134,12 @@ const year = new Date().getFullYear();
       <p class="footer-redesign__copyright">
         &copy; {year} {brand}. {t('footer.rights', 'All rights reserved.')}
       </p>
+      <div class="footer-redesign__badges">
+        <a href="https://www.dmca.com/Protection/Status.aspx?url=https://www.racinecarreecalculatorr.com" target="_blank" rel="noopener noreferrer" class="dmca-badge" title="DMCA.com Protection Status" aria-label="DMCA.com Protection Status">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>DMCA PROTECTED</span>
+        </a>
+      </div>
       <p class="footer-redesign__tagline">{t('footer.made', 'Made for mathematics')}</p>
     </div>
 
