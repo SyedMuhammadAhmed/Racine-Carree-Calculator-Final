@@ -59,21 +59,15 @@ const sqrtFaqs = [
   alternateLinks={alternateLinks}
   faqItems={sqrtFaqs}
 >
-  <div class="notranslate" translate="no">
-    <Navbar lang={lang} contentLang={lang} />
-  </div>
+  <Navbar lang={lang} contentLang={lang} />
   <main id="main-content">
     <section class="above-fold" id="hero">
       <div class="above-fold-stack">
-        <div class="notranslate" translate="no">
-          <Hero lang={lang} />
-          <Calculator lang={lang} />
-        </div>
+        <Hero lang={lang} />
+        <Calculator lang={lang} />
       </div>
     </section>
     <ContentSections lang={lang} />
   </main>
-  <div class="notranslate" translate="no">
-    <Footer lang={lang} contentLang={lang} />
-  </div>
+  <Footer lang={lang} contentLang={lang} />
 </Layout>

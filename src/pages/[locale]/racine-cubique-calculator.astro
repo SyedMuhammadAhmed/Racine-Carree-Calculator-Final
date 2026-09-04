@@ -1,17 +1,27 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import CubeRootContent from '../components/CubeRootContent.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { getHtmlDir } from '../../theme/i18n/utils';
-import site from '../config/site.json';
-import { getPageAlternateLinks } from '../utils/seo';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import CubeRootContent from '../../components/CubeRootContent.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { LOCALES, getHtmlDir, getLocalizedUrl, getLocaleFromParams } from '../../../theme/i18n/utils';
+import { useTranslations } from '../../../theme/i18n/translations';
+import site from '../../config/site.json';
+import { getPageAlternateLinks } from '../../utils/seo';
 
-const lang = 'en';
-const title = 'Racine Cubique Calculator | Free Online Cube Root Calculator';
-const description = 'Calculate cube roots instantly with our free Racine Cubique Calculator. Get exact decimal results, simplified radicals, and step-by-step workings.';
-const canonicalUrl = `${site.siteUrl}/racine-cubique-calculator/`;
+export const prerender = true;
+
+export function getStaticPaths() {
+  return LOCALES
+    .filter((locale) => locale !== 'en')
+    .map((locale) => ({ params: { locale } }));
+}
+
+const lang = getLocaleFromParams(Astro.params);
+const t = await useTranslations(lang);
+const title = t('cbrt.title', 'Racine Cubique Calculator | Free Online Cube Root Calculator');
+const description = t('cbrt.description', 'Calculate cube roots instantly with our free Racine Cubique Calculator. Get exact decimal results, simplified radicals, and step-by-step workings.');
+const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/racine-cubique-calculator/', lang)}`;
 const alternateLinks = getPageAlternateLinks('/racine-cubique-calculator/');
 
 const cbrtFaqs = [
@@ -48,11 +58,11 @@ const cbrtFaqs = [
   mathSolverType="CubeRootSolver"
   faqItems={cbrtFaqs}
 >
-  <Navbar lang={lang} />
+  <Navbar lang={lang} contentLang={lang} />
   <main id="main-content">
     <section class="above-fold" id="hero">
       <div class="above-fold-stack">
-        <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Racine Cubique Calculator', url: '/racine-cubique-calculator/' }]} />
+        <Breadcrumbs items={[{ label: 'Home', url: getLocalizedUrl('/', lang) }, { label: 'Racine Cubique Calculator', url: getLocalizedUrl('/racine-cubique-calculator/', lang) }]} />
         <header class="hero-compact hero-compact--centered">
           <h1 class="hero-title">
               <span class="title-line">Racine Cubique</span>
@@ -135,5 +145,5 @@ const cbrtFaqs = [
     </section>
     <CubeRootContent lang={lang} />
   </main>
-  <Footer lang={lang} />
+  <Footer lang={lang} contentLang={lang} />
 </Layout>

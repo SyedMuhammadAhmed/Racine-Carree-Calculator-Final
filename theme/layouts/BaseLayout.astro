@@ -79,7 +79,9 @@ const orgSchema = {
   logo: {
     "@type": "ImageObject",
     url: absoluteUrl('/logo.png'),
-    caption: site.siteName
+    caption: site.siteName,
+    width: 512,
+    height: 512
   },
   image: absoluteUrl('/og-image.png'),
   description: site.siteDescription,
@@ -153,9 +155,7 @@ const schemas = [webSiteSchema, orgSchema, siteNavigationSchema, aboutSchema, co
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
-    <!-- Preconnect & DNS Prefetch to Required Origins -->
-    <link rel="preconnect" href={site.siteUrl} crossorigin />
-    <link rel="dns-prefetch" href={site.siteUrl} />
+    <!-- Preconnect & DNS Prefetch to External Origins -->
     <link rel="preconnect" href="https://www.linkedin.com" />
     <link rel="dns-prefetch" href="https://www.linkedin.com" />
     <link rel="preconnect" href="https://www.youtube.com" />

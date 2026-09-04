@@ -3,12 +3,14 @@ import BaseLayout from '../../theme/layouts/BaseLayout.astro';
 import { useTranslations } from '../../theme/i18n/translations';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../config/site.json';
+import { getPageAlternateLinks } from '../utils/seo';
 
 const lang = 'en';
 const t = await useTranslations(lang);
 const title = "About Racine Carree Calculator | Syed Muhammad Ahmed";
 const description = "Learn about Racine Carree Calculator, our story, parent organization, trusted source standards, and founder & creator Syed Muhammad Ahmed.";
 const canonicalUrl = `${site.siteUrl}/about-us/`;
+const alternateLinks = getPageAlternateLinks('/about-us/');
 ---
 
 <BaseLayout 
@@ -16,6 +18,7 @@ const canonicalUrl = `${site.siteUrl}/about-us/`;
     description={description}
     locale={lang}
     canonicalUrl={canonicalUrl}
+    alternateLinks={alternateLinks}
     isAboutPage={true}
 >
     <div class="page-shell">

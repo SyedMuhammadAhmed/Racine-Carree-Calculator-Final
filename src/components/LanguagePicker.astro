@@ -40,19 +40,11 @@ const currentPathWithoutLocale = Astro.url.pathname.replace(localePrefixPattern,
 const isHomePath = currentPathWithoutLocale === '/';
 
 function getLanguageUrl(locale: Locale) {
-  if (isHomePath) {
-    return getLocalizedUrl('/', locale);
-  }
-
   const params = new URLSearchParams(Astro.url.searchParams);
-  if (locale === DEFAULT_LOCALE) {
-    params.delete('lang');
-  } else {
-    params.set('lang', locale);
-  }
-
+  params.delete('lang');
   const query = params.toString();
-  return `${currentPathWithoutLocale}${query ? `?${query}` : ''}`;
+  const baseLocalized = getLocalizedUrl(currentPathWithoutLocale, locale);
+  return `${baseLocalized}${query ? `?${query}` : ''}`;
 }
 ---
 

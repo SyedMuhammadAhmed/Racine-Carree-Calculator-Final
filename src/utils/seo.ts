@@ -38,14 +38,19 @@ export function getOpenGraphLocale(locale: string): string {
 }
 
 export function getHomeAlternateLinks(): AlternateLink[] {
+  return getPageAlternateLinks('/');
+}
+
+export function getPageAlternateLinks(path: string): AlternateLink[] {
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
   return [
     ...LOCALES.map((locale) => ({
       hreflang: locale,
-      href: absoluteUrl(getLocalizedUrl('/', locale)),
+      href: absoluteUrl(getLocalizedUrl(cleanPath, locale)),
     })),
     {
       hreflang: 'x-default',
-      href: absoluteUrl(getLocalizedUrl('/', DEFAULT_LOCALE)),
+      href: absoluteUrl(getLocalizedUrl(cleanPath, DEFAULT_LOCALE)),
     },
   ];
 }

@@ -43,11 +43,11 @@ const isCalculatorSubPage = isCubiquePage || isNthRootPage;
                     <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li role="none"><a href={pageHref('/racine-cubique-calculator/')} class:list={['dropdown-item', { active: isCubiquePage }]} role="menuitem">
-                        Racine Cubique Calculator
+                    <li role="none"><a href={getLocalizedUrl('/racine-cubique-calculator/', activeLocale)} class:list={['dropdown-item', { active: isCubiquePage }]} role="menuitem">
+                        {t('nav.cbrt', 'Racine Cubique Calculator')}
                     </a></li>
-                    <li role="none"><a href={pageHref('/nth-root-calculator/')} class:list={['dropdown-item', { active: isNthRootPage }]} role="menuitem">
-                        Nth Root Calculator
+                    <li role="none"><a href={getLocalizedUrl('/nth-root-calculator/', activeLocale)} class:list={['dropdown-item', { active: isNthRootPage }]} role="menuitem">
+                        {t('nav.nth', 'Nth Root Calculator')}
                     </a></li>
                 </ul>
             </li>

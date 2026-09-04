@@ -1,17 +1,27 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import NthRootContent from '../components/NthRootContent.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { getHtmlDir } from '../../theme/i18n/utils';
-import site from '../config/site.json';
-import { getPageAlternateLinks } from '../utils/seo';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import NthRootContent from '../../components/NthRootContent.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { LOCALES, getHtmlDir, getLocalizedUrl, getLocaleFromParams } from '../../../theme/i18n/utils';
+import { useTranslations } from '../../../theme/i18n/translations';
+import site from '../../config/site.json';
+import { getPageAlternateLinks } from '../../utils/seo';
 
-const lang = 'en';
-const title = 'Nth Root Calculator - Free Root Tool for Any Index';
-const description = 'Calculate any root (4th, 5th, or custom index) instantly with our free Nth Root Calculator. Get exact results, simplified forms, and step-by-step work.';
-const canonicalUrl = `${site.siteUrl}/nth-root-calculator/`;
+export const prerender = true;
+
+export function getStaticPaths() {
+  return LOCALES
+    .filter((locale) => locale !== 'en')
+    .map((locale) => ({ params: { locale } }));
+}
+
+const lang = getLocaleFromParams(Astro.params);
+const t = await useTranslations(lang);
+const title = t('nth.title', 'Nth Root Calculator - Free Root Tool for Any Index');
+const description = t('nth.description', 'Calculate any root (4th, 5th, or custom index) instantly with our free Nth Root Calculator. Get exact results, simplified forms, and step-by-step work.');
+const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/nth-root-calculator/', lang)}`;
 const alternateLinks = getPageAlternateLinks('/nth-root-calculator/');
 
 const nthFaqs = [
@@ -48,11 +58,11 @@ const nthFaqs = [
   mathSolverType="NthRootSolver"
   faqItems={nthFaqs}
 >
-  <Navbar lang={lang} />
+  <Navbar lang={lang} contentLang={lang} />
   <main id="main-content">
     <section class="above-fold" id="hero">
       <div class="above-fold-stack">
-        <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Nth Root Calculator', url: '/nth-root-calculator/' }]} />
+        <Breadcrumbs items={[{ label: 'Home', url: getLocalizedUrl('/', lang) }, { label: 'Nth Root Calculator', url: getLocalizedUrl('/nth-root-calculator/', lang) }]} />
         <header class="hero-compact hero-compact--centered">
           <h1 class="hero-title">
               <span class="title-line">Nth Root</span>
@@ -150,5 +160,5 @@ const nthFaqs = [
     </section>
     <NthRootContent lang={lang} />
   </main>
-  <Footer lang={lang} />
+  <Footer lang={lang} contentLang={lang} />
 </Layout>

@@ -90,8 +90,8 @@ const year = new Date().getFullYear();
         </h3>
         <nav class="footer-redesign__links" aria-label="Calculator links">
           <a href={sectionHref('hero')}>Racine Carrée Calculator</a>
-          <a href={pageHref('/racine-cubique-calculator/')}>Racine Cubique Calculator</a>
-          <a href={pageHref('/nth-root-calculator/')}>Nth Root Calculator</a>
+          <a href={getLocalizedUrl('/racine-cubique-calculator/', activeLocale)}>{t('nav.cbrt', 'Racine Cubique Calculator')}</a>
+          <a href={getLocalizedUrl('/nth-root-calculator/', activeLocale)}>{t('nav.nth', 'Nth Root Calculator')}</a>
         </nav>
       </div>
 

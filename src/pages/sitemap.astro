@@ -3,11 +3,13 @@ import BaseLayout from '../../theme/layouts/BaseLayout.astro';
 import { LOCALES } from '../../theme/i18n/utils';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../config/site.json';
+import { getPageAlternateLinks } from '../utils/seo';
 
 const lang = 'en';
 const title = "Sitemap";
 const description = "Explore the complete Racine Carrée Calculator sitemap for square root, cube root, nth root, company, and policy pages.";
 const canonicalUrl = `${site.siteUrl}/sitemap/`;
+const alternateLinks = getPageAlternateLinks('/sitemap/');
 
 const mainPages = [
   { label: "Home — Racine Carrée Calculator", href: "/" },
@@ -32,6 +34,7 @@ const languages = LOCALES.filter(loc => loc !== 'en').map(loc => ({
     description={description}
     locale={lang}
     canonicalUrl={canonicalUrl}
+    alternateLinks={alternateLinks}
 >
     <div class="page-shell">
         <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Sitemap', url: '/sitemap/' }]} />

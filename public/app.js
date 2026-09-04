@@ -19,7 +19,22 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initSmoothScroll();
     initBackToTop();
+    initHistory();
 });
+
+function initHistory() {
+    ['sqrt', 'cbrt', 'nth'].forEach(type => {
+        try {
+            const saved = localStorage.getItem(`calc_history_${type}`);
+            if (saved) {
+                histories[type] = JSON.parse(saved);
+                if (histories[type].length > 0) {
+                    renderHistory(type);
+                }
+            }
+        } catch (e) {}
+    });
+}
 
 // ---- Theme ----
 function initTheme() {
@@ -208,6 +223,7 @@ function initSmoothScroll() {
 function primeFactorize(n) {
     n = Math.round(Math.abs(n));
     if (n <= 1) return n === 0 ? [] : [n];
+    if (n > 1e12) return [n]; // Safety threshold to prevent UI thread lock
     const factors = [];
     let d = 2;
     while (d * d <= n) {
@@ -240,8 +256,11 @@ function buildRootFactorSteps(value, degree, symbol) {
         return steps;
     }
 
-    if (!Number.isInteger(value) || value < 0 && degree % 2 === 0) {
-        steps.push({ title: 'Apply the root', math: `${symbol}${formatNum(value)} = ${formatResult(Math.pow(value, 1 / degree))}` });
+    if (!Number.isInteger(value) || (value < 0 && degree % 2 === 0)) {
+        const absVal = Math.abs(value);
+        const powVal = Math.pow(absVal, 1 / degree);
+        const resVal = value < 0 && degree % 2 === 1 ? -powVal : powVal;
+        steps.push({ title: 'Apply the root', math: `${symbol}${formatNum(value)} = ${formatResult(resVal)}` });
         return steps;
     }
 
@@ -280,11 +299,14 @@ function buildRootFactorSteps(value, degree, symbol) {
         } else {
             steps.push({ title: `Group factors in sets of ${degree}`, math: `Take complete groups outside; leftover stays inside` });
             steps.push({ title: 'Simplify the radical', math: `${symbol}${formatNum(absVal)} = ${sign}${formatNum(outsideProduct)}${symbol}${formatNum(insideProduct)}` });
-            steps.push({ title: 'Decimal value', math: `≈ ${formatResult(Math.pow(value, 1 / degree))}` });
+            const absDec = Math.pow(absVal, 1 / degree);
+            const realDec = value < 0 && degree % 2 === 1 ? -absDec : absDec;
+            steps.push({ title: 'Decimal value', math: `≈ ${formatResult(realDec)}` });
         }
     }
 
-    const result = Math.pow(value, 1 / degree);
+    const absRes = Math.pow(absVal, 1 / degree);
+    const result = value < 0 && degree % 2 === 1 ? -absRes : absRes;
     if (Number.isInteger(result)) {
         steps.push({ title: 'Final answer', math: `${symbol}${formatNum(value)} = ${formatResult(result)}` });
         steps.push({ title: 'Verify', math: `${formatResult(result)}^${degree} = ${formatNum(Math.pow(result, degree))}` });
@@ -508,7 +530,13 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps }) 
                 <span class="result-status ${statusClass}">${badge || 'Result'}</span>
             </div>
             <div class="result-expression">${formula}</div>
-            <div class="result-answer">${value}</div>
+            <div class="result-answer" style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
+                <span>${value}</span>
+                <button type="button" class="btn-copy-result" onclick="copyResultText(this, '${value.replace(/'/g, "\\'")}')" aria-label="Copy result to clipboard" title="Copy result" style="background:var(--bg-glass-strong);border:1px solid var(--border-default);border-radius:6px;padding:4px 8px;font-size:0.75rem;font-weight:600;color:var(--text-secondary);cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                </button>
+            </div>
             ${breakdownHtml ? `<div class="result-breakdown">${breakdownHtml}</div>` : ''}
             ${summary ? `
                 <div class="result-summary">
@@ -525,19 +553,23 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps }) 
     area.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-function showError(area, message) {
-    area.classList.add('error');
-    area.classList.remove('has-result');
-    area.innerHTML = `
-        <div class="result-error">
-            <span class="result-error-icon" aria-hidden="true">!</span>
-            <span class="result-error-text">${message}</span>
-        </div>
-    `;
-
-    area.style.animation = 'none';
-    void area.offsetWidth;
-    area.style.animation = 'shake 0.4s ease-out';
+function copyResultText(btn, text) {
+    if (!navigator.clipboard) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    } else {
+        navigator.clipboard.writeText(text);
+    }
+    const span = btn.querySelector('span');
+    if (span) {
+        const orig = span.textContent;
+        span.textContent = 'Copied!';
+        setTimeout(() => { span.textContent = orig; }, 2000);
+    }
 }
 
 function formatNum(n) {
@@ -557,37 +589,16 @@ function formatResult(n) {
     return parseFloat(fixed).toString();
 }
 
-function addHistory(type, expression, result) {
-    const historyMap = {
-        sqrt: 'sqrtHistory',
-        cbrt: 'cbrtHistory',
-        nth: 'nthHistory',
-    };
-
-    const listMap = {
-        sqrt: 'sqrtHistoryList',
-        cbrt: 'cbrtHistoryList',
-        nth: 'nthHistoryList',
-    };
-
-    const countMap = {
-        sqrt: 'sqrtHistoryCount',
-        cbrt: 'cbrtHistoryCount',
-        nth: 'nthHistoryCount',
-    };
-
-    histories[type].unshift({ expression, result });
-    if (histories[type].length > MAX_HISTORY) {
-        histories[type].pop();
-    }
+function renderHistory(type) {
+    const historyMap = { sqrt: 'sqrtHistory', cbrt: 'cbrtHistory', nth: 'nthHistory' };
+    const listMap = { sqrt: 'sqrtHistoryList', cbrt: 'cbrtHistoryList', nth: 'nthHistoryList' };
+    const countMap = { sqrt: 'sqrtHistoryCount', cbrt: 'cbrtHistoryCount', nth: 'nthHistoryCount' };
 
     const container = document.getElementById(historyMap[type]);
     if (container) container.classList.add('show');
 
     const countEl = document.getElementById(countMap[type]);
-    if (countEl) {
-        countEl.textContent = `${histories[type].length}`;
-    }
+    if (countEl) countEl.textContent = `${histories[type].length}`;
 
     const list = document.getElementById(listMap[type]);
     if (list) {
@@ -598,6 +609,19 @@ function addHistory(type, expression, result) {
             </div>
         `).join('');
     }
+}
+
+function addHistory(type, expression, result) {
+    histories[type].unshift({ expression, result });
+    if (histories[type].length > MAX_HISTORY) {
+        histories[type].pop();
+    }
+
+    try {
+        localStorage.setItem(`calc_history_${type}`, JSON.stringify(histories[type]));
+    } catch (e) {}
+
+    renderHistory(type);
 }
 
 // Add shake keyframe dynamically
