@@ -101,9 +101,9 @@ const year = new Date().getFullYear();
           {t('footer.company', 'Company')}
         </h3>
         <nav class="footer-redesign__links" aria-label="Company links">
-          <a href={pageHref('/about-us/')}>{t('nav.about', 'About Us')}</a>
-          <a href={pageHref('/contact-us/')}>{t('nav.contact', 'Contact Us')}</a>
-          <a href={pageHref('/sitemap/')}>{t('nav.sitemap', 'Sitemap')}</a>
+          <a href={pageHref('/about-us/')}>{t('nav.about', 'About Us')}{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a>
+          <a href={pageHref('/contact-us/')}>{t('nav.contact', 'Contact Us')}{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a>
+          <a href={pageHref('/sitemap/')}>{t('nav.sitemap', 'Sitemap')}{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a>
         </nav>
       </div>
 
@@ -113,9 +113,9 @@ const year = new Date().getFullYear();
           Legal
         </h3>
         <nav class="footer-redesign__links" aria-label="Legal links">
-          <a href={pageHref('/privacy/')}>{t('nav.privacy', 'Privacy Policy')}</a>
-          <a href={pageHref('/terms/')}>Terms &amp; Conditions</a>
-          <a href={pageHref('/disclaimer/')}>Disclaimer</a>
+          <a href={pageHref('/privacy/')}>{t('nav.privacy', 'Privacy Policy')}{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a>
+          <a href={pageHref('/terms/')}>Terms &amp; Conditions{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a>
+          <a href={pageHref('/disclaimer/')}>Disclaimer{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a>
           <a href="https://www.dmca.com/Protection/Status.aspx?url=https://www.racinecarreecalculatorr.com" target="_blank" rel="noopener noreferrer" class="dmca-legal-link">DMCA Protection</a>
         </nav>
       </div>

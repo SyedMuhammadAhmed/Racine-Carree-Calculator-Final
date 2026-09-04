@@ -12,9 +12,12 @@ ${site.siteName} provides instant calculations for all radical and root expressi
 
 ## Calculators & Tools
 
-- [Square Root Calculator](${baseUrl}/): Instant square root calculator with step-by-step prime factorization and radical simplification.
-- [Cube Root Calculator](${baseUrl}/racine-cubique-calculator/): Cube root calculator for positive and negative numbers with exact results and step explanations.
+- [Square Root Calculator](${baseUrl}/): Instant square root calculator with exact decimals, prominent simplified radical forms (e.g. √72 = 6√2), complex imaginary numbers (± r i for negative inputs), and step-by-step breakdowns.
+- [Cube Root Calculator](${baseUrl}/racine-cubique-calculator/): Cube root calculator for positive and negative numbers with exact results, simplified cube radicals, and step explanations.
 - [Nth Root Calculator](${baseUrl}/nth-root-calculator/): General root calculator to compute roots of any index or degree (4th root, 5th root, nth root).
+
+## Multilingual Support
+All calculators and educational guides are fully localized across 18 languages: English, Español, Français, Deutsch, Italiano, Português, Русский, हिन्दी, বাংলা, 日本語, 한국어, Bahasa Melayu, Polski, Bahasa Indonesia, العربية, Български, Türkçe, and Svenska.
 
 ## Guides & Documentation
 

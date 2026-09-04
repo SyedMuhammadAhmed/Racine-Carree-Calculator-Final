@@ -77,11 +77,9 @@
 # Sitemaps & robots
 /sitemap-index.xml
   Cache-Control: public, max-age=86400, must-revalidate
-  Content-Type: application/xml; charset=utf-8
 
 /sitemap-*.xml
   Cache-Control: public, max-age=86400, must-revalidate
-  Content-Type: application/xml; charset=utf-8
 
 /robots.txt
   Cache-Control: public, max-age=86400, must-revalidate

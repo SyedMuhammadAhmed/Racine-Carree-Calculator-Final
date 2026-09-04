@@ -1,29 +1,54 @@
 ---
 import BaseLayout from '../../theme/layouts/BaseLayout.astro';
-import { LOCALES } from '../../theme/i18n/utils';
+import { LOCALES, type Locale } from '../../theme/i18n/utils';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../config/site.json';
 
 const lang = 'en';
 const title = "Sitemap";
-const description = "Explore the complete Racine Carrée Calculator sitemap for square root, cube root, nth root, company, and policy pages.";
+const description = "Explore the complete Racine Carrée Calculator sitemap including square root, cube root, and nth root calculators across 18 languages.";
 const canonicalUrl = `${site.siteUrl}/sitemap/`;
 
 const mainPages = [
-  { label: "Home — Racine Carrée Calculator", href: "/" },
-  { label: "Racine Cubique Calculator", href: "/racine-cubique-calculator/" },
-  { label: "Nth Root Calculator", href: "/nth-root-calculator/" },
-  { label: "About Us", href: "/about-us/" },
-  { label: "Contact Us", href: "/contact-us/" },
-  { label: "Privacy Policy", href: "/privacy/" },
-  { label: "Terms & Conditions", href: "/terms/" },
-  { label: "Disclaimer", href: "/disclaimer/" },
-  { label: "Sitemap", href: "/sitemap/" },
+  { label: "Home — Square Root Calculator", href: "/", desc: "Square root calculator with exact decimals, simplified form, and step-by-step working out" },
+  { label: "Racine Cubique Calculator", href: "/racine-cubique-calculator/", desc: "Cube root calculator for real positive and negative numbers" },
+  { label: "Nth Root Calculator", href: "/nth-root-calculator/", desc: "Calculate radical roots of any index or degree" },
+  { label: "About Us", href: "/about-us/", desc: "About our mission, methodology, and calculator precision" },
+  { label: "Contact Us", href: "/contact-us/", desc: "Get in touch with support and submit feedback" },
+  { label: "Privacy Policy", href: "/privacy/", desc: "Our commitment to user privacy and data handling" },
+  { label: "Terms & Conditions", href: "/terms/", desc: "Website usage terms and conditions" },
+  { label: "Disclaimer", href: "/disclaimer/", desc: "Educational disclaimer and calculation accuracy details" },
+  { label: "XML Sitemap", href: "/sitemap-index.xml", desc: "Machine-readable search engine XML sitemap index" }
 ];
 
-const languages = LOCALES.filter(loc => loc !== 'en').map(loc => ({
-  label: loc.toUpperCase(),
-  href: `/${loc}/`
+const languageData: Record<Exclude<Locale, 'en'>, { name: string; nativeName: string }> = {
+  hi: { name: 'Hindi', nativeName: 'हिन्दी' },
+  es: { name: 'Spanish', nativeName: 'Español' },
+  ru: { name: 'Russian', nativeName: 'Русский' },
+  fr: { name: 'French', nativeName: 'Français' },
+  de: { name: 'German', nativeName: 'Deutsch' },
+  it: { name: 'Italian', nativeName: 'Italiano' },
+  pt: { name: 'Portuguese', nativeName: 'Português' },
+  bn: { name: 'Bengali', nativeName: 'বাংলা' },
+  ja: { name: 'Japanese', nativeName: '日本語' },
+  ko: { name: 'Korean', nativeName: '한국어' },
+  ms: { name: 'Malay', nativeName: 'Bahasa Melayu' },
+  pl: { name: 'Polish', nativeName: 'Polski' },
+  id: { name: 'Indonesian', nativeName: 'Bahasa Indonesia' },
+  ar: { name: 'Arabic', nativeName: 'العربية' },
+  bg: { name: 'Bulgarian', nativeName: 'Български' },
+  tr: { name: 'Turkish', nativeName: 'Türkçe' },
+  sv: { name: 'Swedish', nativeName: 'Svenska' },
+};
+
+const localizedEditions = (LOCALES.filter(l => l !== 'en') as Array<Exclude<Locale, 'en'>>).map(loc => ({
+  code: loc,
+  ...languageData[loc],
+  pages: [
+    { label: "Square Root", href: `/${loc}/` },
+    { label: "Cube Root", href: `/${loc}/racine-cubique-calculator/` },
+    { label: "Nth Root", href: `/${loc}/nth-root-calculator/` }
+  ]
 }));
 ---
 
@@ -41,30 +66,46 @@ const languages = LOCALES.filter(loc => loc !== 'en').map(loc => ({
                     <span class="eyebrow-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M12 22V9"/><path d="M12 2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M5 18a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2Z"/><path d="M15 18a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2Z"/></svg>
                     </span> 
-                    Navigation
+                    Site Directory
                 </div>
                 
                 <h1 class="article-h2" style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px;">{title}</h1>
-                <p class="hero-subtitle" style="font-weight: 600;">Full overview of Racine Carrée Calculator</p>
+                <p class="hero-subtitle" style="font-weight: 600;">Complete architectural directory of tools, localized editions, and reference pages.</p>
                 
-                <div style="margin-top: 40px; margin-bottom: 40px;">
-                    <h2 class="article-h3" style="margin-bottom: 24px;">Main Pages</h2>
-                    <div class="law-cards" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+                <!-- Main Core & Trust Pages -->
+                <div style="margin-top: 40px; margin-bottom: 50px;">
+                    <h2 class="article-h3" style="margin-bottom: 24px;">Core Tools &amp; Information</h2>
+                    <div class="law-cards" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
                         {mainPages.map(page => (
-                            <a href={page.href} class="law-card" style="text-decoration: none; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; transition: transform 0.2s ease, box-shadow 0.2s ease;">
-                                <span style="font-weight: 600; font-size: 1.1rem; color: var(--gray-900);">{page.label}</span>
+                            <a href={page.href} class="law-card" style="text-decoration: none; padding: 20px; display: flex; flex-direction: column; gap: 8px; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                                <span style="font-weight: 700; font-size: 1.05rem; color: var(--gray-900);">{page.label}</span>
+                                <span style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.4;">{page.desc}</span>
                             </a>
                         ))}
                     </div>
                 </div>
 
+                <!-- Localized Language Editions -->
                 <div style="margin-bottom: 40px;">
-                    <h2 class="article-h3" style="margin-bottom: 24px;">Languages</h2>
-                    <div class="law-cards" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
-                        {languages.map(lang => (
-                            <a href={lang.href} class="law-card" style="text-decoration: none; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; transition: transform 0.2s ease, box-shadow 0.2s ease;">
-                                <span style="font-weight: 600; font-size: 1.1rem; color: var(--primary-600);">{lang.label}</span>
-                            </a>
+                    <h2 class="article-h3" style="margin-bottom: 12px;">Multilingual Editions (18 Languages)</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px;">Each language edition features full localization including titles, descriptions, dedicated calculators, step-by-step guides, and FAQ structured data.</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                        {localizedEditions.map(edition => (
+                            <div class="law-card" style="padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+                                <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-default); padding-bottom: 8px;">
+                                    <span style="font-weight: 700; font-size: 1.05rem; color: var(--primary-600);">{edition.nativeName}</span>
+                                    <span style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; background: var(--primary-50); color: var(--primary-700); padding: 2px 8px; border-radius: 9999px;">{edition.code}</span>
+                                </div>
+                                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+                                    {edition.pages.map(p => (
+                                        <li>
+                                            <a href={p.href} style="font-size: 0.9rem; color: var(--gray-800); text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 4px 0; transition: color 0.15s ease;">
+                                                <span style="color: var(--primary-500); font-weight: 700;">›</span> {p.label}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         ))}
                     </div>
                 </div>

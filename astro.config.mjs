@@ -35,6 +35,20 @@ export default defineConfig({
         defaultLocale: "en",
         locales: sitemapLocales,
       },
+      serialize(item) {
+        if (item.url === `${siteConfig.siteUrl}/` || item.url.match(/\/[a-z]{2}\/$/)) {
+          item.changefreq = 'weekly';
+          item.priority = 1.0;
+        } else if (item.url.includes('racine-cubique') || item.url.includes('nth-root')) {
+          item.changefreq = 'weekly';
+          item.priority = 0.9;
+        } else {
+          item.changefreq = 'monthly';
+          item.priority = 0.6;
+        }
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
     }),
   ],
   vite: {

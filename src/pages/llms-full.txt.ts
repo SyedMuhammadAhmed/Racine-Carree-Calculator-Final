@@ -15,10 +15,11 @@ ${site.siteName} (${baseUrl}) is a specialized math platform designed to compute
 
 ### 1. Square Root Calculator
 - URL: ${baseUrl}/
-- Formula: √x = y where y² = x (for x ≥ 0)
+- Formula: √x = y where y² = x (for x ≥ 0); √(-x) = ±√x·i (for x < 0 in complex domain)
 - Capabilities:
   - Exact decimal result up to 10 decimal places.
-  - Simplified radical form using prime factorization.
+  - Prominent simplified radical form (e.g., √72 = 6√2).
+  - Complex number support with imaginary unit i for negative radicands (e.g., √(-25) = ±5i).
   - Identification of perfect vs. irrational squares.
   - Step-by-step manual computation breakdowns (Prime Factorization, Long Division, Newton-Raphson).
 

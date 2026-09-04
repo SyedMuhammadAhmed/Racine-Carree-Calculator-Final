@@ -6,6 +6,7 @@ export async function GET() {
   const robotsTxt = `
 User-agent: *
 Allow: /
+Disallow: /404
 
 # AI & Search Engine Crawlers
 User-agent: GPTBot

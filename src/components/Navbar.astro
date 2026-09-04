@@ -51,8 +51,8 @@ const isCalculatorSubPage = isCubiquePage || isNthRootPage;
                     </a></li>
                 </ul>
             </li>
-            <li><a href={pageHref('/about-us/')} class="nav-link" data-section="about">{t('nav.about', 'About Us')}</a></li>
-            <li><a href={pageHref('/contact-us/')} class="nav-link" data-section="contact">{t('nav.contact', 'Contact')}</a></li>
+            <li><a href={pageHref('/about-us/')} class="nav-link" data-section="about">{t('nav.about', 'About Us')}{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a></li>
+            <li><a href={pageHref('/contact-us/')} class="nav-link" data-section="contact">{t('nav.contact', 'Contact')}{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a></li>
         </ul>
         <div class="nav-actions">
             <LanguagePicker lang={activeLocale} id="header-language-picker" />
