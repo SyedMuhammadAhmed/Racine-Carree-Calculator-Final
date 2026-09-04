@@ -1,7 +1,6 @@
 ---
 import Navbar from '../../src/components/Navbar.astro';
 import Footer from '../../src/components/Footer.astro';
-import TranslationRuntime from '../../src/components/TranslationRuntime.astro';
 import { DEFAULT_LOCALE, LOCALES, getHtmlDir, type Locale } from '../i18n/utils';
 import site from '../../src/config/site.json';
 import social from '../../src/config/social.json';
@@ -44,7 +43,7 @@ const {
   alternateLinks = [],
 } = Astro.props;
 
-const requestedLocale = Astro.url.searchParams.get('lang') || locale;
+const requestedLocale = locale;
 const activeLocale = LOCALES.includes(requestedLocale as Locale)
   ? requestedLocale as Locale
   : DEFAULT_LOCALE;
@@ -193,13 +192,6 @@ const schemas = [webSiteSchema, orgSchema, siteNavigationSchema, aboutSchema, co
     <meta name="twitter:image" content={absoluteOgImage} />
     <meta name="twitter:image:alt" content={site.ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
-    <script is:inline>
-        (function () {
-            var t = localStorage.getItem('theme');
-            var d = t || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', d);
-        })();
-    </script>
 
     <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
 
@@ -219,10 +211,9 @@ const schemas = [webSiteSchema, orgSchema, siteNavigationSchema, aboutSchema, co
       <slot />
     </main>
     <Footer lang={activeLocale} />
-    <TranslationRuntime pageLocale={activeLocale} />
     <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
     </button>
-    <script src="/app.js" defer is:inline></script>
+    <script src="/app.js" defer></script>
   </body>
 </html>

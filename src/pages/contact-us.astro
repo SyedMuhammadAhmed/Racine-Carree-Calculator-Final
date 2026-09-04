@@ -4,14 +4,12 @@ import ContactForm from '../../theme/components/ContactForm.astro';
 import { useTranslations } from '../../theme/i18n/translations';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../config/site.json';
-import { getPageAlternateLinks } from '../utils/seo';
 
 const lang = 'en';
 const t = await useTranslations(lang);
 const title = "Contact Us";
 const description = "Contact the Racine Carrée Calculator team for support, feature requests, feedback, or bug reports. We are happy to help you.";
 const canonicalUrl = `${site.siteUrl}/contact-us/`;
-const alternateLinks = getPageAlternateLinks('/contact-us/');
 ---
 
 <BaseLayout 
@@ -19,7 +17,6 @@ const alternateLinks = getPageAlternateLinks('/contact-us/');
     description={description}
     locale={lang}
     canonicalUrl={canonicalUrl}
-    alternateLinks={alternateLinks}
     isContactPage={true}
 >
     <div class="page-shell">
@@ -66,7 +63,7 @@ const alternateLinks = getPageAlternateLinks('/contact-us/');
 
                 <!-- How to Reach Us -->
                 <h2 class="article-h2">How to Reach Us</h2>
-                <p style="margin-bottom: 32px;">The easiest way to contact us is through the form below. Just fill it out and hit send — your message goes straight to our team.</p>
+                <p style="margin-bottom: 32px;">Use the form below when it is available, or email us directly using the address shown beneath it.</p>
 
                 <div style="margin-bottom: 48px;">
                     <ContactForm locale={lang} translations={t} />

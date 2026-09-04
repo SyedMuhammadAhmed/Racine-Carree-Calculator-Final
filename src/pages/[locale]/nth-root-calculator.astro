@@ -55,8 +55,6 @@ const nthFaqs = [
   dir={getHtmlDir(lang)}
   canonicalUrl={canonicalUrl}
   alternateLinks={alternateLinks}
-  mathSolverType="NthRootSolver"
-  faqItems={nthFaqs}
 >
   <Navbar lang={lang} contentLang={lang} />
   <main id="main-content">
@@ -130,7 +128,7 @@ const nthFaqs = [
                     </div>
                   </section>
                   <section class="calc-step calc-step--action" aria-label="Calculate action">
-                    <button class="btn-calc-primary" id="nthCalcBtn" type="button" onclick="calculateNthRoot()" aria-label="Calculate Nth Root">
+                    <button class="btn-calc-primary" id="nthCalcBtn" type="button" aria-label="Calculate Nth Root">
                       <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                       <span>Calculate Nth Root</span>
                     </button>

@@ -16,18 +16,84 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initDropdowns();
     initKeyboardShortcuts();
+    initCalculatorButtons();
+    initLanguagePickers();
+    initContactForm();
     initScrollReveal();
     initSmoothScroll();
     initBackToTop();
     initHistory();
 });
 
+function initCalculatorButtons() {
+    const calculators = [
+        ['sqrtCalcBtn', calculateSquareRoot],
+        ['cbrtCalcBtn', calculateCubeRoot],
+        ['nthCalcBtn', calculateNthRoot],
+    ];
+
+    calculators.forEach(([id, calculate]) => {
+        document.getElementById(id)?.addEventListener('click', calculate);
+    });
+}
+
+function initLanguagePickers() {
+    document.querySelectorAll('[data-language-select]').forEach(select => {
+        select.addEventListener('change', () => {
+            if (select.value) window.location.assign(select.value);
+        });
+    });
+}
+
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    const statusDiv = document.getElementById('form-status');
+    const statusMsg = document.getElementById('status-message');
+    const submitBtn = document.getElementById('submit-btn');
+    const web3FormsKey = form.dataset.web3formsKey || '';
+    if (!statusDiv || !statusMsg || !submitBtn) return;
+
+    const setStatus = (status, message) => {
+        statusDiv.className = `form-status ${status}`;
+        statusMsg.textContent = message;
+    };
+
+    form.addEventListener('submit', async event => {
+        event.preventDefault();
+        setStatus('status-info', form.dataset.msgSending || 'Sending message...');
+        submitBtn.disabled = true;
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    access_key: web3FormsKey,
+                    ...Object.fromEntries(new FormData(form).entries()),
+                }),
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.message || form.dataset.msgError);
+
+            setStatus('status-success', form.dataset.msgSuccess || 'Your message has been sent successfully.');
+            form.reset();
+        } catch (error) {
+            setStatus('status-error', error.message || form.dataset.msgNetworkError || 'Network error. Please try again.');
+        } finally {
+            submitBtn.disabled = false;
+        }
+    });
+}
+
 function initHistory() {
     ['sqrt', 'cbrt', 'nth'].forEach(type => {
         try {
             const saved = localStorage.getItem(`calc_history_${type}`);
             if (saved) {
-                histories[type] = JSON.parse(saved);
+                const parsed = JSON.parse(saved);
+                histories[type] = Array.isArray(parsed) ? parsed.slice(0, MAX_HISTORY) : [];
                 if (histories[type].length > 0) {
                     renderHistory(type);
                 }
@@ -85,6 +151,7 @@ function initNavbar() {
     toggle.addEventListener('click', () => {
         toggle.classList.toggle('active');
         links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(links.classList.contains('open')));
         document.body.style.overflow = links.classList.contains('open') ? 'hidden' : '';
     });
 
@@ -93,6 +160,7 @@ function initNavbar() {
         link.addEventListener('click', () => {
             toggle.classList.remove('active');
             links.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         });
     });
@@ -163,6 +231,23 @@ function initDropdowns() {
             d.querySelector('.dropdown-trigger')?.setAttribute('aria-expanded', 'false');
         });
     });
+
+    document.addEventListener('keydown', event => {
+        if (event.key !== 'Escape') return;
+        document.querySelectorAll('.nav-dropdown.open').forEach(dropdown => {
+            dropdown.classList.remove('open');
+            dropdown.querySelector('.dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+        });
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks?.classList.contains('open')) {
+            navToggle?.classList.remove('active');
+            navLinks.classList.remove('open');
+            navToggle?.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            navToggle?.focus();
+        }
+    });
 }
 
 // ---- Keyboard Shortcuts ----
@@ -188,6 +273,7 @@ function initKeyboardShortcuts() {
 
 // ---- Scroll Reveal ----
 function initScrollReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -210,7 +296,10 @@ function initSmoothScroll() {
             e.preventDefault();
             const target = document.querySelector(link.getAttribute('href'));
             if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                target.scrollIntoView({
+                    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+                    block: 'start'
+                });
             }
         });
     });
@@ -223,7 +312,7 @@ function initSmoothScroll() {
 function primeFactorize(n) {
     n = Math.round(Math.abs(n));
     if (n <= 1) return n === 0 ? [] : [n];
-    if (n > 1e12) return [n]; // Safety threshold to prevent UI thread lock
+    if (n > 1e12) return null; // Do not pretend an unfactored value is prime.
     const factors = [];
     let d = 2;
     while (d * d <= n) {
@@ -266,6 +355,13 @@ function buildRootFactorSteps(value, degree, symbol) {
 
     const absVal = Math.abs(n);
     const factors = primeFactorize(absVal);
+    if (factors === null) {
+        steps.push({
+            title: 'Simplification unavailable for this large integer',
+            math: 'To avoid an inaccurate or slow factorization, this calculator shows a decimal approximation only.'
+        });
+        return steps;
+    }
     if (factors.length) {
         steps.push({ title: 'Prime factorization', math: `${formatNum(absVal)} = ${factors.join(' × ')}` });
 
@@ -334,7 +430,7 @@ function calculateSquareRoot() {
     pulseCalcButton(panel);
     const value = parseFloat(input.value);
 
-    if (isNaN(value)) {
+    if (!Number.isFinite(value)) {
         showError(resultArea, 'Please enter a valid number');
         return;
     }
@@ -346,9 +442,7 @@ function calculateSquareRoot() {
 
     const result = Math.sqrt(value);
     const isPerfectSquare = Number.isInteger(result);
-    const isRational = Number.isFinite(result);
     const resultStr = formatResult(result);
-    const decimalPlaces = isPerfectSquare ? 0 : (resultStr.includes('.') ? resultStr.split('.')[1].length : 0);
 
     showResult(resultArea, {
         formula: `√${formatNum(value)} =`,
@@ -358,13 +452,13 @@ function calculateSquareRoot() {
             { label: 'Input', value: formatNum(value) },
             { label: 'Result', value: resultStr },
             { label: 'Squared', value: formatResult(result * result) },
-            { label: 'Type', value: isPerfectSquare ? 'Integer' : 'Irrational' },
+            { label: 'Type', value: isPerfectSquare ? 'Integer' : 'Decimal approximation' },
             { label: 'Parity', value: isPerfectSquare ? (result % 2 === 0 ? 'Even' : 'Odd') : 'N/A' },
-            { label: 'Precision', value: isPerfectSquare ? 'Exact' : `${decimalPlaces} decimals` },
+            { label: 'Precision', value: isPerfectSquare ? 'Exact integer result' : 'Rounded display' },
         ],
         summary: isPerfectSquare
             ? `${resultStr} × ${resultStr} = ${formatNum(value)} — this is a perfect square`
-            : `Full precision: ${result.toFixed(10)} — this is an irrational number`,
+            : `Displayed to up to 12 significant digits. Verify high-stakes calculations independently.`,
         steps: buildRootFactorSteps(value, 2, '√'),
     });
 
@@ -378,7 +472,7 @@ function calculateCubeRoot() {
     pulseCalcButton(document.getElementById('panelCubeRoot'));
     const value = parseFloat(input.value);
 
-    if (isNaN(value)) {
+    if (!Number.isFinite(value)) {
         showError(resultArea, 'Please enter a valid number');
         return;
     }
@@ -396,13 +490,13 @@ function calculateCubeRoot() {
             { label: 'Input', value: formatNum(value) },
             { label: 'Result', value: resultStr },
             { label: 'Cubed', value: formatResult(result ** 3) },
-            { label: 'Type', value: isPerfectCube ? 'Integer' : 'Irrational' },
+            { label: 'Type', value: isPerfectCube ? 'Integer' : 'Decimal approximation' },
             { label: 'Sign', value: isNegative ? 'Negative' : (value === 0 ? 'Zero' : 'Positive') },
             { label: 'Domain', value: 'All reals' },
         ],
         summary: isPerfectCube
             ? `${resultStr}³ = ${resultStr} × ${resultStr} × ${resultStr} = ${formatNum(value)} — perfect cube`
-            : `Full precision: ${result.toFixed(10)} — irrational number`,
+            : `Displayed to up to 12 significant digits. Verify high-stakes calculations independently.`,
         steps: buildRootFactorSteps(value, 3, '∛'),
     });
 
@@ -418,13 +512,13 @@ function calculateNthRoot() {
     const n = parseFloat(degreeInput.value);
     const x = parseFloat(valueInput.value);
 
-    if (isNaN(n) || isNaN(x)) {
+    if (!Number.isFinite(n) || !Number.isFinite(x)) {
         showError(resultArea, 'Please fill in both fields');
         return;
     }
 
-    if (n === 0) {
-        showError(resultArea, 'Root degree cannot be zero');
+    if (!Number.isInteger(n) || n < 1 || n > 10000) {
+        showError(resultArea, 'Root degree must be a whole number from 1 to 10,000');
         return;
     }
 
@@ -454,7 +548,7 @@ function calculateNthRoot() {
         ],
         summary: isExact
             ? `${formatResult(result)}^${formatNum(n)} = ${formatNum(x)}`
-            : `Decimal approximation: ${result.toFixed(10)}`,
+            : `Displayed to up to 12 significant digits. Verify high-stakes calculations independently.`,
         steps: (() => {
             const sym = n === 2 ? '√' : n === 3 ? '∛' : `${formatNum(n)}√`;
             const steps = buildRootFactorSteps(x, n, sym);
@@ -532,7 +626,7 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps }) 
             <div class="result-expression">${formula}</div>
             <div class="result-answer" style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
                 <span>${value}</span>
-                <button type="button" class="btn-copy-result" onclick="copyResultText(this, '${value.replace(/'/g, "\\'")}')" aria-label="Copy result to clipboard" title="Copy result" style="background:var(--bg-glass-strong);border:1px solid var(--border-default);border-radius:6px;padding:4px 8px;font-size:0.75rem;font-weight:600;color:var(--text-secondary);cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s;">
+                <button type="button" class="btn-copy-result" aria-label="Copy result to clipboard" title="Copy result" style="background:var(--bg-glass-strong);border:1px solid var(--border-default);border-radius:6px;padding:4px 8px;font-size:0.75rem;font-weight:600;color:var(--text-secondary);cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s;">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                     <span>Copy</span>
                 </button>
@@ -550,6 +644,28 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps }) 
         </div>
     `;
 
+    area.querySelector('.btn-copy-result')?.addEventListener('click', event => {
+        copyResultText(event.currentTarget, value);
+    });
+
+    area.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function showError(area, message) {
+    if (!area) return;
+    area.classList.add('has-result', 'error');
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'result-error';
+    const icon = document.createElement('span');
+    icon.className = 'result-error-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.textContent = '!';
+    const detail = document.createElement('p');
+    detail.className = 'result-error-text';
+    detail.textContent = message;
+    wrapper.append(icon, detail);
+    area.replaceChildren(wrapper);
     area.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
@@ -580,13 +696,12 @@ function formatNum(n) {
 }
 
 function formatResult(n) {
-    if (!Number.isFinite(n)) return '∞';
+    if (!Number.isFinite(n)) return 'Not a finite result';
     if (Number.isInteger(n) && Math.abs(n) < 1e15) {
         return n.toLocaleString('en-US');
     }
-    // Show up to 10 decimal places, trimming trailing zeros
-    const fixed = n.toFixed(10);
-    return parseFloat(fixed).toString();
+    // Significant digits preserve meaningful very small values without claiming exactness.
+    return Number(n.toPrecision(12)).toString();
 }
 
 function renderHistory(type) {
@@ -602,12 +717,22 @@ function renderHistory(type) {
 
     const list = document.getElementById(listMap[type]);
     if (list) {
-        list.innerHTML = histories[type].map((item, i) => `
-            <div class="history-item" style="animation-delay: ${i * 50}ms">
-                <span class="history-expression">${item.expression}</span>
-                <span class="history-result">= ${item.result}</span>
-            </div>
-        `).join('');
+        const entries = histories[type]
+            .filter(item => item && typeof item.expression === 'string' && typeof item.result === 'string')
+            .map((item, i) => {
+                const entry = document.createElement('div');
+                entry.className = 'history-item';
+                entry.style.animationDelay = `${i * 50}ms`;
+                const expression = document.createElement('span');
+                expression.className = 'history-expression';
+                expression.textContent = item.expression;
+                const result = document.createElement('span');
+                result.className = 'history-result';
+                result.textContent = `= ${item.result}`;
+                entry.append(expression, result);
+                return entry;
+            });
+        list.replaceChildren(...entries);
     }
 }
 

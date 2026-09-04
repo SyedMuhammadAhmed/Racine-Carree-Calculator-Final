@@ -3,14 +3,12 @@ import BaseLayout from '../../theme/layouts/BaseLayout.astro';
 import { useTranslations } from '../../theme/i18n/translations';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../config/site.json';
-import { getPageAlternateLinks } from '../utils/seo';
 
 const lang = 'en';
 const t = await useTranslations(lang);
 const title = "About Racine Carree Calculator | Syed Muhammad Ahmed";
 const description = "Learn about Racine Carree Calculator, our story, parent organization, trusted source standards, and founder & creator Syed Muhammad Ahmed.";
 const canonicalUrl = `${site.siteUrl}/about-us/`;
-const alternateLinks = getPageAlternateLinks('/about-us/');
 ---
 
 <BaseLayout 
@@ -18,7 +16,6 @@ const alternateLinks = getPageAlternateLinks('/about-us/');
     description={description}
     locale={lang}
     canonicalUrl={canonicalUrl}
-    alternateLinks={alternateLinks}
     isAboutPage={true}
 >
     <div class="page-shell">
@@ -45,16 +42,16 @@ const alternateLinks = getPageAlternateLinks('/about-us/');
                 <!-- Social Proof Stats Displayed -->
                 <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 48px;">
                     <div class="stat-card" style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 24px; text-align: center; box-shadow: var(--shadow-sm);">
-                        <div style="font-size: 2.2rem; font-weight: 800; color: var(--primary-500); line-height: 1;">50,000+</div>
-                        <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-top: 8px;">Monthly Calculations</div>
+                        <div style="font-size: 2.2rem; font-weight: 800; color: var(--primary-500); line-height: 1;">Free</div>
+                        <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-top: 8px;">No account required</div>
                     </div>
                     <div class="stat-card" style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 24px; text-align: center; box-shadow: var(--shadow-sm);">
-                        <div style="font-size: 2.2rem; font-weight: 800; color: var(--accent-500); line-height: 1;">99.99%</div>
-                        <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-top: 8px;">Precision &amp; Accuracy</div>
+                        <div style="font-size: 2.2rem; font-weight: 800; color: var(--accent-500); line-height: 1;">Clear</div>
+                        <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-top: 8px;">Results and explanations</div>
                     </div>
                     <div class="stat-card" style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 24px; text-align: center; box-shadow: var(--shadow-sm);">
-                        <div style="font-size: 2.2rem; font-weight: 800; color: var(--warm-500); line-height: 1;">20+</div>
-                        <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-top: 8px;">Countries Reached</div>
+                        <div style="font-size: 2.2rem; font-weight: 800; color: var(--warm-500); line-height: 1;">Online</div>
+                        <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-top: 8px;">Works in modern browsers</div>
                     </div>
                     <div class="stat-card" style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 24px; text-align: center; box-shadow: var(--shadow-sm);">
                         <div style="font-size: 2.2rem; font-weight: 800; color: var(--green-500); line-height: 1;">100% Free</div>

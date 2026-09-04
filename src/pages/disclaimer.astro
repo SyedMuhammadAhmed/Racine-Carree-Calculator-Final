@@ -3,14 +3,12 @@ import BaseLayout from '../../theme/layouts/BaseLayout.astro';
 import { useTranslations } from '../../theme/i18n/translations';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../config/site.json';
-import { getPageAlternateLinks } from '../utils/seo';
 
 const lang = 'en';
 const t = await useTranslations(lang);
 const title = "Disclaimer";
 const description = "Disclaimer for Racine Carrée Calculator — important information regarding the use of our online tools and math content.";
 const canonicalUrl = `${site.siteUrl}/disclaimer/`;
-const alternateLinks = getPageAlternateLinks('/disclaimer/');
 ---
 
 <BaseLayout 
@@ -18,7 +16,6 @@ const alternateLinks = getPageAlternateLinks('/disclaimer/');
     description={description}
     locale={lang}
     canonicalUrl={canonicalUrl}
-    alternateLinks={alternateLinks}
 >
     <div class="page-shell">
         <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Disclaimer', url: '/disclaimer/' }]} />

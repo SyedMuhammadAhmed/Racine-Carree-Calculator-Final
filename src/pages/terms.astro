@@ -3,14 +3,12 @@ import BaseLayout from '../../theme/layouts/BaseLayout.astro';
 import { useTranslations } from '../../theme/i18n/translations';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../config/site.json';
-import { getPageAlternateLinks } from '../utils/seo';
 
 const lang = 'en';
 const t = await useTranslations(lang);
 const title = "Terms & Conditions";
 const description = "Terms & Conditions for using the Racine Carrée Calculator website and its free mathematical calculation tools.";
 const canonicalUrl = `${site.siteUrl}/terms/`;
-const alternateLinks = getPageAlternateLinks('/terms/');
 ---
 
 <BaseLayout 
@@ -18,7 +16,6 @@ const alternateLinks = getPageAlternateLinks('/terms/');
     description={description}
     locale={lang}
     canonicalUrl={canonicalUrl}
-    alternateLinks={alternateLinks}
 >
     <div class="page-shell">
         <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Terms & Conditions', url: '/terms/' }]} />

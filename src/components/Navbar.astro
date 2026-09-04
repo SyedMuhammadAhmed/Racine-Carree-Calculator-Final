@@ -11,7 +11,7 @@ interface Props {
 const { lang = DEFAULT_LOCALE, contentLang = DEFAULT_LOCALE } = Astro.props;
 const localePrefixPattern = new RegExp(`^/(${LOCALES.join('|')})(?=/|$)`);
 const pathLocale = Astro.url.pathname.match(localePrefixPattern)?.[1];
-const requestedLocale = Astro.url.searchParams.get('lang') || pathLocale || lang;
+const requestedLocale = pathLocale || lang;
 const activeLocale = LOCALES.includes(requestedLocale as Locale)
   ? requestedLocale as Locale
   : DEFAULT_LOCALE;
