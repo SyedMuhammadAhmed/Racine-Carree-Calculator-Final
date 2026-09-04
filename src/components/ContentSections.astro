@@ -3,8 +3,9 @@ import TableOfContents from './TableOfContents.astro';
 
 interface Props {
   lang?: string;
+  faqs?: Array<{ question: string; answer: string }>;
 }
-const { lang = 'en' } = Astro.props;
+const { lang = 'en', faqs = [] } = Astro.props;
 
 const homeToc = [
   {
@@ -578,34 +579,45 @@ const homeToc = [
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> FAQs</div>
                 <h2 class="article-h2">Frequently Asked Questions</h2>
                 <div class="faq-list">
-                    <details class="faq-item">
-                        <summary class="faq-question">How do I use the Racine Carree Calculator?</summary>
-                        <div class="faq-answer"><p>Type any number into the box above, click Calculate, and the tool instantly shows you the square root — including a simplified form when one exists and support for negative numbers.</p></div>
-                    </details>
-                    <details class="faq-item">
-                        <summary class="faq-question">Can I calculate square roots manually?</summary>
-                        <div class="faq-answer"><p>Yes. For perfect squares, prime factorization works well. For everything else, the long division method or the estimation trick (finding which two perfect squares your number sits between) will get you there — just more slowly than a calculator.</p></div>
-                    </details>
-                    <details class="faq-item">
-                        <summary class="faq-question">What does "racine carrée" mean?</summary>
-                        <div class="faq-answer"><p>It's French for "square root." A racine carrée calculator and a square root calculator do exactly the same job — the name just reflects that a lot of English-speaking users search using the French phrase.</p></div>
-                    </details>
-                    <details class="faq-item">
-                        <summary class="faq-question">Why is the keyword "racine carrée" in French?</summary>
-                        <div class="faq-answer"><p>It's a quirk of how people search. Even though this site and its explanations are written in English, "racine carrée" shows up as a common search term among US, UK, and Canadian users — likely from French class, Canadian bilingual schooling, or simply how the term was first learned.</p></div>
-                    </details>
-                    <details class="faq-item">
-                        <summary class="faq-question">Can I calculate square roots of decimals or large numbers?</summary>
-                        <div class="faq-answer"><p>Yes. The calculator handles decimals, whole numbers, and large values with high precision, so you don't need to worry about the size or format of what you're entering.</p></div>
-                    </details>
-                    <details class="faq-item">
-                        <summary class="faq-question">Can the calculator handle negative numbers?</summary>
-                        <div class="faq-answer"><p>Yes. When you enter a negative number, the calculator returns the result using the imaginary unit "i," as explained in the section above.</p></div>
-                    </details>
-                    <details class="faq-item">
-                        <summary class="faq-question">Is this calculator free to use?</summary>
-                        <div class="faq-answer"><p>Yes, completely — no sign-up, no downloads, no limits on how many times you use it.</p></div>
-                    </details>
+                    {faqs && faqs.length > 0 ? (
+                        faqs.map((faq) => (
+                            <details class="faq-item">
+                                <summary class="faq-question">{faq.question}</summary>
+                                <div class="faq-answer"><p>{faq.answer}</p></div>
+                            </details>
+                        ))
+                    ) : (
+                        <>
+                            <details class="faq-item">
+                                <summary class="faq-question">How do I use the Racine Carree Calculator?</summary>
+                                <div class="faq-answer"><p>Type any number into the box above, click Calculate, and the tool instantly shows you the square root — including a simplified form when one exists and support for negative numbers.</p></div>
+                            </details>
+                            <details class="faq-item">
+                                <summary class="faq-question">Can I calculate square roots manually?</summary>
+                                <div class="faq-answer"><p>Yes. For perfect squares, prime factorization works well. For everything else, the long division method or the estimation trick (finding which two perfect squares your number sits between) will get you there — just more slowly than a calculator.</p></div>
+                            </details>
+                            <details class="faq-item">
+                                <summary class="faq-question">What does "racine carrée" mean?</summary>
+                                <div class="faq-answer"><p>It's French for "square root." A racine carrée calculator and a square root calculator do exactly the same job — the name just reflects that a lot of English-speaking users search using the French phrase.</p></div>
+                            </details>
+                            <details class="faq-item">
+                                <summary class="faq-question">Why is the keyword "racine carrée" in French?</summary>
+                                <div class="faq-answer"><p>It's a quirk of how people search. Even though this site and its explanations are written in English, "racine carrée" shows up as a common search term among US, UK, and Canadian users — likely from French class, Canadian bilingual schooling, or simply how the term was first learned.</p></div>
+                            </details>
+                            <details class="faq-item">
+                                <summary class="faq-question">Can I calculate square roots of decimals or large numbers?</summary>
+                                <div class="faq-answer"><p>Yes. The calculator handles decimals, whole numbers, and large values with high precision, so you don't need to worry about the size or format of what you're entering.</p></div>
+                            </details>
+                            <details class="faq-item">
+                                <summary class="faq-question">Can the calculator handle negative numbers?</summary>
+                                <div class="faq-answer"><p>Yes. When you enter a negative number, the calculator returns the result using the imaginary unit "i," as explained in the section above.</p></div>
+                            </details>
+                            <details class="faq-item">
+                                <summary class="faq-question">Is this calculator free to use?</summary>
+                                <div class="faq-answer"><p>Yes, completely — no sign-up, no downloads, no limits on how many times you use it.</p></div>
+                            </details>
+                        </>
+                    )}
                 </div>
 
                 <!-- Author Byline & Social Sharing Bar below FAQs -->
