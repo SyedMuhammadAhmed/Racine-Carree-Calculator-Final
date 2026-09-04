@@ -10,10 +10,15 @@
     "tables": "Tische",
     "faq": "FAQ",
     "blog": "Blog",
-    "about": "Über",
-    "privacy": "Datenschutzrichtlinie",
+    "about": "Über Uns",
+    "privacy": "Datenschutz",
     "terms": "Nutzungsbedingungen",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "calculators": "Rechner",
+    "cbrt": "Kubikwurzel Rechner",
+    "nth": "N-te Wurzel Rechner",
+    "sitemap": "Sitemap",
+    "disclaimer": "Haftungsausschluss"
   },
   "hero": {
     "badge": "Kostenloses Quadratwurzel- und Kubikwurzel-Tool",
@@ -95,6 +100,41 @@
     "tagline": "Das umfassendste kostenlose Quadratwurzel- und Kubikwurzel-Tool online.",
     "language": "Sprache",
     "rights": "Alle Rechte vorbehalten.",
-    "made": "Hergestellt mit ❤️ für Mathematik"
+    "made": "Hergestellt mit ❤️ für Mathematik",
+    "company": "Unternehmen",
+    "legal": "Rechtliches"
+  },
+  "cbrt": {
+    "title": "Kubikwurzel Rechner | Kostenloser Online-Rechner für ∛x",
+    "description": "Berechnen Sie Kubikwurzeln sofort mit unserem kostenlosen Rechner. Erhalten Sie exakte Dezimalwerte, vereinfachte Wurzeln und Lösungsschritte.",
+    "hero": {
+      "part1": "Kubikwurzel",
+      "part2": "Rechner",
+      "subtitle": "Berechnen Sie die Kubikwurzel jeder Zahl — positiv oder negativ — sofort mit exakter Dezimalanzeige, vereinfachter Wurzel und Schritten. 100% kostenlos."
+    },
+    "calc": {
+      "title": "Kubikwurzel Rechner",
+      "desc": "Finden Sie ∛x für jede Zahl, einschließlich negativer Zahlen",
+      "btn": "Kubikwurzel berechnen",
+      "tooltip": "Geben Sie eine positive oder negative Zahl ein, um die Kubikwurzel zu berechnen."
+    }
+  },
+  "nth": {
+    "title": "N-te Wurzel Rechner - Kostenloses Wurzel-Tool für jeden Index",
+    "description": "Berechnen Sie jede n-te Wurzel (4., 5. oder benutzerdefinierter Wurzelexponent) sofort online. Exakte Ergebnisse mit ausführlichem Lösungsweg.",
+    "hero": {
+      "part1": "N-te Wurzel",
+      "part2": "Rechner",
+      "subtitle": "Berechnen Sie jede Wurzel für jeden Exponenten n mit exakter Wurzelvereinfachung und vollständigen Rechenschritten."
+    },
+    "calc": {
+      "title": "N-te Wurzel Rechner",
+      "desc": "Berechnen Sie jede Wurzel — 4., 5. oder beliebiger Exponent",
+      "btn": "N-te Wurzel berechnen",
+      "degreeLabel": "Wurzelgrad (Index n)",
+      "numberLabel": "Radikand (Zahl x)",
+      "tooltipDegree": "Der Wurzelexponent (n).",
+      "tooltipNumber": "Die Zahl, aus der die Wurzel gezogen werden soll."
+    }
   }
 }

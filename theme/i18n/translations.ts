@@ -46,3 +46,11 @@ export async function useTranslations(locale: string) {
     return val;
   };
 }
+
+export function getLocaleFaqs(locale: string, category?: 'sqrt' | 'cbrt' | 'nth'): Array<{ question: string; answer: string }> {
+  const translations = loadTranslations(locale as Locale);
+  const items: any[] = Array.isArray(translations.faq) ? translations.faq : [];
+  if (!category) return items;
+  const filtered = items.filter(item => item.category === category || item.category === 'general');
+  return filtered.length > 0 ? filtered : items;
+}

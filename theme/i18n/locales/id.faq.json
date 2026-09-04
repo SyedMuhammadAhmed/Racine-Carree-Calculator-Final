@@ -1,32 +1,44 @@
 [
   {
+    "question": "Bagaimana cara menggunakan Kalkulator Akar Kuadrat?",
+    "answer": "Masukkan angka dan klik Hitung. Anda akan langsung menerima hasil desimal presisi, bentuk akar sederhana (contoh: √72 = 6√2), dan faktorisasi prima langkah demi langkah.",
     "display": true,
-    "question": "Proyek apa ini?",
-    "answer": "Ini adalah proyek Astro yang luar biasa dengan dukungan i18n."
+    "category": "sqrt"
   },
   {
+    "question": "Bisakah kalkulator menghitung angka negatif?",
+    "answer": "Ya! Dalam bilangan riil, akar kuadrat bilangan negatif tidak terdefinisi. Dalam bilangan kompleks, kalkulator menampilkan hasil unit imajiner i (contoh: √(-16) = ±4i).",
     "display": true,
-    "question": "Bagaimana cara menggunakannya?",
-    "answer": "Cukup navigasikan halamannya dan nikmati konten yang dilokalkan."
+    "category": "sqrt"
   },
   {
+    "question": "Apa perbedaan akar kuadrat dan akar pangkat tiga?",
+    "answer": "Akar kuadrat memiliki derajat 2, sedangkan akar pangkat tiga memiliki derajat 3 dan memiliki solusi riil untuk angka negatif.",
     "display": true,
-    "question": "Apakah ini gratis?",
-    "answer": "Ya, ini sepenuhnya gratis untuk digunakan."
+    "category": "general"
   },
   {
+    "question": "Bisakah menghitung akar pangkat tiga dari angka negatif?",
+    "answer": "Ya! Perkalian tiga bilangan negatif menghasilkan bilangan negatif, sehingga ∛(-27) = -3 adalah solusi riil.",
     "display": true,
-    "question": "Apakah saya perlu mendaftar?",
-    "answer": "Tidak diperlukan pendaftaran untuk melihat konten."
+    "category": "cbrt"
   },
   {
+    "question": "Apa arti indeks n pada akar pangkat n?",
+    "answer": "Indeks n adalah derajat akar pada ⁿ√x (2 untuk akar kuadrat, 3 untuk akar pangkat tiga, dan seterusnya).",
     "display": true,
-    "question": "Bahasa apa saja yang didukung?",
-    "answer": "Kami mendukung 18 bahasa berbeda."
+    "category": "nth"
   },
   {
+    "question": "Bisakah mencari akar pangkat n dari angka negatif?",
+    "answer": "Jika derajat n adalah ganjil (3, 5, 7...), ada solusi riil. Jika n genap (2, 4, 6...), tidak ada solusi riil.",
     "display": true,
-    "question": "Bagaimana cara melaporkan bug?",
-    "answer": "Silakan gunakan formulir kontak untuk menghubungi tim kami."
+    "category": "nth"
+  },
+  {
+    "question": "Apakah kalkulator ini gratis?",
+    "answer": "Ya, kalkulator kami 100% gratis tanpa pendaftaran dan tanpa batas penggunaan.",
+    "display": true,
+    "category": "general"
   }
 ]

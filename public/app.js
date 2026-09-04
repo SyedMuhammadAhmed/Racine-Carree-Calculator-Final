@@ -410,6 +410,42 @@ function buildRootFactorSteps(value, degree, symbol) {
     return steps;
 }
 
+// Helper to get simplified radical representation (e.g. 6√2 for 72)
+function getSimplifiedRadical(value, degree, symbol) {
+    if (!Number.isFinite(value) || value === 0) return null;
+    const absVal = Math.round(Math.abs(value));
+    if (absVal > 1e12 || !Number.isInteger(absVal)) return null;
+    const factors = primeFactorize(absVal);
+    if (!factors || !factors.length) return null;
+
+    const counts = {};
+    factors.forEach(f => { counts[f] = (counts[f] || 0) + 1; });
+
+    const outside = [];
+    const inside = [];
+
+    Object.keys(counts).map(Number).sort((a, b) => a - b).forEach(prime => {
+        const count = counts[prime];
+        const groups = Math.floor(count / degree);
+        const remainder = count % degree;
+        if (groups > 0) outside.push(Math.pow(prime, groups));
+        if (remainder > 0) inside.push(Math.pow(prime, remainder));
+    });
+
+    const outsideProduct = outside.reduce((a, b) => a * b, 1) || 1;
+    const insideProduct = inside.reduce((a, b) => a * b, 1) || 1;
+    const sign = value < 0 && degree % 2 === 1 ? '−' : '';
+
+    if (inside.length === 0) {
+        // Integer perfect root, no radical needed
+        return null;
+    }
+    if (outsideProduct > 1) {
+        return `${sign}${formatNum(outsideProduct)}${symbol}${formatNum(insideProduct)}`;
+    }
+    return null;
+}
+
 // ============================================
 //  Calculator Functions
 // ============================================
@@ -435,22 +471,58 @@ function calculateSquareRoot() {
         return;
     }
 
+    // Negative Square Root: Return Imaginary Unit (i) result
     if (value < 0) {
-        showError(resultArea, 'Cannot calculate square root of a negative number');
+        const absVal = Math.abs(value);
+        const rootAbs = Math.sqrt(absVal);
+        const isPerfect = Number.isInteger(rootAbs);
+        const absStr = formatResult(rootAbs);
+        const simplified = getSimplifiedRadical(absVal, 2, '√');
+        const imaginaryVal = `±${absStr}i`;
+        const simplifiedImaginary = simplified ? `±${simplified}i` : null;
+
+        showResult(resultArea, {
+            formula: `√(${formatNum(value)}) =`,
+            value: imaginaryVal,
+            badge: 'Imaginary Number',
+            simplifiedRadical: simplifiedImaginary,
+            breakdown: [
+                { label: 'Input', value: formatNum(value) },
+                { label: 'Imaginary Result', value: imaginaryVal },
+                ...(simplifiedImaginary ? [{ label: 'Simplified Radical', value: simplifiedImaginary }] : []),
+                { label: 'Real Part', value: '0' },
+                { label: 'Imaginary Part', value: `±${absStr}` },
+                { label: 'Type', value: 'Complex / Imaginary unit (i = √-1)' },
+                { label: 'Note', value: 'No real number solution exists' }
+            ],
+            summary: `In real numbers, negative numbers have no square root. In complex numbers, √(${formatNum(value)}) = √(${formatNum(absVal)}) × √(-1) = ${imaginaryVal}.`,
+            steps: [
+                { title: 'Recognize negative radicand', math: `√(${formatNum(value)}) = √(${formatNum(absVal)} × -1)` },
+                { title: 'Apply the product rule', math: `= √(${formatNum(absVal)}) × √(-1)` },
+                { title: 'Substitute the imaginary unit i', math: `Since i = √(-1), this becomes √(${formatNum(absVal)}) · i` },
+                { title: 'Calculate the square root of the magnitude', math: `√(${formatNum(absVal)}) = ${absStr}` },
+                { title: 'Final complex result', math: `√(${formatNum(value)}) = ±${absStr}i` }
+            ]
+        });
+
+        addHistory('sqrt', `√(${formatNum(value)})`, imaginaryVal);
         return;
     }
 
     const result = Math.sqrt(value);
     const isPerfectSquare = Number.isInteger(result);
     const resultStr = formatResult(result);
+    const simplifiedRadical = isPerfectSquare ? null : getSimplifiedRadical(value, 2, '√');
 
     showResult(resultArea, {
         formula: `√${formatNum(value)} =`,
         value: resultStr,
-        badge: isPerfectSquare ? 'Perfect Square' : 'Approximation',
+        badge: isPerfectSquare ? 'Perfect Square' : (simplifiedRadical ? 'Simplified' : 'Approximation'),
+        simplifiedRadical: simplifiedRadical,
         breakdown: [
             { label: 'Input', value: formatNum(value) },
             { label: 'Result', value: resultStr },
+            ...(simplifiedRadical ? [{ label: 'Simplified Radical', value: simplifiedRadical }] : []),
             { label: 'Squared', value: formatResult(result * result) },
             { label: 'Type', value: isPerfectSquare ? 'Integer' : 'Decimal approximation' },
             { label: 'Parity', value: isPerfectSquare ? (result % 2 === 0 ? 'Even' : 'Odd') : 'N/A' },
@@ -458,7 +530,9 @@ function calculateSquareRoot() {
         ],
         summary: isPerfectSquare
             ? `${resultStr} × ${resultStr} = ${formatNum(value)} — this is a perfect square`
-            : `Displayed to up to 12 significant digits. Verify high-stakes calculations independently.`,
+            : (simplifiedRadical
+                ? `Exact simplified form is ${simplifiedRadical} ≈ ${resultStr}`
+                : `Displayed to up to 12 significant digits. Verify high-stakes calculations independently.`),
         steps: buildRootFactorSteps(value, 2, '√'),
     });
 
@@ -481,14 +555,17 @@ function calculateCubeRoot() {
     const isPerfectCube = Number.isInteger(result);
     const resultStr = formatResult(result);
     const isNegative = value < 0;
+    const simplifiedRadical = isPerfectCube ? null : getSimplifiedRadical(value, 3, '∛');
 
     showResult(resultArea, {
         formula: `∛${formatNum(value)} =`,
         value: resultStr,
-        badge: isPerfectCube ? 'Perfect Cube' : 'Approximation',
+        badge: isPerfectCube ? 'Perfect Cube' : (simplifiedRadical ? 'Simplified' : 'Approximation'),
+        simplifiedRadical: simplifiedRadical,
         breakdown: [
             { label: 'Input', value: formatNum(value) },
             { label: 'Result', value: resultStr },
+            ...(simplifiedRadical ? [{ label: 'Simplified Radical', value: simplifiedRadical }] : []),
             { label: 'Cubed', value: formatResult(result ** 3) },
             { label: 'Type', value: isPerfectCube ? 'Integer' : 'Decimal approximation' },
             { label: 'Sign', value: isNegative ? 'Negative' : (value === 0 ? 'Zero' : 'Positive') },
@@ -496,7 +573,9 @@ function calculateCubeRoot() {
         ],
         summary: isPerfectCube
             ? `${resultStr}³ = ${resultStr} × ${resultStr} × ${resultStr} = ${formatNum(value)} — perfect cube`
-            : `Displayed to up to 12 significant digits. Verify high-stakes calculations independently.`,
+            : (simplifiedRadical
+                ? `Exact simplified form is ${simplifiedRadical} ≈ ${resultStr}`
+                : `Displayed to up to 12 significant digits. Verify high-stakes calculations independently.`),
         steps: buildRootFactorSteps(value, 3, '∛'),
     });
 
@@ -523,7 +602,7 @@ function calculateNthRoot() {
     }
 
     if (x < 0 && n % 2 === 0) {
-        showError(resultArea, 'Even roots of negative numbers are undefined');
+        showError(resultArea, 'Even roots of negative numbers have no real solution');
         return;
     }
 
@@ -536,19 +615,25 @@ function calculateNthRoot() {
 
     const isExact = Number.isInteger(result);
     const nStr = n === 2 ? '√' : n === 3 ? '∛' : `${formatNum(n)}√`;
+    const simplifiedRadical = isExact ? null : getSimplifiedRadical(x, n, nStr);
 
     showResult(resultArea, {
         formula: `${nStr}${formatNum(x)} =`,
         value: formatResult(result),
-        badge: isExact ? 'Exact' : 'Approximation',
+        badge: isExact ? 'Exact' : (simplifiedRadical ? 'Simplified' : 'Approximation'),
+        simplifiedRadical: simplifiedRadical,
         breakdown: [
             { label: 'Degree', value: formatNum(n) },
             { label: 'Input', value: formatNum(x) },
+            { label: 'Result', value: formatResult(result) },
+            ...(simplifiedRadical ? [{ label: 'Simplified Radical', value: simplifiedRadical }] : []),
             { label: 'Raised', value: formatResult(Math.pow(result, n)) },
         ],
         summary: isExact
             ? `${formatResult(result)}^${formatNum(n)} = ${formatNum(x)}`
-            : `Displayed to up to 12 significant digits. Verify high-stakes calculations independently.`,
+            : (simplifiedRadical
+                ? `Exact simplified form is ${simplifiedRadical} ≈ ${formatResult(result)}`
+                : `Displayed to up to 12 significant digits. Verify high-stakes calculations independently.`),
         steps: (() => {
             const sym = n === 2 ? '√' : n === 3 ? '∛' : `${formatNum(n)}√`;
             const steps = buildRootFactorSteps(x, n, sym);
@@ -568,7 +653,7 @@ function calculateNthRoot() {
 
 const STEPS_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>`;
 
-function showResult(area, { formula, value, badge, breakdown, summary, steps }) {
+function showResult(area, { formula, value, badge, breakdown, summary, steps, simplifiedRadical }) {
     area.classList.add('has-result');
     area.classList.remove('error');
 
@@ -581,6 +666,7 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps }) 
         'Ratio': 'is-info',
         'Increase': 'is-info',
         'Decrease': 'is-decrease',
+        'Imaginary Number': 'is-info',
         'Approximation': 'is-approx',
         'Undefined': 'is-approx',
     }[badge] || 'is-approx';
@@ -631,6 +717,12 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps }) 
                     <span>Copy</span>
                 </button>
             </div>
+            ${simplifiedRadical ? `
+                <div class="result-simplified-banner" style="margin: 8px auto 14px; padding: 6px 14px; background: rgba(124, 58, 237, 0.12); border: 1px solid rgba(124, 58, 237, 0.35); border-radius: 8px; font-size: 0.95rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: fit-content; max-width: 100%;">
+                    <span style="color: var(--primary-400); font-weight: 600;">Simplified Radical:</span>
+                    <strong style="font-family: var(--font-mono, monospace); font-size: 1.05rem; color: var(--text-primary);">${simplifiedRadical}</strong>
+                </div>
+            ` : ''}
             ${breakdownHtml ? `<div class="result-breakdown">${breakdownHtml}</div>` : ''}
             ${summary ? `
                 <div class="result-summary">

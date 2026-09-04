@@ -10,10 +10,15 @@
     "tables": "Meja",
     "faq": "Soalan Lazim",
     "blog": "Blog",
-    "about": "Tentang",
+    "about": "Tentang Kami",
     "privacy": "Dasar Privasi",
-    "terms": "Syarat Perkhidmatan",
-    "contact": "Kenalan"
+    "terms": "Terma Perkhidmatan",
+    "contact": "Hubungi Kami",
+    "calculators": "Kalkulator",
+    "cbrt": "Kalkulator Punca Kuasa Tiga",
+    "nth": "Kalkulator Punca Kuasa ke-n",
+    "sitemap": "Peta Laman",
+    "disclaimer": "Penafian"
   },
   "hero": {
     "badge": "Alat Akar Kuasa Dua & Akar Kiub Percuma",
@@ -95,6 +100,41 @@
     "tagline": "Alat punca kuasa dua dan punca kubus percuma paling lengkap dalam talian.",
     "language": "Bahasa",
     "rights": "Semua hak terpelihara.",
-    "made": "Dibuat dengan ❤️ untuk matematik"
+    "made": "Dibuat dengan ❤️ untuk matematik",
+    "company": "Syarikat",
+    "legal": "Undang-undang"
+  },
+  "cbrt": {
+    "title": "Kalkulator Punca Kuasa Tiga | Alat Kira ∛x Dalam Talian Percuma",
+    "description": "Kira punca kuasa tiga bagi mana-mana nombor serta-merta. Dapatkan hasil perpuluhan tepat, bentuk radikal dipermudahkan dan langkah pengiraan.",
+    "hero": {
+      "part1": "Punca Kuasa Tiga",
+      "part2": "Kalkulator",
+      "subtitle": "Kira punca kuasa tiga bagi sebarang nombor — positif atau negatif — serta-merta dengan langkah pengiraan dan bentuk radikal dipermudahkan. 100% percuma."
+    },
+    "calc": {
+      "title": "Kalkulator Punca Kuasa Tiga",
+      "desc": "Cari ∛x untuk sebarang nombor termasuk nombor negatif",
+      "btn": "Kira Punca Kuasa Tiga",
+      "tooltip": "Masukkan sebarang nombor positif atau negatif untuk mencari punca kuasa tiganya."
+    }
+  },
+  "nth": {
+    "title": "Kalkulator Punca Kuasa ke-n | Kira Sebarang Darjah Punca Kuasa",
+    "description": "Kira punca kuasa ke-4, ke-5 atau sebarang indeks n dengan cepat berserta langkah kerja lengkap.",
+    "hero": {
+      "part1": "Punca Kuasa ke-n",
+      "part2": "Kalkulator",
+      "subtitle": "Kira punca kuasa ke-4, ke-5 atau sebarang darjah n bagi sebarang nombor dengan penyelesaian terperinci."
+    },
+    "calc": {
+      "title": "Kalkulator Punca Kuasa ke-n",
+      "desc": "Kira sebarang punca kuasa — darjah ke-4, ke-5 atau kustom",
+      "btn": "Kira Punca Kuasa ke-n",
+      "degreeLabel": "Darjah punca kuasa (indeks n)",
+      "numberLabel": "Nombor (radikan x)",
+      "tooltipDegree": "Indeks punca kuasa (n).",
+      "tooltipNumber": "Nombor yang ingin dicari punca kuasanya."
+    }
   }
 }

@@ -10,10 +10,15 @@
     "tables": "Tablolar",
     "faq": "SSS",
     "blog": "Blog",
-    "about": "Hakkında",
+    "about": "Hakkımızda",
     "privacy": "Gizlilik Politikası",
-    "terms": "Hizmet Şartları",
-    "contact": "İletişim"
+    "terms": "Kullanım Koşulları",
+    "contact": "İletişim",
+    "calculators": "Hesaplayıcılar",
+    "cbrt": "Küp Kök Hesaplayıcı",
+    "nth": "n. Dereceden Kök Hesaplayıcı",
+    "sitemap": "Site Haritası",
+    "disclaimer": "Yasal Uyarı"
   },
   "hero": {
     "badge": "Ücretsiz Karekök ve Küp Kök Aracı",
@@ -95,6 +100,41 @@
     "tagline": "Çevrimiçi olarak en eksiksiz ücretsiz karekök ve küpkök aracı.",
     "language": "Dil",
     "rights": "Tüm hakları saklıdır.",
-    "made": "Matematik için ❤️ ile yapıldı"
+    "made": "Matematik için ❤️ ile yapıldı",
+    "company": "Şirket",
+    "legal": "Yasal"
+  },
+  "cbrt": {
+    "title": "Küp Kök Hesaplayıcı | Ücretsiz Çevrimiçi Küp Kök (∛x) Aracı",
+    "description": "Herhangi bir sayının küp kökünü anında hesaplayın. Kesin ondalık sonuçlar, sadeleştirilmiş köklü ifadeler ve adım adım çözümler.",
+    "hero": {
+      "part1": "Küp Kök",
+      "part2": "Hesaplayıcı",
+      "subtitle": "Pozitif veya negatif herhangi bir sayının küp kökünü anında hesaplayın. Kesin ondalık sonuç, sadeleştirilmiş kök ve adım adım çözüm. %100 ücretsiz."
+    },
+    "calc": {
+      "title": "Küp Kök Hesaplayıcı",
+      "desc": "Negatifler dahil her sayı için ∛x değerini bulun",
+      "btn": "Küp Kök Hesapla",
+      "tooltip": "Küp kökünü bulmak için pozitif veya negatif bir sayı girin."
+    }
+  },
+  "nth": {
+    "title": "n. Dereceden Kök Hesaplayıcı | Her Derece İçin Kök Bulma Aracı",
+    "description": "4., 5. veya istediğiniz n derecesindeki kökü anında hesaplayın. Sadeleştirilmiş biçim ve adım adım çözüm ile tamamen ücretsiz.",
+    "hero": {
+      "part1": "n. Dereceden Kök",
+      "part2": "Hesaplayıcı",
+      "subtitle": "4. kök, 5. kök veya herhangi bir n dereceden kökü anında hesaplayın. Sadeleştirilmiş kök biçimi ve tam çözüm adımları."
+    },
+    "calc": {
+      "title": "n. Dereceden Kök Hesaplayıcı",
+      "desc": "Herhangi bir kökü hesaplayın — 4., 5. veya özel derece",
+      "btn": "n. Dereceden Kök Hesapla",
+      "degreeLabel": "Kök derecesi (indeks n)",
+      "numberLabel": "Kök içi sayı (radikand x)",
+      "tooltipDegree": "Kök derecesi (n).",
+      "tooltipNumber": "Kökünü bulmak istediğiniz sayı."
+    }
   }
 }

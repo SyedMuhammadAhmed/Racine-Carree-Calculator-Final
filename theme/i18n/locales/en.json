@@ -10,10 +10,15 @@
     "tables": "Tables",
     "faq": "FAQ",
     "blog": "Blog",
-    "about": "About",
+    "about": "About Us",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service",
-    "contact": "Contact"
+    "terms": "Terms & Conditions",
+    "contact": "Contact Us",
+    "calculators": "Calculators",
+    "cbrt": "Racine Cubique Calculator",
+    "nth": "Nth Root Calculator",
+    "sitemap": "Sitemap",
+    "disclaimer": "Disclaimer"
   },
   "hero": {
     "badge": "Free Square Root & Cube Root Tool",
@@ -95,6 +100,41 @@
     "tagline": "The most complete free square root and cube root tool online.",
     "language": "Language",
     "rights": "All rights reserved.",
-    "made": "Made with ❤️ for mathematics"
+    "made": "Made with ❤️ for mathematics",
+    "company": "Company",
+    "legal": "Legal"
+  },
+  "cbrt": {
+    "title": "Racine Cubique Calculator | Free Online Cube Root Calculator",
+    "description": "Calculate cube roots instantly with our free Racine Cubique Calculator. Get exact decimal results, simplified radicals, and step-by-step workings.",
+    "hero": {
+      "part1": "Racine Cubique",
+      "part2": "Calculator",
+      "subtitle": "Calculate the cube root of any number — positive or negative — instantly. Get the exact decimal result, simplified radical form, and step-by-step workings. 100% free."
+    },
+    "calc": {
+      "title": "Cube Root Calculator",
+      "desc": "Find ∛x for any number, including negatives",
+      "btn": "Calculate Cube Root",
+      "tooltip": "Enter any number — positive or negative — to find its cube root. Unlike square roots, cube roots work with negative numbers too."
+    }
+  },
+  "nth": {
+    "title": "Nth Root Calculator - Free Root Tool for Any Index",
+    "description": "Calculate any root (4th, 5th, or custom index) instantly with our free Nth Root Calculator. Get exact results, simplified forms, and step-by-step work.",
+    "hero": {
+      "part1": "Nth Root",
+      "part2": "Calculator",
+      "subtitle": "Calculate any root — 4th root, 5th root, or any custom degree (n) — for any number. Get exact simplified radicals, decimal approximations, and complete step-by-step solutions."
+    },
+    "calc": {
+      "title": "Nth Root Calculator",
+      "desc": "Calculate any root — 4th, 5th, or custom degree",
+      "btn": "Calculate Nth Root",
+      "degreeLabel": "Root degree (index n)",
+      "numberLabel": "Number (radicand x)",
+      "tooltipDegree": "The root degree (n). For example, 2 for square root, 3 for cube root, 4 for fourth root.",
+      "tooltipNumber": "The number you want to find the root of (the radicand)."
+    }
   }
 }

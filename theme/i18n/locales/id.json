@@ -10,10 +10,15 @@
     "tables": "Tabel",
     "faq": "Pertanyaan Umum",
     "blog": "blog",
-    "about": "Tentang",
+    "about": "Tentang Kami",
     "privacy": "Kebijakan Privasi",
-    "terms": "Ketentuan Layanan",
-    "contact": "Kontak"
+    "terms": "Syarat Layanan",
+    "contact": "Kontak",
+    "calculators": "Kalkulator",
+    "cbrt": "Kalkulator Akar Pangkat Tiga",
+    "nth": "Kalkulator Akar Pangkat n",
+    "sitemap": "Peta Situs",
+    "disclaimer": "Penyangkalan"
   },
   "hero": {
     "badge": "Alat Akar Kuadrat & Akar Kubus Gratis",
@@ -95,6 +100,41 @@
     "tagline": "Alat akar kuadrat dan akar pangkat tiga gratis terlengkap secara online.",
     "language": "Bahasa",
     "rights": "Semua hak dilindungi undang-undang.",
-    "made": "Dibuat dengan ❤️ untuk matematika"
+    "made": "Dibuat dengan ❤️ untuk matematika",
+    "company": "Perusahaan",
+    "legal": "Legalitas"
+  },
+  "cbrt": {
+    "title": "Kalkulator Akar Pangkat Tiga | Hitung ∛x Online Gratis",
+    "description": "Hitung akar pangkat tiga dari angka positif maupun negatif secara instan. Hasil desimal presisi, bentuk sederhana, dan langkah demi langkah.",
+    "hero": {
+      "part1": "Akar Pangkat Tiga",
+      "part2": "Kalkulator",
+      "subtitle": "Hitung akar pangkat tiga dari bilangan positif maupun negatif secara instan. Dapatkan desimal presisi, bentuk sederhana, dan langkah kerja lengkap. 100% gratis."
+    },
+    "calc": {
+      "title": "Kalkulator Akar Pangkat Tiga",
+      "desc": "Temukan ∛x untuk bilangan apapun, termasuk negatif",
+      "btn": "Hitung Akar Pangkat Tiga",
+      "tooltip": "Masukkan bilangan positif atau negatif untuk menghitung akar pangkat tiganya."
+    }
+  },
+  "nth": {
+    "title": "Kalkulator Akar Pangkat n | Alat Hitung Akar Derajat Berapapun",
+    "description": "Hitung akar pangkat 4, 5, atau pangkat ke-n berapapun secara instan dengan penjelasan langkah demi langkah.",
+    "hero": {
+      "part1": "Akar Pangkat n",
+      "part2": "Kalkulator",
+      "subtitle": "Hitung akar pangkat 4, 5, atau derajat n kustom dengan penyederhanaan bentuk akar dan langkah perhitungan lengkap."
+    },
+    "calc": {
+      "title": "Kalkulator Akar Pangkat n",
+      "desc": "Hitung akar pangkat berapapun — ke-4, ke-5, atau derajat kustom",
+      "btn": "Hitung Akar Pangkat n",
+      "degreeLabel": "Derajat akar (indeks n)",
+      "numberLabel": "Bilangan (radikan x)",
+      "tooltipDegree": "Derajat akar (n).",
+      "tooltipNumber": "Bilangan yang ingin dicari akarnya."
+    }
   }
 }

@@ -1,32 +1,44 @@
 [
   {
+    "question": "Como usar a Calculadora de Raiz Quadrada?",
+    "answer": "Digite seu número e clique em Calcular. Você receberá o valor decimal exato, o radical simplificado (ex.: √72 = 6√2) e a decomposição em fatores primos passo a passo.",
     "display": true,
-    "question": "O que é esse projeto?",
-    "answer": "Este é um projeto Astro incrível com suporte i18n."
+    "category": "sqrt"
   },
   {
+    "question": "A calculadora aceita números negativos?",
+    "answer": "Sim! Nos números reais a raiz quadrada de número negativo não existe. No domínio dos complexos, ela retorna o resultado com a unidade imaginária i (ex.: √(-16) = ±4i).",
     "display": true,
-    "question": "Como faço para usá-lo?",
-    "answer": "Basta navegar pelas páginas e aproveitar o conteúdo localizado."
+    "category": "sqrt"
   },
   {
+    "question": "Qual a diferença entre raiz quadrada e raiz cúbica?",
+    "answer": "A raiz quadrada tem índice 2, enquanto a raiz cúbica tem índice 3 e admite soluções reais para números negativos.",
     "display": true,
-    "question": "É grátis?",
-    "answer": "Sim, é totalmente gratuito."
+    "category": "general"
   },
   {
+    "question": "É possível calcular a raiz cúbica de um número negativo?",
+    "answer": "Sim! O produto de três números negativos é negativo, portanto ∛(-27) = -3 é uma solução real.",
     "display": true,
-    "question": "Preciso me inscrever?",
-    "answer": "Não é necessário se inscrever para visualizar o conteúdo."
+    "category": "cbrt"
   },
   {
+    "question": "O que significa o índice de uma raiz enésima?",
+    "answer": "O índice é o grau n em ⁿ√x (2 para quadrada, 3 para cúbica, 4 para quarta, etc.).",
     "display": true,
-    "question": "Quais idiomas são suportados?",
-    "answer": "Oferecemos suporte para 18 idiomas diferentes prontos para uso."
+    "category": "nth"
   },
   {
+    "question": "Posso calcular a raiz enésima de um número negativo?",
+    "answer": "Se o índice n for ímpar (3, 5, 7...), existe solução real negativa. Se n for par (2, 4, 6...), não há solução real.",
     "display": true,
-    "question": "Como faço para relatar um bug?",
-    "answer": "Utilize o formulário de contato para entrar em contato com nossa equipe."
+    "category": "nth"
+  },
+  {
+    "question": "Esta calculadora é gratuita?",
+    "answer": "Sim, todas as ferramentas são 100% gratuitas e com uso ilimitado.",
+    "display": true,
+    "category": "general"
   }
 ]

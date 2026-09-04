@@ -1,32 +1,44 @@
 [
   {
+    "question": "Wie benutze ich den Quadratwurzel-Rechner?",
+    "answer": "Geben Sie Ihre Zahl ein und klicken Sie auf Berechnen. Sie erhalten sofort den exakten Dezimalwert, die vereinfachte Wurzelform (z.B. √72 = 6√2) und die schrittweise Primfaktorzerlegung.",
     "display": true,
-    "question": "Was ist das für ein Projekt?",
-    "answer": "Dies ist ein großartiges Astro-Projekt mit i18n-Unterstützung."
+    "category": "sqrt"
   },
   {
+    "question": "Kann der Rechner negative Zahlen verarbeiten?",
+    "answer": "Ja! In den reellen Zahlen existiert keine Quadratwurzel aus negativen Zahlen. In den komplexen Zahlen gibt der Rechner das Ergebnis mit der imaginären Einheit i aus (z.B. √(-16) = ±4i).",
     "display": true,
-    "question": "Wie verwende ich es?",
-    "answer": "Navigieren Sie einfach durch die Seiten und genießen Sie die lokalisierten Inhalte."
+    "category": "sqrt"
   },
   {
+    "question": "Was ist der Unterschied zwischen Quadratwurzel und Kubikwurzel?",
+    "answer": "Eine Quadratwurzel sucht die Zahl, die mit sich selbst multipliziert x ergibt (Index 2). Eine Kubikwurzel sucht die Zahl, die 3-mal multipliziert x ergibt (Index 3).",
     "display": true,
-    "question": "Ist es kostenlos?",
-    "answer": "Ja, die Nutzung ist völlig kostenlos."
+    "category": "general"
   },
   {
+    "question": "Können Kubikwurzeln negativer Zahlen berechnet werden?",
+    "answer": "Ja! Die Kubikwurzel einer negativen Zahl hat eine reelle Lösung (z.B. ∛(-27) = -3), da drei negative Faktoren ein negatives Produkt ergeben.",
     "display": true,
-    "question": "Muss ich mich anmelden?",
-    "answer": "Für die Anzeige der Inhalte ist keine Anmeldung erforderlich."
+    "category": "cbrt"
   },
   {
+    "question": "Was bedeutet der Wurzelexponent (Index n)?",
+    "answer": "Der Index gibt den Grad der Wurzel an (die Zahl 'n' in ⁿ√x). Ein Index von 2 ist die Quadratwurzel, 3 die Kubikwurzel, 4 die vierte Wurzel usw.",
     "display": true,
-    "question": "Welche Sprachen werden unterstützt?",
-    "answer": "Wir unterstützen standardmäßig 18 verschiedene Sprachen."
+    "category": "nth"
   },
   {
+    "question": "Gibt es n-te Wurzeln aus negativen Zahlen?",
+    "answer": "Wenn n ungerade ist (3, 5, 7...), existiert eine reelle Lösung. Wenn n gerade ist (2, 4, 6...), gibt es keine reelle Lösung.",
     "display": true,
-    "question": "Wie melde ich einen Fehler?",
-    "answer": "Bitte nutzen Sie das Kontaktformular, um unser Team zu kontaktieren."
+    "category": "nth"
+  },
+  {
+    "question": "Ist dieser Rechner kostenlos?",
+    "answer": "Ja, alle Rechner auf dieser Website sind zu 100% kostenlos ohne Registrierung oder Installation nutzbar.",
+    "display": true,
+    "category": "general"
   }
 ]

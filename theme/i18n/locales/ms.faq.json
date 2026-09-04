@@ -1,32 +1,44 @@
 [
   {
+    "question": "Bagaimanakah cara menggunakan Kalkulator Punca Kuasa Dua?",
+    "answer": "Masukkan nombor dan klik Kira untuk menerima hasil perpuluhan tepat, bentuk radikal dipermudahkan (cth. √72 = 6√2) dan pemfaktoran perdana terperinci.",
     "display": true,
-    "question": "Apakah projek ini?",
-    "answer": "Ini adalah projek Astro yang hebat dengan sokongan i18n."
+    "category": "sqrt"
   },
   {
+    "question": "Bolehkah kalkulator mengira nombor negatif?",
+    "answer": "Ya! Dalam nombor nyata punca kuasa dua negatif tiada penyelesaian, namun dalam nombor kompleks ia menghasilkan unit khayalan i (cth. √(-16) = ±4i).",
     "display": true,
-    "question": "Bagaimana cara saya menggunakannya?",
-    "answer": "Hanya menavigasi halaman dan nikmati kandungan setempat."
+    "category": "sqrt"
   },
   {
+    "question": "Apakah perbezaan antara punca kuasa dua dan punca kuasa tiga?",
+    "answer": "Punca kuasa dua berindeks 2, manakala punca kuasa tiga berindeks 3 dan mempunyai penyelesaian nyata bagi nombor negatif.",
     "display": true,
-    "question": "Adakah ia percuma?",
-    "answer": "Ya, ia adalah percuma untuk digunakan."
+    "category": "general"
   },
   {
+    "question": "Bolehkah punca kuasa tiga bagi nombor negatif dikira?",
+    "answer": "Ya! Hasil darab tiga nombor negatif adalah negatif, maka ∛(-27) = -3 adalah penyelesaian nyata sah.",
     "display": true,
-    "question": "Adakah saya perlu mendaftar?",
-    "answer": "Tiada pendaftaran diperlukan untuk melihat kandungan."
+    "category": "cbrt"
   },
   {
+    "question": "Apakah maksud indeks n bagi punca kuasa ke-n?",
+    "answer": "Indeks n merupakan darjah punca kuasa dalam ⁿ√x (2 untuk kuasa dua, 3 untuk kuasa tiga, dan seterusnya).",
     "display": true,
-    "question": "Apakah bahasa yang disokong?",
-    "answer": "Kami menyokong 18 bahasa yang berbeza di luar kotak."
+    "category": "nth"
   },
   {
+    "question": "Bolehkah mencari punca kuasa ke-n bagi nombor negatif?",
+    "answer": "Jika darjah n adalah ganjil (3, 5, 7...) penyelesaian nyata wujud. Jika genap (2, 4, 6...) tiada penyelesaian nyata.",
     "display": true,
-    "question": "Bagaimanakah saya melaporkan pepijat?",
-    "answer": "Sila gunakan borang hubungan untuk menghubungi pasukan kami."
+    "category": "nth"
+  },
+  {
+    "question": "Adakah kalkulator ini percuma?",
+    "answer": "Ya, alat kami 100% percuma tanpa perlu mendaftar atau memuat turun.",
+    "display": true,
+    "category": "general"
   }
 ]

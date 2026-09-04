@@ -1,32 +1,44 @@
 [
   {
+    "question": "Hur använder jag kvadratrotsräknaren?",
+    "answer": "Skriv in ditt tal och klicka på Beräkna. Du får omedelbart det exakta decimalvärdet, det förenklade rotuttrycket (t.ex. √72 = 6√2) och fullständig primtalsfaktorisering.",
     "display": true,
-    "question": "Vad är detta för projekt?",
-    "answer": "Detta är ett fantastiskt Astro-projekt med i18n-stöd."
+    "category": "sqrt"
   },
   {
+    "question": "Kan räknaren hantera negativa tal?",
+    "answer": "Ja! I de reella talen finns ingen kvadratrot ur negativa tal, men i de komplexa talen returnerar räknaren den imaginära enheten i (t.ex. √(-16) = ±4i) med förklaring steg för steg.",
     "display": true,
-    "question": "Hur använder jag det?",
-    "answer": "Navigera helt enkelt genom sidorna och njut av det lokaliserade innehållet."
+    "category": "sqrt"
   },
   {
+    "question": "Vad är skillnaden mellan kvadratrot och kubikrot?",
+    "answer": "Kvadratroten har rotindex 2, medan kubikroten har rotindex 3 och tillåter reella lösningar för negativa tal.",
     "display": true,
-    "question": "Är det gratis?",
-    "answer": "Ja, det är helt gratis att använda."
+    "category": "general"
   },
   {
+    "question": "Kan man beräkna kubikroten ur ett negativt tal?",
+    "answer": "Ja! Produkten av tre negativa tal är negativ, så ∛(-27) = -3 är en reell lösning.",
     "display": true,
-    "question": "Behöver jag registrera mig?",
-    "answer": "Ingen registrering krävs för att se innehållet."
+    "category": "cbrt"
   },
   {
+    "question": "Vad betyder rotindexet n i en n:te rot?",
+    "answer": "Rotindexet n är rotens gradtal i ⁿ√x (2 för kvadratrot, 3 för kubikrot, 4 för fjärde roten osv.).",
     "display": true,
-    "question": "Vilka språk stöds?",
-    "answer": "Vi stöder 18 olika språk direkt."
+    "category": "nth"
   },
   {
+    "question": "Kan man beräkna n:te roten ur ett negativt tal?",
+    "answer": "Om rotindexet n är udda (3, 5, 7...) finns en reell lösning. Om n är jämnt (2, 4, 6...) finns ingen reell lösning.",
     "display": true,
-    "question": "Hur rapporterar jag ett fel?",
-    "answer": "Använd kontaktformuläret för att nå vårt team."
+    "category": "nth"
+  },
+  {
+    "question": "Är denna kalkylator gratis att använda?",
+    "answer": "Ja, alla våra räknare är 100% gratis och obegränsade utan krav på registrering eller nedladdning.",
+    "display": true,
+    "category": "general"
   }
 ]

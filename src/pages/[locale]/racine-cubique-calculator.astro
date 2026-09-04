@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.astro';
 import CubeRootContent from '../../components/CubeRootContent.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { LOCALES, getHtmlDir, getLocalizedUrl, getLocaleFromParams } from '../../../theme/i18n/utils';
-import { useTranslations } from '../../../theme/i18n/translations';
+import { useTranslations, getLocaleFaqs } from '../../../theme/i18n/translations';
 import site from '../../config/site.json';
 import { getPageAlternateLinks } from '../../utils/seo';
 
@@ -24,28 +24,7 @@ const description = t('cbrt.description', 'Calculate cube roots instantly with o
 const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/racine-cubique-calculator/', lang)}`;
 const alternateLinks = getPageAlternateLinks('/racine-cubique-calculator/');
 
-const cbrtFaqs = [
-  {
-    question: "How do I use the Racine Cubique Calculator?",
-    answer: "Enter your number into the input field and click Calculate to receive instant exact decimal values, simplified cube roots, and step-by-step solutions."
-  },
-  {
-    question: "Can cube roots of negative numbers be calculated?",
-    answer: "Yes! Unlike square roots, cube roots of negative numbers have real solutions because multiplying three negative numbers results in a negative value (e.g., ∛(-27) = -3)."
-  },
-  {
-    question: "What does \"racine cubique\" mean?",
-    answer: "Racine cubique is the French term for cube root — finding a value that, when multiplied by itself three times, produces the given number."
-  },
-  {
-    question: "What is the difference between a cube root and a square root?",
-    answer: "A square root asks what number multiplied 2 times equals x (index 2). A cube root asks what number multiplied 3 times equals x (index 3)."
-  },
-  {
-    question: "Is this calculator free to use?",
-    answer: "Yes, our Racine Cubique Calculator is 100% free with unlimited calculations."
-  }
-];
+const cbrtFaqs = getLocaleFaqs(lang, 'cbrt');
 ---
 
 <Layout
@@ -55,36 +34,37 @@ const cbrtFaqs = [
   dir={getHtmlDir(lang)}
   canonicalUrl={canonicalUrl}
   alternateLinks={alternateLinks}
+  faqItems={cbrtFaqs}
 >
   <Navbar lang={lang} contentLang={lang} />
   <main id="main-content">
     <section class="above-fold" id="hero">
       <div class="above-fold-stack">
-        <Breadcrumbs items={[{ label: 'Home', url: getLocalizedUrl('/', lang) }, { label: 'Racine Cubique Calculator', url: getLocalizedUrl('/racine-cubique-calculator/', lang) }]} />
+        <Breadcrumbs items={[{ label: t('nav.home', 'Home'), url: getLocalizedUrl('/', lang) }, { label: t('cbrt.hero.part1', 'Racine Cubique') + ' ' + t('cbrt.hero.part2', 'Calculator'), url: getLocalizedUrl('/racine-cubique-calculator/', lang) }]} />
         <header class="hero-compact hero-compact--centered">
           <h1 class="hero-title">
-              <span class="title-line">Racine Cubique</span>
-              <span class="title-line gradient-text">Calculator</span>
+              <span class="title-line">{t('cbrt.hero.part1', 'Racine Cubique')}</span>
+              <span class="title-line gradient-text">{t('cbrt.hero.part2', 'Calculator')}</span>
           </h1>
-          <p class="hero-subtitle">Calculate the cube root of any number — positive or negative — instantly. Get the exact decimal result, simplified radical form, and step-by-step workings. 100% free.</p>
+          <p class="hero-subtitle">{t('cbrt.hero.subtitle', 'Calculate the cube root of any number — positive or negative — instantly. Get the exact decimal result, simplified radical form, and step-by-step workings. 100% free.')}</p>
           <div class="hero-pills">
               <span class="hero-pill">
                   <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  Instant
+                  {t('hero.pill.instant', 'Instant')}
               </span>
               <span class="hero-pill">
                   <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
-                  Step-by-step
+                  {t('hero.pill.stepByStep', 'Step-by-step')}
               </span>
               <span class="hero-pill">
                   <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                  100% Free
+                  {t('hero.pill.free', '100% Free')}
               </span>
           </div>
         </header>
 
         <!-- Cube Root Calculator Widget -->
-        <section class="calc-stage" id="calculators" aria-label="Cube Root Calculator">
+        <section class="calc-stage" id="calculators" aria-label={t('cbrt.calc.title', 'Cube Root Calculator')}>
           <div class="calc-stage-glow" aria-hidden="true"></div>
           <div class="calc-suite" id="calcSuite">
             <div class="calc-panel active" id="panelCubeRoot" data-calc="cube-root">
@@ -92,44 +72,44 @@ const cbrtFaqs = [
                 <header class="calc-widget-head">
                   <span class="calc-widget-symbol" aria-hidden="true">∛</span>
                   <div class="calc-widget-head-text">
-                    <h2 class="calc-widget-title">Cube Root Calculator</h2>
-                    <p class="calc-widget-desc">Find ∛x for any number, including negatives</p>
+                    <h2 class="calc-widget-title">{t('cbrt.calc.title', 'Cube Root Calculator')}</h2>
+                    <p class="calc-widget-desc">{t('cbrt.calc.desc', 'Find ∛x for any number, including negatives')}</p>
                   </div>
                 </header>
                 <div class="calc-widget-flow">
                   <section class="calc-step" aria-label="Input field">
                     <div class="input-group">
                       <div class="calc-tooltip">
-                        <label class="input-label" for="cbrtInput">Number to calculate</label>
+                        <label class="input-label" for="cbrtInput">{t('calc.label.number', 'Number to calculate')}</label>
                         <span class="calc-tooltip-icon" role="img" aria-label="Input instructions">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                          <span class="tooltip-text">Enter any number — positive or negative — to find its cube root. Unlike square roots, cube roots work with negative numbers too.</span>
+                          <span class="tooltip-text">{t('cbrt.calc.tooltip', 'Enter any number — positive or negative — to find its cube root. Unlike square roots, cube roots work with negative numbers too.')}</span>
                         </span>
                       </div>
                       <div class="input-wrapper">
                         <span class="input-prefix" aria-hidden="true">∛</span>
-                        <input type="number" inputmode="decimal" id="cbrtInput" class="calc-input" placeholder="e.g. 27" step="any" autocomplete="off" aria-label="Number to calculate">
+                        <input type="number" inputmode="decimal" id="cbrtInput" class="calc-input" placeholder="e.g. 27" step="any" autocomplete="off" aria-label={t('calc.label.number', 'Number to calculate')}>
                       </div>
                     </div>
                   </section>
                   <section class="calc-step calc-step--action" aria-label="Calculate action">
-                    <button class="btn-calc-primary" id="cbrtCalcBtn" type="button" aria-label="Calculate Cube Root">
+                    <button class="btn-calc-primary" id="cbrtCalcBtn" type="button" aria-label={t('cbrt.calc.btn', 'Calculate Cube Root')}>
                       <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                      <span>Calculate Cube Root</span>
+                      <span>{t('cbrt.calc.btn', 'Calculate Cube Root')}</span>
                     </button>
                   </section>
                   <section class="calc-step calc-step--results" aria-label="Calculation results">
                     <div class="result-panel" id="cbrtResult" aria-live="polite" aria-atomic="true">
                       <div class="result-empty">
                         <div class="result-empty-icon" aria-hidden="true">∛</div>
-                        <p class="result-empty-title">Your result will appear here</p>
-                        <p class="result-empty-hint">Enter a number above and press Calculate</p>
+                        <p class="result-empty-title">{t('calc.result.empty.title', 'Your result will appear here')}</p>
+                        <p class="result-empty-hint">{t('calc.result.empty.hint', 'Enter a number above and press Calculate')}</p>
                       </div>
                     </div>
                   </section>
                   <section class="calc-step calc-step--history" id="cbrtHistory" aria-label="Recent calculations history">
                     <div class="history-header">
-                      <h3 class="history-title">Recent calculations</h3>
+                      <h3 class="history-title">{t('calc.history.title', 'Recent calculations')}</h3>
                       <span class="history-count" id="cbrtHistoryCount"></span>
                     </div>
                     <div class="history-list" id="cbrtHistoryList"></div>
@@ -141,7 +121,8 @@ const cbrtFaqs = [
         </section>
       </div>
     </section>
-    <CubeRootContent lang={lang} />
+    <CubeRootContent lang={lang} faqs={cbrtFaqs} />
   </main>
   <Footer lang={lang} contentLang={lang} />
 </Layout>
+

@@ -1,32 +1,44 @@
 [
   {
+    "question": "¿Cómo uso la Calculadora de Raíz Cuadrada?",
+    "answer": "Introduce tu número en el campo y haz clic en Calcular. Recibirás al instante el resultado decimal exacto, la forma radical simplificada (p. ej., √72 = 6√2) y el desglose de factores primos paso a paso.",
     "display": true,
-    "question": "¿Qué es este proyecto?",
-    "answer": "Este es un proyecto Astro increíble con soporte i18n."
+    "category": "sqrt"
   },
   {
+    "question": "¿Puede la calculadora procesar números negativos?",
+    "answer": "¡Sí! En números reales, los negativos no tienen raíz cuadrada. En números complejos, ingresar un número negativo devuelve la unidad imaginaria (p. ej., √(-16) = ±4i) con explicación detallada.",
     "display": true,
-    "question": "¿Cómo lo uso?",
-    "answer": "Simplemente navegue por las páginas y disfrute del contenido localizado."
+    "category": "sqrt"
   },
   {
+    "question": "¿Cuál es la diferencia entre raíz cuadrada y raíz cúbica?",
+    "answer": "La raíz cuadrada busca un número que multiplicado 2 veces da x (índice 2). La raíz cúbica busca un número multiplicado 3 veces (índice 3). A diferencia de las raíces cuadradas, las cúbicas de números negativos son reales.",
     "display": true,
-    "question": "¿Es gratis?",
-    "answer": "Sí, su uso es completamente gratuito."
+    "category": "general"
   },
   {
+    "question": "¿Se pueden calcular raíces cúbicas de números negativos?",
+    "answer": "¡Sí! La raíz cúbica de un número negativo tiene solución real porque el producto de tres números negativos es negativo (p. ej., ∛(-27) = -3).",
     "display": true,
-    "question": "¿Necesito registrarme?",
-    "answer": "No es necesario registrarse para ver el contenido."
+    "category": "cbrt"
   },
   {
+    "question": "¿Qué significa el índice de una raíz enésima?",
+    "answer": "El índice es el grado de la raíz ('n' en ⁿ√x). Un índice de 2 es raíz cuadrada, 3 es cúbica, 4 es cuarta, etc.",
     "display": true,
-    "question": "¿Qué idiomas son compatibles?",
-    "answer": "Admitimos 18 idiomas diferentes desde el primer momento."
+    "category": "nth"
   },
   {
+    "question": "¿Puedo hallar la raíz enésima de un número negativo?",
+    "answer": "Si el índice n es impar (3, 5, 7...), existe una solución real negativa. Si n es par (2, 4, 6...), no existe solución real.",
     "display": true,
-    "question": "¿Cómo informo un error?",
-    "answer": "Utilice el formulario de contacto para comunicarse con nuestro equipo."
+    "category": "nth"
+  },
+  {
+    "question": "¿Es gratuita esta calculadora?",
+    "answer": "Sí, nuestras herramientas son 100% gratuitas con cálculos ilimitados, sin registro y sin descargas.",
+    "display": true,
+    "category": "general"
   }
 ]

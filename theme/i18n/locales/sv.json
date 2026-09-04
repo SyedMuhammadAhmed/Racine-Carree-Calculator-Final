@@ -10,10 +10,15 @@
     "tables": "Tabeller",
     "faq": "FAQ",
     "blog": "Blogg",
-    "about": "Om",
-    "privacy": "Sekretesspolicy",
+    "about": "Om oss",
+    "privacy": "Integritetspolicy",
     "terms": "Användarvillkor",
-    "contact": "Kontakta"
+    "contact": "Kontakt",
+    "calculators": "Räknare",
+    "cbrt": "Kubikrotsräknare",
+    "nth": "N:te Rotsräknare",
+    "sitemap": "Webbplatskarta",
+    "disclaimer": "Ansvarsfriskrivning"
   },
   "hero": {
     "badge": "Gratis verktyg för kvadratrot och kubrot",
@@ -95,6 +100,41 @@
     "tagline": "Det mest kompletta gratis verktyget för kvadratrot och kubrot online.",
     "language": "Språk",
     "rights": "Alla rättigheter reserverade.",
-    "made": "Tillverkad med ❤️ för matematik"
+    "made": "Tillverkad med ❤️ för matematik",
+    "company": "Företag",
+    "legal": "Juridiskt"
+  },
+  "cbrt": {
+    "title": "Kubikrotsräknare | Gratis Räknare för Kubikrot (∛x) Online",
+    "description": "Beräkna kubikrötter direkt med vår gratis kubikrotsräknare. Få exakta decimalvärden, förenklade rotuttryck och steg-för-steg-lösningar.",
+    "hero": {
+      "part1": "Kubikrot",
+      "part2": "Räknare",
+      "subtitle": "Beräkna kubikroten ur vilket tal som helst — positivt eller negativt — direkt. Få exakt decimalvärde, förenklad rotform och beräkningssteg. 100% gratis."
+    },
+    "calc": {
+      "title": "Kubikrotsräknare",
+      "desc": "Beräkna ∛x för alla tal, även negativa tal",
+      "btn": "Beräkna kubikrot",
+      "tooltip": "Ange ett positivt eller negativt tal för att beräkna kubikroten."
+    }
+  },
+  "nth": {
+    "title": "N:te Rotsräknare | Gratis Kalkylator för Valfritt Rotindex n",
+    "description": "Beräkna valfri n:te rot (4:e, 5:e eller valfritt index) omedelbart med förenkling och fullständiga beräkningssteg.",
+    "hero": {
+      "part1": "N:te Rot",
+      "part2": "Räknare",
+      "subtitle": "Beräkna 4:e roten, 5:e roten eller godtycklig n:te rot med exakt förenkling och lösning steg för steg."
+    },
+    "calc": {
+      "title": "N:te Rotsräknare",
+      "desc": "Beräkna valfri rot — 4:e, 5:e eller anpassat index",
+      "btn": "Beräkna n:te rot",
+      "degreeLabel": "Rotindex (grad n)",
+      "numberLabel": "Tal (radikand x)",
+      "tooltipDegree": "Rotens gradtal (n).",
+      "tooltipNumber": "Talet du vill dra roten ur."
+    }
   }
 }

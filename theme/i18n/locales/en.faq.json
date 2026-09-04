@@ -1,32 +1,44 @@
 [
   {
-    "question": "What is this project?",
-    "answer": "This is an awesome Astro project with i18n support.",
-    "display": true
+    "question": "How do I use the Racine Carree Calculator?",
+    "answer": "Enter your number in the input field and click Calculate. You will instantly receive the exact decimal result, the simplified radical form (e.g., √72 = 6√2), and step-by-step prime factorization breakdown.",
+    "display": true,
+    "category": "sqrt"
   },
   {
-    "question": "How do I use it?",
-    "answer": "Simply navigate through the pages and enjoy the localized content.",
-    "display": true
+    "question": "Can the calculator handle negative numbers?",
+    "answer": "Yes! In real arithmetic, negative numbers have no real square root. In complex mathematics, entering a negative number returns the imaginary unit result (e.g., √(-16) = ±4i) along with complete step-by-step explanations.",
+    "display": true,
+    "category": "sqrt"
   },
   {
-    "question": "Is it free?",
-    "answer": "Yes, it is completely free to use.",
-    "display": true
+    "question": "What is the difference between a square root and a cube root?",
+    "answer": "A square root asks what number multiplied by itself twice produces x (index 2). A cube root asks what number multiplied by itself three times produces x (index 3). Unlike square roots, cube roots of negative numbers have real solutions.",
+    "display": true,
+    "category": "general"
   },
   {
-    "question": "Do I need to sign up?",
-    "answer": "No sign up is required to view the content.",
-    "display": true
+    "question": "Can cube roots of negative numbers be calculated?",
+    "answer": "Yes! The cube root of a negative number has a real solution because multiplying three negative numbers produces a negative result (e.g., ∛(-27) = -3).",
+    "display": true,
+    "category": "cbrt"
   },
   {
-    "question": "What languages are supported?",
-    "answer": "We support 18 different languages out of the box.",
-    "display": true
+    "question": "What does the index of an nth root mean?",
+    "answer": "The index is the degree of the root (the number 'n' in ⁿ√x). An index of 2 is a square root, 3 is a cube root, 4 is a fourth root, and so on. It indicates how many times the root must multiply by itself to equal the radicand.",
+    "display": true,
+    "category": "nth"
   },
   {
-    "question": "How do I report a bug?",
-    "answer": "Please use the contact form to reach out to our team.",
-    "display": true
+    "question": "Can I find the nth root of a negative number?",
+    "answer": "If the root degree n is odd (e.g., 3, 5, 7), a real negative solution exists. If the degree n is even (e.g., 2, 4, 6), there is no real solution because any real number raised to an even power is non-negative.",
+    "display": true,
+    "category": "nth"
+  },
+  {
+    "question": "Is this calculator free to use?",
+    "answer": "Yes, our calculators (Square Root, Cube Root, and Nth Root) are 100% free with unlimited calculations, no registration, and no download required.",
+    "display": true,
+    "category": "general"
   }
 ]

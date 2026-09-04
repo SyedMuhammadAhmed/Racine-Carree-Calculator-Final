@@ -1,32 +1,44 @@
 [
   {
+    "question": "Jak korzystać z kalkulatora pierwiastka kwadratowego?",
+    "answer": "Wpisz liczbę i kliknij Oblicz. Otrzymasz dokładny wynik dziesiętny, uproszczoną postać pierwiastka (np. √72 = 6√2) oraz rozkład na czynniki pierwsze krok po kroku.",
     "display": true,
-    "question": "Co to za projekt?",
-    "answer": "To niesamowity projekt Astro z obsługą i18n."
+    "category": "sqrt"
   },
   {
+    "question": "Czy kalkulator obsługuje liczby ujemne?",
+    "answer": "Tak! W zbiorze liczb rzeczywistych pierwiastek kwadratowy z liczby ujemnej nie istnieje, jednak w liczbach zespolonych kalkulator zwraca wynik z jednostką urojoną i (np. √(-16) = ±4i).",
     "display": true,
-    "question": "Jak z niego korzystać?",
-    "answer": "Po prostu poruszaj się po stronach i ciesz się zlokalizowaną zawartością."
+    "category": "sqrt"
   },
   {
+    "question": "Jaka jest różnica między pierwiastkiem kwadratowym a sześciennym?",
+    "answer": "Pierwiastek kwadratowy ma stopień 2, a sześcienny stopień 3. W przeciwieństwie do kwadratowych, pierwiastki sześcienne z liczb ujemnych są liczbami rzeczywistymi.",
     "display": true,
-    "question": "Czy to jest bezpłatne?",
-    "answer": "Tak, korzystanie z niego jest całkowicie bezpłatne."
+    "category": "general"
   },
   {
+    "question": "Czy można obliczyć pierwiastek sześcienny z liczby ujemnej?",
+    "answer": "Tak! Iloczyn trzech liczb ujemnych daje liczbę ujemną, więc ∛(-27) = -3 jest rozwiązaniem rzeczywistym.",
     "display": true,
-    "question": "Czy muszę się rejestrować?",
-    "answer": "Aby zobaczyć zawartość, nie jest wymagana rejestracja."
+    "category": "cbrt"
   },
   {
+    "question": "Co oznacza stopień pierwiastka n?",
+    "answer": "Stopień n to potęga pierwiastka w ⁿ√x (2 dla kwadratowego, 3 dla sześciennego, 4 dla czwartego stopnia itd.).",
     "display": true,
-    "question": "Jakie języki są obsługiwane?",
-    "answer": "Standardowo obsługujemy 18 różnych języków."
+    "category": "nth"
   },
   {
+    "question": "Czy można wyciągnąć pierwiastek n-tego stopnia z liczby ujemnej?",
+    "answer": "Jeśli stopień n jest nieparzysty (3, 5, 7...), istnieje rozwiązanie rzeczywiste. Jeśli stopień n jest parzysty (2, 4, 6...), rozwiązanie rzeczywiste nie istnieje.",
     "display": true,
-    "question": "Jak zgłosić błąd?",
-    "answer": "Aby skontaktować się z naszym zespołem, skorzystaj z formularza kontaktowego."
+    "category": "nth"
+  },
+  {
+    "question": "Czy ten kalkulator jest darmowy?",
+    "answer": "Tak, wszystkie nasze narzędzia są w 100% bezpłatne, bez konieczności rejestracji czy instalacji.",
+    "display": true,
+    "category": "general"
   }
 ]

@@ -10,10 +10,15 @@
     "tables": "Mesas",
     "faq": "Preguntas frecuentes",
     "blog": "Blog",
-    "about": "Acerca de",
-    "privacy": "Política de privacidad",
-    "terms": "Términos de servicio",
-    "contact": "Contacto"
+    "about": "Sobre Nosotros",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "contact": "Contacto",
+    "calculators": "Calculadoras",
+    "cbrt": "Calculadora de Raíz Cúbica",
+    "nth": "Calculadora de Raíz Enésima",
+    "sitemap": "Mapa del Sitio",
+    "disclaimer": "Descargo de Responsabilidad"
   },
   "hero": {
     "badge": "Herramienta gratuita de raíz cuadrada y raíz cúbica",
@@ -95,6 +100,41 @@
     "tagline": "La herramienta gratuita de raíces cuadradas y cúbicas más completa en línea.",
     "language": "Idioma",
     "rights": "Todos los derechos reservados.",
-    "made": "Hecho con ❤️ para matemáticas"
+    "made": "Hecho con ❤️ para matemáticas",
+    "company": "Compañía",
+    "legal": "Legal"
+  },
+  "cbrt": {
+    "title": "Calculadora de Raíz Cúbica | Calculadora Gratuita en Línea para ∛x",
+    "description": "Calcula raíces cúbicas al instante con nuestra calculadora gratuita. Obtén resultados decimales exactos, radicales simplificados y pasos detallados.",
+    "hero": {
+      "part1": "Raíz Cúbica",
+      "part2": "Calculadora",
+      "subtitle": "Calcula la raíz cúbica de cualquier número — positivo o negativo — al instante. Obtén el resultado decimal exacto, forma radical simplificada y paso a paso. 100% gratis."
+    },
+    "calc": {
+      "title": "Calculadora de Raíz Cúbica",
+      "desc": "Halla ∛x para cualquier número, incluidos negativos",
+      "btn": "Calcular Raíz Cúbica",
+      "tooltip": "Introduce cualquier número — positivo o negativo — para hallar su raíz cúbica."
+    }
+  },
+  "nth": {
+    "title": "Calculadora de Raíz Enésima - Herramienta Gratuita para Cualquier Índice",
+    "description": "Calcula cualquier raíz (4ª, 5ª o índice personalizado) al instante con nuestra calculadora de raíz enésima gratuita. Resultados exactos y desarrollo.",
+    "hero": {
+      "part1": "Raíz Enésima",
+      "part2": "Calculadora",
+      "subtitle": "Calcula cualquier raíz — cuarta, quinta o grado n personalizado — para cualquier número con radicales simplificados y soluciones paso a paso."
+    },
+    "calc": {
+      "title": "Calculadora de Raíz Enésima",
+      "desc": "Calcula cualquier raíz — 4ª, 5ª o grado personalizado",
+      "btn": "Calcular Raíz Enésima",
+      "degreeLabel": "Grado de la raíz (índice n)",
+      "numberLabel": "Número (radicando x)",
+      "tooltipDegree": "El índice de la raíz (n). Por ejemplo 2 para raíz cuadrada, 3 para cúbica, 4 para cuarta.",
+      "tooltipNumber": "El número del que deseas obtener la raíz."
+    }
   }
 }

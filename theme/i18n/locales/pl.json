@@ -10,10 +10,15 @@
     "tables": "Stoły",
     "faq": "Często zadawane pytania",
     "blog": "Blog",
-    "about": "O",
+    "about": "O nas",
     "privacy": "Polityka prywatności",
-    "terms": "Warunki świadczenia usług",
-    "contact": "Kontakt"
+    "terms": "Regulamin",
+    "contact": "Kontakt",
+    "calculators": "Kalkulatory",
+    "cbrt": "Kalkulator Pierwiastka Sześciennego",
+    "nth": "Kalkulator Pierwiastka n-tego Stopnia",
+    "sitemap": "Mapa strony",
+    "disclaimer": "Zastrzeżenia prawne"
   },
   "hero": {
     "badge": "Bezpłatne narzędzie do pierwiastkowania kwadratowego i sześciennego",
@@ -95,6 +100,41 @@
     "tagline": "Najbardziej kompletne, bezpłatne narzędzie online do obliczania pierwiastka kwadratowego i sześciennego.",
     "language": "Język",
     "rights": "Wszelkie prawa zastrzeżone.",
-    "made": "Wykonane z ❤️ dla matematyki"
+    "made": "Wykonane z ❤️ dla matematyki",
+    "company": "Firma",
+    "legal": "Informacje prawne"
+  },
+  "cbrt": {
+    "title": "Kalkulator Pierwiastka Sześciennego | Darmowe Obliczanie ∛x Online",
+    "description": "Obliczaj pierwiastki sześcienne natychmiastowo. Dokładne wyniki dziesiętne, uproszczona postać pierwiastka i kroki obliczeniowe.",
+    "hero": {
+      "part1": "Pierwiastek Sześcienny",
+      "part2": "Kalkulator",
+      "subtitle": "Oblicz pierwiastek sześcienny z dowolnej liczby dodatniej lub ujemnej. Dokładny wynik, postać uproszczona i kroki obliczeń. 100% za darmo."
+    },
+    "calc": {
+      "title": "Kalkulator Pierwiastka Sześciennego",
+      "desc": "Znajdź ∛x dla dowolnej liczby, także ujemnej",
+      "btn": "Oblicz pierwiastek sześcienny",
+      "tooltip": "Wpisz liczbę, aby obliczyć jej pierwiastek sześcienny."
+    }
+  },
+  "nth": {
+    "title": "Kalkulator Pierwiastka n-tego Stopnia | Narzędzie dla Dowolnego Stopnia",
+    "description": "Oblicz dowolny pierwiastek n-tego stopnia (4., 5. lub dowolny stopień) natychmiast z uproszczeniem i krokami rozwiązania.",
+    "hero": {
+      "part1": "Pierwiastek n-tego Stopnia",
+      "part2": "Kalkulator",
+      "subtitle": "Obliczaj pierwiastki 4., 5. lub dowolnego stopnia n z pełnym uproszczeniem i krokami obliczeniowymi."
+    },
+    "calc": {
+      "title": "Kalkulator Pierwiastka n-tego Stopnia",
+      "desc": "Oblicz dowolny pierwiastek — 4., 5. lub własny stopień",
+      "btn": "Oblicz pierwiastek n-tego stopnia",
+      "degreeLabel": "Stopień pierwiastka (indeks n)",
+      "numberLabel": "Liczba podpierwiastkowa (x)",
+      "tooltipDegree": "Stopień pierwiastka (n).",
+      "tooltipNumber": "Liczba, z której chcesz wyciągnąć pierwiastek."
+    }
   }
 }

@@ -10,10 +10,15 @@
     "tables": "Tabelle",
     "faq": "Domande frequenti",
     "blog": "Blog",
-    "about": "Circa",
-    "privacy": "Informativa sulla privacy",
-    "terms": "Termini di servizio",
-    "contact": "Contatto"
+    "about": "Chi Siamo",
+    "privacy": "Privacy Policy",
+    "terms": "Termini di Servizio",
+    "contact": "Contatti",
+    "calculators": "Calcolatori",
+    "cbrt": "Calcolatore Radice Cubica",
+    "nth": "Calcolatore Radice Ennesima",
+    "sitemap": "Mappa del Sito",
+    "disclaimer": "Disclaimer"
   },
   "hero": {
     "badge": "Strumento gratuito per radice quadrata e radice cubica",
@@ -95,6 +100,41 @@
     "tagline": "Lo strumento gratuito per radici quadrate e cubiche più completo online.",
     "language": "Lingua",
     "rights": "Tutti i diritti riservati.",
-    "made": "Fatto con ❤️ per la matematica"
+    "made": "Fatto con ❤️ per la matematica",
+    "company": "Azienda",
+    "legal": "Legale"
+  },
+  "cbrt": {
+    "title": "Calcolatore Radice Cubica | Calcolatore Online Gratuito per ∛x",
+    "description": "Calcola le radici cubiche istantaneamente con la nostra calcolatrice gratuita. Risultati decimali esatti, radicali semplificati e passaggi.",
+    "hero": {
+      "part1": "Radice Cubica",
+      "part2": "Calcolatore",
+      "subtitle": "Calcola la radice cubica di qualsiasi numero — positivo o negativo — all'istante. Valori decimali esatti, forma semplificata e passaggi. 100% gratis."
+    },
+    "calc": {
+      "title": "Calcolatore Radice Cubica",
+      "desc": "Trova ∛x per qualsiasi numero, anche negativi",
+      "btn": "Calcola Radice Cubica",
+      "tooltip": "Inserisci qualsiasi numero positivo o negativo per trovare la sua radice cubica."
+    }
+  },
+  "nth": {
+    "title": "Calcolatore Radice Ennesima - Calcola Qualsiasi Indice di Radice",
+    "description": "Calcola qualsiasi radice n-esima (quarta, quinta o indice personalizzato) istantaneamente con passaggi di calcolo completi.",
+    "hero": {
+      "part1": "Radice Ennesima",
+      "part2": "Calcolatore",
+      "subtitle": "Calcola qualsiasi radice per qualsiasi indice n con precisione decimale e passaggi matematici dettagliati."
+    },
+    "calc": {
+      "title": "Calcolatore Radice Ennesima",
+      "desc": "Calcola qualsiasi radice — 4ª, 5ª o grado personalizzato",
+      "btn": "Calcola Radice Ennesima",
+      "degreeLabel": "Grado della radice (indice n)",
+      "numberLabel": "Numero (radicando x)",
+      "tooltipDegree": "Il grado della radice (n).",
+      "tooltipNumber": "Il numero di cui calcolare la radice."
+    }
   }
 }

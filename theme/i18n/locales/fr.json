@@ -10,10 +10,15 @@
     "tables": "Tableaux",
     "faq": "FAQ",
     "blog": "Blogue",
-    "about": "À propos",
-    "privacy": "Politique de confidentialité",
-    "terms": "Conditions d'utilisation",
-    "contact": "Contacter"
+    "about": "À Propos",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation",
+    "contact": "Contact",
+    "calculators": "Calculateurs",
+    "cbrt": "Calculateur Racine Cubique",
+    "nth": "Calculateur Racine N-ième",
+    "sitemap": "Plan du Site",
+    "disclaimer": "Avertissement"
   },
   "hero": {
     "badge": "Outil gratuit de racine carrée et de racine cubique",
@@ -95,6 +100,41 @@
     "tagline": "L'outil gratuit de racine carrée et de racine cubique le plus complet en ligne.",
     "language": "Langue",
     "rights": "Tous droits réservés.",
-    "made": "Réalisé avec ❤️ pour les mathématiques"
+    "made": "Réalisé avec ❤️ pour les mathématiques",
+    "company": "Entreprise",
+    "legal": "Mentions Légales"
+  },
+  "cbrt": {
+    "title": "Calculateur Racine Cubique | Calculateur de Racine Cubique en Ligne Gratuit",
+    "description": "Calculez instantanément les racines cubiques avec notre calculateur gratuit. Obtenez des résultats décimaux exacts, radicaux simplifiés et étapes de calcul.",
+    "hero": {
+      "part1": "Racine Cubique",
+      "part2": "Calculateur",
+      "subtitle": "Calculez la racine cubique de n'importe quel nombre — positif ou négatif — instantanément. Obtenez le résultat décimal exact, la forme radicale simplifiée et les étapes. 100% gratuit."
+    },
+    "calc": {
+      "title": "Calculateur de Racine Cubique",
+      "desc": "Trouvez ∛x pour n'importe quel nombre, y compris les négatifs",
+      "btn": "Calculer la Racine Cubique",
+      "tooltip": "Entrez un nombre positif ou négatif pour calculer sa racine cubique. Contrairement aux racines carrées, les racines cubiques fonctionnent avec les nombres négatifs."
+    }
+  },
+  "nth": {
+    "title": "Calculateur Racine N-ième - Outil Gratuit pour Tout Indice",
+    "description": "Calculez n'importe quelle racine (4e, 5e ou indice personnalisé n) instantanément avec notre calculateur de racine n-ième gratuit. Résultats exacts et étapes.",
+    "hero": {
+      "part1": "Racine N-ième",
+      "part2": "Calculateur",
+      "subtitle": "Calculez n'importe quelle racine — racine 4e, 5e ou degré n personnalisé — pour n'importe quel nombre avec forme radicale simplifiée et étapes détaillées."
+    },
+    "calc": {
+      "title": "Calculateur de Racine N-ième",
+      "desc": "Calculez n'importe quelle racine — 4e, 5e ou degré personnalisé",
+      "btn": "Calculer la Racine N-ième",
+      "degreeLabel": "Degré de la racine (indice n)",
+      "numberLabel": "Nombre (radicande x)",
+      "tooltipDegree": "Le degré de la racine (n). Par exemple 2 pour carré, 3 pour cube, 4 pour racine quatrième.",
+      "tooltipNumber": "Le nombre dont vous souhaitez calculer la racine."
+    }
   }
 }

@@ -6,7 +6,7 @@ import Calculator from '../../components/Calculator.astro';
 import ContentSections from '../../components/ContentSections.astro';
 import Footer from '../../components/Footer.astro';
 import { LOCALES, getHtmlDir, getLocalizedUrl, getLocaleFromParams } from '../../../theme/i18n/utils';
-import { useTranslations } from '../../../theme/i18n/translations';
+import { useTranslations, getLocaleFaqs } from '../../../theme/i18n/translations';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import site from '../../config/site.json';
 import { getHomeAlternateLinks } from '../../utils/seo';
@@ -26,28 +26,7 @@ const description = t('site.description', 'Calculate square roots with exact dec
 const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/', lang)}`;
 const alternateLinks = getHomeAlternateLinks();
 
-const sqrtFaqs = [
-  {
-    question: "How do I use the Racine Carree Calculator?",
-    answer: "Type your number into the input box above, click Calculate, and get instant exact decimal results, simplified radical form (e.g., √72 = 6√2), and step-by-step working out."
-  },
-  {
-    question: "Can I calculate square roots manually?",
-    answer: "Yes! Popular manual methods include prime factorization (best for perfect squares like √144 = 12), long division method (exact digit-by-digit calculation), and the Newton-Raphson estimation method."
-  },
-  {
-    question: "What does \"racine carrée\" mean?",
-    answer: "Racine carrée is the French term for square root. In mathematics, it represents a number that, when multiplied by itself, yields the original radicand (e.g., racine carrée de 25 est 5)."
-  },
-  {
-    question: "Can the calculator handle negative numbers?",
-    answer: "In real-number mathematics, square roots of negative numbers are undefined (no real number multiplied by itself gives a negative). In complex mathematics, √(-x) yields an imaginary result involving i."
-  },
-  {
-    question: "Is this calculator free to use?",
-    answer: "Yes, our Racine Carrée Calculator is 100% free with no registration, software download, or sign-up required."
-  }
-];
+const sqrtFaqs = getLocaleFaqs(lang, 'sqrt');
 ---
 
 <Layout
@@ -57,6 +36,7 @@ const sqrtFaqs = [
   dir={getHtmlDir(lang)}
   canonicalUrl={canonicalUrl}
   alternateLinks={alternateLinks}
+  faqItems={sqrtFaqs}
 >
   <Navbar lang={lang} contentLang={lang} />
   <main id="main-content">
@@ -66,7 +46,8 @@ const sqrtFaqs = [
         <Calculator lang={lang} />
       </div>
     </section>
-    <ContentSections lang={lang} />
+    <ContentSections lang={lang} faqs={sqrtFaqs} />
   </main>
   <Footer lang={lang} contentLang={lang} />
 </Layout>
+

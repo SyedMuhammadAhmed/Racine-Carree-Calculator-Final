@@ -1,32 +1,44 @@
 [
   {
+    "question": "Kare Kök Hesaplayıcı nasıl kullanılır?",
+    "answer": "Sayınızı yazıp Hesapla düğmesine basın. Tam ondalık sonucu, sadeleştirilmiş kök ifadesini (ör. √72 = 6√2) ve adım adım asal çarpanlara ayırma adımlarını hemen görebilirsiniz.",
     "display": true,
-    "question": "Bu proje nedir?",
-    "answer": "Bu, i18n desteğine sahip harika bir Astro projesidir."
+    "category": "sqrt"
   },
   {
+    "question": "Hesaplayıcı negatif sayıları destekliyor mu?",
+    "answer": "Evet! Reel sayılarda negatif sayıların karekökü yoktur ancak karmaşık sayılar alanında sanal birim i kullanılarak sonuç (ör. √(-16) = ±4i) adımlarıyla gösterilir.",
     "display": true,
-    "question": "Nasıl kullanırım?",
-    "answer": "Sayfalarda gezinin ve yerelleştirilmiş içeriğin keyfini çıkarın."
+    "category": "sqrt"
   },
   {
+    "question": "Karekök ile küpkök arasındaki fark nedir?",
+    "answer": "Karekök 2. derecedendir, küpkök ise 3. derecedendir. Küpkökler negatif sayılar için reel sonuçlar verir.",
     "display": true,
-    "question": "Ücretsiz mi?",
-    "answer": "Evet kullanımı tamamen ücretsizdir."
+    "category": "general"
   },
   {
+    "question": "Negatif sayıların küp kökü alınabilir mi?",
+    "answer": "Evet! Üç negatif sayının çarpımı negatif olduğundan ∛(-27) = -3 reel bir çözümdür.",
     "display": true,
-    "question": "Kaydolmam gerekiyor mu?",
-    "answer": "İçeriği görüntülemek için kayıt olmanıza gerek yoktur."
+    "category": "cbrt"
   },
   {
+    "question": "n. dereceden kökteki derece (indeks n) ne anlama gelir?",
+    "answer": "İndeks n, kökün kuvvetini belirtir (ⁿ√x). n=2 karekök, n=3 küpkök, n=4 dördüncü dereceden köktür.",
     "display": true,
-    "question": "Hangi diller destekleniyor?",
-    "answer": "Kutudan çıktığı haliyle 18 farklı dili destekliyoruz."
+    "category": "nth"
   },
   {
+    "question": "Negatif bir sayının n. dereceden kökü hesaplanabilir mi?",
+    "answer": "Eğer n derecesi tek sayı ise (3, 5, 7...) reel çözüm vardır. Derece çift sayı ise (2, 4, 6...) reel çözüm yoktur.",
     "display": true,
-    "question": "Bir hatayı nasıl bildirebilirim?",
-    "answer": "Ekibimize ulaşmak için lütfen iletişim formunu kullanın."
+    "category": "nth"
+  },
+  {
+    "question": "Bu hesaplayıcı ücretsiz mi?",
+    "answer": "Evet, sitemizdeki tüm hesaplama araçları %100 ücretsizdir ve kayıt gerektirmez.",
+    "display": true,
+    "category": "general"
   }
 ]

@@ -1,32 +1,44 @@
 [
   {
+    "question": "Come si usa il Calcolatore di Radice Quadrata?",
+    "answer": "Inserisci il numero e clicca su Calcola per ottenere il valore decimale esatto, la forma radicale semplificata (es. √72 = 6√2) e i passaggi dettagliati.",
     "display": true,
-    "question": "Cos'è questo progetto?",
-    "answer": "Questo è un fantastico progetto Astro con supporto i18n."
+    "category": "sqrt"
   },
   {
+    "question": "Il calcolatore gestisce i numeri negativi?",
+    "answer": "Sì! Nei numeri reali non esiste radice quadrata di un negativo. Nei numeri complessi, il calcolatore restituisce l'unità immaginaria (es. √(-16) = ±4i).",
     "display": true,
-    "question": "Come lo uso?",
-    "answer": "Naviga semplicemente tra le pagine e goditi i contenuti localizzati."
+    "category": "sqrt"
   },
   {
+    "question": "Che differenza c'è tra radice quadrata e radice cubica?",
+    "answer": "La radice quadrata ha indice 2 (moltiplicata 2 volte), mentre la radice cubica ha indice 3 (moltiplicata 3 volte) e ammette soluzioni reali per numeri negativi.",
     "display": true,
-    "question": "È gratuito?",
-    "answer": "Sì, è completamente gratuito da usare."
+    "category": "general"
   },
   {
+    "question": "Si può calcolare la radice cubica di un numero negativo?",
+    "answer": "Sì! Moltiplicando tre numeri negativi si ottiene un numero negativo, quindi ∛(-27) = -3 è una soluzione reale valida.",
     "display": true,
-    "question": "Devo registrarmi?",
-    "answer": "Non è richiesta alcuna registrazione per visualizzare il contenuto."
+    "category": "cbrt"
   },
   {
+    "question": "Cosa significa l'indice di una radice n-esima?",
+    "answer": "L'indice è il grado n in ⁿ√x (2 per radice quadrata, 3 per cubica, 4 per quarta radice, ecc.).",
     "display": true,
-    "question": "Quali lingue sono supportate?",
-    "answer": "Supportiamo immediatamente 18 lingue diverse."
+    "category": "nth"
   },
   {
+    "question": "Si può calcolare la radice n-esima di un numero negativo?",
+    "answer": "Se l'indice n è dispari esiste una soluzione reale. Se n è pari non esiste alcuna soluzione reale.",
     "display": true,
-    "question": "Come posso segnalare un bug?",
-    "answer": "Utilizza il modulo di contatto per contattare il nostro team."
+    "category": "nth"
+  },
+  {
+    "question": "Questo calcolatore è gratuito?",
+    "answer": "Sì, tutti i nostri strumenti sono gratuiti al 100% senza registrazione e con calcoli illimitati.",
+    "display": true,
+    "category": "general"
   }
 ]

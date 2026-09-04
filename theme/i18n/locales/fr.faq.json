@@ -1,32 +1,44 @@
 [
   {
+    "question": "Comment utiliser le Calculateur Racine Carrée ?",
+    "answer": "Entrez votre nombre dans le champ de saisie et cliquez sur Calculer. Vous obtiendrez instantanément le résultat décimal exact, la forme radicale simplifiée (ex. √72 = 6√2) et le détail étape par étape de la décomposition en facteurs premiers.",
     "display": true,
-    "question": "Quel est ce projet ?",
-    "answer": "Il s'agit d'un projet Astro génial avec le support i18n."
+    "category": "sqrt"
   },
   {
+    "question": "Le calculateur peut-il traiter les nombres négatifs ?",
+    "answer": "Oui ! En arithmétique réelle, la racine carrée d'un nombre négatif n'existe pas. En mathématiques complexes, entrer un nombre négatif renvoie le résultat avec l'unité imaginaire (ex. √(-16) = ±4i) avec toutes les étapes d'explication.",
     "display": true,
-    "question": "Comment puis-je l'utiliser ?",
-    "answer": "Naviguez simplement à travers les pages et profitez du contenu localisé."
+    "category": "sqrt"
   },
   {
+    "question": "Quelle est la différence entre racine carrée et racine cubique ?",
+    "answer": "La racine carrée recherche le nombre qui multiplié par lui-même 2 fois donne x (indice 2). La racine cubique recherche le nombre multiplié par lui-même 3 fois (indice 3). Contrairement aux racines carrées, les racines cubiques de nombres négatifs ont des solutions réelles.",
     "display": true,
-    "question": "Est-ce gratuit ?",
-    "answer": "Oui, son utilisation est totalement gratuite."
+    "category": "general"
   },
   {
+    "question": "Peut-on calculer la racine cubique d'un nombre négatif ?",
+    "answer": "Oui ! La racine cubique d'un nombre négatif a une solution réelle car le produit de trois nombres négatifs est négatif (ex. ∛(-27) = -3).",
     "display": true,
-    "question": "Dois-je m'inscrire ?",
-    "answer": "Aucune inscription n'est requise pour voir le contenu."
+    "category": "cbrt"
   },
   {
+    "question": "Que signifie l'indice d'une racine n-ième ?",
+    "answer": "L'indice est le degré de la racine (le nombre 'n' dans ⁿ√x). Un indice de 2 correspond à la racine carrée, 3 à la racine cubique, 4 à la racine quatrième, etc.",
     "display": true,
-    "question": "Quelles langues sont prises en charge ?",
-    "answer": "Nous prenons en charge 18 langues différentes dès le départ."
+    "category": "nth"
   },
   {
+    "question": "Peut-on calculer la racine n-ième d'un nombre négatif ?",
+    "answer": "Si le degré n est impair (3, 5, 7...), une solution réelle négative existe. Si n est pair (2, 4, 6...), il n'existe pas de solution réelle.",
     "display": true,
-    "question": "Comment signaler un bug ?",
-    "answer": "Veuillez utiliser le formulaire de contact pour contacter notre équipe."
+    "category": "nth"
+  },
+  {
+    "question": "Ce calculateur est-il gratuit ?",
+    "answer": "Oui, tous nos calculateurs sont 100% gratuits avec calculs illimités, sans inscription ni téléchargement requis.",
+    "display": true,
+    "category": "general"
   }
 ]
