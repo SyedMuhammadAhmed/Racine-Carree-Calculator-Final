@@ -1,0 +1,234 @@
+# ==========================================================
+# Racine Carrée Calculator — Cloudflare Pages Redirects
+# 301 Permanent Redirects for Localized Static Pages
+# ==========================================================
+
+# Explicit 301 Redirects for All 17 Supported Locales
+/ar/about-us /about-us/ 301
+/ar/about-us/ /about-us/ 301
+/ar/contact-us /contact-us/ 301
+/ar/contact-us/ /contact-us/ 301
+/ar/privacy /privacy/ 301
+/ar/privacy/ /privacy/ 301
+/ar/terms /terms/ 301
+/ar/terms/ /terms/ 301
+/ar/disclaimer /disclaimer/ 301
+/ar/disclaimer/ /disclaimer/ 301
+/ar/sitemap /sitemap/ 301
+/ar/sitemap/ /sitemap/ 301
+
+/bg/about-us /about-us/ 301
+/bg/about-us/ /about-us/ 301
+/bg/contact-us /contact-us/ 301
+/bg/contact-us/ /contact-us/ 301
+/bg/privacy /privacy/ 301
+/bg/privacy/ /privacy/ 301
+/bg/terms /terms/ 301
+/bg/terms/ /terms/ 301
+/bg/disclaimer /disclaimer/ 301
+/bg/disclaimer/ /disclaimer/ 301
+/bg/sitemap /sitemap/ 301
+/bg/sitemap/ /sitemap/ 301
+
+/bn/about-us /about-us/ 301
+/bn/about-us/ /about-us/ 301
+/bn/contact-us /contact-us/ 301
+/bn/contact-us/ /contact-us/ 301
+/bn/privacy /privacy/ 301
+/bn/privacy/ /privacy/ 301
+/bn/terms /terms/ 301
+/bn/terms/ /terms/ 301
+/bn/disclaimer /disclaimer/ 301
+/bn/disclaimer/ /disclaimer/ 301
+/bn/sitemap /sitemap/ 301
+/bn/sitemap/ /sitemap/ 301
+
+/de/about-us /about-us/ 301
+/de/about-us/ /about-us/ 301
+/de/contact-us /contact-us/ 301
+/de/contact-us/ /contact-us/ 301
+/de/privacy /privacy/ 301
+/de/privacy/ /privacy/ 301
+/de/terms /terms/ 301
+/de/terms/ /terms/ 301
+/de/disclaimer /disclaimer/ 301
+/de/disclaimer/ /disclaimer/ 301
+/de/sitemap /sitemap/ 301
+/de/sitemap/ /sitemap/ 301
+
+/es/about-us /about-us/ 301
+/es/about-us/ /about-us/ 301
+/es/contact-us /contact-us/ 301
+/es/contact-us/ /contact-us/ 301
+/es/privacy /privacy/ 301
+/es/privacy/ /privacy/ 301
+/es/terms /terms/ 301
+/es/terms/ /terms/ 301
+/es/disclaimer /disclaimer/ 301
+/es/disclaimer/ /disclaimer/ 301
+/es/sitemap /sitemap/ 301
+/es/sitemap/ /sitemap/ 301
+
+/fr/about-us /about-us/ 301
+/fr/about-us/ /about-us/ 301
+/fr/contact-us /contact-us/ 301
+/fr/contact-us/ /contact-us/ 301
+/fr/privacy /privacy/ 301
+/fr/privacy/ /privacy/ 301
+/fr/terms /terms/ 301
+/fr/terms/ /terms/ 301
+/fr/disclaimer /disclaimer/ 301
+/fr/disclaimer/ /disclaimer/ 301
+/fr/sitemap /sitemap/ 301
+/fr/sitemap/ /sitemap/ 301
+
+/hi/about-us /about-us/ 301
+/hi/about-us/ /about-us/ 301
+/hi/contact-us /contact-us/ 301
+/hi/contact-us/ /contact-us/ 301
+/hi/privacy /privacy/ 301
+/hi/privacy/ /privacy/ 301
+/hi/terms /terms/ 301
+/hi/terms/ /terms/ 301
+/hi/disclaimer /disclaimer/ 301
+/hi/disclaimer/ /disclaimer/ 301
+/hi/sitemap /sitemap/ 301
+/hi/sitemap/ /sitemap/ 301
+
+/id/about-us /about-us/ 301
+/id/about-us/ /about-us/ 301
+/id/contact-us /contact-us/ 301
+/id/contact-us/ /contact-us/ 301
+/id/privacy /privacy/ 301
+/id/privacy/ /privacy/ 301
+/id/terms /terms/ 301
+/id/terms/ /terms/ 301
+/id/disclaimer /disclaimer/ 301
+/id/disclaimer/ /disclaimer/ 301
+/id/sitemap /sitemap/ 301
+/id/sitemap/ /sitemap/ 301
+
+/it/about-us /about-us/ 301
+/it/about-us/ /about-us/ 301
+/it/contact-us /contact-us/ 301
+/it/contact-us/ /contact-us/ 301
+/it/privacy /privacy/ 301
+/it/privacy/ /privacy/ 301
+/it/terms /terms/ 301
+/it/terms/ /terms/ 301
+/it/disclaimer /disclaimer/ 301
+/it/disclaimer/ /disclaimer/ 301
+/it/sitemap /sitemap/ 301
+/it/sitemap/ /sitemap/ 301
+
+/ja/about-us /about-us/ 301
+/ja/about-us/ /about-us/ 301
+/ja/contact-us /contact-us/ 301
+/ja/contact-us/ /contact-us/ 301
+/ja/privacy /privacy/ 301
+/ja/privacy/ /privacy/ 301
+/ja/terms /terms/ 301
+/ja/terms/ /terms/ 301
+/ja/disclaimer /disclaimer/ 301
+/ja/disclaimer/ /disclaimer/ 301
+/ja/sitemap /sitemap/ 301
+/ja/sitemap/ /sitemap/ 301
+
+/ko/about-us /about-us/ 301
+/ko/about-us/ /about-us/ 301
+/ko/contact-us /contact-us/ 301
+/ko/contact-us/ /contact-us/ 301
+/ko/privacy /privacy/ 301
+/ko/privacy/ /privacy/ 301
+/ko/terms /terms/ 301
+/ko/terms/ /terms/ 301
+/ko/disclaimer /disclaimer/ 301
+/ko/disclaimer/ /disclaimer/ 301
+/ko/sitemap /sitemap/ 301
+/ko/sitemap/ /sitemap/ 301
+
+/ms/about-us /about-us/ 301
+/ms/about-us/ /about-us/ 301
+/ms/contact-us /contact-us/ 301
+/ms/contact-us/ /contact-us/ 301
+/ms/privacy /privacy/ 301
+/ms/privacy/ /privacy/ 301
+/ms/terms /terms/ 301
+/ms/terms/ /terms/ 301
+/ms/disclaimer /disclaimer/ 301
+/ms/disclaimer/ /disclaimer/ 301
+/ms/sitemap /sitemap/ 301
+/ms/sitemap/ /sitemap/ 301
+
+/pl/about-us /about-us/ 301
+/pl/about-us/ /about-us/ 301
+/pl/contact-us /contact-us/ 301
+/pl/contact-us/ /contact-us/ 301
+/pl/privacy /privacy/ 301
+/pl/privacy/ /privacy/ 301
+/pl/terms /terms/ 301
+/pl/terms/ /terms/ 301
+/pl/disclaimer /disclaimer/ 301
+/pl/disclaimer/ /disclaimer/ 301
+/pl/sitemap /sitemap/ 301
+/pl/sitemap/ /sitemap/ 301
+
+/pt/about-us /about-us/ 301
+/pt/about-us/ /about-us/ 301
+/pt/contact-us /contact-us/ 301
+/pt/contact-us/ /contact-us/ 301
+/pt/privacy /privacy/ 301
+/pt/privacy/ /privacy/ 301
+/pt/terms /terms/ 301
+/pt/terms/ /terms/ 301
+/pt/disclaimer /disclaimer/ 301
+/pt/disclaimer/ /disclaimer/ 301
+/pt/sitemap /sitemap/ 301
+/pt/sitemap/ /sitemap/ 301
+
+/ru/about-us /about-us/ 301
+/ru/about-us/ /about-us/ 301
+/ru/contact-us /contact-us/ 301
+/ru/contact-us/ /contact-us/ 301
+/ru/privacy /privacy/ 301
+/ru/privacy/ /privacy/ 301
+/ru/terms /terms/ 301
+/ru/terms/ /terms/ 301
+/ru/disclaimer /disclaimer/ 301
+/ru/disclaimer/ /disclaimer/ 301
+/ru/sitemap /sitemap/ 301
+/ru/sitemap/ /sitemap/ 301
+
+/sv/about-us /about-us/ 301
+/sv/about-us/ /about-us/ 301
+/sv/contact-us /contact-us/ 301
+/sv/contact-us/ /contact-us/ 301
+/sv/privacy /privacy/ 301
+/sv/privacy/ /privacy/ 301
+/sv/terms /terms/ 301
+/sv/terms/ /terms/ 301
+/sv/disclaimer /disclaimer/ 301
+/sv/disclaimer/ /disclaimer/ 301
+/sv/sitemap /sitemap/ 301
+/sv/sitemap/ /sitemap/ 301
+
+/tr/about-us /about-us/ 301
+/tr/about-us/ /about-us/ 301
+/tr/contact-us /contact-us/ 301
+/tr/contact-us/ /contact-us/ 301
+/tr/privacy /privacy/ 301
+/tr/privacy/ /privacy/ 301
+/tr/terms /terms/ 301
+/tr/terms/ /terms/ 301
+/tr/disclaimer /disclaimer/ 301
+/tr/disclaimer/ /disclaimer/ 301
+/tr/sitemap /sitemap/ 301
+/tr/sitemap/ /sitemap/ 301
+
+# Fallback Wildcard Pattern for Any Other Path
+/:locale/about-us/* /about-us/ 301
+/:locale/contact-us/* /contact-us/ 301
+/:locale/privacy/* /privacy/ 301
+/:locale/terms/* /terms/ 301
+/:locale/disclaimer/* /disclaimer/ 301
+/:locale/sitemap/* /sitemap/ 301

@@ -2,6 +2,14 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": true,
+  "redirects": [
+    { "source": "/:locale(ar|bg|bn|de|es|fr|hi|id|it|ja|ko|ms|pl|pt|ru|sv|tr)/about-us/:path*", "destination": "/about-us/", "permanent": true },
+    { "source": "/:locale(ar|bg|bn|de|es|fr|hi|id|it|ja|ko|ms|pl|pt|ru|sv|tr)/contact-us/:path*", "destination": "/contact-us/", "permanent": true },
+    { "source": "/:locale(ar|bg|bn|de|es|fr|hi|id|it|ja|ko|ms|pl|pt|ru|sv|tr)/privacy/:path*", "destination": "/privacy/", "permanent": true },
+    { "source": "/:locale(ar|bg|bn|de|es|fr|hi|id|it|ja|ko|ms|pl|pt|ru|sv|tr)/terms/:path*", "destination": "/terms/", "permanent": true },
+    { "source": "/:locale(ar|bg|bn|de|es|fr|hi|id|it|ja|ko|ms|pl|pt|ru|sv|tr)/disclaimer/:path*", "destination": "/disclaimer/", "permanent": true },
+    { "source": "/:locale(ar|bg|bn|de|es|fr|hi|id|it|ja|ko|ms|pl|pt|ru|sv|tr)/sitemap/:path*", "destination": "/sitemap/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",

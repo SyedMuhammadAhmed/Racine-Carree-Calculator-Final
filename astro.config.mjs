@@ -25,10 +25,28 @@ const sitemapLocales = {
   sv: "sv",
 };
 
+const staticPages = [
+  'about-us',
+  'contact-us',
+  'privacy',
+  'terms',
+  'disclaimer',
+  'sitemap',
+];
+
+const localeRedirects = {};
+Object.keys(sitemapLocales).filter(loc => loc !== 'en').forEach(loc => {
+  staticPages.forEach(page => {
+    localeRedirects[`/${loc}/${page}`] = `/${page}/`;
+    localeRedirects[`/${loc}/${page}/`] = `/${page}/`;
+  });
+});
+
 export default defineConfig({
   site: siteConfig.siteUrl,
   trailingSlash: "always",
   output: "static",
+  redirects: localeRedirects,
   integrations: [
     sitemap({
       i18n: {
