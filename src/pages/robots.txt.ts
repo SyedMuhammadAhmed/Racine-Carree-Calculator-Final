@@ -7,6 +7,7 @@ export async function GET() {
 User-agent: *
 Allow: /
 Disallow: /404
+Disallow: /404/
 
 # AI & Search Engine Crawlers
 User-agent: GPTBot

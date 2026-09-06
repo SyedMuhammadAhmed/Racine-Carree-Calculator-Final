@@ -65,7 +65,10 @@ const webSiteSchema = {
   "@type": "WebSite",
   "name": site.siteName,
   "url": absoluteUrl('/'),
-  "description": site.siteDescription
+  "description": site.siteDescription,
+  "publisher": {
+    "@id": `${site.siteUrl}/#organization`
+  }
 };
 
 const orgSchema = {
@@ -153,12 +156,15 @@ const schemas = [webSiteSchema, orgSchema, siteNavigationSchema, aboutSchema, co
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <!-- Preconnect & DNS Prefetch to External Origins -->
-    <link rel="preconnect" href="https://www.linkedin.com" />
-    <link rel="dns-prefetch" href="https://www.linkedin.com" />
-    <link rel="preconnect" href="https://www.youtube.com" />
-    <link rel="dns-prefetch" href="https://www.youtube.com" />
+    <script is:inline>
+      (function() {
+        try {
+          const stored = localStorage.getItem('theme');
+          const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', stored || preferred);
+        } catch (e) {}
+      })();
+    </script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />

@@ -19,9 +19,8 @@ const canonicalUrl = `${site.siteUrl}/contact-us/`;
     canonicalUrl={canonicalUrl}
     isContactPage={true}
 >
-    <div class="page-shell">
-        <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Contact Us', url: '/contact-us/' }]} />
-        <section class="article-section" id="contact-us">
+    <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Contact Us', url: '/contact-us/' }]} />
+    <section class="article-section" id="contact-us">
             <div class="article-container">
                 <div class="section-eyebrow">
                     <span class="eyebrow-icon">
@@ -81,5 +80,4 @@ const canonicalUrl = `${site.siteUrl}/contact-us/`;
                 </div>
             </div>
         </section>
-    </div>
 </BaseLayout>

@@ -58,9 +58,8 @@ const localizedEditions = (LOCALES.filter(l => l !== 'en') as Array<Exclude<Loca
     locale={lang}
     canonicalUrl={canonicalUrl}
 >
-    <div class="page-shell">
-        <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Sitemap', url: '/sitemap/' }]} />
-        <section class="article-section" id="sitemap">
+    <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Sitemap', url: '/sitemap/' }]} />
+    <section class="article-section" id="sitemap">
             <div class="article-container">
                 <div class="section-eyebrow">
                     <span class="eyebrow-icon">
@@ -112,5 +111,4 @@ const localizedEditions = (LOCALES.filter(l => l !== 'en') as Array<Exclude<Loca
 
             </div>
         </section>
-    </div>
 </BaseLayout>

@@ -18,9 +18,8 @@ const canonicalUrl = `${site.siteUrl}/about-us/`;
     canonicalUrl={canonicalUrl}
     isAboutPage={true}
 >
-    <div class="page-shell">
-        <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'About Us', url: '/about-us/' }]} />
-        <section class="article-section" id="about-us">
+    <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'About Us', url: '/about-us/' }]} />
+    <section class="article-section" id="about-us">
             <div class="article-container">
                 
                 <!-- Eyebrow & Main Title -->
@@ -202,5 +201,4 @@ const canonicalUrl = `${site.siteUrl}/about-us/`;
 
             </div>
         </section>
-    </div>
 </BaseLayout>

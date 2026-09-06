@@ -10,6 +10,8 @@ import {
   type AlternateLink,
 } from '../utils/seo';
 
+import social from '../config/social.json';
+
 export interface FAQItem {
   question: string;
   answer: string;
@@ -44,6 +46,43 @@ const absoluteOgImage = absoluteUrl(ogImage);
 const openGraphLocale = getOpenGraphLocale(lang);
 const openGraphAlternateLocales = getOpenGraphAlternateLocales(alternateLinks, lang);
 
+const socialLinks = Object.values(social).filter(Boolean);
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${site.siteUrl}/#organization`,
+  name: site.siteName,
+  url: absoluteUrl('/'),
+  legalName: site.siteName,
+  logo: {
+    "@type": "ImageObject",
+    url: absoluteUrl('/logo.png'),
+    caption: site.siteName,
+    width: 512,
+    height: 512
+  },
+  image: absoluteUrl('/og-image.png'),
+  description: site.siteDescription,
+  founder: {
+    "@type": "Person",
+    name: "Syed Muhammad Ahmed",
+    jobTitle: "Founder & Creator",
+    url: absoluteUrl('/about-us/'),
+    image: absoluteUrl('/images/syed-muhammad-ahmed-racine-carree-calculator.jpg'),
+    sameAs: [
+      "https://www.linkedin.com/company/144823222/",
+      "https://www.behance.net/syedmuahmed17"
+    ]
+  },
+  sameAs: socialLinks,
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: site.contactEmail,
+    contactType: "customer support"
+  }
+};
+
 // JSON-LD WebApplication / SoftwareApplication Schema
 const webAppSchema = {
   "@context": "https://schema.org",
@@ -57,6 +96,9 @@ const webAppSchema = {
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Requires HTML5 web browser.",
   "softwareVersion": "2.0.0",
+  "publisher": {
+    "@id": `${site.siteUrl}/#organization`
+  },
   "featureList": [
     "Square root calculator with step-by-step breakdown",
     "Cube root (racine cubique) solver for positive and negative numbers",
@@ -78,7 +120,10 @@ const webSiteSchema = {
   "@type": "WebSite",
   "name": site.siteName,
   "url": absoluteUrl('/'),
-  "description": site.siteDescription
+  "description": site.siteDescription,
+  "publisher": {
+    "@id": `${site.siteUrl}/#organization`
+  }
 };
 
 // JSON-LD FAQPage Schema (if FAQ items exist)
@@ -96,7 +141,7 @@ const faqPageSchema = faqItems && faqItems.length > 0 ? {
   }))
 } : null;
 
-const schemas = [webAppSchema, webSiteSchema, faqPageSchema].filter(Boolean);
+const schemas = [orgSchema, webAppSchema, webSiteSchema, faqPageSchema].filter(Boolean);
 ---
 
 <!DOCTYPE html>
@@ -104,6 +149,15 @@ const schemas = [webAppSchema, webSiteSchema, faqPageSchema].filter(Boolean);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script is:inline>
+      (function() {
+        try {
+          const stored = localStorage.getItem('theme');
+          const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', stored || preferred);
+        } catch (e) {}
+      })();
+    </script>
     <meta name="description" content={description}>
     <meta name="theme-color" content="#7c3aed">
     <meta name="robots" content={robots}>

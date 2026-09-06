@@ -35,15 +35,17 @@ const requestedLocale = pathLocale || lang;
 const activeLocale = LOCALES.includes(requestedLocale as Locale)
   ? requestedLocale as Locale
   : DEFAULT_LOCALE;
-
 const currentPathWithoutLocale = Astro.url.pathname.replace(localePrefixPattern, '') || '/';
-const isHomePath = currentPathWithoutLocale === '/';
+const normalizedPath = currentPathWithoutLocale.endsWith('/') ? currentPathWithoutLocale : `${currentPathWithoutLocale}/`;
+const MULTILINGUAL_PATHS = ['/', '/racine-cubique-calculator/', '/nth-root-calculator/'];
+const isMultilingualPath = MULTILINGUAL_PATHS.includes(normalizedPath);
 
 function getLanguageUrl(locale: Locale) {
   const params = new URLSearchParams(Astro.url.searchParams);
   params.delete('lang');
   const query = params.toString();
-  const baseLocalized = getLocalizedUrl(currentPathWithoutLocale, locale);
+  const targetPath = isMultilingualPath ? normalizedPath : '/';
+  const baseLocalized = getLocalizedUrl(targetPath, locale);
   return `${baseLocalized}${query ? `?${query}` : ''}`;
 }
 ---

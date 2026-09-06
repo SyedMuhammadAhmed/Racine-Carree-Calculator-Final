@@ -311,7 +311,7 @@ function initSmoothScroll() {
 
 function primeFactorize(n) {
     n = Math.round(Math.abs(n));
-    if (n <= 1) return n === 0 ? [] : [n];
+    if (n <= 1) return [];
     if (n > 1e12) return null; // Do not pretend an unfactored value is prime.
     const factors = [];
     let d = 2;
@@ -342,6 +342,18 @@ function buildRootFactorSteps(value, degree, symbol) {
 
     if (value === 0) {
         steps.push({ title: 'Zero property', math: `${symbol}0 = 0` });
+        return steps;
+    }
+
+    if (value === 1) {
+        steps.push({ title: 'Identity property', math: `${symbol}1 = 1` });
+        steps.push({ title: 'Verify', math: `1^${degree} = 1` });
+        return steps;
+    }
+
+    if (value === -1 && degree % 2 === 1) {
+        steps.push({ title: 'Negative unit property', math: `${symbol}(−1) = −1` });
+        steps.push({ title: 'Verify', math: `(−1)^${degree} = −1` });
         return steps;
     }
 
@@ -412,7 +424,7 @@ function buildRootFactorSteps(value, degree, symbol) {
 
 // Helper to get simplified radical representation (e.g. 6√2 for 72)
 function getSimplifiedRadical(value, degree, symbol) {
-    if (!Number.isFinite(value) || value === 0) return null;
+    if (!Number.isFinite(value) || Math.abs(value) <= 1) return null;
     const absVal = Math.round(Math.abs(value));
     if (absVal > 1e12 || !Number.isInteger(absVal)) return null;
     const factors = primeFactorize(absVal);
