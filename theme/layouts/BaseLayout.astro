@@ -177,6 +177,7 @@ const schemas = [webSiteSchema, orgSchema, siteNavigationSchema, aboutSchema, co
     {site.googleVerification && <meta name="google-site-verification" content={site.googleVerification} />}
     {site.bingVerification && <meta name="msvalidate.01" content={site.bingVerification} />}
     {site.yandexVerification && <meta name="yandex-verification" content={site.yandexVerification} />}
+    {site.trustpilotVerification && <meta name="trustpilot-one-time-domain-verification-id" content={site.trustpilotVerification} />}
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
