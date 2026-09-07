@@ -8,6 +8,9 @@ User-agent: *
 Allow: /
 Disallow: /404
 Disallow: /404/
+Disallow: /cdn-cgi/
+Disallow: /*?*lang=
+Disallow: /*?*
 
 # AI & Search Engine Crawlers
 User-agent: GPTBot

@@ -101,9 +101,11 @@ const label = (key: string, fallback: string) => {
   <div class="fallback-contact">
     <p>
       {label('contact.fallbackText', 'Or email us directly at:')} 
+      <!--email_off-->
       <a href={`mailto:${contactEmail}`} class="fallback-email">
         {contactEmail}
       </a>
+      <!--/email_off-->
     </p>
   </div>
 </div>

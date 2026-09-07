@@ -232,3 +232,14 @@
 /:locale/terms/* /terms/ 301
 /:locale/disclaimer/* /disclaimer/ 301
 /:locale/sitemap/* /sitemap/ 301
+
+# Cloudflare Email Protection Fallback
+/cdn-cgi/l/email-protection /contact-us/ 301
+/cdn-cgi/l/email-protection/* /contact-us/ 301
+
+# Suffix Locale Fallback Redirects
+/racine-cubique-calculator/:locale /:locale/racine-cubique-calculator/ 301
+/racine-cubique-calculator/:locale/ /:locale/racine-cubique-calculator/ 301
+/nth-root-calculator/:locale /:locale/nth-root-calculator/ 301
+/nth-root-calculator/:locale/ /:locale/nth-root-calculator/ 301
+
