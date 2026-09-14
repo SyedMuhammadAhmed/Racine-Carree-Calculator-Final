@@ -3,11 +3,16 @@ import BaseLayout from '../../theme/layouts/BaseLayout.astro';
 import { LOCALES, type Locale } from '../../theme/i18n/utils';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../config/site.json';
+import { absoluteUrl } from '../utils/seo';
 
 const lang = 'en';
 const title = "Sitemap";
 const description = "Explore the complete Racine Carrée Calculator sitemap including square root, cube root, and nth root calculators across 18 languages.";
 const canonicalUrl = `${site.siteUrl}/sitemap/`;
+const alternateLinks = [
+  { hreflang: 'en', href: absoluteUrl('/sitemap/') },
+  { hreflang: 'x-default', href: absoluteUrl('/sitemap/') },
+];
 
 const mainPages = [
   { label: "Home — Square Root Calculator", href: "/", desc: "Square root calculator with exact decimals, simplified form, and step-by-step working out" },
@@ -57,6 +62,7 @@ const localizedEditions = (LOCALES.filter(l => l !== 'en') as Array<Exclude<Loca
     description={description}
     locale={lang}
     canonicalUrl={canonicalUrl}
+    alternateLinks={alternateLinks}
 >
     <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Sitemap', url: '/sitemap/' }]} />
     <section class="article-section" id="sitemap">

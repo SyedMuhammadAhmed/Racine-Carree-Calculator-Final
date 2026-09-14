@@ -13,20 +13,29 @@ interface Props {
 
 const { items, className = '' } = Astro.props;
 
-const currentUrl = Astro.url.href;
-
 // Build JSON-LD BreadcrumbList Schema for Google Search
 const schemaItems = items.map((item, index) => {
-  const itemUrl = item.url 
-    ? (item.url.startsWith('http') ? item.url : new URL(item.url, site.siteUrl).toString())
-    : currentUrl;
-    
-  return {
+  const isLast = index === items.length - 1;
+
+  // For the last item (current page), only include the `item` URL if explicitly provided.
+  // Falling back to currentUrl on 404 pages would point the schema at a broken URL.
+  let itemUrl: string | undefined;
+  if (item.url) {
+    itemUrl = item.url.startsWith('http')
+      ? item.url
+      : new URL(item.url, site.siteUrl).toString();
+  } else if (!isLast) {
+    // Non-last items should always have a URL — fall back to site root as a safe default.
+    itemUrl = site.siteUrl;
+  }
+
+  const entry: Record<string, string | number> = {
     "@type": "ListItem",
     "position": index + 1,
     "name": item.label,
-    "item": itemUrl
   };
+  if (itemUrl) entry["item"] = itemUrl;
+  return entry;
 });
 
 const breadcrumbSchema = {
@@ -151,5 +160,13 @@ const breadcrumbSchema = {
     align-items: center;
     color: var(--neutral-400);
     opacity: 0.6;
+  }
+
+  /* Remove default button styles from any breadcrumb triggers */
+  .breadcrumb-item button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: default;
   }
 </style>

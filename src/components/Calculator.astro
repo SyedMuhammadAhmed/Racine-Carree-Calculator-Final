@@ -6,6 +6,9 @@ interface Props {
 }
 const { lang = 'en' } = Astro.props;
 const t = await useTranslations(lang);
+
+// Numbers shown in the Quick Calculate section
+const quickNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 36, 49, 64, 81, 100, 121, 144, 169];
 ---
 
 <section class="calc-stage" id="calculators" aria-label="Square Root Calculator">
@@ -26,9 +29,9 @@ const t = await useTranslations(lang);
                         <div class="input-group">
                             <div class="calc-tooltip">
                                 <label class="input-label" for="sqrtInput">{t("calc.label.number", "Number to calculate")}</label>
-                                <span class="calc-tooltip-icon" role="img" aria-label="Input instructions">
+                                <span class="calc-tooltip-icon" role="button" tabindex="0" aria-label="Input instructions" aria-describedby="sqrtInput-tooltip">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                                    <span class="tooltip-text">Enter any positive number to find its square root. Works with whole numbers, decimals, and large values.</span>
+                                    <span class="tooltip-text" id="sqrtInput-tooltip" role="tooltip">Enter any positive number to find its square root. Works with whole numbers, decimals, and large values.</span>
                                 </span>
                             </div>
                             <div class="input-wrapper">
@@ -44,23 +47,34 @@ const t = await useTranslations(lang);
                         </button>
                     </section>
                     <section class="calc-step calc-step--results" aria-label="Calculation results">
-                        <div class="result-panel" id="sqrtResult" aria-live="polite" aria-atomic="true">
-                            <div class="result-empty">
-                                <div class="result-empty-icon" aria-hidden="true">√</div>
-                                <p class="result-empty-title">{t("calc.result.empty.title", "Your result will appear here")}</p>
-                                <p class="result-empty-hint">{t("calc.result.empty.hint", "Enter a number above and press Calculate")}</p>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="calc-step calc-step--history" id="sqrtHistory" aria-label="Recent calculations history">
-                        <div class="history-header">
-                            <h3 class="history-title">{t("calc.history.title", "Recent calculations")}</h3>
-                            <span class="history-count" id="sqrtHistoryCount"></span>
-                        </div>
-                        <div class="history-list" id="sqrtHistoryList"></div>
+                        <div class="result-panel" id="sqrtResult" aria-live="polite" aria-atomic="true"></div>
                     </section>
                 </div>
             </article>
+        </div>
+    </div>
+
+    <!-- ── Quick Calculate Section ── -->
+    <div class="quick-calc-section" id="quickCalcSection" aria-label="Instant square root reference">
+        <div class="quick-calc-header">
+            <span class="quick-calc-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </span>
+            <span class="quick-calc-label">Instant Calculate — click any number</span>
+        </div>
+        <div class="quick-calc-chips" role="list">
+            {quickNumbers.map(n => (
+                <button
+                    type="button"
+                    class="quick-calc-chip"
+                    data-value={n}
+                    aria-label={`Calculate square root of ${n}`}
+                    role="listitem"
+                >
+                    <span class="quick-chip-num">{n}</span>
+                    <span class="quick-chip-eq" aria-hidden="true">= ?</span>
+                </button>
+            ))}
         </div>
     </div>
 </section>

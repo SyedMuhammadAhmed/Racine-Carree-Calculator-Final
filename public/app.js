@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initSmoothScroll();
     initBackToTop();
-    initHistory();
+    initQuickCalc();
 });
 
 function initCalculatorButtons() {
@@ -660,9 +660,62 @@ function calculateNthRoot() {
 }
 
 // ============================================
+//  Quick Calculate
+// ============================================
+
+function initQuickCalc() {
+    const chips = document.querySelectorAll('.quick-calc-chip');
+    if (!chips.length) return;
+
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            const val = parseFloat(chip.dataset.value);
+            if (!Number.isFinite(val)) return;
+
+            // Fill the main input and trigger calculation
+            const sqrtInput = document.getElementById('sqrtInput');
+            if (sqrtInput) {
+                sqrtInput.value = val;
+                calculateSquareRoot();
+            }
+
+            // Highlight the active chip
+            document.querySelectorAll('.quick-calc-chip').forEach(c => c.classList.remove('is-active'));
+            chip.classList.add('is-active');
+
+            // Update the chip label with the instant result
+            const result = Math.sqrt(val);
+            const resultStr = Number.isInteger(result)
+                ? result.toLocaleString('en-US')
+                : Number(result.toPrecision(6)).toString();
+
+            const eqEl = chip.querySelector('.quick-chip-eq');
+            if (eqEl) {
+                eqEl.textContent = `= ${resultStr}`;
+                eqEl.setAttribute('aria-label', `equals ${resultStr}`);
+            }
+
+            // Scroll result into view smoothly
+            document.getElementById('sqrtResult')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    });
+}
+
+// ============================================
 //  UI Helpers
 // ============================================
 
+/**
+ * Escapes HTML special characters in user-derived strings before inserting
+ * them via innerHTML. Prevents potential XSS if any user-derived value
+ * ever contains HTML metacharacters.
+ */
+function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    const div = document.createElement('div');
+    div.textContent = String(str);
+    return div.innerHTML;
+}
 const STEPS_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>`;
 
 function showResult(area, { formula, value, badge, breakdown, summary, steps, simplifiedRadical }) {
@@ -685,8 +738,8 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps, si
 
     const breakdownHtml = (breakdown || []).map(item => `
         <div class="result-stat">
-            <span class="result-stat-label">${item.label}</span>
-            <span class="result-stat-value">${item.value}</span>
+            <span class="result-stat-label">${escapeHtml(item.label)}</span>
+            <span class="result-stat-value">${escapeHtml(item.value)}</span>
         </div>
     `).join('');
 
@@ -703,14 +756,20 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps, si
                     <li class="result-step" style="--step-i: ${i}">
                         <span class="result-step-num">${i + 1}</span>
                         <div class="result-step-body">
-                            <span class="result-step-title">${s.title}</span>
-                            <span class="result-step-math">${s.math}</span>
+                            <span class="result-step-title">${escapeHtml(s.title)}</span>
+                            <span class="result-step-math">${escapeHtml(s.math)}</span>
                         </div>
                     </li>
                 `).join('')}
             </ol>
         </details>
     ` : '';
+
+    const safeFormula = escapeHtml(formula);
+    const safeValue = escapeHtml(value);
+    const safeSummary = escapeHtml(summary);
+    const safeBadge = escapeHtml(badge || 'Result');
+    const safeSimplified = simplifiedRadical ? escapeHtml(simplifiedRadical) : null;
 
     area.innerHTML = `
         <div class="result-filled">
@@ -719,29 +778,29 @@ function showResult(area, { formula, value, badge, breakdown, summary, steps, si
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                     Result
                 </span>
-                <span class="result-status ${statusClass}">${badge || 'Result'}</span>
+                <span class="result-status ${statusClass}">${safeBadge}</span>
             </div>
-            <div class="result-expression">${formula}</div>
+            <div class="result-expression">${safeFormula}</div>
             <div class="result-answer" style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
-                <span>${value}</span>
-                <button type="button" class="btn-copy-result" aria-label="Copy result to clipboard" title="Copy result" style="background:var(--bg-glass-strong);border:1px solid var(--border-default);border-radius:6px;padding:4px 8px;font-size:0.75rem;font-weight:600;color:var(--text-secondary);cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s;">
+                <span>${safeValue}</span>
+                <button type="button" class="btn-copy-result" aria-label="Copy result ${safeValue} to clipboard" title="Copy result" style="background:var(--bg-glass-strong);border:1px solid var(--border-default);border-radius:6px;padding:4px 8px;font-size:0.75rem;font-weight:600;color:var(--text-secondary);cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s;">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                     <span>Copy</span>
                 </button>
             </div>
-            ${simplifiedRadical ? `
+            ${safeSimplified ? `
                 <div class="result-simplified-banner" style="margin: 8px auto 14px; padding: 6px 14px; background: rgba(124, 58, 237, 0.12); border: 1px solid rgba(124, 58, 237, 0.35); border-radius: 8px; font-size: 0.95rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: fit-content; max-width: 100%;">
                     <span style="color: var(--primary-400); font-weight: 600;">Simplified Radical:</span>
-                    <strong style="font-family: var(--font-mono, monospace); font-size: 1.05rem; color: var(--text-primary);">${simplifiedRadical}</strong>
+                    <strong style="font-family: var(--font-mono, monospace); font-size: 1.05rem; color: var(--text-primary);">${safeSimplified}</strong>
                 </div>
             ` : ''}
             ${breakdownHtml ? `<div class="result-breakdown">${breakdownHtml}</div>` : ''}
-            ${summary ? `
+            ${safeSummary ? `
                 <div class="result-summary">
                     <span class="result-summary-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                     </span>
-                    <span>${summary}</span>
+                    <span>${safeSummary}</span>
                 </div>
             ` : ''}
             ${stepsHtml}
@@ -774,16 +833,9 @@ function showError(area, message) {
 }
 
 function copyResultText(btn, text) {
-    if (!navigator.clipboard) {
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-    } else {
-        navigator.clipboard.writeText(text);
-    }
+    // Use modern Clipboard API; avoid deprecated execCommand
+    const writeText = () => navigator.clipboard.writeText(text).catch(() => {});
+    writeText();
     const span = btn.querySelector('span');
     if (span) {
         const orig = span.textContent;
@@ -819,14 +871,21 @@ function renderHistory(type) {
     const countEl = document.getElementById(countMap[type]);
     if (countEl) countEl.textContent = `${histories[type].length}`;
 
+    // Calculator re-run callbacks keyed by type
+    const calcFns = { sqrt: calculateSquareRoot, cbrt: calculateCubeRoot, nth: calculateNthRoot };
+    const inputIds = { sqrt: 'sqrtInput', cbrt: 'cbrtInput', nth: 'nthValue' };
+
     const list = document.getElementById(listMap[type]);
     if (list) {
         const entries = histories[type]
             .filter(item => item && typeof item.expression === 'string' && typeof item.result === 'string')
             .map((item, i) => {
-                const entry = document.createElement('div');
+                // Use a <button> so history items are keyboard-accessible and announced by screen readers
+                const entry = document.createElement('button');
+                entry.type = 'button';
                 entry.className = 'history-item';
                 entry.style.animationDelay = `${i * 50}ms`;
+                entry.setAttribute('aria-label', `Recall calculation: ${item.expression} = ${item.result}`);
                 const expression = document.createElement('span');
                 expression.className = 'history-expression';
                 expression.textContent = item.expression;

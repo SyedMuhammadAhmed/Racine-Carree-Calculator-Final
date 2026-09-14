@@ -191,8 +191,10 @@ const schemas = [orgSchema, webAppSchema, webSiteSchema, faqPageSchema].filter(B
     {site.yandexVerification && <meta name="yandex-verification" content={site.yandexVerification} />}
     {site.trustpilotVerification && <meta name="trustpilot-one-time-domain-verification-id" content={site.trustpilotVerification} />}
     
-    <!-- JSON-LD Schema -->
-    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+    <!-- JSON-LD Schema (one script tag per schema for Google compliance) -->
+    {schemas.map(schema => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
 </head>
 <body>
     <a href="#main-content" class="skip-to-content">Skip to main content</a>

@@ -10,6 +10,11 @@ Disallow: /404
 Disallow: /404/
 Disallow: /cdn-cgi/
 Disallow: /*?*lang=
+# Block all query-string URLs — this site is fully static and serves no
+# content via query parameters. Blocking these prevents duplicate-content
+# issues from crawlers appending tracking or session params to URLs.
+# This is intentional. Note: Googlebot may still report these as
+# "Blocked by robots.txt" in Search Console, which is expected behaviour.
 Disallow: /*?*
 
 # AI & Search Engine Crawlers

@@ -4,12 +4,17 @@ import ContactForm from '../../theme/components/ContactForm.astro';
 import { useTranslations } from '../../theme/i18n/translations';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../config/site.json';
+import { absoluteUrl } from '../utils/seo';
 
 const lang = 'en';
 const t = await useTranslations(lang);
 const title = "Contact Us";
 const description = "Contact the Racine Carrée Calculator team for support, feature requests, feedback, or bug reports. We are happy to help you.";
 const canonicalUrl = `${site.siteUrl}/contact-us/`;
+const alternateLinks = [
+  { hreflang: 'en', href: absoluteUrl('/contact-us/') },
+  { hreflang: 'x-default', href: absoluteUrl('/contact-us/') },
+];
 ---
 
 <BaseLayout 
@@ -17,6 +22,7 @@ const canonicalUrl = `${site.siteUrl}/contact-us/`;
     description={description}
     locale={lang}
     canonicalUrl={canonicalUrl}
+    alternateLinks={alternateLinks}
     isContactPage={true}
 >
     <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Contact Us', url: '/contact-us/' }]} />

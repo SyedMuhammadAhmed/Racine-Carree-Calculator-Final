@@ -199,7 +199,10 @@ const schemas = [webSiteSchema, orgSchema, siteNavigationSchema, aboutSchema, co
     <meta name="twitter:image:alt" content={site.ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+    <!-- JSON-LD Schema (one script tag per schema for Google compliance) -->
+    {schemas.map(schema => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
 
     {schemaSlot && <slot name="schema" />}
   </head>

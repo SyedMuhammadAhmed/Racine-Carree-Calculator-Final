@@ -3,12 +3,17 @@ import BaseLayout from '../../theme/layouts/BaseLayout.astro';
 import { useTranslations } from '../../theme/i18n/translations';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../config/site.json';
+import { absoluteUrl } from '../utils/seo';
 
 const lang = 'en';
 const t = await useTranslations(lang);
 const title = "Privacy Policy";
 const description = "Privacy Policy for Racine Carrée Calculator — how we handle your data, cookies, privacy, and third-party services.";
 const canonicalUrl = `${site.siteUrl}/privacy/`;
+const alternateLinks = [
+  { hreflang: 'en', href: absoluteUrl('/privacy/') },
+  { hreflang: 'x-default', href: absoluteUrl('/privacy/') },
+];
 ---
 
 <BaseLayout 
@@ -16,6 +21,7 @@ const canonicalUrl = `${site.siteUrl}/privacy/`;
     description={description}
     locale={lang}
     canonicalUrl={canonicalUrl}
+    alternateLinks={alternateLinks}
 >
     <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: 'Privacy Policy', url: '/privacy/' }]} />
     <section class="article-section" id="privacy-policy">
@@ -54,7 +60,8 @@ const canonicalUrl = `${site.siteUrl}/privacy/`;
                 <p>You can disable cookies in your browser settings, but some features of the Site may not function as intended.</p>
 
                 <h2 class="article-h2">3. Third-Party Services</h2>
-                <p>We may use third-party services, such as Google Analytics, to understand how users interact with the Site. These services may collect information sent by your browser as part of a web page request, including cookies and your IP address. Their use of this information is governed by their own privacy policies.</p>
+                <p>We may use Cloudflare Web Analytics to understand how users interact with the Site. Cloudflare Web Analytics is a privacy-first, cookieless analytics tool that does not use tracking cookies and does not collect personally identifiable information. It aggregates page-view data (such as browser type and country) in a privacy-preserving way. For full details, see <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-500);">Cloudflare's Privacy Policy</a>.</p>
+                <p>We also use <a href="https://web3forms.com/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-500);">Web3Forms</a> to process contact form submissions. When you submit the contact form, your name, email address, and message are transmitted to Web3Forms's servers for delivery to our inbox. Their use of this information is governed by the <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--primary-500);">Web3Forms Privacy Policy</a>.</p>
 
                 <h2 class="article-h2">4. How We Use Your Information</h2>
                 <p>We use the information we collect to:</p>

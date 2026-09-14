@@ -1243,6 +1243,11 @@ body::before {
 }
 
 .calc-step--results {
+    padding-bottom: 0;
+}
+
+/* Show bottom spacing only once a result is present */
+.calc-step--results:has(.result-panel.has-result) {
     padding-bottom: var(--space-lg);
 }
 
@@ -1318,10 +1323,12 @@ body::before {
 /* ===== Results Panel (directly below Calculate) ===== */
 .result-panel {
     border-radius: var(--radius-lg);
-    border: 1.5px dashed var(--border-default);
-    background: var(--neutral-25);
+    /* Empty panel is invisible — no border/background until a result is shown */
+    border: 1.5px solid transparent;
+    background: transparent;
     overflow: hidden;
     transition: all var(--duration-normal) var(--ease-out);
+    min-height: 0;
 }
 
 .result-empty {
@@ -2017,6 +2024,125 @@ body::before {
     font-weight: 600;
     color: var(--primary-500);
     margin-left: var(--space-md);
+}
+
+/* ===================================================================
+   QUICK CALCULATE SECTION
+   =================================================================== */
+
+.quick-calc-section {
+    margin-top: var(--space-lg);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.quick-calc-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: var(--space-md);
+}
+
+.quick-calc-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.quick-calc-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.quick-calc-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.quick-calc-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    padding: 10px 14px;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-default);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+    position: relative;
+    overflow: hidden;
+    gap: 2px;
+    font-family: var(--font-mono);
+}
+
+.quick-calc-chip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.quick-calc-chip:hover {
+    border-color: var(--primary-400);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.18);
+}
+
+.quick-calc-chip:hover::before {
+    opacity: 0.08;
+}
+
+.quick-calc-chip.is-active {
+    border-color: var(--primary-400);
+    background: var(--primary-50);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15), 0 4px 16px rgba(124, 58, 237, 0.18);
+    transform: translateY(-2px);
+}
+
+[data-theme="dark"] .quick-calc-chip.is-active {
+    background: rgba(124, 58, 237, 0.15);
+}
+
+.quick-chip-num {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.quick-chip-eq {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    transition: color var(--duration-fast) var(--ease-out);
+}
+
+.quick-calc-chip.is-active .quick-chip-eq,
+.quick-calc-chip:hover .quick-chip-eq {
+    color: var(--primary-500);
 }
 
 /* ===================================================================
