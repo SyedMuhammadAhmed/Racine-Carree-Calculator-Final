@@ -14,6 +14,16 @@ const description = 'Calculate any root (4th, 5th, or custom index) instantly wi
 const canonicalUrl = `${site.siteUrl}/nth-root-calculator/`;
 const alternateLinks = getPageAlternateLinks('/nth-root-calculator/');
 
+// [degree, value] pairs for quick-calculate chips on the nth root page
+const quickNthPairs = [
+  [2, 4], [2, 9], [2, 16], [2, 25], [2, 36], [2, 100],
+  [3, 8], [3, 27], [3, 64], [3, 125], [3, 1000],
+  [4, 16], [4, 81], [4, 256], [4, 625],
+  [5, 32], [5, 243], [5, 1024],
+  [6, 64], [6, 729],
+  [10, 1024]
+];
+
 const nthFaqs = [
   {
     question: "How do I use the Nth Root Calculator?",
@@ -93,9 +103,9 @@ const nthFaqs = [
                       <div class="input-group">
                         <div class="calc-tooltip">
                           <label class="input-label" for="nthDegree">Root degree (n)</label>
-                          <span class="calc-tooltip-icon" role="img" aria-label="Root degree instructions">
+                          <span class="calc-tooltip-icon" role="button" tabindex="0" aria-label="Root degree instructions" aria-describedby="nthDegree-tooltip">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                            <span class="tooltip-text">The root index. Enter 2 for square root, 3 for cube root, 4 for fourth root, etc.</span>
+                            <span class="tooltip-text" id="nthDegree-tooltip" role="tooltip">The root index. Enter 2 for square root, 3 for cube root, 4 for fourth root, etc.</span>
                           </span>
                         </div>
                         <div class="input-wrapper">
@@ -106,9 +116,9 @@ const nthFaqs = [
                       <div class="input-group">
                         <div class="calc-tooltip">
                           <label class="input-label" for="nthValue">Number (x)</label>
-                          <span class="calc-tooltip-icon" role="img" aria-label="Number input instructions">
+                          <span class="calc-tooltip-icon" role="button" tabindex="0" aria-label="Number input instructions" aria-describedby="nthValue-tooltip">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                            <span class="tooltip-text">The number you want to find the root of. For example, if n=4 and x=625, the result is 5 because 5⁴ = 625.</span>
+                            <span class="tooltip-text" id="nthValue-tooltip" role="tooltip">The number you want to find the root of. For example, if n=4 and x=625, the result is 5 because 5⁴ = 625.</span>
                           </span>
                         </div>
                         <div class="input-wrapper">
@@ -125,23 +135,40 @@ const nthFaqs = [
                     </button>
                   </section>
                   <section class="calc-step calc-step--results" aria-label="Calculation results">
-                    <div class="result-panel" id="nthResult" aria-live="polite" aria-atomic="true">
-                      <div class="result-empty">
-                        <div class="result-empty-icon" aria-hidden="true">ⁿ√</div>
-                        <p class="result-empty-title">Your result will appear here</p>
-                        <p class="result-empty-hint">Enter degree and number, then press Calculate</p>
-                      </div>
-                    </div>
-                  </section>
-                  <section class="calc-step calc-step--history" id="nthHistory" aria-label="Recent calculations history">
-                    <div class="history-header">
-                      <h3 class="history-title">Recent calculations</h3>
-                      <span class="history-count" id="nthHistoryCount"></span>
-                    </div>
-                    <div class="history-list" id="nthHistoryList"></div>
+                    <div class="result-panel" id="nthResult" aria-live="polite" aria-atomic="true"></div>
                   </section>
                 </div>
               </article>
+            </div>
+          </div>
+
+          <!-- ── Quick Calculate Section ── -->
+          <div class="quick-calc-section" id="quickCalcNthSection" aria-label="Instant nth root reference">
+            <div class="quick-calc-header">
+              <span class="quick-calc-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </span>
+              <div class="quick-calc-header-text">
+                <span class="quick-calc-label">Instant Nth Root</span>
+                <span class="quick-calc-sublabel">Click any pair for an instant result</span>
+              </div>
+            </div>
+            <div class="quick-calc-chips quick-calc-chips--nth" role="list" id="nthChips">
+              {quickNthPairs.map(([n, x]) => (
+                <button
+                  type="button"
+                  class="quick-calc-chip quick-calc-chip--nth"
+                  data-degree={n}
+                  data-value={x}
+                  data-calc-type="nth"
+                  aria-label={`Calculate ${n}th root of ${x}`}
+                  role="listitem"
+                >
+                  <span class="quick-chip-degree">{n}√</span>
+                  <span class="quick-chip-num">{x}</span>
+                  <span class="quick-chip-eq" aria-hidden="true">= ?</span>
+                </button>
+              ))}
             </div>
           </div>
         </section>

@@ -25,6 +25,15 @@ const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/nth-root-calculator/', 
 const alternateLinks = getPageAlternateLinks('/nth-root-calculator/');
 
 const nthFaqs = getLocaleFaqs(lang, 'nth');
+
+const quickNthPairs = [
+  [2, 4], [2, 9], [2, 16], [2, 25], [2, 36], [2, 100],
+  [3, 8], [3, 27], [3, 64], [3, 125], [3, 1000],
+  [4, 16], [4, 81], [4, 256], [4, 625],
+  [5, 32], [5, 243], [5, 1024],
+  [6, 64], [6, 729],
+  [10, 1024]
+];
 ---
 
 <Layout
@@ -114,23 +123,40 @@ const nthFaqs = getLocaleFaqs(lang, 'nth');
                     </button>
                   </section>
                   <section class="calc-step calc-step--results" aria-label="Calculation results">
-                    <div class="result-panel" id="nthResult" aria-live="polite" aria-atomic="true">
-                      <div class="result-empty">
-                        <div class="result-empty-icon" aria-hidden="true">ⁿ√</div>
-                        <p class="result-empty-title">{t('calc.result.empty.title', 'Your result will appear here')}</p>
-                        <p class="result-empty-hint">{t('calc.nthRoot.empty.hint', 'Enter degree and number, then press Calculate')}</p>
-                      </div>
-                    </div>
-                  </section>
-                  <section class="calc-step calc-step--history" id="nthHistory" aria-label="Recent calculations history">
-                    <div class="history-header">
-                      <h3 class="history-title">{t('calc.history.title', 'Recent calculations')}</h3>
-                      <span class="history-count" id="nthHistoryCount"></span>
-                    </div>
-                    <div class="history-list" id="nthHistoryList"></div>
+                    <div class="result-panel" id="nthResult" aria-live="polite" aria-atomic="true"></div>
                   </section>
                 </div>
               </article>
+            </div>
+          </div>
+
+          <!-- ── Quick Calculate Section ── -->
+          <div class="quick-calc-section" id="quickCalcNthSection" aria-label="Instant nth root reference">
+            <div class="quick-calc-header">
+              <span class="quick-calc-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </span>
+              <div class="quick-calc-header-text">
+                <span class="quick-calc-label">{lang === 'fr' ? 'Calcul Instantané — Racine N-ième' : 'Instant Nth Root'}</span>
+                <span class="quick-calc-sublabel">{lang === 'fr' ? 'Cliquez sur une paire pour un résultat immédiat' : 'Click any pair for an instant result'}</span>
+              </div>
+            </div>
+            <div class="quick-calc-chips quick-calc-chips--nth" role="list" id="nthChips">
+              {quickNthPairs.map(([n, x]) => (
+                <button
+                  type="button"
+                  class="quick-calc-chip quick-calc-chip--nth"
+                  data-degree={n}
+                  data-value={x}
+                  data-calc-type="nth"
+                  aria-label={`Calculate ${n}th root of ${x}`}
+                  role="listitem"
+                >
+                  <span class="quick-chip-degree">{n}√</span>
+                  <span class="quick-chip-num">{x}</span>
+                  <span class="quick-chip-eq" aria-hidden="true">= ?</span>
+                </button>
+              ))}
             </div>
           </div>
         </section>

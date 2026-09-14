@@ -669,34 +669,74 @@ function initQuickCalc() {
 
     chips.forEach(chip => {
         chip.addEventListener('click', () => {
+            const calcType = chip.dataset.calcType || 'sqrt';
             const val = parseFloat(chip.dataset.value);
             if (!Number.isFinite(val)) return;
 
-            // Fill the main input and trigger calculation
-            const sqrtInput = document.getElementById('sqrtInput');
-            if (sqrtInput) {
-                sqrtInput.value = val;
-                calculateSquareRoot();
+            let result;
+            let resultStr = '';
+            let targetScroll = null;
+
+            if (calcType === 'cbrt') {
+                const cbrtInput = document.getElementById('cbrtInput');
+                if (cbrtInput) {
+                    cbrtInput.value = val;
+                    calculateCubeRoot();
+                }
+                result = Math.cbrt(val);
+                resultStr = Number.isInteger(result)
+                    ? result.toLocaleString('en-US')
+                    : Number(result.toPrecision(6)).toString();
+                targetScroll = document.getElementById('cbrtResult');
+            } else if (calcType === 'nth') {
+                const deg = parseFloat(chip.dataset.degree);
+                const nthDegree = document.getElementById('nthDegree');
+                const nthValue = document.getElementById('nthValue');
+                if (nthDegree && nthValue && Number.isFinite(deg)) {
+                    nthDegree.value = deg;
+                    nthValue.value = val;
+                    calculateNthRoot();
+                }
+                if (Number.isFinite(deg) && deg > 0) {
+                    if (val < 0 && deg % 2 === 1) {
+                        result = -Math.pow(-val, 1 / deg);
+                    } else if (val >= 0) {
+                        result = Math.pow(val, 1 / deg);
+                    }
+                }
+                if (result !== undefined && Number.isFinite(result)) {
+                    resultStr = Number.isInteger(result)
+                        ? result.toLocaleString('en-US')
+                        : Number(result.toPrecision(6)).toString();
+                }
+                targetScroll = document.getElementById('nthResult');
+            } else {
+                const sqrtInput = document.getElementById('sqrtInput');
+                if (sqrtInput) {
+                    sqrtInput.value = val;
+                    calculateSquareRoot();
+                }
+                result = Math.sqrt(val);
+                resultStr = Number.isInteger(result)
+                    ? result.toLocaleString('en-US')
+                    : Number(result.toPrecision(6)).toString();
+                targetScroll = document.getElementById('sqrtResult');
             }
 
-            // Highlight the active chip
-            document.querySelectorAll('.quick-calc-chip').forEach(c => c.classList.remove('is-active'));
+            // Highlight the active chip within its container
+            const container = chip.closest('.quick-calc-chips') || document;
+            container.querySelectorAll('.quick-calc-chip').forEach(c => c.classList.remove('is-active'));
             chip.classList.add('is-active');
 
             // Update the chip label with the instant result
-            const result = Math.sqrt(val);
-            const resultStr = Number.isInteger(result)
-                ? result.toLocaleString('en-US')
-                : Number(result.toPrecision(6)).toString();
-
             const eqEl = chip.querySelector('.quick-chip-eq');
-            if (eqEl) {
+            if (eqEl && resultStr) {
                 eqEl.textContent = `= ${resultStr}`;
                 eqEl.setAttribute('aria-label', `equals ${resultStr}`);
             }
 
             // Scroll result into view smoothly
-            document.getElementById('sqrtResult')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            targetScroll?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
     });
 }
