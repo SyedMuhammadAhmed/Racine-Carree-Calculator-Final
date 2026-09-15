@@ -1,11 +1,14 @@
 ---
 import TableOfContents from './TableOfContents.astro';
+import { getLocalizedUrl, DEFAULT_LOCALE, type Locale } from '../../theme/i18n/utils';
 
 interface Props {
   lang?: string;
   faqs?: Array<{ question: string; answer: string }>;
 }
-const { lang = 'en', faqs = [] } = Astro.props;
+const { lang = DEFAULT_LOCALE, faqs = [] } = Astro.props;
+const currentLocale = (lang || DEFAULT_LOCALE) as Locale;
+const localizedUrl = (path: string) => getLocalizedUrl(path, currentLocale);
 
 const cubeRootToc = [
   {
@@ -169,13 +172,13 @@ const cubeRootToc = [
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Core Laws</div>
                 <h2 class="article-h2">The Five Core Laws of Cube Roots</h2>
-                <p>These five rules mirror the <a href="/#section-laws" style="color: var(--primary-500); font-weight: 600;">square root laws</a> you may already know — but adapted for the third degree. Once you master them, the <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth root calculator</a> generalizes the same patterns even further.</p>
+                <p>These five rules mirror the <a href={localizedUrl('/#section-laws')} style="color: var(--primary-500); font-weight: 600;">foundational 5 square root rules</a> you may already know — but adapted for the third degree. Once you master them, the <a href={localizedUrl('/nth-root-calculator/')} style="color: var(--primary-500); font-weight: 600;">higher-degree radical root calculator</a> generalizes the same patterns even further.</p>
                 <div class="law-cards">
                     <div class="law-card">
                         <div class="law-header"><div class="law-number">1</div><div><div class="law-label">Product Rule</div><div class="law-subtitle">Split products inside radicals</div></div></div>
                         <div class="math-block"><span class="math-formula">∛(a × b) = ∛a × ∛b</span></div>
                         <p class="law-example"><strong>Example:</strong> ∛8 × ∛27 = 2 × 3 = 6, and ∛(8×27) = ∛216 = 6. Same answer.</p>
-                        <p class="law-explanation">Just like with <a href="/" style="color: var(--primary-500); font-weight: 600;">square roots (racine carrée)</a>, you can break a complicated cube root into simpler pieces. Instead of computing ∛216 directly, factor it as 8 × 27, compute each cube root separately, and multiply. This is the go-to technique for simplifying expressions like ∛(24) = ∛(8×3) = 2∛3.</p>
+                        <p class="law-explanation">Just like with <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">simplifying square roots (racine carrée)</a>, you can break a complicated cube root into simpler pieces. Instead of computing ∛216 directly, factor it as 8 × 27, compute each cube root separately, and multiply. This is the go-to technique for simplifying expressions like ∛(24) = ∛(8×3) = 2∛3.</p>
                     </div>
                     <div class="law-card">
                         <div class="law-header"><div class="law-number">2</div><div><div class="law-label">Quotient Rule</div><div class="law-subtitle">Split quotients inside radicals</div></div></div>
@@ -187,7 +190,7 @@ const cubeRootToc = [
                         <div class="law-header"><div class="law-number">3</div><div><div class="law-label">Power Rule</div><div class="law-subtitle">Cubing and cube root cancel each other</div></div></div>
                         <div class="math-block"><span class="math-formula">∛(a³) = a</span></div>
                         <p class="law-example"><strong>Example:</strong> ∛(5³) = ∛125 = 5. Cubing and cube-rooting undo each other.</p>
-                        <p class="law-explanation">Unlike square roots, which only return non-negative values, the power rule for cube roots works for <em>all</em> real numbers — positive, negative, and zero. ∛((-3)³) = ∛(-27) = -3. This is a key difference from the <a href="/" style="color: var(--primary-500); font-weight: 600;">racine carrée</a> (which needs absolute value for negatives).</p>
+                        <p class="law-explanation">Unlike square roots, which only return non-negative values, the power rule for cube roots works for <em>all</em> real numbers — positive, negative, and zero. ∛((-3)³) = ∛(-27) = -3. This is a key difference from the <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">square root principal branch</a> (which needs absolute value for negatives).</p>
                     </div>
                     <div class="law-card">
                         <div class="law-header"><div class="law-number">4</div><div><div class="law-label">Self-Cube Rule</div><div class="law-subtitle">Cubing a cube root returns the radicand</div></div></div>
@@ -212,7 +215,7 @@ const cubeRootToc = [
                 <h2 class="article-h2">How to Calculate Racine Cubique — Different Methods</h2>
 
                 <h3 class="article-h3" id="cbrt-method-calculator">1. Using This Racine Cubique Calculator (Fastest)</h3>
-                <p>Type in your number, click Calculate, done. This is the method most people reach for once they know it exists — especially for decimals or large numbers where hand methods get slow. You can also use our <a href="/" style="color: var(--primary-500); font-weight: 600;">square root calculator</a> for second-degree roots or the <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth root calculator</a> for any custom degree.</p>
+                <p>Type in your number, click Calculate, done. This is the method most people reach for once they know it exists — especially for decimals or large numbers where hand methods get slow. You can also use our <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">online square root solver</a> for second-degree roots or the <a href={localizedUrl('/nth-root-calculator/')} style="color: var(--primary-500); font-weight: 600;">custom index nth root solver</a> for any custom degree.</p>
 
                 <h3 class="article-h3" id="cbrt-method-factorization">2. Prime Factorization Method (Best for Perfect Cubes)</h3>
                 <p>This method breaks a number into its prime factors and groups them in sets of three.</p>
@@ -281,7 +284,7 @@ const cubeRootToc = [
                     <div class="warning-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
                     <div class="warning-content">
                         <strong>Key Difference from Square Roots</strong>
-                        <p>Square roots of negative numbers require the imaginary unit <em>i</em>, but cube roots handle negatives just fine on their own. This is genuinely useful to know if you've also looked at our <a href="/" style="color: var(--primary-500); font-weight: 600;">Racine Carrée Calculator</a>.</p>
+                        <p>Square roots of negative numbers require the imaginary unit <em>i</em>, but cube roots handle negatives just fine on their own. This is genuinely useful to know if you've also explored our <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">step-by-step Racine Carrée Calculator</a>.</p>
                     </div>
                 </div>
             </div>
@@ -303,7 +306,7 @@ const cubeRootToc = [
                         </tbody>
                     </table>
                 </div>
-                <p>If you need a square root specifically, our <a href="/" style="color: var(--primary-500); font-weight: 600;">Racine Carrée Calculator</a> covers that in full, including the imaginary number rules.</p>
+                <p>If you need a square root specifically, our <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">square root solver with radical reduction</a> covers that in full, including the imaginary number rules.</p>
             </div>
         </section>
 
@@ -312,7 +315,7 @@ const cubeRootToc = [
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span> Applications</div>
                 <h2 class="article-h2">Real-Life Applications of Racine Cubique</h2>
-                <p>While <a href="/" style="color: var(--primary-500); font-weight: 600;">square roots (racine carrée)</a> deal with two-dimensional problems, cube roots shine whenever the problem involves three dimensions:</p>
+                <p>While <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">square roots and 2D geometry formulas</a> deal with two-dimensional problems, cube roots shine whenever the problem involves three dimensions:</p>
                 <div class="applications-grid">
                     <div class="app-card" id="cbrt-app-architecture">
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="15" y1="22" x2="15" y2="2"/><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg></div>
@@ -339,7 +342,7 @@ const cubeRootToc = [
                         <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
                         <div class="app-card-content">
                             <h3>Finance &amp; Growth Rates</h3>
-                            <p>When you know a total return over three years and want the annual compound growth rate, you need a cube root. If an investment grows from $1,000 to $1,331 in three years, the annual rate is ∛(1.331) - 1 ≈ 10%. This concept extends to <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth roots for longer periods</a>.</p>
+                            <p>When you know a total return over three years and want the annual compound growth rate, you need a cube root. If an investment grows from $1,000 to $1,331 in three years, the annual rate is ∛(1.331) - 1 ≈ 10%. This concept extends to <a href={localizedUrl('/nth-root-calculator/#section-nth-applications')} style="color: var(--primary-500); font-weight: 600;">Compound Annual Growth Rate (CAGR) nth roots for 5 or 10-year horizons</a>.</p>
                         </div>
                     </div>
                     <div class="app-card" id="cbrt-app-everyday">
@@ -382,7 +385,7 @@ const cubeRootToc = [
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span> Reference Tables</div>
                 <h2 class="article-h2">Complete Reference Table — Cube Roots 1 to 100</h2>
-                <p>Bookmark this section for quick lookups. Perfect cubes are highlighted in bold with a badge. Values are rounded to three decimal places. For <a href="/" style="color: var(--primary-500); font-weight: 600;">square root reference tables</a>, see our main homepage.</p>
+                <p>Bookmark this section for quick lookups. Perfect cubes are highlighted in bold with a badge. Values are rounded to three decimal places. For <a href={localizedUrl('/#reference-tables')} style="color: var(--primary-500); font-weight: 600;">the complete 1 to 100 square roots reference table</a>, see our main homepage, or browse <a href={localizedUrl('/nth-root-calculator/#section-nth-table')} style="color: var(--primary-500); font-weight: 600;">higher root reference tables</a>.</p>
                 <div class="table-scroll-wrapper table-scroll-wrapper--large">
                     <div class="table-scroll-hint"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M18 13l-6 6-6-6"/></svg> Scroll to see all 100 values ↓</div>
                     <table class="data-table data-table--reference data-table--vertical">
@@ -549,15 +552,15 @@ const cubeRootToc = [
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">Can cube roots of negative numbers be calculated?</summary>
-                                <div class="faq-answer"><p>Yes, and this is one of the biggest differences between cube roots and square roots. The cube root of a negative number is simply a negative real number — for example, ∛-8 = -2. No imaginary numbers involved.</p></div>
+                                <div class="faq-answer"><p>Yes, and this is one of the biggest differences between cube roots and square roots. The cube root of a negative number is simply a negative real number — for example, ∛-8 = -2. No imaginary numbers involved (unlike <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">square roots which require the imaginary unit i</a>).</p></div>
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">Can I calculate cube roots of decimals or large numbers?</summary>
-                                <div class="faq-answer"><p>Yes. The calculator handles decimals, whole numbers, and large values with full precision.</p></div>
+                                <div class="faq-answer"><p>Yes. The calculator handles decimals, whole numbers, and large values with full arbitrary precision — learn more in <a href="/about-us/#methodology" style="color: var(--primary-500); font-weight: 600;">our calculation accuracy standards and methodology</a>.</p></div>
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">What's the difference between a cube root and a square root?</summary>
-                                <div class="faq-answer"><p>A square root asks what number times itself equals your value. A cube root asks what number times itself three times equals your value. See the comparison table above for a full breakdown.</p></div>
+                                <div class="faq-answer"><p>A square root asks what number times itself equals your value (2D). A cube root asks what number times itself three times equals your value (3D). Use our <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">free square root solver</a> to compare both calculations side-by-side.</p></div>
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">Is this calculator free to use?</summary>

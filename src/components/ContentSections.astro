@@ -1,11 +1,14 @@
 ---
 import TableOfContents from './TableOfContents.astro';
+import { getLocalizedUrl, DEFAULT_LOCALE, type Locale } from '../../theme/i18n/utils';
 
 interface Props {
   lang?: string;
   faqs?: Array<{ question: string; answer: string }>;
 }
-const { lang = 'en', faqs = [] } = Astro.props;
+const { lang = DEFAULT_LOCALE, faqs = [] } = Astro.props;
+const currentLocale = (lang || DEFAULT_LOCALE) as Locale;
+const localizedUrl = (path: string) => getLocalizedUrl(path, currentLocale);
 
 const homeToc = [
   {
@@ -102,7 +105,7 @@ const homeToc = [
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> Complete Guide</div>
                 <h2 class="article-h2">What Is Racine Carrée (Square Root)?</h2>
                 <p>Racine carrée is the French word for square root, and it's the term thousands of people type into Google every month — even when they're searching in English. If that's how you found this page, you're in the right place. Our racine carree calculator above gives you the answer in one click, and everything below explains what a square root actually is, how to work one out by hand, and why this little math operation shows up everywhere from geometry class to engineering.</p>
-                <p>A square root is a number that, when multiplied by itself, gives you another number. Here's the simplest way to picture it: if you multiply 5 by itself (5 × 5), you get 25. So we say the square root of 25 is 5. This same principle extends to higher-degree roots — for example, a <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">cube root (racine cubique)</a> multiplies a number by itself three times, and an <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth root</a> generalizes the idea to any degree.</p>
+                <p>A square root is a number that, when multiplied by itself, gives you another number. Here's the simplest way to picture it: if you multiply 5 by itself (5 × 5), you get 25. So we say the square root of 25 is 5. This same principle extends to higher-degree roots — for example, you can <a href={localizedUrl('/racine-cubique-calculator/')} style="color: var(--primary-500); font-weight: 600;">calculate cube roots (racine cubique)</a> by multiplying a number three times, explore <a href={localizedUrl('/racine-cubique-calculator/#section-cbrt-negative')} style="color: var(--primary-500); font-weight: 600;">cube roots of negative numbers</a>, or solve <a href={localizedUrl('/nth-root-calculator/')} style="color: var(--primary-500); font-weight: 600;">higher-degree radical roots (ⁿ√x)</a> for any custom index.</p>
                 <p>In French, "racine carrée" means exactly this — square root. So when someone searches "racine carree calculator," they're looking for the same tool as someone who searches "square root calculator." Same math, different language.</p>
 
                 <div class="examples-grid">
@@ -208,7 +211,7 @@ const homeToc = [
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Core Laws</div>
                 <h2 class="article-h2">The Five Core Laws of Square Roots</h2>
-                <p>Once you know the basics, these five rules make working with square roots much faster. They also apply to <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">cube roots</a> and <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth roots</a> with slight modifications — master them here and you'll recognize the pattern everywhere.</p>
+                <p>Once you know the basics, these five rules make working with square roots much faster. They also apply to <a href={localizedUrl('/racine-cubique-calculator/#section-cbrt-laws')} style="color: var(--primary-500); font-weight: 600;">3rd-degree cubic radicals</a> and <a href={localizedUrl('/nth-root-calculator/#section-nth-laws')} style="color: var(--primary-500); font-weight: 600;">higher-order radical index laws</a> with slight modifications — master them here and you'll recognize the pattern everywhere.</p>
                 <div class="law-cards">
                     <div class="law-card">
                         <div class="law-header"><div class="law-number">1</div><div><div class="law-label">Product Rule</div><div class="law-subtitle">Split products inside radicals</div></div></div>
@@ -252,7 +255,7 @@ const homeToc = [
                 <p>There's more than one way to find a square root. Here are the four you're most likely to see in school or at work.</p>
 
                 <h3 class="article-h3" id="method-calculator">1. Using This Racine Carrée Calculator (Fastest)</h3>
-                <p>Type the number in, click calculate, done. This is the method almost everyone reaches for once they know it, especially with decimals or large numbers. You can also use our <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">cube root calculator</a> for third-degree roots or the <a href="/nth-root-calculator/" style="color: var(--primary-500); font-weight: 600;">nth root calculator</a> for any custom degree.</p>
+                <p>Type the number in, click calculate, done. This is the method almost everyone reaches for once they know it, especially with decimals or large numbers. You can also use our <a href={localizedUrl('/racine-cubique-calculator/')} style="color: var(--primary-500); font-weight: 600;">dedicated cube root simplifier</a> for third-degree roots or the <a href={localizedUrl('/nth-root-calculator/')} style="color: var(--primary-500); font-weight: 600;">custom index nth root solver</a> for 4th, 5th, and higher powers.</p>
 
                 <h3 class="article-h3" id="method-factorization">2. Prime Factorization Method (Best for Perfect Squares)</h3>
                 <p>This method works by breaking a number down into its prime factors and pairing them up.</p>
@@ -429,7 +432,7 @@ const homeToc = [
             <div class="article-container">
                 <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span> Reference Tables</div>
                 <h2 class="article-h2">Complete Reference Table — Square Roots 1 to 100</h2>
-                <p>Bookmark this section for quick lookups. Perfect squares are highlighted in bold. Values are rounded to three decimal places. For <a href="/racine-cubique-calculator/" style="color: var(--primary-500); font-weight: 600;">cube root reference tables</a>, see our dedicated racine cubique page.</p>
+                <p>Bookmark this section for quick lookups. Perfect squares are highlighted in bold. Values are rounded to three decimal places. To compare 3D powers, explore our <a href={localizedUrl('/racine-cubique-calculator/#reference-tables')} style="color: var(--primary-500); font-weight: 600;">perfect cubes reference chart (1 to 1,000)</a>, or check the <a href={localizedUrl('/nth-root-calculator/#section-nth-table')} style="color: var(--primary-500); font-weight: 600;">higher powers & roots table (4th, 5th, and 10th roots)</a>.</p>
                 <div class="table-scroll-wrapper table-scroll-wrapper--large">
                     <div class="table-scroll-hint"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M18 13l-6 6-6-6"/></svg> Scroll to see all 100 values ↓</div>
                     <table class="data-table data-table--reference data-table--vertical">
@@ -606,11 +609,11 @@ const homeToc = [
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">Can I calculate square roots of decimals or large numbers?</summary>
-                                <div class="faq-answer"><p>Yes. The calculator handles decimals, whole numbers, and large values with high precision, so you don't need to worry about the size or format of what you're entering.</p></div>
+                                <div class="faq-answer"><p>Yes. The calculator handles decimals, whole numbers, and large values with high precision — see <a href="/about-us/#methodology" style="color: var(--primary-500); font-weight: 600;">our calculation precision benchmarks and methodology</a> to learn how we verify calculations.</p></div>
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">Can the calculator handle negative numbers?</summary>
-                                <div class="faq-answer"><p>Yes. When you enter a negative number, the calculator returns the result using the imaginary unit "i," as explained in the section above.</p></div>
+                                <div class="faq-answer"><p>Yes. When you enter a negative number, the calculator returns the result using the imaginary unit "i," as explained in the section above. If you need real negative solutions, use our <a href={localizedUrl('/racine-cubique-calculator/')} style="color: var(--primary-500); font-weight: 600;">cube root calculator (which solves negative numbers directly)</a>.</p></div>
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">Is this calculator free to use?</summary>
