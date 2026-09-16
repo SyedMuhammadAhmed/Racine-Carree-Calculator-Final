@@ -37,7 +37,14 @@ const activeLocale = LOCALES.includes(requestedLocale as Locale)
   : DEFAULT_LOCALE;
 const currentPathWithoutLocale = Astro.url.pathname.replace(localePrefixPattern, '') || '/';
 const normalizedPath = currentPathWithoutLocale.endsWith('/') ? currentPathWithoutLocale : `${currentPathWithoutLocale}/`;
-const MULTILINGUAL_PATHS = ['/', '/racine-cubique-calculator/', '/nth-root-calculator/'];
+const MULTILINGUAL_PATHS = [
+  '/',
+  '/racine-cubique-calculator/',
+  '/nth-root-calculator/',
+  '/square-root-chart/',
+  '/perfect-square-calculator/',
+  '/perfect-cube-calculator/',
+];
 const isMultilingualPath = MULTILINGUAL_PATHS.includes(normalizedPath);
 
 function getLanguageUrl(locale: Locale) {

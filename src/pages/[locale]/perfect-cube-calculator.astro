@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import PerfectCubeWidget from '../../components/PerfectCubeWidget.astro';
+import PerfectCubeContent from '../../components/PerfectCubeContent.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { LOCALES, getHtmlDir, getLocalizedUrl, getLocaleFromParams } from '../../../theme/i18n/utils';
+import { useTranslations } from '../../../theme/i18n/translations';
+import site from '../../config/site.json';
+import { getPageAlternateLinks } from '../../utils/seo';
+
+import { getCubeContent } from '../../data/i18n/content/cubeContent';
+
+export const prerender = true;
+// Cache reload
+
+export function getStaticPaths() {
+  return LOCALES
+    .filter((locale) => locale !== 'en')
+    .map((locale) => ({ params: { locale } }));
+}
+
+const lang = getLocaleFromParams(Astro.params);
+const t = await useTranslations(lang);
+const cubeContent = getCubeContent(lang);
+const title = t('cube.title', 'Perfect Cube Calculator & Checker | Is It a Cube?');
+const description = t('cube.description', 'Check if any number is a perfect cube instantly. Find base roots, prime factorization with powers, bounding cubes, and step-by-step proofs for positive and negative numbers.');
+const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/perfect-cube-calculator/', lang)}`;
+const alternateLinks = getPageAlternateLinks('/perfect-cube-calculator/');
+
+const cubeFaqs = cubeContent.faqs;
+---
+
+<Layout
+  title={title}
+  description={description}
+  lang={lang}
+  dir={getHtmlDir(lang)}
+  canonicalUrl={canonicalUrl}
+  alternateLinks={alternateLinks}
+  faqItems={cubeFaqs}
+>
+  <Navbar lang={lang} />
+  <main id="main-content">
+    <section class="above-fold" id="hero">
+      <div class="above-fold-stack">
+        <Breadcrumbs items={[{ label: t('nav.home', 'Home'), url: getLocalizedUrl('/', lang) }, { label: t('nav.cube', 'Perfect Cube Calculator'), url: getLocalizedUrl('/perfect-cube-calculator/', lang) }]} />
+        <header class="hero-compact hero-compact--centered">
+          <h1 class="hero-title">
+            <span class="title-line">{t('cube.hero.part1', 'Perfect Cube')}</span>
+            <span class="title-line gradient-text">{t('cube.hero.part2', 'Calculator')}</span>
+          </h1>
+          <p class="hero-subtitle">{t('cube.hero.subtitle', 'Check whether any number — positive or negative — is a perfect cube instantly. Get base integer roots, prime factor powers, nearest bounding cubes, and algebraic proofs. 100% free.')}</p>
+          <div class="hero-pills">
+            <span class="hero-pill">
+              <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              {cubeContent.heroPills[0]}
+            </span>
+            <span class="hero-pill">
+              <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              </svg>
+              {cubeContent.heroPills[1]}
+            </span>
+            <span class="hero-pill">
+              <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+              {cubeContent.heroPills[2]}
+            </span>
+            <span class="hero-pill">
+              <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              {cubeContent.heroPills[3]}
+            </span>
+          </div>
+        </header>
+
+        <!-- Calculator Stage -->
+        <section class="calc-stage" id="calculators" aria-label="Perfect Cube Calculator">
+          <div class="calc-stage-glow" aria-hidden="true"></div>
+          <div class="calc-suite" id="calcSuite">
+            <PerfectCubeWidget lang={lang} />
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <PerfectCubeContent lang={lang} faqs={cubeFaqs} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

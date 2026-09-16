@@ -17,6 +17,9 @@
     "calculators": "Räknare",
     "cbrt": "Kubikrotsräknare",
     "nth": "N:te Rotsräknare",
+    "chart": "Kvadratrotstabell-Generator",
+    "perfect": "Perfekt Kvadrat Räknare",
+    "cube": "Perfekt Kub Räknare",
     "sitemap": "Webbplatskarta",
     "disclaimer": "Ansvarsfriskrivning"
   },
@@ -135,6 +138,56 @@
       "numberLabel": "Tal (radikand x)",
       "tooltipDegree": "Rotens gradtal (n).",
       "tooltipNumber": "Talet du vill dra roten ur."
+    }
+  },
+  "chart": {
+    "title": "Kvadratrotstabell-Generator – Skapa Anpassad Tabell",
+    "description": "Skapa direkt en anpassad kvadratrotstabell för valfritt talintervall. Välj decimalprecision och skriv ut eller kopiera gratis.",
+    "hero": {
+      "part1": "Kvadratrotstabell",
+      "part2": "Generator",
+      "subtitle": "Skapa en anpassad, utskriftsvänlig kvadratrotstabell för valfritt talintervall med valfri decimalprecision."
+    },
+    "calc": {
+      "title": "Kvadratrotstabell-Generator",
+      "desc": "Skapa anpassade referenstabeller för valfritt intervall",
+      "btn": "Generera tabell",
+      "startRange": "Starttal",
+      "endRange": "Sluttal",
+      "precision": "Decimaler",
+      "perfectOnly": "Endast jämna kvadrater"
+    }
+  },
+  "perfect": {
+    "title": "Perfekt Kvadrat Räknare | Är det en jämn kvadrat?",
+    "description": "Kontrollera direkt om ett tal är en perfekt kvadrat. Se heltalsrötter, primtalsfaktorisering och gränskvadrater.",
+    "hero": {
+      "part1": "Perfekt Kvadrat",
+      "part2": "Räknare & Testare",
+      "subtitle": "Kontrollera om ett heltal är en perfekt kvadrat. Se heltalsrötter, primtalsfaktorer och gränser direkt."
+    },
+    "calc": {
+      "title": "Perfekt Kvadrat Räknare",
+      "desc": "Kontrollera om ett tal är en perfekt kvadrat",
+      "btn": "Kontrollera kvadrat",
+      "inputLabel": "Tal att kontrollera (n)",
+      "quickTest": "Snabbtest"
+    }
+  },
+  "cube": {
+    "title": "Perfekt Kub Räknare | Är det en jämn kub?",
+    "description": "Kontrollera direkt om ett tal är en perfekt kub. Se kubrötter, primtalsfaktorisering och gränskuber för positiva och negativa tal.",
+    "hero": {
+      "part1": "Perfekt Kub",
+      "part2": "Räknare & Testare",
+      "subtitle": "Kontrollera om ett tal — positivt eller negativt — är en perfekt kub. Exakta rötter, primtalspotenser och gränser."
+    },
+    "calc": {
+      "title": "Perfekt Kub Räknare",
+      "desc": "Kontrollera om ett tal är en perfekt kub",
+      "btn": "Kontrollera kub",
+      "inputLabel": "Tal att kontrollera (n)",
+      "quickTest": "Snabbtest"
     }
   }
 }

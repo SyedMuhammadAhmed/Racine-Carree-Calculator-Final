@@ -38,6 +38,33 @@ ${site.siteName} (${baseUrl}) is a specialized math platform designed to compute
   - Arbitrary degree roots (4th root, 5th root, 10th root, etc.).
   - Real solution validation for odd and even root indices.
 
+### 4. Square Root Chart Generator
+- URL: ${baseUrl}/square-root-chart/
+- Formula: Table of n, √n (exact/simplified), decimal approximation, classification (perfect square vs. irrational)
+- Capabilities:
+  - Customizable ranges (1-50, 1-100, 1-200, 1-500, custom intervals up to 1000).
+  - Configurable decimal precision (up to 10 decimal places).
+  - Instant client-side search, filtering, and sorting.
+  - Export to CSV and print/PDF ready styling.
+
+### 5. Perfect Square Calculator
+- URL: ${baseUrl}/perfect-square-calculator/
+- Formula: x is a perfect square if √x = k ∈ ℤ (i.e. k² = x)
+- Capabilities:
+  - Instant classification of integers as perfect square or non-square.
+  - Prime factorization with even exponent verification (e.g., 144 = 2⁴ × 3²).
+  - Nearest lower and upper perfect squares with visual boundary distance.
+  - Modular arithmetic tests (modulo 10, 16, 9) for rapid mental math verification.
+
+### 6. Perfect Cube Calculator
+- URL: ${baseUrl}/perfect-cube-calculator/
+- Formula: x is a perfect cube if ∛x = k ∈ ℤ (i.e. k³ = x)
+- Capabilities:
+  - Verification of positive and negative integers as perfect cubes (e.g., -27 = (-3)³).
+  - Prime factorization test (exponents divisible by 3).
+  - Nearest lower and upper cube boundaries.
+  - Step-by-step factorization breakdown and algebraic proofs.
+
 ## Core Mathematical Rules & Laws
 1. Product Rule: √(a × b) = √a × √b (for a, b ≥ 0)
 2. Quotient Rule: √(a / b) = √a / √b (for a ≥ 0, b > 0)
@@ -48,6 +75,9 @@ ${site.siteName} (${baseUrl}) is a specialized math platform designed to compute
 - Home: ${baseUrl}/
 - Cube Root Tool: ${baseUrl}/racine-cubique-calculator/
 - Nth Root Tool: ${baseUrl}/nth-root-calculator/
+- Square Root Chart: ${baseUrl}/square-root-chart/
+- Perfect Square Tool: ${baseUrl}/perfect-square-calculator/
+- Perfect Cube Tool: ${baseUrl}/perfect-cube-calculator/
 - About Us: ${baseUrl}/about-us/
 - Contact: ${baseUrl}/contact-us/
 - Privacy Policy: ${baseUrl}/privacy/

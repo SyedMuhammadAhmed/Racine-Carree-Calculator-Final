@@ -17,6 +17,9 @@
     "calculators": "Calculators",
     "cbrt": "Racine Cubique Calculator",
     "nth": "Nth Root Calculator",
+    "chart": "Square Root Chart Generator",
+    "perfect": "Perfect Square Calculator",
+    "cube": "Perfect Cube Calculator",
     "sitemap": "Sitemap",
     "disclaimer": "Disclaimer"
   },
@@ -135,6 +138,56 @@
       "numberLabel": "Number (radicand x)",
       "tooltipDegree": "The root degree (n). For example, 2 for square root, 3 for cube root, 4 for fourth root.",
       "tooltipNumber": "The number you want to find the root of (the radicand)."
+    }
+  },
+  "chart": {
+    "title": "Square Root Chart Generator – Build a Custom Square Root Table",
+    "description": "Generate a custom square root chart for any number range instantly. Choose your decimal precision, view perfect squares only, and print or copy the result — free.",
+    "hero": {
+      "part1": "Square Root Chart",
+      "part2": "Generator",
+      "subtitle": "Build a custom, printable square root table for any range of numbers with selectable decimal precision."
+    },
+    "calc": {
+      "title": "Square Root Chart Generator",
+      "desc": "Generate custom printable reference tables for any range of numbers",
+      "btn": "Generate Chart",
+      "startRange": "Start Number",
+      "endRange": "End Number",
+      "precision": "Decimal Places",
+      "perfectOnly": "Perfect Squares Only"
+    }
+  },
+  "perfect": {
+    "title": "Perfect Square Calculator & Checker | Is It a Square?",
+    "description": "Check if any number is a perfect square instantly. Find base roots, prime factorization with powers, simplified radicals, and nearest bounding squares.",
+    "hero": {
+      "part1": "Perfect Square",
+      "part2": "Calculator & Checker",
+      "subtitle": "Check if any whole number is a perfect square. See integer roots, prime factor powers, and nearest bounding squares instantly."
+    },
+    "calc": {
+      "title": "Perfect Square Calculator & Checker",
+      "desc": "Check if any whole number is a perfect square",
+      "btn": "Check Perfect Square",
+      "inputLabel": "Number to check (n)",
+      "quickTest": "Quick Test"
+    }
+  },
+  "cube": {
+    "title": "Perfect Cube Calculator & Checker | Is It a Cube?",
+    "description": "Check if any number is a perfect cube instantly. Find base roots, prime factorization with powers, bounding cubes, and step-by-step proofs for positive and negative numbers.",
+    "hero": {
+      "part1": "Perfect Cube",
+      "part2": "Calculator & Checker",
+      "subtitle": "Check if any number — positive or negative — is a perfect cube. See cube roots, prime powers, and bounding cubes."
+    },
+    "calc": {
+      "title": "Perfect Cube Calculator & Checker",
+      "desc": "Check if any number is a perfect cube",
+      "btn": "Check Perfect Cube",
+      "inputLabel": "Number to check (n)",
+      "quickTest": "Quick Test"
     }
   }
 }

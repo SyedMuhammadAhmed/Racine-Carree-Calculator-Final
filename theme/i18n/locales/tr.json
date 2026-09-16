@@ -17,6 +17,9 @@
     "calculators": "Hesaplayıcılar",
     "cbrt": "Küp Kök Hesaplayıcı",
     "nth": "n. Dereceden Kök Hesaplayıcı",
+    "chart": "Karekök Tablosu Oluşturucu",
+    "perfect": "Tam Kare Hesaplayıcı",
+    "cube": "Tam Küp Hesaplayıcı",
     "sitemap": "Site Haritası",
     "disclaimer": "Yasal Uyarı"
   },
@@ -135,6 +138,56 @@
       "numberLabel": "Kök içi sayı (radikand x)",
       "tooltipDegree": "Kök derecesi (n).",
       "tooltipNumber": "Kökünü bulmak istediğiniz sayı."
+    }
+  },
+  "chart": {
+    "title": "Karekök Tablosu Oluşturucu – Özel Karekök Tablosu",
+    "description": "Herhangi bir sayı aralığı için özel karekök tablosunu anında oluşturun. Ondalık basamak sayısını seçin ve ücretsiz yazdırın veya kopyalayın.",
+    "hero": {
+      "part1": "Karekök Tablosu",
+      "part2": "Oluşturucu",
+      "subtitle": "Herhangi bir sayı aralığı için seçilebilir ondalık hassasiyetle yazdırılabilir özel karekök tablosu oluşturun."
+    },
+    "calc": {
+      "title": "Karekök Tablosu Oluşturucu",
+      "desc": "Herhangi bir aralık için özel referans tabloları oluşturun",
+      "btn": "Tablo Oluştur",
+      "startRange": "Başlangıç Sayısı",
+      "endRange": "Bitiş Sayısı",
+      "precision": "Ondalık Basamak",
+      "perfectOnly": "Yalnızca Tam Kareler"
+    }
+  },
+  "perfect": {
+    "title": "Tam Kare Hesaplayıcı | Bu sayı bir tam kare mi?",
+    "description": "Bir sayının tam kare olup olmadığını anında kontrol edin. Tam sayı kökleri, asal çarpanlara ayırma ve sınır kareleri görün.",
+    "hero": {
+      "part1": "Tam Kare",
+      "part2": "Hesaplayıcı ve Test Edici",
+      "subtitle": "Bir tam sayının tam kare olup olmadığını kontrol edin. Tamsayı kökleri, asal çarpanları ve sınırları görün."
+    },
+    "calc": {
+      "title": "Tam Kare Hesaplayıcı",
+      "desc": "Bir sayının tam kare olup olmadığını kontrol edin",
+      "btn": "Tam Kareyi Kontrol Et",
+      "inputLabel": "Kontrol edilecek sayı (n)",
+      "quickTest": "Hızlı test"
+    }
+  },
+  "cube": {
+    "title": "Tam Küp Hesaplayıcı | Bu sayı bir tam küp mü?",
+    "description": "Bir sayının tam küp olup olmadığını anında kontrol edin. Taban kökleri, asal kuvvetler ve pozitif/negatif sayılar için sınır küpler.",
+    "hero": {
+      "part1": "Tam Küp",
+      "part2": "Hesaplayıcı ve Test Edici",
+      "subtitle": "Pozitif veya negatif bir sayının tam küp olup olmadığını kontrol edin. Kökler, asal kuvvetler ve sınırlar."
+    },
+    "calc": {
+      "title": "Tam Küp Hesaplayıcı",
+      "desc": "Bir sayının tam küp olup olmadığını kontrol edin",
+      "btn": "Tam Küpü Kontrol Et",
+      "inputLabel": "Kontrol edilecek sayı (n)",
+      "quickTest": "Hızlı test"
     }
   }
 }

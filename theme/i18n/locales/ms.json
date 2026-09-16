@@ -17,6 +17,9 @@
     "calculators": "Kalkulator",
     "cbrt": "Kalkulator Punca Kuasa Tiga",
     "nth": "Kalkulator Punca Kuasa ke-n",
+    "chart": "Jadual Punca Kuasa Dua",
+    "perfect": "Kalkulator Kuasa Dua Sempurna",
+    "cube": "Kalkulator Kuasa Tiga Sempurna",
     "sitemap": "Peta Laman",
     "disclaimer": "Penafian"
   },
@@ -135,6 +138,56 @@
       "numberLabel": "Nombor (radikan x)",
       "tooltipDegree": "Indeks punca kuasa (n).",
       "tooltipNumber": "Nombor yang ingin dicari punca kuasanya."
+    }
+  },
+  "chart": {
+    "title": "Penjana Jadual Punca Kuasa Dua – Jadual Boleh Cetak Tersuai",
+    "description": "Jana jadual punca kuasa dua tersuai untuk sebarang julat nombor dengan pantas. Pilih ketepatan perpuluhan dan cetak atau salin secara percuma.",
+    "hero": {
+      "part1": "Jadual Punca Kuasa Dua",
+      "part2": "Penjana",
+      "subtitle": "Jana jadual rujukan punca kuasa dua yang boleh dicetak untuk sebarang julat nombor dengan kejituan perpuluhan tersuai."
+    },
+    "calc": {
+      "title": "Penjana Jadual Punca Kuasa Dua",
+      "desc": "Jana jadual rujukan tersuai bagi sebarang julat nombor",
+      "btn": "Jana Jadual",
+      "startRange": "Nombor Mula",
+      "endRange": "Nombor Akhir",
+      "precision": "Tempat Perpuluhan",
+      "perfectOnly": "Kuasa Dua Sempurna Sahaja"
+    }
+  },
+  "perfect": {
+    "title": "Kalkulator Kuasa Dua Sempurna | Adakah Nombor Ini Kuasa Dua Sempurna?",
+    "description": "Semak dengan serta-merta sama ada sesuatu nombor adalah kuasa dua sempurna. Lihat punca integer, pemfaktoran perdana, dan sempadan kuasa dua.",
+    "hero": {
+      "part1": "Kuasa Dua Sempurna",
+      "part2": "Kalkulator & Penguji",
+      "subtitle": "Semak sama ada integer ialah kuasa dua sempurna. Dapatkan punca integer, faktor perdana, dan sempadan terdekat."
+    },
+    "calc": {
+      "title": "Kalkulator Kuasa Dua Sempurna",
+      "desc": "Semak sama ada sesuatu nombor ialah kuasa dua sempurna",
+      "btn": "Semak Kuasa Dua Sempurna",
+      "inputLabel": "Nombor untuk disemak (n)",
+      "quickTest": "Ujian pantas"
+    }
+  },
+  "cube": {
+    "title": "Kalkulator Kuasa Tiga Sempurna | Adakah Nombor Ini Kuasa Tiga Sempurna?",
+    "description": "Semak dengan serta-merta sama ada sesuatu nombor ialah kuasa tiga sempurna. Dapatkan punca integer, kuasa faktor perdana, dan sempadan kuasa tiga bagi nombor positif atau negatif.",
+    "hero": {
+      "part1": "Kuasa Tiga Sempurna",
+      "part2": "Kalkulator & Penguji",
+      "subtitle": "Semak sama ada nombor positif atau negatif ialah kuasa tiga sempurna. Dapatkan punca integer, kuasa faktor, dan sempadan terdekat."
+    },
+    "calc": {
+      "title": "Kalkulator Kuasa Tiga Sempurna",
+      "desc": "Semak sama ada nombor ialah kuasa tiga sempurna",
+      "btn": "Semak Kuasa Tiga Sempurna",
+      "inputLabel": "Nombor untuk disemak (n)",
+      "quickTest": "Ujian pantas"
     }
   }
 }

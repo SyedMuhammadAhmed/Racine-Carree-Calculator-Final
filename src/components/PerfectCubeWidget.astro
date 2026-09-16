@@ -1,0 +1,653 @@
+---
+import { useTranslations } from '../../theme/i18n/translations';
+import { getCubeWidgetI18n } from '../data/i18n/widgetI18n';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = await useTranslations(lang);
+const cubeWidgetI18n = getCubeWidgetI18n(lang);
+const widgetI18n = cubeWidgetI18n;
+---
+
+<div class="calc-panel active" id="panelPerfectCube" data-calc="perfect-cube" data-i18n={JSON.stringify(widgetI18n)}>
+  <article class="calc-widget perfect-cube-widget">
+    <header class="calc-widget-head">
+      <span class="calc-widget-symbol" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+          <line x1="12" y1="22.08" x2="12" y2="12"/>
+        </svg>
+      </span>
+      <div class="calc-widget-head-text">
+        <h2 class="calc-widget-title">{t('cube.calc.title', 'Perfect Cube Calculator & Checker')}</h2>
+        <p class="calc-widget-desc">{t('cube.calc.desc', 'Check if any number — positive or negative — is a perfect cube. See cube roots, prime powers, and bounding cubes.')}</p>
+      </div>
+    </header>
+
+    <div class="calc-widget-flow">
+      <!-- ── Quick Test Chips ── -->
+      <div class="perfect-presets-wrap">
+        <span class="perfect-presets-label">{t('cube.calc.quickTest', 'Quick Test:')}</span>
+        <div class="perfect-presets-chips" role="group" aria-label="Quick test numbers">
+          {[-125, -27, -8, 0, 1, 8, 27, 64, 125, 216, 343, 500, 729, 1000, 1331].map(n => (
+            <button type="button" class="preset-chip" data-val={n}>{n}</button>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Input Section ── -->
+      <section class="calc-step" aria-label="Number input">
+        <div class="input-group">
+          <div class="calc-tooltip">
+            <label class="input-label" for="cubeInput">{t('cube.calc.inputLabel', 'Number to check (n)')}</label>
+            <span class="calc-tooltip-icon" role="button" tabindex="0" aria-label="Input instructions" aria-describedby="cubeInput-tooltip">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span class="tooltip-text" id="cubeInput-tooltip" role="tooltip">{cubeWidgetI18n.tooltip}</span>
+            </span>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" inputmode="numeric" id="cubeInput" class="calc-input" placeholder={cubeWidgetI18n.placeholder} autocomplete="off" aria-label={t('cube.calc.inputLabel', 'Number to check (n)')}>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Calculate Action ── -->
+      <section class="calc-step calc-step--action" aria-label="Calculate action">
+        <button class="btn-calc-primary" id="cubeCalcBtn" type="button" aria-label="Check if Perfect Cube">
+          <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          <span>{t('cube.calc.btn', 'Check Perfect Cube')}</span>
+        </button>
+      </section>
+
+      <!-- ── Results Section (Hidden until user clicks Check) ── -->
+      <section class="calc-step calc-step--results" aria-label="Calculation results">
+        <div class="result-panel" id="cubeResult" aria-live="polite" aria-atomic="true"></div>
+      </section>
+    </div>
+  </article>
+</div>
+
+<style>
+  .perfect-cube-widget {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .perfect-cube-widget .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .perfect-cube-widget .calc-input {
+    width: 100%;
+    padding: 14px 18px !important;
+    background: var(--bg-input);
+    border: 1.5px solid var(--border-default);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: left;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .perfect-cube-widget .calc-input:focus {
+    border-color: var(--primary-400);
+    background: var(--bg-input-focus);
+    box-shadow: var(--shadow-input-focus);
+  }
+
+  /* Quick presets */
+  .perfect-presets-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    background: var(--bg-hover-subtle);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    margin-bottom: 20px;
+  }
+
+  .perfect-presets-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .perfect-presets-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .preset-chip {
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .preset-chip:hover {
+    border-color: var(--primary-300);
+    color: var(--primary-600);
+    transform: translateY(-1px);
+  }
+
+  .preset-chip.active {
+    background: var(--gradient-primary);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+  }
+
+  /* Verdict Banners */
+  .pc-verdict-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    margin-bottom: 18px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .pc-verdict-banner--yes {
+    background: rgba(6, 182, 212, 0.12);
+    border: 1.5px solid rgba(6, 182, 212, 0.35);
+    color: var(--accent-500);
+  }
+
+  [data-theme="dark"] .pc-verdict-banner--yes {
+    background: rgba(34, 211, 238, 0.15);
+    color: var(--accent-400);
+  }
+
+  .pc-verdict-banner--no {
+    background: rgba(244, 63, 94, 0.1);
+    border: 1.5px solid rgba(244, 63, 94, 0.28);
+    color: var(--rose-500);
+  }
+
+  [data-theme="dark"] .pc-verdict-banner--no {
+    background: rgba(244, 63, 94, 0.16);
+    color: var(--rose-400);
+  }
+
+  /* Nearest Cubes Bounding Card */
+  .pc-bounding-card {
+    padding: 16px 20px;
+    background: var(--bg-hover-subtle);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    margin: 16px 0;
+  }
+
+  .pc-bounding-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pc-bounding-formula {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    margin: 8px 0 12px;
+  }
+
+  .pc-bound-box {
+    padding: 6px 14px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    color: var(--primary-600);
+  }
+
+  [data-theme="dark"] .pc-bound-box {
+    color: var(--primary-300);
+  }
+
+  .pc-bound-target {
+    padding: 6px 14px;
+    background: var(--primary-50);
+    border: 1.5px dashed var(--primary-300);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  [data-theme="dark"] .pc-bound-target {
+    background: rgba(139, 92, 246, 0.15);
+  }
+
+  .pc-bounding-notes {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    text-align: center;
+  }
+</style>
+
+<script is:inline>
+  (function initPerfectCubeChecker() {
+    function primeFactorize(n) {
+      n = Math.round(Math.abs(n));
+      if (n <= 1) return [];
+      if (n > 1e12) return null;
+      const factors = [];
+      let d = 2;
+      while (d * d <= n) {
+        while (n % d === 0) {
+          factors.push(d);
+          n /= d;
+        }
+        d++;
+      }
+      if (n > 1) factors.push(n);
+      return factors;
+    }
+
+    function formatNumber(num) {
+      if (Number.isInteger(num) && Math.abs(num) < 1e15) {
+        return num.toLocaleString('en-US');
+      }
+      return num.toString();
+    }
+
+    function getSimplifiedCubeRadical(val) {
+      const absVal = Math.abs(val);
+      if (absVal <= 1 || !Number.isInteger(absVal)) return null;
+      const factors = primeFactorize(absVal);
+      if (!factors || !factors.length) return null;
+
+      const counts = {};
+      factors.forEach(f => { counts[f] = (counts[f] || 0) + 1; });
+
+      let outside = 1;
+      let inside = 1;
+
+      Object.keys(counts).map(Number).forEach(prime => {
+        const count = counts[prime];
+        const groups = Math.floor(count / 3);
+        const rem = count % 3;
+        if (groups > 0) outside *= Math.pow(prime, groups);
+        if (rem > 0) inside *= Math.pow(prime, rem);
+      });
+
+      const sign = val < 0 ? '−' : '';
+      if (outside > 1 && inside > 1) {
+        return sign + outside + '∛' + inside;
+      }
+      return null;
+    }
+
+    // Exact integer cube root checker
+    function getIntegerCubeRoot(val) {
+      const sign = val < 0 ? -1 : 1;
+      const absVal = Math.abs(val);
+      const r = Math.round(Math.cbrt(absVal));
+      if (r * r * r === absVal) {
+        return sign * r;
+      }
+      return null;
+    }
+
+    function checkPerfectCube() {
+      const input = document.getElementById('cubeInput');
+      const resultArea = document.getElementById('cubeResult');
+      const calcBtn = document.getElementById('cubeCalcBtn');
+
+      if (!input || !resultArea) return;
+
+      if (calcBtn) {
+        calcBtn.classList.add('is-calculating');
+        setTimeout(() => calcBtn.classList.remove('is-calculating'), 500);
+      }
+
+      const panel = document.getElementById('panelPerfectCube');
+      const i18n = panel && panel.dataset.i18n ? JSON.parse(panel.dataset.i18n) : {};
+
+      const rawVal = input.value.trim();
+      if (!rawVal) {
+        showError('Please enter an integer to check');
+        return;
+      }
+
+      const n = Number(rawVal);
+      if (!Number.isFinite(n) || !Number.isInteger(n)) {
+        showError('Please enter a valid whole number (integer)');
+        return;
+      }
+
+      const intRoot = getIntegerCubeRoot(n);
+      const isPerfect = intRoot !== null;
+
+      // Real decimal cube root
+      const realCbrt = n < 0 ? -Math.cbrt(Math.abs(n)) : Math.cbrt(n);
+
+      // Prime Factorization of magnitude
+      const absN = Math.abs(n);
+      const factors = primeFactorize(absN);
+      let factorPowersStr = 'None';
+      let notDivisibleBy3 = [];
+      let missingMult = 1;
+      let missingDiv = 1;
+
+      if (factors && factors.length) {
+        const counts = {};
+        factors.forEach(f => { counts[f] = (counts[f] || 0) + 1; });
+        const parts = [];
+        Object.keys(counts).map(Number).sort((a,b)=>a-b).forEach(p => {
+          const exp = counts[p];
+          parts.push(exp > 1 ? `${p}<sup>${exp}</sup>` : `${p}`);
+          const rem = exp % 3;
+          if (rem !== 0) {
+            notDivisibleBy3.push(p);
+            // Multiplier needed to reach next multiple of 3
+            missingMult *= Math.pow(p, 3 - rem);
+            // Divisor needed to remove extra factors
+            missingDiv *= Math.pow(p, rem);
+          }
+        });
+        factorPowersStr = (n < 0 ? '−(' : '') + parts.join(' × ') + (n < 0 ? ')' : '');
+      } else if (absN === 1) {
+        factorPowersStr = n < 0 ? '(-1)³' : '1³';
+      } else if (n === 0) {
+        factorPowersStr = '0³';
+      }
+
+      resultArea.classList.add('has-result');
+
+      if (isPerfect) {
+        // YES — PERFECT CUBE (supports positive or negative!)
+        const root = intRoot;
+        const lowerRoot = root - 1;
+        const higherRoot = root + 1;
+        const lowerCube = lowerRoot * lowerRoot * lowerRoot;
+        const higherCube = higherRoot * higherRoot * higherRoot;
+
+        resultArea.innerHTML = `
+          <div class="result-filled">
+            <!-- Hero Verdict Card -->
+            <div class="calc-verdict-hero calc-verdict-hero--yes">
+              <div class="verdict-hero-badge-wrap">
+                <div class="verdict-hero-badge">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+              </div>
+              <div class="verdict-hero-content">
+                <span class="verdict-hero-pill verdict-hero-pill--yes">${i18n.verdictYesPill || 'VERIFIED PERFECT CUBE'}</span>
+                <h3 class="verdict-hero-title">${(i18n.verdictYesTitle || 'YES! {n} is a Perfect Cube!').replace('{n}', formatNumber(n))}</h3>
+                <p class="verdict-hero-subtitle">${(i18n.verdictYesSub || 'Exact integer root: ∛({n}) = {root} with zero fractional remainder').replace('{n}', formatNumber(n)).replace('{root}', formatNumber(root))}</p>
+              </div>
+            </div>
+
+            <!-- Primary Formula Card -->
+            <div class="result-formula-card">
+              <div class="result-expression">${i18n.formulaTitle || 'Cube Root Verification Formula'}</div>
+              <div class="result-answer" style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
+                <span>∛${formatNumber(n)} = ${formatNumber(root)}</span>
+              </div>
+              <div class="result-proof-sub">
+                ${(i18n.formulaBecauseYes || 'Because ({root}) × ({root}) × ({root}) = {n} ({root}³ = {n})').replace(/{root}/g, formatNumber(root)).replace(/{n}/g, formatNumber(n))}
+              </div>
+            </div>
+
+            <!-- Breakdown Grid (Balanced 3x2) -->
+            <div class="result-breakdown">
+              <div class="result-stat">
+                <span class="result-stat-label">${i18n.statBaseRoot || 'Base Cube Root'}</span>
+                <span class="result-stat-value">${formatNumber(root)}</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${i18n.statParity || 'Parity'}</span>
+                <span class="result-stat-value">${root % 2 === 0 ? (i18n.statEven || 'Even') : (i18n.statOdd || 'Odd')}</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${i18n.statPrimePowers || 'Prime Powers'}</span>
+                <span class="result-stat-value">${factorPowersStr}</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${i18n.statExponents || 'All Exponents'}</span>
+                <span class="result-stat-value" style="color:var(--accent-500);font-weight:700;">${i18n.statMultiplesOf3 || 'Multiples of 3'}</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${i18n.statNextLower || 'Next Lower Cube'}</span>
+                <span class="result-stat-value">${formatNumber(lowerCube)} (${lowerRoot}³)</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${i18n.statNextHigher || 'Next Higher Cube'}</span>
+                <span class="result-stat-value">${formatNumber(higherCube)} (${higherRoot}³)</span>
+              </div>
+            </div>
+
+            <div class="result-summary">
+              <span class="result-summary-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              </span>
+              <span>${(i18n.summaryYes || '{n} is a perfect cube because its cube root is the whole integer {root}. In 3D geometry, an exact cube with side length {absRoot} has a volume of {absN}.').replace('{n}', formatNumber(n)).replace('{root}', formatNumber(root)).replace('{absRoot}', Math.abs(root)).replace('{absN}', formatNumber(absN))}</span>
+            </div>
+
+            <details class="result-steps" open>
+              <summary class="result-steps-header">
+                <span style="display:flex;align-items:center;gap:8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  ${i18n.proofTitle || 'Proof & Verification Steps'}
+                </span>
+                <svg class="steps-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <ol class="result-steps-list">
+                <li class="result-step" style="--step-i: 0;">
+                  <span class="result-step-num">1</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepCalcTitle || 'Calculate Cube Root'}</strong>
+                    <span class="result-step-math">∛${formatNumber(n)} = ${formatNumber(root)}</span>
+                  </div>
+                </li>
+                <li class="result-step" style="--step-i: 1;">
+                  <span class="result-step-num">2</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepIntTitle || 'Integer Check'}</strong>
+                    <span class="result-step-math">${(i18n.stepIntMath || '{root} is an integer with zero fractional remainder').replace('{root}', formatNumber(root))}</span>
+                  </div>
+                </li>
+                <li class="result-step" style="--step-i: 2;">
+                  <span class="result-step-num">3</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepVolumeTitle || 'Volume / Multiplication Verification'}</strong>
+                    <span class="result-step-math">(${formatNumber(root)}) × (${formatNumber(root)}) × (${formatNumber(root)}) = ${formatNumber(n)}</span>
+                  </div>
+                </li>
+                <li class="result-step" style="--step-i: 3;">
+                  <span class="result-step-num">4</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepPrimeRule || 'Prime Exponent Divisibility Rule'}</strong>
+                    <span class="result-step-math">${(i18n.stepPrimeMath || '{n} = {factors} (every prime exponent divides by 3)').replace('{n}', formatNumber(absN)).replace('{factors}', factorPowersStr)}</span>
+                  </div>
+                </li>
+              </ol>
+            </details>
+          </div>
+        `;
+      } else {
+        // NO — NOT A PERFECT CUBE
+        const floorRoot = Math.floor(realCbrt);
+        const ceilRoot = Math.ceil(realCbrt);
+        const lowerCube = floorRoot * floorRoot * floorRoot;
+        const higherCube = ceilRoot * ceilRoot * ceilRoot;
+        const distLower = Math.abs(n - lowerCube);
+        const distHigher = Math.abs(higherCube - n);
+        const closestCube = distLower <= distHigher ? lowerCube : higherCube;
+        const closestDist = Math.min(distLower, distHigher);
+        const simplifiedRad = getSimplifiedCubeRadical(n);
+        const decimalStr = realCbrt.toFixed(6);
+
+        resultArea.innerHTML = `
+          <div class="result-filled">
+            <!-- Hero Verdict Card -->
+            <div class="calc-verdict-hero calc-verdict-hero--no">
+              <div class="verdict-hero-badge-wrap">
+                <div class="verdict-hero-badge">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </div>
+              </div>
+              <div class="verdict-hero-content">
+                <span class="verdict-hero-pill verdict-hero-pill--no">${i18n.verdictNoPill || 'NOT A PERFECT CUBE'}</span>
+                <h3 class="verdict-hero-title">${(i18n.verdictNoTitle || 'NO, {n} is NOT a Perfect Cube').replace('{n}', formatNumber(n))}</h3>
+                <p class="verdict-hero-subtitle">${(i18n.verdictNoSub || 'Its real cube root ∛({n}) ≈ {root} is an irrational decimal').replace('{n}', formatNumber(n)).replace('{root}', decimalStr)}</p>
+              </div>
+            </div>
+
+            <!-- Primary Formula Card -->
+            <div class="result-formula-card">
+              <div class="result-expression">${i18n.formulaTitle || 'Cube Root Verification Formula'}</div>
+              <div class="result-answer" style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
+                <span>∛${formatNumber(n)} ≈ ${decimalStr}</span>
+                ${simplifiedRad ? `<span style="font-size:0.9em;color:var(--text-muted);">= ${simplifiedRad}</span>` : ''}
+              </div>
+              <div class="result-proof-sub">
+                ${(i18n.formulaBecauseNo || 'Lies between consecutive cubes: {lower}³ = {lowerCube} and {higher}³ = {higherCube}').replace('{lower}', floorRoot).replace('{lowerCube}', formatNumber(lowerCube)).replace('{higher}', ceilRoot).replace('{higherCube}', formatNumber(higherCube))}
+              </div>
+            </div>
+
+            <!-- Nearest Cubes Visual Card -->
+            <div class="pc-bounding-card">
+              <div class="pc-bounding-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                ${i18n.nearestTitle || 'NEAREST BOUNDING PERFECT CUBES'}
+              </div>
+              <div class="pc-bounding-formula">
+                <span class="pc-bound-box">${formatNumber(lowerCube)} <small style="opacity:0.75;">(${floorRoot}³)</small></span>
+                <span style="color:var(--text-muted);font-weight:700;">&lt;</span>
+                <span class="pc-bound-target">${formatNumber(n)}</span>
+                <span style="color:var(--text-muted);font-weight:700;">&lt;</span>
+                <span class="pc-bound-box">${formatNumber(higherCube)} <small style="opacity:0.75;">(${ceilRoot}³)</small></span>
+              </div>
+            </div>
+
+            <!-- Breakdown Grid (Balanced 3x2) -->
+            <div class="result-breakdown">
+              <div class="result-stat">
+                <span class="result-stat-label">${i18n.statBaseRoot || 'Base Cube Root'}</span>
+                <span class="result-stat-value">≈ ${decimalStr}</span>
+              </div>
+              <div class="result-stat">
+            </div>
+
+            <div class="result-summary">
+              <span class="result-summary-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              </span>
+              <span>${(i18n.summaryNo || '{n} sits between {lowerCube} ({lower}³) and {higherCube} ({higher}³). Since there is no whole integer between {lower} and {higher}, {n} cannot be a perfect cube.').replace('{n}', formatNumber(n)).replace('{lowerCube}', formatNumber(lowerCube)).replace('{lower}', floorRoot).replace('{higherCube}', formatNumber(higherCube)).replace('{higher}', ceilRoot)}</span>
+            </div>
+
+            <details class="result-steps" open>
+              <summary class="result-steps-header">
+                <span style="display:flex;align-items:center;gap:8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  ${i18n.proofTitle || 'Proof & Verification Steps'}
+                </span>
+                <svg class="steps-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <ol class="result-steps-list">
+                <li class="result-step" style="--step-i: 0;">
+                  <span class="result-step-num">1</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepComputeTitle || 'Compute Cube Root'}</strong>
+                    <span class="result-step-math">∛${formatNumber(n)} ≈ ${decimalStr} (${i18n.stepNonInteger || 'non-integer'})</span>
+                  </div>
+                </li>
+                <li class="result-step" style="--step-i: 1;">
+                  <span class="result-step-num">2</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepSandwichTitle || 'Consecutive Integer Sandwich Test'}</strong>
+                    <span class="result-step-math">${floorRoot}³ = ${lowerCube} &lt; ${formatNumber(n)} &lt; ${higherCube} = ${ceilRoot}³</span>
+                  </div>
+                </li>
+                <li class="result-step" style="--step-i: 2;">
+                  <span class="result-step-num">3</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepPrimeRuleNo || 'Prime Factor Exponent Rule'}</strong>
+                    <span class="result-step-math">${formatNumber(absN)} = ${factorPowersStr} (${(i18n.stepPrimeMathNo || 'prime {primes} exponent is not a multiple of 3').replace('{primes}', notDivisibleBy3.join(', '))})</span>
+                  </div>
+                </li>
+              </ol>
+            </details>
+          </div>
+        `;
+      }
+
+      resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function showError(message) {
+      const resultArea = document.getElementById('cubeResult');
+      if (!resultArea) return;
+      resultArea.classList.add('has-result', 'error');
+      resultArea.innerHTML = `
+        <div class="result-error">
+          <span class="result-error-icon" aria-hidden="true">!</span>
+          <p class="result-error-text">${message}</p>
+        </div>
+      `;
+      resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Connect calculate button
+    document.getElementById('cubeCalcBtn')?.addEventListener('click', checkPerfectCube);
+
+    // Connect enter key
+    document.getElementById('cubeInput')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') checkPerfectCube();
+    });
+
+    // Preset chip clicks
+    document.querySelectorAll('.perfect-presets-chips .preset-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.perfect-presets-chips .preset-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const val = chip.dataset.val;
+        const input = document.getElementById('cubeInput');
+        if (input && val !== undefined) {
+          input.value = val;
+          checkPerfectCube();
+        }
+      });
+    });
+  })();
+</script>

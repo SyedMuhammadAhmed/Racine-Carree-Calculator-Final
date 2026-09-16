@@ -17,6 +17,9 @@
     "calculators": "Kalkulator",
     "cbrt": "Kalkulator Akar Pangkat Tiga",
     "nth": "Kalkulator Akar Pangkat n",
+    "chart": "Tabel Akar Kuadrat",
+    "perfect": "Kalkulator Kuadrat Sempurna",
+    "cube": "Kalkulator Kubus Sempurna",
     "sitemap": "Peta Situs",
     "disclaimer": "Penyangkalan"
   },
@@ -135,6 +138,56 @@
       "numberLabel": "Bilangan (radikan x)",
       "tooltipDegree": "Derajat akar (n).",
       "tooltipNumber": "Bilangan yang ingin dicari akarnya."
+    }
+  },
+  "chart": {
+    "title": "Generator Tabel Akar Kuadrat – Tabel Khusus yang Dapat Dicetak",
+    "description": "Buat tabel akar kuadrat kustom untuk rentang angka apa pun secara instan. Pilih presisi desimal dan cetak atau salin secara gratis.",
+    "hero": {
+      "part1": "Tabel Akar Kuadrat",
+      "part2": "Generator",
+      "subtitle": "Buat tabel referensi akar kuadrat yang dapat dicetak secara kustom untuk rentang angka apa pun dengan presisi desimal yang dapat disesuaikan."
+    },
+    "calc": {
+      "title": "Generator Tabel Akar Kuadrat",
+      "desc": "Buat tabel referensi kustom untuk rentang bilangan apa pun",
+      "btn": "Buat Tabel",
+      "startRange": "Mulai dari Angka",
+      "endRange": "Selesai di Angka",
+      "precision": "Tempat Desimal",
+      "perfectOnly": "Hanya Kuadrat Sempurna"
+    }
+  },
+  "perfect": {
+    "title": "Kalkulator Kuadrat Sempurna | Apakah Ini Kuadrat Sempurna?",
+    "description": "Periksa secara instan apakah suatu bilangan merupakan kuadrat sempurna. Lihat akar bulat, faktorisasi prima, dan kuadrat pembatas.",
+    "hero": {
+      "part1": "Kuadrat Sempurna",
+      "part2": "Kalkulator & Penguji",
+      "subtitle": "Periksa apakah bilangan bulat adalah kuadrat sempurna. Lihat akar bilangan bulat, faktor prima, dan kuadrat terdekat."
+    },
+    "calc": {
+      "title": "Kalkulator Kuadrat Sempurna",
+      "desc": "Periksa apakah suatu bilangan adalah kuadrat sempurna",
+      "btn": "Periksa Kuadrat Sempurna",
+      "inputLabel": "Bilangan yang diuji (n)",
+      "quickTest": "Uji cepat"
+    }
+  },
+  "cube": {
+    "title": "Kalkulator Kubus Sempurna | Apakah Ini Kubus Sempurna?",
+    "description": "Periksa secara instan apakah suatu bilangan merupakan kubus sempurna. Lihat akar bilangan bulat, pangkat faktor prima, dan kubus pembatas untuk bilangan positif maupun negatif.",
+    "hero": {
+      "part1": "Kubus Sempurna",
+      "part2": "Kalkulator & Penguji",
+      "subtitle": "Periksa apakah bilangan positif atau negatif merupakan kubus sempurna. Dapatkan akar bilangan bulat, pangkat prima, dan batas terdekat."
+    },
+    "calc": {
+      "title": "Kalkulator Kubus Sempurna",
+      "desc": "Periksa apakah suatu bilangan adalah kubus sempurna",
+      "btn": "Periksa Kubus Sempurna",
+      "inputLabel": "Bilangan yang diuji (n)",
+      "quickTest": "Uji cepat"
     }
   }
 }

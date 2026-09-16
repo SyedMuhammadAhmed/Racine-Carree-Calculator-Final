@@ -17,6 +17,9 @@
     "calculators": "Calculadoras",
     "cbrt": "Calculadora de Raiz Cúbica",
     "nth": "Calculadora de Raiz Enésima",
+    "chart": "Gerador de Tabela de Raiz Quadrada",
+    "perfect": "Calculadora de Quadrado Perfeito",
+    "cube": "Calculadora de Cubo Perfeito",
     "sitemap": "Mapa do Site",
     "disclaimer": "Aviso Legal"
   },
@@ -135,6 +138,56 @@
       "numberLabel": "Número (radicando x)",
       "tooltipDegree": "O índice da raiz (n).",
       "tooltipNumber": "O número cuja raiz você deseja encontrar."
+    }
+  },
+  "chart": {
+    "title": "Gerador de Tabela de Raiz Quadrada – Tabela Personalizada",
+    "description": "Gere uma tabela de raiz quadrada personalizada para qualquer intervalo de números. Escolha a precisão decimal e imprima ou copie gratuitamente.",
+    "hero": {
+      "part1": "Tabela de Raiz Quadrada",
+      "part2": "Gerador",
+      "subtitle": "Gere uma tabela de raiz quadrada personalizada e imprimível para qualquer intervalo com precisão decimal configurável."
+    },
+    "calc": {
+      "title": "Gerador de Tabela de Raiz Quadrada",
+      "desc": "Gere tabelas de referência personalizadas para qualquer intervalo",
+      "btn": "Gerar Tabela",
+      "startRange": "Número Inicial",
+      "endRange": "Número Final",
+      "precision": "Casas Decimais",
+      "perfectOnly": "Apenas Quadrados Perfeitos"
+    }
+  },
+  "perfect": {
+    "title": "Calculadora de Quadrado Perfeito | É um Quadrado Perfeito?",
+    "description": "Verifique instantaneamente se um número é um quadrado perfeito. Raízes inteiras, fatoração prima e quadrados limites.",
+    "hero": {
+      "part1": "Quadrado Perfeito",
+      "part2": "Calculadora e Verificador",
+      "subtitle": "Verifique se qualquer número inteiro é um quadrado perfeito. Raízes exatas, fatores primos e quadrados delimitadores."
+    },
+    "calc": {
+      "title": "Calculadora de Quadrado Perfeito",
+      "desc": "Verifique se um número inteiro é um quadrado perfeito",
+      "btn": "Verificar Quadrado Perfeito",
+      "inputLabel": "Número para verificar (n)",
+      "quickTest": "Teste rápido"
+    }
+  },
+  "cube": {
+    "title": "Calculadora de Cubo Perfeito | É um Cubo Perfeito?",
+    "description": "Verifique instantaneamente se um número é um cubo perfeito. Raízes inteiras, fatoração prima e cubos limites para positivos e negativos.",
+    "hero": {
+      "part1": "Cubo Perfeito",
+      "part2": "Calculadora e Verificador",
+      "subtitle": "Verifique se um número — positivo ou negativo — é um cubo perfeito. Raízes inteiras, potências primas e cubos delimitadores."
+    },
+    "calc": {
+      "title": "Calculadora de Cubo Perfeito",
+      "desc": "Verifique se um número é um cubo perfeito",
+      "btn": "Verificar Cubo Perfeito",
+      "inputLabel": "Número para verificar (n)",
+      "quickTest": "Teste rápido"
     }
   }
 }

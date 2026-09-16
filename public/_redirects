@@ -243,3 +243,25 @@
 /nth-root-calculator/:locale /:locale/nth-root-calculator/ 301
 /nth-root-calculator/:locale/ /:locale/nth-root-calculator/ 301
 
+/square-root-table /square-root-chart/ 301
+/square-root-table/ /square-root-chart/ 301
+/square-root-chart-generator /square-root-chart/ 301
+/square-root-chart-generator/ /square-root-chart/ 301
+/square-root-chart/:locale /:locale/square-root-chart/ 301
+/square-root-chart/:locale/ /:locale/square-root-chart/ 301
+
+/is-perfect-square /perfect-square-calculator/ 301
+/is-perfect-square/ /perfect-square-calculator/ 301
+/perfect-square-checker /perfect-square-calculator/ 301
+/perfect-square-checker/ /perfect-square-calculator/ 301
+/perfect-square-calculator/:locale /:locale/perfect-square-calculator/ 301
+/perfect-square-calculator/:locale/ /:locale/perfect-square-calculator/ 301
+
+/is-perfect-cube /perfect-cube-calculator/ 301
+/is-perfect-cube/ /perfect-cube-calculator/ 301
+/perfect-cube-checker /perfect-cube-calculator/ 301
+/perfect-cube-checker/ /perfect-cube-calculator/ 301
+/perfect-cube-calculator/:locale /:locale/perfect-cube-calculator/ 301
+/perfect-cube-calculator/:locale/ /:locale/perfect-cube-calculator/ 301
+
+

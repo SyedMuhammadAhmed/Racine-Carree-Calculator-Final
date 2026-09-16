@@ -1,0 +1,754 @@
+---
+import { useTranslations } from '../../theme/i18n/translations';
+import { getSquareWidgetI18n } from '../data/i18n/widgetI18n';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = await useTranslations(lang);
+const squareWidgetI18n = getSquareWidgetI18n(lang);
+---
+
+<div class="calc-panel active" id="panelPerfectSquare" data-calc="perfect-square" data-i18n={JSON.stringify(squareWidgetI18n)}>
+  <article class="calc-widget perfect-square-widget">
+    <header class="calc-widget-head">
+      <span class="calc-widget-symbol" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+      </span>
+      <div class="calc-widget-head-text">
+        <h2 class="calc-widget-title">{t('perfect.calc.title', 'Perfect Square Calculator & Checker')}</h2>
+        <p class="calc-widget-desc">{t('perfect.calc.desc', 'Check if any number is a perfect square. See prime factors, simplified radicals, and nearest bounding squares.')}</p>
+      </div>
+    </header>
+
+    <div class="calc-widget-flow">
+      <!-- ── Quick Test Chips ── -->
+      <div class="perfect-presets-wrap">
+        <span class="perfect-presets-label">{t('perfect.calc.quickTest', 'Quick Test:')}</span>
+        <div class="perfect-presets-chips" role="group" aria-label="Quick test numbers">
+          {[0, 1, 4, 16, 25, 49, 64, 81, 100, 144, 256, 500, 1000, 1024, 2025].map(n => (
+            <button type="button" class="preset-chip" data-val={n}>{n}</button>
+          ))}
+        </div>
+      </div>
+
+      <!-- ── Input Section ── -->
+      <section class="calc-step" aria-label="Number input">
+        <div class="input-group">
+          <div class="calc-tooltip">
+            <label class="input-label" for="perfectInput">{t('perfect.calc.inputLabel', 'Number to check (n)')}</label>
+            <span class="calc-tooltip-icon" role="button" tabindex="0" aria-label="Input instructions" aria-describedby="perfectInput-tooltip">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span class="tooltip-text" id="perfectInput-tooltip" role="tooltip">{squareWidgetI18n.tooltip}</span>
+            </span>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" inputmode="numeric" id="perfectInput" class="calc-input" placeholder={squareWidgetI18n.placeholder} autocomplete="off" aria-label={t('perfect.calc.inputLabel', 'Number to check (n)')}>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Calculate Action ── -->
+      <section class="calc-step calc-step--action" aria-label="Calculate action">
+        <button class="btn-calc-primary" id="perfectCalcBtn" type="button" aria-label="Check if Perfect Square">
+          <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          <span>{t('perfect.calc.btn', 'Check Perfect Square')}</span>
+        </button>
+      </section>
+
+      <!-- ── Results Section (Hidden until user clicks Check) ── -->
+      <section class="calc-step calc-step--results" aria-label="Calculation results">
+        <div class="result-panel" id="perfectResult" aria-live="polite" aria-atomic="true"></div>
+      </section>
+    </div>
+  </article>
+</div>
+
+<style>
+  .perfect-square-widget {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .perfect-square-widget .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .perfect-square-widget .calc-input {
+    width: 100%;
+    padding: 14px 18px !important;
+    background: var(--bg-input);
+    border: 1.5px solid var(--border-default);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: left;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .perfect-square-widget .calc-input:focus {
+    border-color: var(--primary-400);
+    background: var(--bg-input-focus);
+    box-shadow: var(--shadow-input-focus);
+  }
+
+  /* Quick presets */
+  .perfect-presets-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    background: var(--bg-hover-subtle);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    margin-bottom: 20px;
+  }
+
+  .perfect-presets-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .perfect-presets-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .preset-chip {
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .preset-chip:hover {
+    border-color: var(--primary-300);
+    color: var(--primary-600);
+    transform: translateY(-1px);
+  }
+
+  .preset-chip.active {
+    background: var(--gradient-primary);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+  }
+
+  /* Success & Non-Square Visual Banners */
+  .ps-verdict-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    margin-bottom: 18px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .ps-verdict-banner--yes {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1.5px solid rgba(34, 197, 94, 0.35);
+    color: var(--green-500);
+  }
+
+  [data-theme="dark"] .ps-verdict-banner--yes {
+    background: rgba(34, 197, 94, 0.16);
+    color: var(--green-400);
+  }
+
+  .ps-verdict-banner--no {
+    background: rgba(244, 63, 94, 0.1);
+    border: 1.5px solid rgba(244, 63, 94, 0.28);
+    color: var(--rose-500);
+  }
+
+  [data-theme="dark"] .ps-verdict-banner--no {
+    background: rgba(244, 63, 94, 0.16);
+    color: var(--rose-400);
+  }
+
+  /* Nearest Squares Bounding Card */
+  .ps-bounding-card {
+    padding: 16px 20px;
+    background: var(--bg-hover-subtle);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    margin: 16px 0;
+  }
+
+  .ps-bounding-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ps-bounding-formula {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    margin: 8px 0 12px;
+  }
+
+  .ps-bound-box {
+    padding: 6px 14px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    color: var(--primary-600);
+  }
+
+  [data-theme="dark"] .ps-bound-box {
+    color: var(--primary-300);
+  }
+
+  .ps-bound-target {
+    padding: 6px 14px;
+    background: var(--primary-50);
+    border: 1.5px dashed var(--primary-300);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  [data-theme="dark"] .ps-bound-target {
+    background: rgba(139, 92, 246, 0.15);
+  }
+
+  .ps-bounding-notes {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    text-align: center;
+  }
+</style>
+
+<script is:inline>
+  (function initPerfectSquareChecker() {
+    function primeFactorize(n) {
+      n = Math.round(Math.abs(n));
+      if (n <= 1) return [];
+      if (n > 1e12) return null;
+      const factors = [];
+      let d = 2;
+      while (d * d <= n) {
+        while (n % d === 0) {
+          factors.push(d);
+          n /= d;
+        }
+        d++;
+      }
+      if (n > 1) factors.push(n);
+      return factors;
+    }
+
+    function formatNumber(num) {
+      if (Number.isInteger(num) && Math.abs(num) < 1e15) {
+        return num.toLocaleString('en-US');
+      }
+      return num.toString();
+    }
+
+    function getSimplifiedRadical(val) {
+      if (val <= 1 || !Number.isInteger(val)) return null;
+      const factors = primeFactorize(val);
+      if (!factors || !factors.length) return null;
+
+      const counts = {};
+      factors.forEach(f => { counts[f] = (counts[f] || 0) + 1; });
+
+      let outside = 1;
+      let inside = 1;
+
+      Object.keys(counts).map(Number).forEach(prime => {
+        const count = counts[prime];
+        const groups = Math.floor(count / 2);
+        const rem = count % 2;
+        if (groups > 0) outside *= Math.pow(prime, groups);
+        if (rem > 0) inside *= prime;
+      });
+
+      if (outside > 1 && inside > 1) {
+        return outside + '√' + inside;
+      }
+      return null;
+    }
+
+    function checkPerfectSquare() {
+      const input = document.getElementById('perfectInput');
+      const resultArea = document.getElementById('perfectResult');
+      const calcBtn = document.getElementById('perfectCalcBtn');
+
+      if (!input || !resultArea) return;
+
+      if (calcBtn) {
+        calcBtn.classList.add('is-calculating');
+        setTimeout(() => calcBtn.classList.remove('is-calculating'), 500);
+      }
+
+      const panel = document.getElementById('panelPerfectSquare');
+      const i18n = panel && panel.dataset.i18n ? JSON.parse(panel.dataset.i18n) : {};
+
+      const rawVal = input.value.trim();
+      if (!rawVal) {
+        showError('Please enter an integer to check');
+        return;
+      }
+
+      const n = Number(rawVal);
+      if (!Number.isFinite(n) || !Number.isInteger(n)) {
+        showError('Please enter a valid whole number (integer)');
+        return;
+      }
+
+      // Negative number case
+      if (n < 0) {
+        const absVal = Math.abs(n);
+        const rootAbs = Math.sqrt(absVal);
+        const isAbsPerfect = Number.isInteger(rootAbs);
+        const rootAbsStr = isAbsPerfect ? rootAbs.toString() : rootAbs.toFixed(4);
+
+        const vPill = i18n.verdictNoPill || 'NEGATIVE INTEGER';
+        const vTitle = i18n.verdictNoTitle ? i18n.verdictNoTitle.replace('{n}', formatNumber(n)) : `NO, ${formatNumber(n)} is NOT a Real Perfect Square`;
+        const vSub = i18n.verdictNoSub ? i18n.verdictNoSub.replace('{n}', formatNumber(n)).replace('{root}', `±${rootAbsStr}i`) : `In real numbers, squares cannot be negative: complex square root is ±${rootAbsStr}i`;
+        const fTitle = i18n.formulaTitle || 'Complex Square Root Formula';
+
+        resultArea.classList.add('has-result');
+        resultArea.innerHTML = `
+          <div class="result-filled">
+            <!-- Hero Verdict Card -->
+            <div class="calc-verdict-hero calc-verdict-hero--no">
+              <div class="verdict-hero-badge-wrap">
+                <div class="verdict-hero-badge">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </div>
+              </div>
+              <div class="verdict-hero-content">
+                <span class="verdict-hero-pill verdict-hero-pill--no">${vPill}</span>
+                <h3 class="verdict-hero-title">${vTitle}</h3>
+                <p class="verdict-hero-subtitle">${vSub}</p>
+              </div>
+            </div>
+
+            <!-- Primary Formula Card -->
+            <div class="result-formula-card">
+              <div class="result-expression">${fTitle}</div>
+              <div class="result-answer" style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
+                <span>√(${formatNumber(n)}) = ±${rootAbsStr}i</span>
+              </div>
+              <div class="result-proof-sub">
+                Because (±${rootAbsStr}i)² = (${rootAbsStr})² × i² = ${formatNumber(absVal)} × (-1) = ${formatNumber(n)}
+              </div>
+            </div>
+
+            <div class="result-summary">
+              <span class="result-summary-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              </span>
+              <span>In the real number system, multiplying any number by itself always yields a non-negative result (e.g. (+x)² &gt; 0 and (-x)² &gt; 0). Therefore, no real number squared can equal a negative integer.</span>
+            </div>
+
+            <details class="result-steps" open>
+              <summary class="result-steps-header">
+                <span style="display:flex;align-items:center;gap:8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  Proof &amp; Verification Steps
+                </span>
+                <svg class="steps-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <ol class="result-steps-list">
+                <li class="result-step" style="--step-i: 0;">
+                  <span class="result-step-num">1</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">Sign Property of Squares</strong>
+                    <span class="result-step-math">For all real numbers x, x² ≥ 0</span>
+                  </div>
+                </li>
+                <li class="result-step" style="--step-i: 1;">
+                  <span class="result-step-num">2</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">Complex Domain Solution</strong>
+                    <span class="result-step-math">√(${formatNumber(n)}) = √(${formatNumber(absVal)}) × √(-1) = ±${rootAbsStr}i</span>
+                  </div>
+                </li>
+              </ol>
+            </details>
+          </div>
+        `;
+        resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+
+      // Check if perfect square
+      const root = Math.sqrt(n);
+      const isPerfect = Number.isInteger(root);
+
+      // Prime Factorization
+      const factors = primeFactorize(n);
+      let factorPowersStr = 'None';
+      let oddExponents = [];
+      let missingMult = 1;
+
+      if (factors && factors.length) {
+        const counts = {};
+        factors.forEach(f => { counts[f] = (counts[f] || 0) + 1; });
+        const parts = [];
+        Object.keys(counts).map(Number).sort((a,b)=>a-b).forEach(p => {
+          const exp = counts[p];
+          parts.push(exp > 1 ? `${p}<sup>${exp}</sup>` : `${p}`);
+          if (exp % 2 !== 0) {
+            oddExponents.push(p);
+            missingMult *= p;
+          }
+        });
+        factorPowersStr = parts.join(' × ');
+      } else if (n === 1) {
+        factorPowersStr = '1²';
+      } else if (n === 0) {
+        factorPowersStr = '0²';
+      }
+
+      resultArea.classList.add('has-result');
+
+      if (isPerfect) {
+        // YES — IT IS A PERFECT SQUARE
+        const lowerRoot = root > 0 ? root - 1 : 0;
+        const higherRoot = root + 1;
+        const lowerSquare = lowerRoot * lowerRoot;
+        const higherSquare = higherRoot * higherRoot;
+
+        const vPill = i18n.verdictYesPill || 'VERIFIED PERFECT SQUARE';
+        const vTitle = i18n.verdictYesTitle ? i18n.verdictYesTitle.replace('{n}', formatNumber(n)) : `YES! ${formatNumber(n)} is a Perfect Square!`;
+        const vSub = i18n.verdictYesSub ? i18n.verdictYesSub.replace('{n}', formatNumber(n)).replace('{root}', formatNumber(root)) : `Exact integer square root: √${formatNumber(n)} = ${formatNumber(root)}`;
+        const fTitle = i18n.formulaTitle || 'Square Root Identity';
+        const fBecause = i18n.formulaBecauseYes ? i18n.formulaBecauseYes.replace(/\{root\}/g, formatNumber(root)).replace(/\{n\}/g, formatNumber(n)) : `Because ${formatNumber(root)} × ${formatNumber(root)} = ${formatNumber(n)} (${formatNumber(root)}² = ${formatNumber(n)})`;
+        const sBase = i18n.statBaseRoot || 'Base Root';
+        const sParity = i18n.statParity || 'Parity';
+        const sParityVal = root % 2 === 0 ? (i18n.statEven || 'Even') : (i18n.statOdd || 'Odd');
+        const sPowers = i18n.statPrimePowers || 'Prime Powers';
+        const sLower = i18n.statNextLower || 'Next Lower Square';
+        const sHigher = i18n.statNextHigher || 'Next Higher Square';
+
+        resultArea.innerHTML = `
+          <div class="result-filled">
+            <!-- Hero Verdict Card -->
+            <div class="calc-verdict-hero calc-verdict-hero--yes">
+              <div class="verdict-hero-badge-wrap">
+                <div class="verdict-hero-badge">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+              </div>
+              <div class="verdict-hero-content">
+                <span class="verdict-hero-pill verdict-hero-pill--yes">${vPill}</span>
+                <h3 class="verdict-hero-title">${vTitle}</h3>
+                <p class="verdict-hero-subtitle">${vSub}</p>
+              </div>
+            </div>
+
+            <!-- Primary Formula Card -->
+            <div class="result-formula-card">
+              <div class="result-expression">${fTitle}</div>
+              <div class="result-answer" style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
+                <span>√${formatNumber(n)} = ${formatNumber(root)}</span>
+              </div>
+              <div class="result-proof-sub">
+                ${fBecause}
+              </div>
+            </div>
+
+            <!-- Breakdown Grid (Symmetrical 3x2) -->
+            <div class="result-breakdown">
+              <div class="result-stat">
+                <span class="result-stat-label">${sBase}</span>
+                <span class="result-stat-value">${formatNumber(root)}</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${sParity}</span>
+                <span class="result-stat-value">${sParityVal}</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${sPowers}</span>
+                <span class="result-stat-value">${factorPowersStr}</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${i18n.statAllExponents || 'All Exponents'}</span>
+                <span class="result-stat-value" style="color:var(--green-500);font-weight:700;">${i18n.statEvenDivisible || 'Even (Divisible by 2)'}</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${sLower}</span>
+                <span class="result-stat-value">${formatNumber(lowerSquare)} (${lowerRoot}²)</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${sHigher}</span>
+                <span class="result-stat-value">${formatNumber(higherSquare)} (${higherRoot}²)</span>
+              </div>
+            </div>
+
+            <div class="result-summary">
+              <span class="result-summary-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              </span>
+              <span>${(i18n.summaryYes || '{n} is a perfect square because its square root is the whole integer {root}. In prime factorization, every prime factor has an even exponent.').replace('{n}', formatNumber(n)).replace('{root}', formatNumber(root))}</span>
+            </div>
+
+            <details class="result-steps" open>
+              <summary class="result-steps-header">
+                <span style="display:flex;align-items:center;gap:8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  ${i18n.proofTitle || 'Proof & Verification Steps'}
+                </span>
+                <svg class="steps-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <ol class="result-steps-list">
+                <li class="result-step" style="--step-i: 0;">
+                  <span class="result-step-num">1</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepCalcTitle || 'Calculate Square Root'}</strong>
+                    <span class="result-step-math">√${formatNumber(n)} = ${formatNumber(root)}</span>
+                  </div>
+                </li>
+                <li class="result-step" style="--step-i: 1;">
+                  <span class="result-step-num">2</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepIntTitle || 'Integer Check'}</strong>
+                    <span class="result-step-math">${(i18n.stepIntMath || '{root} is an integer with zero fractional remainder').replace('{root}', formatNumber(root))}</span>
+                  </div>
+                </li>
+                <li class="result-step" style="--step-i: 2;">
+                  <span class="result-step-num">3</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepMultTitle || 'Multiplication Verification'}</strong>
+                    <span class="result-step-math">${formatNumber(root)} × ${formatNumber(root)} = ${formatNumber(n)}</span>
+                  </div>
+                </li>
+                <li class="result-step" style="--step-i: 3;">
+                  <span class="result-step-num">4</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepPrimeRule || 'Prime Factor Exponent Rule'}</strong>
+                    <span class="result-step-math">${(i18n.stepPrimeMath || '{n} = {factors} (every prime exponent divides by 2)').replace('{n}', formatNumber(n)).replace('{factors}', factorPowersStr)}</span>
+                  </div>
+                </li>
+              </ol>
+            </details>
+          </div>
+        `;
+      } else {
+        // NO — NOT A PERFECT SQUARE
+        const floorRoot = Math.floor(root);
+        const ceilRoot = Math.ceil(root);
+        const lowerSquare = floorRoot * floorRoot;
+        const higherSquare = ceilRoot * ceilRoot;
+        const distLower = n - lowerSquare;
+        const distHigher = higherSquare - n;
+        const closestSquare = distLower <= distHigher ? lowerSquare : higherSquare;
+        const closestDist = Math.min(distLower, distHigher);
+        const simplifiedRad = getSimplifiedRadical(n);
+        const decimalStr = root.toFixed(6);
+
+        const vPill = i18n.verdictNoPill || 'NOT A PERFECT SQUARE';
+        const vTitle = i18n.verdictNoTitle ? i18n.verdictNoTitle.replace('{n}', formatNumber(n)) : `NO, ${formatNumber(n)} is NOT a Perfect Square`;
+        const vSub = i18n.verdictNoSub ? i18n.verdictNoSub.replace('{n}', formatNumber(n)).replace('{root}', decimalStr) : `Irrational root: √${formatNumber(n)} ≈ ${decimalStr}`;
+        const fTitle = i18n.formulaTitle || 'Square Root Result (Irrational)';
+        const fBecause = i18n.formulaBecauseNo
+          ? i18n.formulaBecauseNo.replace('{lower}', floorRoot).replace('{lowerSquare}', formatNumber(lowerSquare)).replace('{higher}', ceilRoot).replace('{higherSquare}', formatNumber(higherSquare))
+          : `${floorRoot}² = ${formatNumber(lowerSquare)} &lt; ${formatNumber(n)} &lt; ${formatNumber(higherSquare)} = ${ceilRoot}²`;
+        const nTitle = i18n.nearestTitle || 'NEAREST BOUNDING PERFECT SQUARES';
+        const mTitle = i18n.makeSquareTitle || 'TO MAKE THIS A PERFECT SQUARE';
+        const multBy = i18n.multiplyBy || 'Multiply by';
+        const divBy = i18n.divideBy || 'Divide by';
+        const toGet = i18n.toGet || 'to get';
+        const sBase = i18n.statBaseRoot || 'Decimal Root';
+        const sPowers = i18n.statPrimePowers || 'Prime Factorization';
+
+        resultArea.innerHTML = `
+          <div class="result-filled">
+            <!-- Hero Verdict Card -->
+            <div class="calc-verdict-hero calc-verdict-hero--no">
+              <div class="verdict-hero-badge-wrap">
+                <div class="verdict-hero-badge">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </div>
+              </div>
+              <div class="verdict-hero-content">
+                <span class="verdict-hero-pill verdict-hero-pill--no">${vPill}</span>
+                <h3 class="verdict-hero-title">${vTitle}</h3>
+                <p class="verdict-hero-subtitle">${vSub}</p>
+              </div>
+            </div>
+
+            <!-- Primary Formula Card -->
+            <div class="result-formula-card">
+              <div class="result-expression">${fTitle}</div>
+              <div class="result-answer" style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
+                <span>√${formatNumber(n)} ≈ ${decimalStr}</span>
+              </div>
+              <div class="result-proof-sub">
+                ${fBecause}
+              </div>
+            </div>
+
+            ${simplifiedRad ? `
+              <div style="margin: 0 auto 16px; text-align:center; padding: 8px 18px; background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124, 58, 237, 0.25); border-radius: var(--radius-md); width: fit-content; display:flex; align-items:center; gap:8px;">
+                <span style="color: var(--primary-600); font-size: 0.8rem; font-weight: 700; text-transform:uppercase; letter-spacing:0.04em;">${i18n.simplifiedRadLabel || 'Simplified Radical:'}</span>
+                <strong style="font-family: var(--font-mono); font-size: 1.05rem; color: var(--text-primary);">${simplifiedRad}</strong>
+              </div>
+            ` : ''}
+
+            <!-- Nearest Perfect Squares Bounding Box -->
+            <div class="ps-bounding-card">
+              <div class="ps-bounding-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                ${nTitle}
+              </div>
+              <div class="ps-bounding-formula">
+                <span class="ps-bound-box">${formatNumber(lowerSquare)} <small>(${floorRoot}²)</small></span>
+                <span style="color:var(--text-muted);">&lt;</span>
+                <span class="ps-bound-target">${formatNumber(n)}</span>
+                <span style="color:var(--text-muted);">&lt;</span>
+                <span class="ps-bound-box">${formatNumber(higherSquare)} <small>(${ceilRoot}²)</small></span>
+              </div>
+              <p class="ps-bounding-notes">
+                ${(i18n.closestNote || 'Closest perfect square is <strong>{square}</strong> (only {dist} away).').replace('{square}', `<strong>${formatNumber(closestSquare)}</strong>`).replace('{dist}', closestDist)}
+              </p>
+            </div>
+
+            <!-- Breakdown Grid -->
+            <div class="result-breakdown">
+              <div class="result-stat">
+                <span class="result-stat-label">${sBase}</span>
+                <span class="result-stat-value">≈ ${decimalStr}</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${sPowers}</span>
+                <span class="result-stat-value">${factorPowersStr}</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${mTitle} (${multBy})</span>
+                <span class="result-stat-value">× ${missingMult} (→ ${formatNumber(n * missingMult)} = ${Math.round(Math.sqrt(n * missingMult))}²)</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">${mTitle} (${divBy})</span>
+                <span class="result-stat-value">÷ ${missingMult} (→ ${formatNumber(n / missingMult)} = ${Math.round(Math.sqrt(n / missingMult))}²)</span>
+              </div>
+            </div>
+
+            <div class="result-summary">
+              <span class="result-summary-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              </span>
+              <span>${(i18n.summaryNo || '{n} lies between {lowerSquare} ({lower}²) and {higherSquare} ({higher}²). Since there is no whole integer between {lower} and {higher}, {n} cannot be a perfect square.').replace('{n}', formatNumber(n)).replace('{lowerSquare}', lowerSquare).replace('{lower}', floorRoot).replace('{higherSquare}', higherSquare).replace('{higher}', ceilRoot)}</span>
+            </div>
+
+            <details class="result-steps" open>
+              <summary class="result-steps-header">
+                <span style="display:flex;align-items:center;gap:8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  ${i18n.proofTitle || 'Proof & Verification Steps'}
+                </span>
+                <svg class="steps-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <ol class="result-steps-list">
+                <li class="result-step" style="--step-i: 0;">
+                  <span class="result-step-num">1</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepComputeTitle || 'Compute Square Root'}</strong>
+                    <span class="result-step-math">√${formatNumber(n)} ≈ ${decimalStr} (${i18n.stepNonInteger || 'non-integer'})</span>
+                  </div>
+                </li>
+                <li class="result-step" style="--step-i: 1;">
+                  <span class="result-step-num">2</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepSandwichTitle || 'Consecutive Integer Sandwich Test'}</strong>
+                    <span class="result-step-math">${floorRoot}² = ${lowerSquare} &lt; ${formatNumber(n)} &lt; ${higherSquare} = ${ceilRoot}²</span>
+                  </div>
+                </li>
+                <li class="result-step" style="--step-i: 2;">
+                  <span class="result-step-num">3</span>
+                  <div class="result-step-body">
+                    <strong class="result-step-title">${i18n.stepPrimeRuleNo || 'Prime Factorization Exponent Test'}</strong>
+                    <span class="result-step-math">${formatNumber(n)} = ${factorPowersStr} (${(i18n.stepOddPower || 'the prime {primes} has an odd power').replace('{primes}', oddExponents.join(', '))})</span>
+                  </div>
+                </li>
+              </ol>
+            </details>
+          </div>
+        `;
+      }
+
+      resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function showError(message) {
+      const resultArea = document.getElementById('perfectResult');
+      if (!resultArea) return;
+      resultArea.classList.add('has-result', 'error');
+      resultArea.innerHTML = `
+        <div class="result-error">
+          <span class="result-error-icon" aria-hidden="true">!</span>
+          <p class="result-error-text">${message}</p>
+        </div>
+      `;
+      resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Connect calculate button
+    document.getElementById('perfectCalcBtn')?.addEventListener('click', checkPerfectSquare);
+
+    // Connect enter key
+    document.getElementById('perfectInput')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') checkPerfectSquare();
+    });
+
+    // Preset chip clicks
+    document.querySelectorAll('.perfect-presets-chips .preset-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.perfect-presets-chips .preset-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const val = chip.dataset.val;
+        const input = document.getElementById('perfectInput');
+        if (input && val !== undefined) {
+          input.value = val;
+          checkPerfectSquare();
+        }
+      });
+    });
+  })();
+</script>

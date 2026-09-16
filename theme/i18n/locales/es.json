@@ -17,6 +17,9 @@
     "calculators": "Calculadoras",
     "cbrt": "Calculadora de Raíz Cúbica",
     "nth": "Calculadora de Raíz Enésima",
+    "chart": "Generador de Tabla de Raíz Cuadrada",
+    "perfect": "Calculadora de Cuadrado Perfecto",
+    "cube": "Calculadora de Cubo Perfecto",
     "sitemap": "Mapa del Sitio",
     "disclaimer": "Descargo de Responsabilidad"
   },
@@ -135,6 +138,56 @@
       "numberLabel": "Número (radicando x)",
       "tooltipDegree": "El índice de la raíz (n). Por ejemplo 2 para raíz cuadrada, 3 para cúbica, 4 para cuarta.",
       "tooltipNumber": "El número del que deseas obtener la raíz."
+    }
+  },
+  "chart": {
+    "title": "Generador de Tabla de Raíz Cuadrada – Tabla Personalizada",
+    "description": "Genera una tabla de raíz cuadrada personalizada para cualquier rango. Elige tu precisión decimal, filtra cuadrados perfectos e imprime o copia gratis.",
+    "hero": {
+      "part1": "Tabla de Raíz Cuadrada",
+      "part2": "Generador",
+      "subtitle": "Crea una tabla imprimible y personalizada de raíces cuadradas para cualquier rango con precisión decimal seleccionable."
+    },
+    "calc": {
+      "title": "Generador de Tabla de Raíz Cuadrada",
+      "desc": "Genera tablas de referencia personalizadas para cualquier rango",
+      "btn": "Generar Tabla",
+      "startRange": "Número Inicial",
+      "endRange": "Número Final",
+      "precision": "Decimales",
+      "perfectOnly": "Solo Cuadrados Perfectos"
+    }
+  },
+  "perfect": {
+    "title": "Calculadora de Cuadrado Perfecto | ¿Es un Cuadrado Perfecto?",
+    "description": "Comprueba si cualquier número es un cuadrado perfecto al instante. Raíces enteras, factorización prima y cuadrados límite.",
+    "hero": {
+      "part1": "Cuadrado Perfecto",
+      "part2": "Calculadora y Comprobador",
+      "subtitle": "Comprueba si cualquier número entero es un cuadrado perfecto. Raíces enteras, factores primos y cuadrados acotados al instante."
+    },
+    "calc": {
+      "title": "Calculadora de Cuadrado Perfecto",
+      "desc": "Comprueba si cualquier número entero es un cuadrado perfecto",
+      "btn": "Comprobar Cuadrado Perfecto",
+      "inputLabel": "Número a comprobar (n)",
+      "quickTest": "Prueba rápida"
+    }
+  },
+  "cube": {
+    "title": "Calculadora de Cubo Perfecto | ¿Es un Cubo Perfecto?",
+    "description": "Comprueba si cualquier número es un cubo perfecto al instante. Raíces enteras, factorización prima y cubos límite para números positivos y negativos.",
+    "hero": {
+      "part1": "Cubo Perfecto",
+      "part2": "Calculadora y Comprobador",
+      "subtitle": "Comprueba si un número — positivo o negativo — es un cubo perfecto. Raíces exactas, potencias primas y cubos encuadrantes."
+    },
+    "calc": {
+      "title": "Calculadora de Cubo Perfecto",
+      "desc": "Comprueba si un número es un cubo perfecto",
+      "btn": "Comprobar Cubo Perfecto",
+      "inputLabel": "Número a comprobar (n)",
+      "quickTest": "Prueba rápida"
     }
   }
 }

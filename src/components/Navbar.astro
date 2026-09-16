@@ -26,7 +26,10 @@ const brand = t('footer.brand', 'Racine Carrée Calculator');
 
 const isCubiquePage = currentPathWithoutLocale.includes('racine-cubique');
 const isNthRootPage = currentPathWithoutLocale.includes('nth-root');
-const isCalculatorSubPage = isCubiquePage || isNthRootPage;
+const isChartPage = currentPathWithoutLocale.includes('square-root-chart');
+const isPerfectPage = currentPathWithoutLocale.includes('perfect-square');
+const isPerfectCubePage = currentPathWithoutLocale.includes('perfect-cube');
+const isCalculatorSubPage = isCubiquePage || isNthRootPage || isChartPage || isPerfectPage || isPerfectCubePage;
 ---
 
 <nav class="navbar" id="navbar" aria-label="Main navigation">
@@ -48,6 +51,15 @@ const isCalculatorSubPage = isCubiquePage || isNthRootPage;
                     </a></li>
                     <li role="none"><a href={getLocalizedUrl('/nth-root-calculator/', activeLocale)} class:list={['dropdown-item', { active: isNthRootPage }]} role="menuitem">
                         {t('nav.nth', 'Nth Root Calculator')}
+                    </a></li>
+                    <li role="none"><a href={getLocalizedUrl('/square-root-chart/', activeLocale)} class:list={['dropdown-item', { active: isChartPage }]} role="menuitem">
+                        {t('nav.chart', 'Square Root Chart Generator')}
+                    </a></li>
+                    <li role="none"><a href={getLocalizedUrl('/perfect-square-calculator/', activeLocale)} class:list={['dropdown-item', { active: isPerfectPage }]} role="menuitem">
+                        {t('nav.perfect', 'Perfect Square Calculator')}
+                    </a></li>
+                    <li role="none"><a href={getLocalizedUrl('/perfect-cube-calculator/', activeLocale)} class:list={['dropdown-item', { active: isPerfectCubePage }]} role="menuitem">
+                        {t('nav.cube', 'Perfect Cube Calculator')}
                     </a></li>
                 </ul>
             </li>

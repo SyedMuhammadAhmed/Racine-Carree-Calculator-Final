@@ -1,0 +1,87 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import PerfectSquareWidget from '../../components/PerfectSquareWidget.astro';
+import PerfectSquareContent from '../../components/PerfectSquareContent.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { LOCALES, getHtmlDir, getLocalizedUrl, getLocaleFromParams } from '../../../theme/i18n/utils';
+import { useTranslations } from '../../../theme/i18n/translations';
+import site from '../../config/site.json';
+import { getPageAlternateLinks } from '../../utils/seo';
+
+import { getSquareContent } from '../../data/i18n/content/squareContent';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return LOCALES
+    .filter((locale) => locale !== 'en')
+    .map((locale) => ({ params: { locale } }));
+}
+
+const lang = getLocaleFromParams(Astro.params);
+const t = await useTranslations(lang);
+const title = t('perfect.title', 'Perfect Square Calculator & Checker | Is It a Square?');
+const description = t('perfect.description', 'Check if any number is a perfect square instantly. Find base roots, prime factorization with powers, simplified radicals, and nearest bounding squares.');
+const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/perfect-square-calculator/', lang)}`;
+const alternateLinks = getPageAlternateLinks('/perfect-square-calculator/');
+
+const squareContent = getSquareContent(lang);
+const perfectFaqs = squareContent.faqs;
+---
+
+<Layout
+  title={title}
+  description={description}
+  lang={lang}
+  dir={getHtmlDir(lang)}
+  canonicalUrl={canonicalUrl}
+  alternateLinks={alternateLinks}
+  faqItems={perfectFaqs}
+>
+  <Navbar lang={lang} />
+  <main id="main-content">
+    <section class="above-fold" id="hero">
+      <div class="above-fold-stack">
+        <Breadcrumbs items={[{ label: t('nav.home', 'Home'), url: getLocalizedUrl('/', lang) }, { label: t('nav.perfect', 'Perfect Square Calculator'), url: getLocalizedUrl('/perfect-square-calculator/', lang) }]} />
+        <header class="hero-compact hero-compact--centered">
+          <h1 class="hero-title">
+            <span class="title-line">{t('perfect.hero.part1', 'Perfect Square')}</span>
+            <span class="title-line gradient-text">{t('perfect.hero.part2', 'Calculator')}</span>
+          </h1>
+          <p class="hero-subtitle">{t('perfect.hero.subtitle', 'Check whether any number is a perfect square instantly. Get base integer roots, prime factor powers, simplified radicals, and nearest bounding squares. 100% free.')}</p>
+          <div class="hero-pills">
+            <span class="hero-pill">
+              <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              {squareContent.heroPills[0]}
+            </span>
+            <span class="hero-pill">
+              <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+              {squareContent.heroPills[1]}
+            </span>
+            <span class="hero-pill">
+              <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+              {squareContent.heroPills[2]}
+            </span>
+            <span class="hero-pill">
+              <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              {squareContent.heroPills[3]}
+            </span>
+          </div>
+        </header>
+
+        <!-- Calculator Stage -->
+        <section class="calc-stage" id="calculators" aria-label="Perfect Square Calculator">
+          <div class="calc-stage-glow" aria-hidden="true"></div>
+          <div class="calc-suite" id="calcSuite">
+            <PerfectSquareWidget lang={lang} />
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <PerfectSquareContent lang={lang} faqs={perfectFaqs} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

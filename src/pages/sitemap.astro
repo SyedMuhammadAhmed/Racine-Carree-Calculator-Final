@@ -18,12 +18,15 @@ const mainPages = [
   { label: "Home — Square Root Calculator", href: "/", desc: "Square root calculator with exact decimals, simplified form, and step-by-step working out" },
   { label: "Racine Cubique Calculator", href: "/racine-cubique-calculator/", desc: "Cube root calculator for real positive and negative numbers" },
   { label: "Nth Root Calculator", href: "/nth-root-calculator/", desc: "Calculate radical roots of any index or degree" },
+  { label: "Square Root Chart Generator", href: "/square-root-chart/", desc: "Generate custom, interactive square root tables with simplified radicals" },
+  { label: "Perfect Square Calculator", href: "/perfect-square-calculator/", desc: "Check if any number is a perfect square with prime factors and nearest squares" },
+  { label: "Perfect Cube Calculator", href: "/perfect-cube-calculator/", desc: "Check if any number is a perfect cube with prime factors, roots, and bounding cubes" },
   { label: "About Us", href: "/about-us/", desc: "About our mission, methodology, and calculator precision" },
   { label: "Contact Us", href: "/contact-us/", desc: "Get in touch with support and submit feedback" },
   { label: "Privacy Policy", href: "/privacy/", desc: "Our commitment to user privacy and data handling" },
   { label: "Terms & Conditions", href: "/terms/", desc: "Website usage terms and conditions" },
   { label: "Disclaimer", href: "/disclaimer/", desc: "Educational disclaimer and calculation accuracy details" },
-  { label: "XML Sitemap", href: "/sitemap-index.xml", desc: "Machine-readable search engine XML sitemap index" }
+  { label: "XML Sitemap", href: "/sitemap-0.xml", desc: "Machine-readable search engine XML sitemap with interactive stylesheet" }
 ];
 
 const languageData: Record<Exclude<Locale, 'en'>, { name: string; nativeName: string }> = {
@@ -52,7 +55,10 @@ const localizedEditions = (LOCALES.filter(l => l !== 'en') as Array<Exclude<Loca
   pages: [
     { label: "Square Root", href: `/${loc}/` },
     { label: "Cube Root", href: `/${loc}/racine-cubique-calculator/` },
-    { label: "Nth Root", href: `/${loc}/nth-root-calculator/` }
+    { label: "Nth Root", href: `/${loc}/nth-root-calculator/` },
+    { label: "Square Root Chart", href: `/${loc}/square-root-chart/` },
+    { label: "Perfect Square", href: `/${loc}/perfect-square-calculator/` },
+    { label: "Perfect Cube", href: `/${loc}/perfect-cube-calculator/` }
   ]
 }));
 ---

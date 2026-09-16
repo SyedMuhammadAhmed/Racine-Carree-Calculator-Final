@@ -17,6 +17,9 @@
     "calculators": "Kalkulatory",
     "cbrt": "Kalkulator Pierwiastka Sześciennego",
     "nth": "Kalkulator Pierwiastka n-tego Stopnia",
+    "chart": "Generator Tabeli Pierwiastków Kwadratowych",
+    "perfect": "Kalkulator Kwadratu Liczby Całkowitej",
+    "cube": "Kalkulator Sześcianu Liczby Całkowitej",
     "sitemap": "Mapa strony",
     "disclaimer": "Zastrzeżenia prawne"
   },
@@ -135,6 +138,56 @@
       "numberLabel": "Liczba podpierwiastkowa (x)",
       "tooltipDegree": "Stopień pierwiastka (n).",
       "tooltipNumber": "Liczba, z której chcesz wyciągnąć pierwiastek."
+    }
+  },
+  "chart": {
+    "title": "Generator Tabeli Pierwiastków – Własna Tabela Pierwiastków",
+    "description": "Błyskawicznie wygeneruj własną tabelę pierwiastków kwadratowych dla dowolnego zakresu liczb. Wybierz dokładność i drukuj lub kopiuj za darmo.",
+    "hero": {
+      "part1": "Tabela Pierwiastków",
+      "part2": "Generator",
+      "subtitle": "Stwórz własną tabelę pierwiastków kwadratowych do druku dla dowolnego zakresu z wybraną dokładnością dziesiętną."
+    },
+    "calc": {
+      "title": "Generator Tabeli Pierwiastków Kwadratowych",
+      "desc": "Generuj tabele referencyjne dla dowolnego zakresu liczb",
+      "btn": "Generuj tabelę",
+      "startRange": "Liczba początkowa",
+      "endRange": "Liczba końcowa",
+      "precision": "Miejsca po przecinku",
+      "perfectOnly": "Tylko kwadraty idealne"
+    }
+  },
+  "perfect": {
+    "title": "Kalkulator Kwadratu Liczby Całkowitej | Czy to kwadrat doskonały?",
+    "description": "Błyskawicznie sprawdź, czy liczba jest kwadratem liczby całkowitej. Pierwiastki całkowite, rozkład na czynniki pierwsze i granice.",
+    "hero": {
+      "part1": "Kwadrat Doskonały",
+      "part2": "Kalkulator i Tester",
+      "subtitle": "Sprawdź, czy liczba całkowita jest kwadratem doskonałym. Zobacz pierwiastki całkowite, czynniki pierwsze i granice."
+    },
+    "calc": {
+      "title": "Kalkulator Kwadratu Doskonałego",
+      "desc": "Sprawdź, czy liczba całkowita jest kwadratem doskonałym",
+      "btn": "Sprawdź kwadrat",
+      "inputLabel": "Liczba do sprawdzenia (n)",
+      "quickTest": "Szybki test"
+    }
+  },
+  "cube": {
+    "title": "Kalkulator Sześcianu Doskonałego | Czy to sześcian doskonały?",
+    "description": "Sprawdź, czy liczba jest sześcianem doskonałym. Pierwiastki bazowe, rozkład na czynniki pierwsze i granice dla liczb dodatnich i ujemnych.",
+    "hero": {
+      "part1": "Sześcian Doskonały",
+      "part2": "Kalkulator i Tester",
+      "subtitle": "Sprawdź, czy liczba dodatnia lub ujemna jest sześcianem doskonałym. Dokładne pierwiastki, potęgi pierwsze i granice."
+    },
+    "calc": {
+      "title": "Kalkulator Sześcianu Doskonałego",
+      "desc": "Sprawdź, czy liczba jest sześcianem doskonałym",
+      "btn": "Sprawdź sześcian",
+      "inputLabel": "Liczba do sprawdzenia (n)",
+      "quickTest": "Szybki test"
     }
   }
 }

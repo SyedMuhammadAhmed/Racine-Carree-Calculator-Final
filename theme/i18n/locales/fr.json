@@ -17,6 +17,9 @@
     "calculators": "Calculateurs",
     "cbrt": "Calculateur Racine Cubique",
     "nth": "Calculateur Racine N-ième",
+    "chart": "Générateur de Tableau de Racine Carrée",
+    "perfect": "Calculateur de Carré Parfait",
+    "cube": "Calculateur de Cube Parfait",
     "sitemap": "Plan du Site",
     "disclaimer": "Avertissement"
   },
@@ -135,6 +138,56 @@
       "numberLabel": "Nombre (radicande x)",
       "tooltipDegree": "Le degré de la racine (n). Par exemple 2 pour carré, 3 pour cube, 4 pour racine quatrième.",
       "tooltipNumber": "Le nombre dont vous souhaitez calculer la racine."
+    }
+  },
+  "chart": {
+    "title": "Générateur de Tableau de Racine Carrée – Table Personnalisée",
+    "description": "Générez un tableau de racine carrée personnalisé pour n'importe quelle plage de nombres. Choisissez votre précision décimale et imprimez ou copiez gratuitement.",
+    "hero": {
+      "part1": "Tableau de Racine Carrée",
+      "part2": "Générateur",
+      "subtitle": "Générez un tableau de racine carrée personnalisé et imprimable pour n'importe quelle plage avec précision décimale au choix."
+    },
+    "calc": {
+      "title": "Générateur de Tableau de Racine Carrée",
+      "desc": "Générez des tables de référence personnalisées pour n'importe quelle plage",
+      "btn": "Générer le Tableau",
+      "startRange": "Nombre de début",
+      "endRange": "Nombre de fin",
+      "precision": "Décimales",
+      "perfectOnly": "Carrés parfaits uniquement"
+    }
+  },
+  "perfect": {
+    "title": "Calculateur de Carré Parfait | Est-ce un Carré Parfait ?",
+    "description": "Vérifiez instantanément si un nombre est un carré parfait. Obtenez les racines entières, la factorisation première et les carrés encadrants.",
+    "hero": {
+      "part1": "Carré Parfait",
+      "part2": "Calculateur & Vérificateur",
+      "subtitle": "Vérifiez si un nombre entier est un carré parfait. Obtenez les racines entières, les facteurs premiers et les carrés encadrants. 100% gratuit."
+    },
+    "calc": {
+      "title": "Calculateur de Carré Parfait",
+      "desc": "Vérifiez si un nombre entier est un carré parfait",
+      "btn": "Vérifier le Carré Parfait",
+      "inputLabel": "Nombre à vérifier (n)",
+      "quickTest": "Test rapide"
+    }
+  },
+  "cube": {
+    "title": "Calculateur de Cube Parfait | Est-ce un Cube Parfait ?",
+    "description": "Vérifiez instantanément si un nombre est un cube parfait. Obtenez les racines entières, la factorisation première et les cubes encadrants pour positifs et négatifs.",
+    "hero": {
+      "part1": "Cube Parfait",
+      "part2": "Calculateur & Vérificateur",
+      "subtitle": "Vérifiez si un nombre — positif ou négatif — est un cube parfait. Obtenez les racines entières, puissances premières et cubes encadrants. 100% gratuit."
+    },
+    "calc": {
+      "title": "Calculateur de Cube Parfait",
+      "desc": "Vérifiez si un nombre est un cube parfait",
+      "btn": "Vérifier le Cube Parfait",
+      "inputLabel": "Nombre à vérifier (n)",
+      "quickTest": "Test rapide"
     }
   }
 }

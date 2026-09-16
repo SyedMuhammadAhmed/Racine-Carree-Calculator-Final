@@ -17,6 +17,9 @@
     "calculators": "Calcolatori",
     "cbrt": "Calcolatore Radice Cubica",
     "nth": "Calcolatore Radice Ennesima",
+    "chart": "Generatore di Tabella di Radice Quadrata",
+    "perfect": "Calcolatore di Quadrato Perfetto",
+    "cube": "Calcolatore di Cubo Perfetto",
     "sitemap": "Mappa del Sito",
     "disclaimer": "Disclaimer"
   },
@@ -135,6 +138,56 @@
       "numberLabel": "Numero (radicando x)",
       "tooltipDegree": "Il grado della radice (n).",
       "tooltipNumber": "Il numero di cui calcolare la radice."
+    }
+  },
+  "chart": {
+    "title": "Generatore di Tabella di Radice Quadrata – Crea Tabella Personalizzata",
+    "description": "Genera istantaneamente una tabella di radice quadrata personalizzata per qualsiasi intervallo. Scegli la precisione decimale e stampa o copia gratuitamente.",
+    "hero": {
+      "part1": "Tabella di Radice Quadrata",
+      "part2": "Generatore",
+      "subtitle": "Crea una tabella di radici quadrate stampabile e personalizzata per qualsiasi intervallo con precisione decimale selezionabile."
+    },
+    "calc": {
+      "title": "Generatore di Tabella di Radice Quadrata",
+      "desc": "Genera tabelle di riferimento personalizzate per qualsiasi intervallo",
+      "btn": "Genera Tabella",
+      "startRange": "Numero Iniziale",
+      "endRange": "Numero Finale",
+      "precision": "Decimali",
+      "perfectOnly": "Solo Quadrati Perfetti"
+    }
+  },
+  "perfect": {
+    "title": "Calcolatore di Quadrato Perfetto | È un Quadrato Perfetto?",
+    "description": "Verifica all'istante se un numero è un quadrato perfetto. Radici intere, scomposizione in fattori primi e quadrati delimitatori.",
+    "hero": {
+      "part1": "Quadrato Perfetto",
+      "part2": "Calcolatore e Verifica",
+      "subtitle": "Verifica se un numero intero è un quadrato perfetto. Ottieni radici intere, fattori primi e quadrati di riferimento."
+    },
+    "calc": {
+      "title": "Calcolatore di Quadrato Perfetto",
+      "desc": "Verifica se un numero intero è un quadrato perfetto",
+      "btn": "Verifica Quadrato Perfetto",
+      "inputLabel": "Numero da verificare (n)",
+      "quickTest": "Test rapido"
+    }
+  },
+  "cube": {
+    "title": "Calcolatore di Cubo Perfetto | È un Cubo Perfetto?",
+    "description": "Verifica all'istante se un numero è un cubo perfetto. Radici di base, scomposizione in fattori primi e cubi delimitatori per numeri positivi e negativi.",
+    "hero": {
+      "part1": "Cubo Perfetto",
+      "part2": "Calcolatore e Verifica",
+      "subtitle": "Verifica se un numero — positivo o negativo — è un cubo perfetto. Radici esatte, potenze prime e cubi di riferimento."
+    },
+    "calc": {
+      "title": "Calcolatore di Cubo Perfetto",
+      "desc": "Verifica se un numero è un cubo perfetto",
+      "btn": "Verifica Cubo Perfetto",
+      "inputLabel": "Numero da verificare (n)",
+      "quickTest": "Test rapido"
     }
   }
 }

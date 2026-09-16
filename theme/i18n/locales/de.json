@@ -17,6 +17,9 @@
     "calculators": "Rechner",
     "cbrt": "Kubikwurzel Rechner",
     "nth": "N-te Wurzel Rechner",
+    "chart": "Quadratwurzel-Tabellen-Generator",
+    "perfect": "Perfekte-Quadratzahl-Rechner",
+    "cube": "Perfekte-Kubikzahl-Rechner",
     "sitemap": "Sitemap",
     "disclaimer": "Haftungsausschluss"
   },
@@ -135,6 +138,56 @@
       "numberLabel": "Radikand (Zahl x)",
       "tooltipDegree": "Der Wurzelexponent (n).",
       "tooltipNumber": "Die Zahl, aus der die Wurzel gezogen werden soll."
+    }
+  },
+  "chart": {
+    "title": "Quadratwurzel-Tabellen-Generator – Eigene Tabelle erstellen",
+    "description": "Erstellen Sie sofort eine individuelle Quadratwurzel-Tabelle für jeden Zahlenbereich. Wählen Sie Nachkommastellen und drucken oder kopieren Sie kostenlos.",
+    "hero": {
+      "part1": "Quadratwurzel-Tabelle",
+      "part2": "Generator",
+      "subtitle": "Erstellen Sie eine druckbare, individuelle Quadratwurzel-Tabelle für jeden Zahlenbereich mit wählbarer Dezimalgenauigkeit."
+    },
+    "calc": {
+      "title": "Quadratwurzel-Tabellen-Generator",
+      "desc": "Erstellen Sie druckbare Referenztabellen für jeden Zahlenbereich",
+      "btn": "Tabelle generieren",
+      "startRange": "Startwert",
+      "endRange": "Endwert",
+      "precision": "Nachkommastellen",
+      "perfectOnly": "Nur Quadratzahlen"
+    }
+  },
+  "perfect": {
+    "title": "Perfekte Quadratzahl Rechner | Ist es eine Quadratzahl?",
+    "description": "Prüfen Sie sofort, ob eine Zahl eine Quadratzahl ist. Erhalten Sie ganzzahlige Wurzeln, Primfaktorzerlegung und benachbarte Quadratzahlen.",
+    "hero": {
+      "part1": "Quadratzahl",
+      "part2": "Rechner & Prüfer",
+      "subtitle": "Prüfen Sie, ob eine ganze Zahl eine Quadratzahl ist. Sehen Sie ganzzahlige Wurzeln, Primfaktoren und Schranken sofort."
+    },
+    "calc": {
+      "title": "Quadratzahl Rechner",
+      "desc": "Prüfen Sie, ob eine Zahl eine perfekte Quadratzahl ist",
+      "btn": "Quadratzahl prüfen",
+      "inputLabel": "Zu prüfende Zahl (n)",
+      "quickTest": "Schnelltest"
+    }
+  },
+  "cube": {
+    "title": "Perfekte Kubikzahl Rechner | Ist es eine Kubikzahl?",
+    "description": "Prüfen Sie sofort, ob eine Zahl eine Kubikzahl ist. Basiswurzeln, Primfaktorzerlegung und benachbarte Kubikzahlen für positive und negative Zahlen.",
+    "hero": {
+      "part1": "Kubikzahl",
+      "part2": "Rechner & Prüfer",
+      "subtitle": "Prüfen Sie, ob eine Zahl — positiv oder negativ — eine perfekte Kubikzahl ist. Wurzeln, Primfaktoren und Schranken."
+    },
+    "calc": {
+      "title": "Kubikzahl Rechner",
+      "desc": "Prüfen Sie, ob eine Zahl eine perfekte Kubikzahl ist",
+      "btn": "Kubikzahl prüfen",
+      "inputLabel": "Zu prüfende Zahl (n)",
+      "quickTest": "Schnelltest"
     }
   }
 }

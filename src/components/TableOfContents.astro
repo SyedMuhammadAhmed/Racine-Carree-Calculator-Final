@@ -14,9 +14,34 @@ interface Props {
   items: TocItem[];
   title?: string;
   isOpen?: boolean;
+  lang?: string;
 }
 
-const { items, title = "Table of Contents", isOpen = false } = Astro.props;
+const { items, title, isOpen = false, lang = "en" } = Astro.props;
+
+const tocI18n: Record<string, { sections: string; show: string; hide: string; defaultTitle: string }> = {
+  en: { sections: "Sections", show: "Show", hide: "Hide", defaultTitle: "Table of Contents" },
+  fr: { sections: "Sections", show: "Afficher", hide: "Masquer", defaultTitle: "Table des matières" },
+  es: { sections: "Secciones", show: "Mostrar", hide: "Ocultar", defaultTitle: "Tabla de contenidos" },
+  de: { sections: "Abschnitte", show: "Anzeigen", hide: "Ausblenden", defaultTitle: "Inhaltsverzeichnis" },
+  it: { sections: "Sezioni", show: "Mostra", hide: "Nascondi", defaultTitle: "Indice dei contenuti" },
+  pt: { sections: "Seções", show: "Mostrar", hide: "Ocultar", defaultTitle: "Índice de conteúdos" },
+  ru: { sections: "Разделов", show: "Показать", hide: "Скрыть", defaultTitle: "Содержание" },
+  pl: { sections: "Sekcji", show: "Pokaż", hide: "Ukryj", defaultTitle: "Spis treści" },
+  sv: { sections: "Avsnitt", show: "Visa", hide: "Dölj", defaultTitle: "Innehållsförteckning" },
+  tr: { sections: "Bölüm", show: "Göster", hide: "Gizle", defaultTitle: "İçindekiler" },
+  id: { sections: "Bagian", show: "Tampilkan", hide: "Sembunyikan", defaultTitle: "Daftar Isi" },
+  ms: { sections: "Bahagian", show: "Tunjukkan", hide: "Sembunyikan", defaultTitle: "Jadual Kandungan" },
+  ar: { sections: "أقسام", show: "إظهار", hide: "إخفاء", defaultTitle: "جدول المحتويات" },
+  hi: { sections: "अनुभाग", show: "दिखाएं", hide: "छिपाएं", defaultTitle: "विषय सूची" },
+  bn: { sections: "বিভাগ", show: "দেখান", hide: "লুকান", defaultTitle: "সূচিপত্র" },
+  ja: { sections: "セクション", show: "表示", hide: "非表示", defaultTitle: "目次" },
+  ko: { sections: "섹션", show: "보기", hide: "숨기기", defaultTitle: "목차" },
+  bg: { sections: "Раздела", show: "Показване", hide: "Скриване", defaultTitle: "Съдържание" },
+};
+
+const currentI18n = tocI18n[lang] || tocI18n.en;
+const displayTitle = title || currentI18n.defaultTitle;
 ---
 
 <div class="toc-wrapper">
@@ -33,18 +58,18 @@ const { items, title = "Table of Contents", isOpen = false } = Astro.props;
             <line x1="3" y1="18" x2="3.01" y2="18"></line>
           </svg>
         </span>
-        <span class="toc-heading">{title}</span>
-        <span class="toc-count-badge">{items.length} Sections</span>
+        <span class="toc-heading">{displayTitle}</span>
+        <span class="toc-count-badge">{items.length} {currentI18n.sections}</span>
       </div>
       <div class="toc-toggle-indicator">
-        <span class="toc-toggle-show">Show</span>
-        <span class="toc-toggle-hide">Hide</span>
+        <span class="toc-toggle-show">{currentI18n.show}</span>
+        <span class="toc-toggle-hide">{currentI18n.hide}</span>
         <svg class="toc-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </div>
     </summary>
-    <nav class="toc-content" aria-label={title}>
+    <nav class="toc-content" aria-label={displayTitle}>
       <ol class="toc-list">
         {items.map((item) => (
           <li class="toc-item">
