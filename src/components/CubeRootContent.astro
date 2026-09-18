@@ -1,6 +1,8 @@
 ---
 import TableOfContents from './TableOfContents.astro';
 import { getLocalizedUrl, DEFAULT_LOCALE, type Locale } from '../../theme/i18n/utils';
+import { getCbrtContent } from '../data/i18n/content/cbrtContent';
+import { getAuthorByline } from '../data/i18n/commonI18n';
 
 interface Props {
   lang?: string;
@@ -10,85 +12,26 @@ const { lang = DEFAULT_LOCALE, faqs = [] } = Astro.props;
 const currentLocale = (lang || DEFAULT_LOCALE) as Locale;
 const localizedUrl = (path: string) => getLocalizedUrl(path, currentLocale);
 
-const cubeRootToc = [
-  {
-    title: "What Is Racine Cubique (Cube Root)?",
-    href: "#section-what-is-cube-root"
-  },
-  {
-    title: "How to Use the Racine Cubique Calculator",
-    href: "#section-cbrt-how-to-use",
-    subitems: [
-      { title: "Type Your Number", href: "#cbrt-step-input" },
-      { title: "Click Calculate", href: "#cbrt-step-calc" },
-      { title: "Read Your Result", href: "#cbrt-step-result" }
-    ]
-  },
-  {
-    title: "Cube Root Notation: What Does the ∛ Symbol Mean?",
-    href: "#section-cbrt-notation"
-  },
-  {
-    title: "What Is the Formula for Cube Roots?",
-    href: "#section-cbrt-formula"
-  },
-  {
-    title: "The Five Core Laws of Cube Roots",
-    href: "#section-cbrt-laws"
-  },
-  {
-    title: "How to Calculate Racine Cubique — Different Methods",
-    href: "#section-cbrt-methods",
-    subitems: [
-      { title: "1. Using This Calculator (Fastest)", href: "#cbrt-method-calculator" },
-      { title: "2. Prime Factorization Method", href: "#cbrt-method-factorization" },
-      { title: "3. Newton-Raphson Method", href: "#cbrt-method-newton" },
-      { title: "4. Estimation Method (By Hand)", href: "#cbrt-method-estimation" }
-    ]
-  },
-  {
-    title: "Cube Roots of Positive Numbers",
-    href: "#section-cbrt-positive"
-  },
-  {
-    title: "Cube Roots of Negative Numbers (Why They're Real)",
-    href: "#section-cbrt-negative"
-  },
-  {
-    title: "Difference Between Racine Cubique and Racine Carrée",
-    href: "#section-cbrt-diff"
-  },
-  {
-    title: "Real-Life Applications of Racine Cubique",
-    href: "#section-cbrt-applications",
-    subitems: [
-      { title: "Architecture & 3D Design", href: "#cbrt-app-architecture" },
-      { title: "Shipping & Packaging", href: "#cbrt-app-shipping" },
-      { title: "Physics & Engineering", href: "#cbrt-app-physics" },
-      { title: "Finance & Growth Rates", href: "#cbrt-app-finance" },
-      { title: "Everyday Measuring & DIY", href: "#cbrt-app-everyday" }
-    ]
-  },
-  {
-    title: "Cube Root Simplification Table",
-    href: "#section-cbrt-simplification"
-  },
-  {
-    title: "Complete Reference Table — Cube Roots 1 to 100",
-    href: "#section-cbrt-reference"
-  },
-  {
-    title: "Perfect Cubes — The Essential Memorization List",
-    href: "#section-cbrt-perfect-cubes"
-  },
-  {
-    title: "Frequently Asked Questions",
-    href: "#section-cbrt-faqs"
-  },
-  {
-    title: "A Quick Recap",
-    href: "#section-cbrt-recap"
-  }
+const content = getCbrtContent(lang);
+const authorByline = getAuthorByline(lang);
+
+const table100Rows = Array.from({ length: 100 }, (_, i) => {
+  const n = i + 1;
+  const root = Math.cbrt(n);
+  const isPerfect = Math.round(root) ** 3 === n;
+  return {
+    n,
+    rootFormatted: root.toFixed(3),
+    isPerfect
+  };
+});
+
+const perfectCubesList = [
+  { n1: 1, c1: 1, n2: 6, c2: 216 },
+  { n1: 2, c1: 8, n2: 7, c2: 343 },
+  { n1: 3, c1: 27, n2: 8, c2: 512 },
+  { n1: 4, c1: 64, n2: 9, c2: 729 },
+  { n1: 5, c1: 125, n2: 10, c2: 1000 },
 ];
 ---
 
@@ -96,422 +39,311 @@ const cubeRootToc = [
 
         <!-- Table of Contents -->
         <div class="article-container" style="padding-top: 0; padding-bottom: 0;">
-            <TableOfContents items={cubeRootToc} title="Table of Contents" isOpen={false} />
+            <TableOfContents items={content.toc} title={content.tocTitle} isOpen={false} lang={lang} />
         </div>
 
-        <!-- Section: What Is Racine Cubique -->
+        <!-- Section 1: What Is Racine Cubique -->
         <section class="article-section" id="section-what-is-cube-root">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> Complete Guide</div>
-                <h2 class="article-h2">What Is Racine Cubique (Cube Root)?</h2>
-                <p>Racine cubique is the French word for cube root, and just like its cousin "racine carrée," it's a term people search in English all the time. If you landed here looking for a fast answer, the racine cubique calculator above will give you one instantly. Everything below explains what a cube root actually is, how to find one by hand, and where it shows up outside the classroom.</p>
-                <p>A cube root is a number that, when multiplied by itself three times, gives you another number. Multiply 3 by itself three times — 3 × 3 × 3 — and you get 27. So we say the cube root of 27 is 3.</p>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> {content.s1Eyebrow}</div>
+                <h2 class="article-h2">{content.s1Title}</h2>
+                <p>{content.s1P1}</p>
+                <p>{content.s1P2}</p>
                 <div class="examples-grid">
-                    <div class="example-card"><span class="example-expr">∛8 = 2</span><span class="example-reason">because 2 × 2 × 2 = 8</span></div>
-                    <div class="example-card"><span class="example-expr">∛64 = 4</span><span class="example-reason">because 4 × 4 × 4 = 64</span></div>
-                    <div class="example-card"><span class="example-expr">∛1000 = 10</span><span class="example-reason">because 10 × 10 × 10 = 1,000</span></div>
+                    {content.s1Cards.map(c => (
+                      <div class="example-card"><span class="example-expr">{c.expr}</span><span class="example-reason">{c.reason}</span></div>
+                    ))}
                 </div>
-                <p>That's the entire idea. Everything else on this page just builds on it.</p>
+                <p>{content.s1P3}</p>
             </div>
         </section>
 
         <figure class="section-image">
             <img src="/images/cbrt-concept.webp" alt="3D cube geometry diagram for racine cubique calculator" loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
-            <figcaption>Visualizing a cube root: Finding the side length of a 3D cube from its volume</figcaption>
+            <figcaption>{content.s1Caption}</figcaption>
         </figure>
 
-        <!-- Section: How to Use -->
-        <section class="article-section article-section--alt" id="section-how-to-use-cbrt">
+        <!-- Section 2: How to Use -->
+        <section class="article-section article-section--alt" id="section-cbrt-how-to-use">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> How To Use</div>
-                <h2 class="article-h2">How to Use the Racine Cubique Calculator</h2>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> {content.s2Eyebrow}</div>
+                <h2 class="article-h2">{content.s2Title}</h2>
+                <p>{content.s2Intro}</p>
                 <div class="steps-visual">
-                    <div class="step-card" id="cbrt-step-input"><div class="step-number">1</div><div class="step-content"><h3>Type Your Number</h3><p>Type your number into the box above.</p></div></div>
-                    <div class="step-card" id="cbrt-step-calc"><div class="step-number">2</div><div class="step-content"><h3>Click Calculate</h3><p>Hit the Calculate button to process your number.</p></div></div>
-                    <div class="step-card" id="cbrt-step-result"><div class="step-number">3</div><div class="step-content"><h3>Read Your Result</h3><p>The calculator shows the cube root instantly, including a simplified form when one's available and correct handling of negative numbers.</p></div></div>
+                    <div class="step-card" id="cbrt-step-input"><div class="step-number">1</div><div class="step-content"><h3>{content.s2Steps[0]?.title}</h3><p>{content.s2Steps[0]?.text}</p></div></div>
+                    <div class="step-card" id="cbrt-step-calc"><div class="step-number">2</div><div class="step-content"><h3>{content.s2Steps[1]?.title}</h3><p>{content.s2Steps[1]?.text}</p></div></div>
+                    <div class="step-card" id="cbrt-step-result"><div class="step-number">3</div><div class="step-content"><h3>{content.s2Steps[2]?.title}</h3><p>{content.s2Steps[2]?.text}</p></div></div>
                 </div>
-                <p>No formulas needed to use the tool itself. The rest of this guide is for anyone who wants to understand what's happening behind that one click.</p>
+                <p>{content.s2Conclusion}</p>
             </div>
         </section>
 
-        <!-- Section: Notation -->
+        <!-- Section 3: Notation -->
         <section class="article-section" id="section-cbrt-notation">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17c2 0 2.8-1 2.8-2.8V10c0-2 1-3.3 3.2-3"/><path d="M9 11.2h5.7"/></svg></span> Notation</div>
-                <h2 class="article-h2">Cube Root Notation: What Does the ∛ Symbol Mean?</h2>
-                <p>The symbol <strong>∛</strong> is the cube root sign. It's built from the same radical symbol used for square roots, but with a small "3" (called the index) tucked into the notch.</p>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17c2 0 2.8-1 2.8-2.8V10c0-2 1-3.3 3.2-3"/><path d="M9 11.2h5.7"/></svg></span> {content.s3Eyebrow}</div>
+                <h2 class="article-h2">{content.s3Title}</h2>
+                <p>{content.s3Intro}</p>
                 <div class="examples-grid">
-                    <div class="example-card"><span class="example-expr">∛27</span><span class="example-reason">"the cube root of 27"</span></div>
-                    <div class="example-card"><span class="example-expr">27 = radicand</span><span class="example-reason">The number inside the symbol</span></div>
-                    <div class="example-card"><span class="example-expr">3 = index</span><span class="example-reason">How many times to multiply</span></div>
+                    {content.s3Cards.map(c => (
+                      <div class="example-card"><span class="example-expr">{c.expr}</span><span class="example-reason">{c.reason}</span></div>
+                    ))}
                 </div>
-                <p>You'll also see cube roots written as a fractional exponent:</p>
+                <p>{content.s3P1}</p>
                 <div class="math-block"><span class="math-formula">x^(1/3) = ∛x</span></div>
-                <p>Both forms mean the same thing — the exponent version is often used in calculators, spreadsheets, and programming because the ∛ symbol isn't always easy to type.</p>
+                <p>{content.s3P2}</p>
+                <p>{content.s3P3}</p>
             </div>
         </section>
 
         <figure class="section-image">
             <img src="/images/cbrt-notation.webp" alt="Radical notation index diagram for racine cubique calculator" loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
-            <figcaption>The anatomy of a cube root expression and its mathematical terms</figcaption>
+            <figcaption>{content.s3Caption}</figcaption>
         </figure>
 
-        <!-- Section: Formula -->
+        <!-- Section 4: Formula -->
         <section class="article-section article-section--alt" id="section-cbrt-formula">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></span> Formula</div>
-                <h2 class="article-h2">What Is the Formula for Cube Roots?</h2>
-                <p>Like square roots, there's no single plug-and-play formula — a cube root is defined by a relationship:</p>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></span> {content.s4Eyebrow}</div>
+                <h2 class="article-h2">{content.s4Title}</h2>
+                <p>{content.s4Intro}</p>
                 <div class="math-block"><span class="math-formula">If x = ∛y, then x × x × x = y (or x³ = y)</span></div>
-                <p>In plain words: whatever answer you get, multiplying it by itself three times has to bring you back to your starting number.</p>
+                <p>{content.s4P1}</p>
             </div>
         </section>
 
-        <!-- Section: Five Core Laws -->
+        <!-- Section 5: Five Core Laws -->
         <section class="article-section" id="section-cbrt-laws">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Core Laws</div>
-                <h2 class="article-h2">The Five Core Laws of Cube Roots</h2>
-                <p>These five rules mirror the <a href={localizedUrl('/#section-laws')} style="color: var(--primary-500); font-weight: 600;">foundational 5 square root rules</a> you may already know — but adapted for the third degree. Once you master them, the <a href={localizedUrl('/nth-root-calculator/')} style="color: var(--primary-500); font-weight: 600;">higher-degree radical root calculator</a> generalizes the same patterns even further.</p>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> {content.s5Eyebrow}</div>
+                <h2 class="article-h2">{content.s5Title}</h2>
+                <p>{content.s5Intro}</p>
                 <div class="law-cards">
-                    <div class="law-card">
-                        <div class="law-header"><div class="law-number">1</div><div><div class="law-label">Product Rule</div><div class="law-subtitle">Split products inside radicals</div></div></div>
-                        <div class="math-block"><span class="math-formula">∛(a × b) = ∛a × ∛b</span></div>
-                        <p class="law-example"><strong>Example:</strong> ∛8 × ∛27 = 2 × 3 = 6, and ∛(8×27) = ∛216 = 6. Same answer.</p>
-                        <p class="law-explanation">Just like with <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">simplifying square roots (racine carrée)</a>, you can break a complicated cube root into simpler pieces. Instead of computing ∛216 directly, factor it as 8 × 27, compute each cube root separately, and multiply. This is the go-to technique for simplifying expressions like ∛(24) = ∛(8×3) = 2∛3.</p>
-                    </div>
-                    <div class="law-card">
-                        <div class="law-header"><div class="law-number">2</div><div><div class="law-label">Quotient Rule</div><div class="law-subtitle">Split quotients inside radicals</div></div></div>
-                        <div class="math-block"><span class="math-formula">∛(a ÷ b) = ∛a ÷ ∛b</span></div>
-                        <p class="law-example"><strong>Example:</strong> ∛64 ÷ ∛8 = 4 ÷ 2 = 2, and ∛(64÷8) = ∛8 = 2.</p>
-                        <p class="law-explanation">The mirror of the product rule — take the cube root of a fraction by rooting the numerator and denominator separately. Particularly useful when simplifying algebraic expressions like ∛(125/8) = ∛125 ÷ ∛8 = 5/2.</p>
-                    </div>
-                    <div class="law-card">
-                        <div class="law-header"><div class="law-number">3</div><div><div class="law-label">Power Rule</div><div class="law-subtitle">Cubing and cube root cancel each other</div></div></div>
-                        <div class="math-block"><span class="math-formula">∛(a³) = a</span></div>
-                        <p class="law-example"><strong>Example:</strong> ∛(5³) = ∛125 = 5. Cubing and cube-rooting undo each other.</p>
-                        <p class="law-explanation">Unlike square roots, which only return non-negative values, the power rule for cube roots works for <em>all</em> real numbers — positive, negative, and zero. ∛((-3)³) = ∛(-27) = -3. This is a key difference from the <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">square root principal branch</a> (which needs absolute value for negatives).</p>
-                    </div>
-                    <div class="law-card">
-                        <div class="law-header"><div class="law-number">4</div><div><div class="law-label">Self-Cube Rule</div><div class="law-subtitle">Cubing a cube root returns the radicand</div></div></div>
-                        <div class="math-block"><span class="math-formula">(∛a)³ = a</span></div>
-                        <p class="law-example"><strong>Example:</strong> (∛5)³ = 5. (∛12)³ = 12. It always works.</p>
-                        <p class="law-explanation">This is the definition of cube root stated in reverse. If ∛a is "the number that, when cubed, gives a," then cubing ∛a must give you a back. This identity is used to rationalize cube-root denominators and appears in solving cubic equations.</p>
-                    </div>
-                    <div class="law-card">
-                        <div class="law-header"><div class="law-number">5</div><div><div class="law-label">Identity Values</div><div class="law-subtitle">The cube roots of 0 and 1 never change</div></div></div>
-                        <div class="math-block"><span class="math-formula">∛1 = 1 &nbsp;and&nbsp; ∛0 = 0</span></div>
-                        <p class="law-example"><strong>Example:</strong> No matter the context, ∛1 is always 1 and ∛0 is always 0.</p>
-                        <p class="law-explanation">These are the fixed points of the cube root function. ∛1 = 1 because 1³ = 1, and ∛0 = 0 because 0³ = 0. They serve as boundary conditions in proofs and as sanity checks for formulas — plug in 0 or 1, and you should always get a sensible answer.</p>
-                    </div>
+                    {content.s5Laws.map((law, idx) => (
+                      <div class="law-card">
+                          <div class="law-header">
+                            <div class="law-number">{idx + 1}</div>
+                            <div><div class="law-label">{law.name}</div><div class="law-subtitle">{law.subtitle}</div></div>
+                          </div>
+                          <div class="math-block"><span class="math-formula">{law.example}</span></div>
+                          <p class="law-explanation">{law.explanation}</p>
+                      </div>
+                    ))}
                 </div>
             </div>
         </section>
 
-        <!-- Section: Calculation Methods -->
+        <!-- Section 6: Calculation Methods -->
         <section class="article-section article-section--alt" id="section-cbrt-methods">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></span> Methods</div>
-                <h2 class="article-h2">How to Calculate Racine Cubique — Different Methods</h2>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></span> {content.s6Eyebrow}</div>
+                <h2 class="article-h2">{content.s6Title}</h2>
+                <p>{content.s6Intro}</p>
 
-                <h3 class="article-h3" id="cbrt-method-calculator">1. Using This Racine Cubique Calculator (Fastest)</h3>
-                <p>Type in your number, click Calculate, done. This is the method most people reach for once they know it exists — especially for decimals or large numbers where hand methods get slow. You can also use our <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">online square root solver</a> for second-degree roots or the <a href={localizedUrl('/nth-root-calculator/')} style="color: var(--primary-500); font-weight: 600;">custom index nth root solver</a> for any custom degree.</p>
-
-                <h3 class="article-h3" id="cbrt-method-factorization">2. Prime Factorization Method (Best for Perfect Cubes)</h3>
-                <p>This method breaks a number into its prime factors and groups them in sets of three.</p>
-                <div class="method-example">
-                    <div class="method-title">Example: Find ∛216</div>
-                    <ul class="method-steps-list">
-                        <li>Step 1 — Break 216 into prime factors: 216 = 2 × 2 × 2 × 3 × 3 × 3</li>
-                        <li>Step 2 — Group into sets of three: (2 × 2 × 2) × (3 × 3 × 3)</li>
-                        <li>Step 3 — Take one number from each group: 2 × 3 = 6</li>
-                        <li>So ∛216 = 6.</li>
-                    </ul>
+                <div class="method-card" id="cbrt-method-calculator">
+                    <div class="method-badge">Method 1</div>
+                    <h3 class="method-title">{content.s6M1Title}</h3>
+                    <p>{content.s6M1Text}</p>
                 </div>
 
-                <h3 class="article-h3" id="cbrt-method-newton">3. Newton-Raphson Method (Best for Precision)</h3>
-                <p>This is an approximation method used by computers and scientific calculators to home in on a very precise decimal answer through repeated refinement.</p>
+                <div class="method-card" id="cbrt-method-factorization">
+                    <div class="method-badge">Method 2</div>
+                    <h3 class="method-title">{content.s6M2Title}</h3>
+                    <p>{content.s6M2Intro}</p>
+                    <div class="worked-example">
+                        <div class="example-tag">{content.s6M2ExTitle}</div>
+                        <ol class="example-steps">
+                            {content.s6M2Steps.map(step => (
+                              <li>{step}</li>
+                            ))}
+                        </ol>
+                    </div>
+                </div>
 
-                <h3 class="article-h3" id="cbrt-method-estimation">4. Estimation Method (Fastest by Hand)</h3>
-                <div class="method-example">
-                    <div class="method-title">Example: Estimate ∛50</div>
-                    <ul class="method-steps-list">
-                        <li>3³ = 27</li>
-                        <li>4³ = 64</li>
-                        <li>Since 50 is between 27 and 64, ∛50 is between 3 and 4 — closer to 4.</li>
-                        <li>The real answer is about 3.68, so this trick gets you close fast.</li>
-                    </ul>
+                <div class="method-card" id="cbrt-method-newton">
+                    <div class="method-badge">Method 3</div>
+                    <h3 class="method-title">{content.s6M3Title}</h3>
+                    <p>{content.s6M3Text}</p>
+                    <div class="math-block"><span class="math-formula">x_(n+1) = (2·x_n + A / x_n²) / 3</span></div>
+                </div>
+
+                <div class="method-card" id="cbrt-method-estimation">
+                    <div class="method-badge">Method 4</div>
+                    <h3 class="method-title">{content.s6M4Title}</h3>
+                    <p>{content.s6M4Intro}</p>
+                    <div class="worked-example">
+                        <div class="example-tag">{content.s6M4ExTitle}</div>
+                        <ol class="example-steps">
+                            {content.s6M4Steps.map(step => (
+                              <li>{step}</li>
+                            ))}
+                        </ol>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section: Positive Numbers -->
+        <!-- Section 7: Positive Numbers -->
         <section class="article-section" id="section-cbrt-positive">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span> Positive Numbers</div>
-                <h2 class="article-h2">Cube Roots of Positive Numbers</h2>
-                <p>Every positive number has exactly one real cube root, and it's always positive.</p>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> {content.s7Eyebrow}</div>
+                <h2 class="article-h2">{content.s7Title}</h2>
+                <p>{content.s7Intro}</p>
                 <div class="table-scroll-wrapper">
                     <table class="data-table">
-                        <thead><tr><th>Number</th><th>Cube Root</th><th>Why</th></tr></thead>
+                        <thead><tr><th>{content.s7ThNumber}</th><th>{content.s7ThRoot}</th><th>{content.s7ThWhy}</th></tr></thead>
                         <tbody>
-                            <tr><td>8</td><td>2</td><td>2 × 2 × 2 = 8</td></tr>
-                            <tr><td>125</td><td>5</td><td>5 × 5 × 5 = 125</td></tr>
-                            <tr><td>512</td><td>8</td><td>8 × 8 × 8 = 512</td></tr>
-                            <tr><td>10</td><td>≈2.154</td><td>Not a whole number, but still a real, exact value</td></tr>
+                            <tr><td>8</td><td>2</td><td>{content.s7Row8}</td></tr>
+                            <tr><td>125</td><td>5</td><td>{content.s7Row125}</td></tr>
+                            <tr><td>512</td><td>8</td><td>{content.s7Row512}</td></tr>
+                            <tr><td>1,000</td><td>10</td><td>{content.s7Row10}</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p>Unlike square roots, cube roots don't have a "second" answer to worry about — there's only one real cube root for any given number.</p>
+                <p>{content.s7Conclusion}</p>
             </div>
         </section>
 
-        <!-- Section: Negative Numbers -->
+        <!-- Section 8: Negative Numbers -->
         <section class="article-section article-section--alt" id="section-cbrt-negative">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg></span> Negative Numbers</div>
-                <h2 class="article-h2">Cube Roots of Negative Numbers (Why They're Real — Unlike Square Roots)</h2>
-                <p>Here's the single most important thing that separates cube roots from square roots: <strong>you can take the cube root of a negative number, and the answer is a normal, real number.</strong></p>
-                <p>Why does this work when it doesn't for square roots? Because multiplying three negative numbers together gives you a negative result: negative × negative = positive, then positive × negative = negative.</p>
-                <div class="method-example">
-                    <div class="method-title">Example: ∛(−64)</div>
-                    <ul class="method-steps-list">
-                        <li>∛(−64) = −4, because (−4) × (−4) × (−4) = −64</li>
-                    </ul>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> {content.s8Eyebrow}</div>
+                <h2 class="article-h2">{content.s8Title}</h2>
+                <p>{content.s8P1}</p>
+                <p>{content.s8P2}</p>
+                <div class="worked-example">
+                    <div class="example-tag">{content.s8ExTitle}</div>
+                    <p>{content.s8ExStep}</p>
                 </div>
-                <p>That's the full answer. No "i," no imaginary unit, nothing extra needed.</p>
+                <p>{content.s8Conclusion}</p>
                 <div class="warning-box">
-                    <div class="warning-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+                    <div class="warning-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
                     <div class="warning-content">
-                        <strong>Key Difference from Square Roots</strong>
-                        <p>Square roots of negative numbers require the imaginary unit <em>i</em>, but cube roots handle negatives just fine on their own. This is genuinely useful to know if you've also explored our <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">step-by-step Racine Carrée Calculator</a>.</p>
+                        <strong>{content.s8WarningTitle}</strong>
+                        <p>{content.s8WarningText}</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section: Difference Cubique vs Carrée -->
-        <section class="article-section" id="section-cbrt-vs-sqrt">
+        <!-- Section 9: Difference vs Square Root -->
+        <section class="article-section" id="section-cbrt-diff">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span> Comparison</div>
-                <h2 class="article-h2">Difference Between Racine Cubique and Racine Carrée</h2>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span> {content.s9Eyebrow}</div>
+                <h2 class="article-h2">{content.s9Title}</h2>
+                <p>{content.s9Intro}</p>
                 <div class="table-scroll-wrapper">
-                    <table class="data-table data-table--comparison">
-                        <thead><tr><th></th><th>Cube Root</th><th>Square Root</th></tr></thead>
+                    <table class="data-table">
+                        <thead><tr><th>Property</th><th>{content.s9ThCube}</th><th>{content.s9ThSquare}</th></tr></thead>
                         <tbody>
-                            <tr><td>Symbol</td><td>∛</td><td>√</td></tr>
-                            <tr><td>Multiplications</td><td>3 (x × x × x)</td><td>2 (x × x)</td></tr>
-                            <tr><td>Example</td><td>∛64 = 4 (4×4×4=64)</td><td>√64 = 8 (8×8=64)</td></tr>
-                            <tr><td>Negative numbers</td><td>Real answer exists (∛-64 = -4)</td><td>No real answer (needs "i")</td></tr>
+                            <tr><td>{content.s9RowSymbol}</td><td>∛ (index 3)</td><td>√ (index 2)</td></tr>
+                            <tr><td>{content.s9RowMult}</td><td>{content.s9RowMultCube}</td><td>{content.s9RowMultSquare}</td></tr>
+                            <tr><td>{content.s9RowEx}</td><td>{content.s9RowExCube}</td><td>{content.s9RowExSquare}</td></tr>
+                            <tr><td>{content.s9RowNegative}</td><td>{content.s9RowNegativeCube}</td><td>{content.s9RowNegativeSquare}</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p>If you need a square root specifically, our <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">square root solver with radical reduction</a> covers that in full, including the imaginary number rules.</p>
             </div>
         </section>
 
-        <!-- Section: Real-Life Applications -->
+        <!-- Section 10: Real-Life Applications -->
         <section class="article-section article-section--alt" id="section-cbrt-applications">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span> Applications</div>
-                <h2 class="article-h2">Real-Life Applications of Racine Cubique</h2>
-                <p>While <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">square roots and 2D geometry formulas</a> deal with two-dimensional problems, cube roots shine whenever the problem involves three dimensions:</p>
-                <div class="applications-grid">
-                    <div class="app-card" id="cbrt-app-architecture">
-                        <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="15" y1="22" x2="15" y2="2"/><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg></div>
-                        <div class="app-card-content">
-                            <h3>Architecture &amp; 3D Design</h3>
-                            <p>Architects and designers use cube roots to find the edge length of cubic spaces from a known volume. If a client wants a 64 m³ storage room in a cube shape, ∛64 = 4 m per side. This applies to water tanks, HVAC ducts, and any three-dimensional space planning.</p>
-                        </div>
-                    </div>
-                    <div class="app-card" id="cbrt-app-shipping">
-                        <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-                        <div class="app-card-content">
-                            <h3>Shipping &amp; Packaging</h3>
-                            <p>Logistics companies calculate box dimensions from a target volume using cube roots. If a parcel must fit exactly 1,000 cm³, the cube root tells them each side needs to be ∛1000 = 10 cm. This feeds directly into shipping cost formulas that use "dimensional weight."</p>
-                        </div>
-                    </div>
-                    <div class="app-card" id="cbrt-app-physics">
-                        <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4"/></svg></div>
-                        <div class="app-card-content">
-                            <h3>Physics &amp; Engineering</h3>
-                            <p>Volume-related formulas in fluid dynamics, thermodynamics, and materials science frequently involve cube roots. For instance, the radius of a sphere from its volume (r = ∛(3V/4π)) is a cube root operation. Scaling laws also use cube roots — doubling the volume of a structure doesn't double its dimensions.</p>
-                        </div>
-                    </div>
-                    <div class="app-card" id="cbrt-app-finance">
-                        <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-                        <div class="app-card-content">
-                            <h3>Finance &amp; Growth Rates</h3>
-                            <p>When you know a total return over three years and want the annual compound growth rate, you need a cube root. If an investment grows from $1,000 to $1,331 in three years, the annual rate is ∛(1.331) - 1 ≈ 10%. This concept extends to <a href={localizedUrl('/nth-root-calculator/#section-nth-applications')} style="color: var(--primary-500); font-weight: 600;">Compound Annual Growth Rate (CAGR) nth roots for 5 or 10-year horizons</a>.</p>
-                        </div>
-                    </div>
-                    <div class="app-card" id="cbrt-app-everyday">
-                        <div class="app-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-                        <div class="app-card-content">
-                            <h3>Everyday Measuring &amp; DIY</h3>
-                            <p>If you know how much a cube-shaped container holds — say, a 27-liter fish tank — the cube root tells you the dimensions: ∛27 = 3, so each edge is roughly 30 cm. No ruler needed, just the racine cubique.</p>
-                        </div>
-                    </div>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span> {content.s10Eyebrow}</div>
+                <h2 class="article-h2">{content.s10Title}</h2>
+                <p>{content.s10Intro}</p>
+                <div class="app-cards-grid">
+                    {content.s10Apps.map(app => (
+                      <div class="app-card">
+                          <h3>{app.title}</h3>
+                          <p>{app.text}</p>
+                      </div>
+                    ))}
                 </div>
             </div>
         </section>
 
-        <!-- Section: Simplification Table -->
+        <!-- Section 11: Simplification Table -->
         <section class="article-section" id="section-cbrt-simplification">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg></span> Simplification</div>
-                <h2 class="article-h2">Cube Root Simplification Table</h2>
-                <p>Not every cube root is a perfect cube, but many can still be simplified by pulling out any perfect-cube factors.</p>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span> {content.s11Eyebrow}</div>
+                <h2 class="article-h2">{content.s11Title}</h2>
+                <p>{content.s11Intro}</p>
                 <div class="table-scroll-wrapper">
-                    <table class="data-table data-table--compact">
-                        <thead><tr><th>Expression</th><th>Simplified Form</th><th>Why</th></tr></thead>
+                    <table class="data-table">
+                        <thead><tr><th>{content.s11ThExpr}</th><th>{content.s11ThForm}</th><th>{content.s11ThWhy}</th></tr></thead>
                         <tbody>
-                            <tr><td>∛16</td><td>2∛2</td><td>16 = 8 × 2, and ∛8 = 2</td></tr>
-                            <tr><td>∛24</td><td>2∛3</td><td>24 = 8 × 3</td></tr>
-                            <tr><td>∛40</td><td>2∛5</td><td>40 = 8 × 5</td></tr>
-                            <tr><td>∛54</td><td>3∛2</td><td>54 = 27 × 2</td></tr>
-                            <tr><td>∛81</td><td>3∛3</td><td>81 = 27 × 3</td></tr>
-                            <tr><td>∛128</td><td>4∛2</td><td>128 = 64 × 2</td></tr>
-                            <tr><td>∛250</td><td>5∛2</td><td>250 = 125 × 2</td></tr>
+                            <tr><td>∛16</td><td>2∛2</td><td>∛(8 × 2) = ∛8 × ∛2 = 2∛2</td></tr>
+                            <tr><td>∛24</td><td>2∛3</td><td>∛(8 × 3) = ∛8 × ∛3 = 2∛3</td></tr>
+                            <tr><td>∛32</td><td>2∛4</td><td>∛(8 × 4) = ∛8 × ∛4 = 2∛4</td></tr>
+                            <tr><td>∛40</td><td>2∛5</td><td>∛(8 × 5) = ∛8 × ∛5 = 2∛5</td></tr>
+                            <tr><td>∛48</td><td>2∛6</td><td>∛(8 × 6) = ∛8 × ∛6 = 2∛6</td></tr>
+                            <tr><td>∛54</td><td>3∛2</td><td>∛(27 × 2) = ∛27 × ∛2 = 3∛2</td></tr>
+                            <tr><td>∛56</td><td>2∛7</td><td>∛(8 × 7) = ∛8 × ∛7 = 2∛7</td></tr>
+                            <tr><td>∛72</td><td>2∛9</td><td>∛(8 × 9) = ∛8 × ∛9 = 2∛9</td></tr>
+                            <tr><td>∛108</td><td>3∛4</td><td>∛(27 × 4) = ∛27 × ∛4 = 3∛4</td></tr>
+                            <tr><td>∛128</td><td>4∛2</td><td>∛(64 × 2) = ∛64 × ∛2 = 4∛2</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p>The trick: find the largest perfect cube that divides evenly into your number, pull it out, and the rest stays under the radical.</p>
+                <p>{content.s11Conclusion}</p>
             </div>
         </section>
 
-        <!-- Section: Reference Table 1-100 -->
+        <!-- Section 12: Reference Table 1-100 -->
         <section class="article-section article-section--alt" id="section-cbrt-reference">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span> Reference Tables</div>
-                <h2 class="article-h2">Complete Reference Table — Cube Roots 1 to 100</h2>
-                <p>Bookmark this section for quick lookups. Perfect cubes are highlighted in bold with a badge. Values are rounded to three decimal places. For <a href={localizedUrl('/#reference-tables')} style="color: var(--primary-500); font-weight: 600;">the complete 1 to 100 square roots reference table</a>, see our main homepage, generate custom tables with our <a href={localizedUrl('/square-root-chart/')} style="color: var(--primary-500); font-weight: 600;">Square Root Chart Generator</a>, or browse <a href={localizedUrl('/nth-root-calculator/#section-nth-table')} style="color: var(--primary-500); font-weight: 600;">higher root reference tables</a>.</p>
-                <div class="table-scroll-wrapper table-scroll-wrapper--large">
-                    <div class="table-scroll-hint"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M18 13l-6 6-6-6"/></svg> Scroll to see all 100 values ↓</div>
-                    <table class="data-table data-table--reference data-table--vertical">
-                        <thead><tr><th>Number (n)</th><th>Cube Root (∛n)</th><th>Type</th></tr></thead>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></span> {content.s12Eyebrow}</div>
+                <h2 class="article-h2">{content.s12Title}</h2>
+                <p>{content.s12Intro}</p>
+                <p class="scroll-hint"><span class="scroll-hint-icon">👉</span> {content.s12ScrollHint}</p>
+                <div class="table-scroll-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>{content.s12ColNumber}</th>
+                                <th>{content.s12ColRoot}</th>
+                                <th>{content.s12ColType}</th>
+                            </tr>
+                        </thead>
                         <tbody>
-                            <tr class="tr-perfect"><td>1</td><td>1.000</td><td><span class="badge-perfect">Perfect Cube</span></td></tr>
-                            <tr><td>2</td><td>1.260</td><td>Irrational</td></tr>
-                            <tr><td>3</td><td>1.442</td><td>Irrational</td></tr>
-                            <tr><td>4</td><td>1.587</td><td>Irrational</td></tr>
-                            <tr><td>5</td><td>1.710</td><td>Irrational</td></tr>
-                            <tr><td>6</td><td>1.817</td><td>Irrational</td></tr>
-                            <tr><td>7</td><td>1.913</td><td>Irrational</td></tr>
-                            <tr class="tr-perfect"><td>8</td><td>2.000</td><td><span class="badge-perfect">Perfect Cube</span></td></tr>
-                            <tr><td>9</td><td>2.080</td><td>Irrational</td></tr>
-                            <tr><td>10</td><td>2.154</td><td>Irrational</td></tr>
-                            <tr><td>11</td><td>2.224</td><td>Irrational</td></tr>
-                            <tr><td>12</td><td>2.289</td><td>Irrational</td></tr>
-                            <tr><td>13</td><td>2.351</td><td>Irrational</td></tr>
-                            <tr><td>14</td><td>2.410</td><td>Irrational</td></tr>
-                            <tr><td>15</td><td>2.466</td><td>Irrational</td></tr>
-                            <tr><td>16</td><td>2.520</td><td>Irrational</td></tr>
-                            <tr><td>17</td><td>2.571</td><td>Irrational</td></tr>
-                            <tr><td>18</td><td>2.621</td><td>Irrational</td></tr>
-                            <tr><td>19</td><td>2.668</td><td>Irrational</td></tr>
-                            <tr><td>20</td><td>2.714</td><td>Irrational</td></tr>
-                            <tr><td>21</td><td>2.759</td><td>Irrational</td></tr>
-                            <tr><td>22</td><td>2.802</td><td>Irrational</td></tr>
-                            <tr><td>23</td><td>2.844</td><td>Irrational</td></tr>
-                            <tr><td>24</td><td>2.884</td><td>Irrational</td></tr>
-                            <tr><td>25</td><td>2.924</td><td>Irrational</td></tr>
-                            <tr><td>26</td><td>2.962</td><td>Irrational</td></tr>
-                            <tr class="tr-perfect"><td>27</td><td>3.000</td><td><span class="badge-perfect">Perfect Cube</span></td></tr>
-                            <tr><td>28</td><td>3.037</td><td>Irrational</td></tr>
-                            <tr><td>29</td><td>3.072</td><td>Irrational</td></tr>
-                            <tr><td>30</td><td>3.107</td><td>Irrational</td></tr>
-                            <tr><td>31</td><td>3.141</td><td>Irrational</td></tr>
-                            <tr><td>32</td><td>3.175</td><td>Irrational</td></tr>
-                            <tr><td>33</td><td>3.208</td><td>Irrational</td></tr>
-                            <tr><td>34</td><td>3.240</td><td>Irrational</td></tr>
-                            <tr><td>35</td><td>3.271</td><td>Irrational</td></tr>
-                            <tr><td>36</td><td>3.302</td><td>Irrational</td></tr>
-                            <tr><td>37</td><td>3.332</td><td>Irrational</td></tr>
-                            <tr><td>38</td><td>3.362</td><td>Irrational</td></tr>
-                            <tr><td>39</td><td>3.391</td><td>Irrational</td></tr>
-                            <tr><td>40</td><td>3.420</td><td>Irrational</td></tr>
-                            <tr><td>41</td><td>3.448</td><td>Irrational</td></tr>
-                            <tr><td>42</td><td>3.476</td><td>Irrational</td></tr>
-                            <tr><td>43</td><td>3.503</td><td>Irrational</td></tr>
-                            <tr><td>44</td><td>3.530</td><td>Irrational</td></tr>
-                            <tr><td>45</td><td>3.557</td><td>Irrational</td></tr>
-                            <tr><td>46</td><td>3.583</td><td>Irrational</td></tr>
-                            <tr><td>47</td><td>3.609</td><td>Irrational</td></tr>
-                            <tr><td>48</td><td>3.634</td><td>Irrational</td></tr>
-                            <tr><td>49</td><td>3.659</td><td>Irrational</td></tr>
-                            <tr><td>50</td><td>3.684</td><td>Irrational</td></tr>
-                            <tr><td>51</td><td>3.708</td><td>Irrational</td></tr>
-                            <tr><td>52</td><td>3.733</td><td>Irrational</td></tr>
-                            <tr><td>53</td><td>3.756</td><td>Irrational</td></tr>
-                            <tr><td>54</td><td>3.780</td><td>Irrational</td></tr>
-                            <tr><td>55</td><td>3.803</td><td>Irrational</td></tr>
-                            <tr><td>56</td><td>3.826</td><td>Irrational</td></tr>
-                            <tr><td>57</td><td>3.849</td><td>Irrational</td></tr>
-                            <tr><td>58</td><td>3.871</td><td>Irrational</td></tr>
-                            <tr><td>59</td><td>3.893</td><td>Irrational</td></tr>
-                            <tr><td>60</td><td>3.915</td><td>Irrational</td></tr>
-                            <tr><td>61</td><td>3.936</td><td>Irrational</td></tr>
-                            <tr><td>62</td><td>3.958</td><td>Irrational</td></tr>
-                            <tr><td>63</td><td>3.979</td><td>Irrational</td></tr>
-                            <tr class="tr-perfect"><td>64</td><td>4.000</td><td><span class="badge-perfect">Perfect Cube</span></td></tr>
-                            <tr><td>65</td><td>4.021</td><td>Irrational</td></tr>
-                            <tr><td>66</td><td>4.041</td><td>Irrational</td></tr>
-                            <tr><td>67</td><td>4.062</td><td>Irrational</td></tr>
-                            <tr><td>68</td><td>4.082</td><td>Irrational</td></tr>
-                            <tr><td>69</td><td>4.102</td><td>Irrational</td></tr>
-                            <tr><td>70</td><td>4.121</td><td>Irrational</td></tr>
-                            <tr><td>71</td><td>4.141</td><td>Irrational</td></tr>
-                            <tr><td>72</td><td>4.160</td><td>Irrational</td></tr>
-                            <tr><td>73</td><td>4.179</td><td>Irrational</td></tr>
-                            <tr><td>74</td><td>4.198</td><td>Irrational</td></tr>
-                            <tr><td>75</td><td>4.217</td><td>Irrational</td></tr>
-                            <tr><td>76</td><td>4.236</td><td>Irrational</td></tr>
-                            <tr><td>77</td><td>4.254</td><td>Irrational</td></tr>
-                            <tr><td>78</td><td>4.273</td><td>Irrational</td></tr>
-                            <tr><td>79</td><td>4.291</td><td>Irrational</td></tr>
-                            <tr><td>80</td><td>4.309</td><td>Irrational</td></tr>
-                            <tr><td>81</td><td>4.327</td><td>Irrational</td></tr>
-                            <tr><td>82</td><td>4.344</td><td>Irrational</td></tr>
-                            <tr><td>83</td><td>4.362</td><td>Irrational</td></tr>
-                            <tr><td>84</td><td>4.380</td><td>Irrational</td></tr>
-                            <tr><td>85</td><td>4.397</td><td>Irrational</td></tr>
-                            <tr><td>86</td><td>4.414</td><td>Irrational</td></tr>
-                            <tr><td>87</td><td>4.431</td><td>Irrational</td></tr>
-                            <tr><td>88</td><td>4.448</td><td>Irrational</td></tr>
-                            <tr><td>89</td><td>4.465</td><td>Irrational</td></tr>
-                            <tr><td>90</td><td>4.481</td><td>Irrational</td></tr>
-                            <tr><td>91</td><td>4.498</td><td>Irrational</td></tr>
-                            <tr><td>92</td><td>4.514</td><td>Irrational</td></tr>
-                            <tr><td>93</td><td>4.531</td><td>Irrational</td></tr>
-                            <tr><td>94</td><td>4.547</td><td>Irrational</td></tr>
-                            <tr><td>95</td><td>4.563</td><td>Irrational</td></tr>
-                            <tr><td>96</td><td>4.579</td><td>Irrational</td></tr>
-                            <tr><td>97</td><td>4.595</td><td>Irrational</td></tr>
-                            <tr><td>98</td><td>4.610</td><td>Irrational</td></tr>
-                            <tr><td>99</td><td>4.626</td><td>Irrational</td></tr>
-                            <tr><td>100</td><td>4.642</td><td>Irrational</td></tr>
+                            {table100Rows.map(row => (
+                                <tr class={row.isPerfect ? "tr-perfect" : ""}>
+                                    <td>{row.n}</td>
+                                    <td>{row.rootFormatted}</td>
+                                    <td>
+                                        {row.isPerfect ? (
+                                            <span class="badge-perfect">{content.s12BadgePerfect}</span>
+                                        ) : (
+                                            content.s12BadgeIrrational
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
 
-        <!-- Section: Perfect Cubes -->
-        <section class="article-section" id="section-perfect-cubes">
+        <!-- Section 13: Perfect Cubes -->
+        <section class="article-section" id="section-cbrt-perfect-cubes">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span> Perfect Cubes</div>
-                <h2 class="article-h2">Perfect Cubes — The Essential Memorization List</h2>
-                <p>A perfect cube is a number you get by multiplying a whole number by itself three times. Cubes grow much faster than squares, which is why this list stops at 10.</p>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span> {content.s13Eyebrow}</div>
+                <h2 class="article-h2">{content.s13Title}</h2>
+                <p>{content.s13Intro}</p>
                 <div class="table-scroll-wrapper">
                     <table class="data-table">
                         <thead><tr><th>Number</th><th>Cube</th><th>Number</th><th>Cube</th></tr></thead>
                         <tbody>
-                            <tr><td>1</td><td>1</td><td>6</td><td>216</td></tr>
-                            <tr><td>2</td><td>8</td><td>7</td><td>343</td></tr>
-                            <tr><td>3</td><td>27</td><td>8</td><td>512</td></tr>
-                            <tr><td>4</td><td>64</td><td>9</td><td>729</td></tr>
-                            <tr><td>5</td><td>125</td><td>10</td><td>1,000</td></tr>
+                            {perfectCubesList.map(item => (
+                              <tr>
+                                <td>{item.n1}</td>
+                                <td>{item.c1}</td>
+                                <td>{item.n2}</td>
+                                <td>{item.c2}</td>
+                              </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -520,14 +352,14 @@ const cubeRootToc = [
 
         <figure class="section-image">
             <img src="/images/cbrt-perfect-cubes.webp" alt="Perfect cubes reference chart for racine cubique calculator" loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
-            <figcaption>Perfect cubes: Whole numbers multiplied by themselves three times</figcaption>
+            <figcaption>{content.s13Caption}</figcaption>
         </figure>
 
-        <!-- Section: FAQs -->
+        <!-- Section 14: FAQs -->
         <section class="article-section article-section--alt" id="section-cbrt-faqs">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> FAQs</div>
-                <h2 class="article-h2">Frequently Asked Questions</h2>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> {content.s14Eyebrow}</div>
+                <h2 class="article-h2">{content.s14Title}</h2>
                 <div class="faq-list">
                     {faqs && faqs.length > 0 ? (
                         faqs.map((faq) => (
@@ -552,15 +384,11 @@ const cubeRootToc = [
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">Can cube roots of negative numbers be calculated?</summary>
-                                <div class="faq-answer"><p>Yes, and this is one of the biggest differences between cube roots and square roots. The cube root of a negative number is simply a negative real number — for example, ∛-8 = -2. No imaginary numbers involved (unlike <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">square roots which require the imaginary unit i</a>).</p></div>
+                                <div class="faq-answer"><p>Yes, and this is one of the biggest differences between cube roots and square roots. The cube root of a negative number is simply a negative real number — for example, ∛-8 = -2. No imaginary numbers involved.</p></div>
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">Can I calculate cube roots of decimals or large numbers?</summary>
-                                <div class="faq-answer"><p>Yes. The calculator handles decimals, whole numbers, and large values with full arbitrary precision — learn more in <a href="/about-us/#methodology" style="color: var(--primary-500); font-weight: 600;">our calculation accuracy standards and methodology</a>.</p></div>
-                            </details>
-                            <details class="faq-item">
-                                <summary class="faq-question">What's the difference between a cube root and a square root?</summary>
-                                <div class="faq-answer"><p>A square root asks what number times itself equals your value (2D). A cube root asks what number times itself three times equals your value (3D). Use our <a href={localizedUrl('/')} style="color: var(--primary-500); font-weight: 600;">free square root solver</a> to compare both calculations side-by-side.</p></div>
+                                <div class="faq-answer"><p>Yes. The calculator handles decimals, whole numbers, and large values with full precision.</p></div>
                             </details>
                             <details class="faq-item">
                                 <summary class="faq-question">Is this calculator free to use?</summary>
@@ -579,14 +407,14 @@ const cubeRootToc = [
                         <div class="author-details">
                             <span class="author-verified-label">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                                Written &amp; Verified by
+                                {authorByline.writtenBy}
                             </span>
                             <a href="/about-us/" class="author-name-link">Syed Muhammad Ahmed</a>
-                            <span class="author-title">Founder &amp; Creator</span>
+                            <span class="author-title">{authorByline.founderTitle}</span>
                         </div>
                     </div>
                     <div class="social-share-group">
-                        <span class="social-share-label">Share:</span>
+                        <span class="social-share-label">{authorByline.share}:</span>
                         <a href="https://twitter.com/intent/tweet?text=Free%20Racine%20Cubique%20Calculator%20with%20step-by-step%20solutions&url=https://www.racinecarreecalculatorr.com/racine-cubique-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--x" aria-label="Share on X" title="Share on X">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                         </a>
@@ -604,16 +432,16 @@ const cubeRootToc = [
             </div>
         </section>
 
-        <!-- Section: Quick Recap -->
+        <!-- Section 15: Quick Recap -->
         <section class="article-section" id="section-cbrt-recap">
             <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Summary</div>
-                <h2 class="article-h2">A Quick Recap</h2>
+                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> {content.s15Eyebrow}</div>
+                <h2 class="article-h2">{content.s15Title}</h2>
                 <div class="warning-box" style="border-color: var(--primary-200);">
                     <div class="warning-icon" style="background: var(--primary-50); color: var(--primary-500);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
                     <div class="warning-content">
-                        <strong>The Bottom Line</strong>
-                        <p>A cube root answers one question: what number, multiplied by itself three times, gives you this value? That single idea carries you through everything else on this page — notation, formulas, manual methods, and the fact that (unlike square roots) cube roots handle negative numbers without needing anything imaginary. Use the calculator above for a fast, exact answer, and come back here anytime you want to work through the math yourself.</p>
+                        <strong>{content.s15BoxTitle}</strong>
+                        <p>{content.s15BoxText}</p>
                     </div>
                 </div>
             </div>

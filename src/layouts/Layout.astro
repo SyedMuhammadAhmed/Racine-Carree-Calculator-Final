@@ -83,6 +83,135 @@ const orgSchema = {
   }
 };
 
+const SCHEMA_FEATURES: Record<string, string[]> = {
+  en: [
+    "Square root calculator with step-by-step breakdown",
+    "Cube root (racine cubique) solver for positive and negative numbers",
+    "Nth root calculator for any root degree index",
+    "Simplified radical expression converter",
+    "Interactive reference table 1 to 100"
+  ],
+  fr: [
+    "Calculateur de racine carrée avec étapes détaillées",
+    "Résolution de racine cubique pour nombres positifs et négatifs",
+    "Calculateur de racine n-ième pour tout indice de degré",
+    "Simplificateur de radicaux et expressions exactes",
+    "Table de référence interactive de 1 à 100"
+  ],
+  es: [
+    "Calculadora de raíz cuadrada con desglose paso a paso",
+    "Calculadora de raíz cúbica para números positivos y negativos",
+    "Calculadora de raíz n-ésima para cualquier índice de grado",
+    "Simplificador de radicales y expresiones algebraicas",
+    "Tabla de referencia interactiva del 1 al 100"
+  ],
+  de: [
+    "Quadratwurzel-Rechner mit schrittweiser Erklärung",
+    "Kubikwurzel-Rechner für positive und negative Zahlen",
+    "Rechner für n-te Wurzeln beliebiger Grade",
+    "Vereinfachung von Wurzeltermen und Radikalen",
+    "Interaktive Wurzeltabelle von 1 bis 100"
+  ],
+  it: [
+    "Calcolatore di radice quadrata con passaggi dettagliati",
+    "Risolutore di radice cubica per numeri positivi e negativi",
+    "Calcolatore di radice ennesima per qualsiasi grado",
+    "Semplificazione di radicali ed espressioni algebriche",
+    "Tabella di riferimento interattiva da 1 a 100"
+  ],
+  pt: [
+    "Calculadora de raiz quadrada com passos detalhados",
+    "Calculadora de raiz cúbica para números positivos e negativos",
+    "Calculadora de raiz enésima para qualquer grau",
+    "Simplificador de radicais e expressões exatas",
+    "Tabela de referência interativa de 1 a 100"
+  ],
+  ru: [
+    "Калькулятор квадратного корня с пошаговым решением",
+    "Вычисление кубического корня для положительных и отрицательных чисел",
+    "Калькулятор корня n-й степени любого порядка",
+    "Упрощение радикалов и корней",
+    "Интерактивная таблица корней от 1 до 100"
+  ],
+  pl: [
+    "Kalkulator pierwiastka kwadratowego z rozwiązaniem krok po kroku",
+    "Obliczanie pierwiastka sześciennego dla liczb dodatnich i ujemnych",
+    "Kalkulator pierwiastka n-tego stopnia dowolnego rzędu",
+    "Upraszczanie wyrażeń pierwiastkowych",
+    "Interaktywna tablica pierwiastków od 1 do 100"
+  ],
+  sv: [
+    "Kvadratrotskalkylator med steg-för-steg-lösning",
+    "Kubikrotsberäkning för positiva och negativa tal",
+    "Kalkylator för n:te roten av valfri grad",
+    "Förenkling av rotuttryck och radikaler",
+    "Interaktiv referenstabell från 1 till 100"
+  ],
+  tr: [
+    "Adım adım çözümlü karekök hesaplayıcı",
+    "Pozitif ve negatif sayılar için küpkök hesaplama",
+    "Herhangi bir derece için n'inci dereceden kök hesaplayıcı",
+    "Köklü ifade sadeleştirici",
+    "1'den 100'e kadar interaktif kök tablosu"
+  ],
+  id: [
+    "Kalkulator akar kuadrat dengan langkah penyelesaian lengkap",
+    "Penyelesai akar kubik untuk bilangan positif dan negatif",
+    "Kalkulator akar pangkat n untuk sembarang indeks",
+    "Penyederhana bentuk akar radikal",
+    "Tabel referensi interaktif 1 hingga 100"
+  ],
+  ms: [
+    "Kalkulator punca kuasa dua dengan jalan kerja langkah demi langkah",
+    "Pengira punca kuasa tiga bagi nombor positif dan negatif",
+    "Kalkulator punca kuasa n untuk sebarang darjah indeks",
+    "Pempermudah ungkapan radikal",
+    "Jadual rujukan interaktif 1 hingga 100"
+  ],
+  ar: [
+    "حاسبة الجذر التربيعي مع خطوات الحل المفصلة",
+    "حساب الجذر التكعيبي للأعداد الموجبة والسالبة",
+    "حاسبة الجذر النوني لأي رتبة جذرية",
+    "تبسيط الجذور والمقادير الصماء",
+    "جدول مرجعي تفاعلي للجذور من 1 إلى 100"
+  ],
+  hi: [
+    "चरण-दर-चरण समाधान के साथ वर्गमूल कैलकुलेटर",
+    "धनात्मक और ऋणात्मक संख्याओं के लिए घनमूल हलकर्ता",
+    "किसी भी घात के लिए n-वां मूल कैलकुलेटर",
+    "करणी व्यंजक सरलीकरण उपकरण",
+    "1 से 100 तक इंटरैक्टिव संदर्भ तालिका"
+  ],
+  bn: [
+    "ধাপে ধাপে সমাধান সহ বর্গমূল ক্যালকুলেটর",
+    "ধনাত্মক ও ঋণাত্মক সংখ্যার ঘনমূল নির্ণয়",
+    "যেকোনো মাত্রার n-তম মূল ক্যালকুলেটর",
+    "অমূলদ মূল সরলীকরণ সহায়ক",
+    "১ থেকে ১০০ পর্যন্ত তথ্য সারণী"
+  ],
+  ja: [
+    "途中式・ステップ解説付き平方根計算機",
+    "正負両対応の立方根（3乗根）ソルバー",
+    "任意の根指数に対応するn乗根計算機",
+    "根号（ルート）の簡約化機能",
+    "1から100までのインタラクティブ根号一覧表"
+  ],
+  ko: [
+    "단계별 풀이 과정을 제공하는 제곱근 계산기",
+    "양수 및 음수 지원 세제곱근 솔버",
+    "모든 차수를 지원하는 n제곱근 계산기",
+    "기약 근호 식 단순화 도구",
+    "1부터 100까지 인터랙티브 거듭제곱근 참조 표"
+  ],
+  bg: [
+    "Калкулатор за квадратен корен с подробни стъпки",
+    "Изчисляване на кубичен корен за положителни и отрицателни числа",
+    "Калкулатор за корен n-та степен за произволен индекс",
+    "Опростяване на корени и ирационални изрази",
+    "Интерактивна справочна таблица от 1 до 100"
+  ]
+};
+
 // JSON-LD WebApplication / SoftwareApplication Schema
 const webAppSchema = {
   "@context": "https://schema.org",
@@ -99,13 +228,7 @@ const webAppSchema = {
   "publisher": {
     "@id": `${site.siteUrl}/#organization`
   },
-  "featureList": [
-    "Square root calculator with step-by-step breakdown",
-    "Cube root (racine cubique) solver for positive and negative numbers",
-    "Nth root calculator for any root degree index",
-    "Simplified radical expression converter",
-    "Interactive reference table 1 to 100"
-  ],
+  "featureList": SCHEMA_FEATURES[lang] || SCHEMA_FEATURES.en,
   "offers": {
     "@type": "Offer",
     "price": "0",
