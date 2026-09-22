@@ -4,7 +4,7 @@ export const prerender = true;
 
 export async function GET() {
   const baseUrl = site.siteUrl.replace(/\/+$/, '');
-  const lastmod = '2026-09-18T00:00:00.000Z';
+  const lastmod = new Date().toISOString();
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>

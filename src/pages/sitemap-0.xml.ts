@@ -31,7 +31,7 @@ const staticPages: PageDefinition[] = [
 
 export async function GET() {
   const baseUrl = site.siteUrl.replace(/\/+$/, '');
-  const lastmod = '2026-09-18T00:00:00.000Z';
+  const lastmod = new Date().toISOString();
 
   const entries: { url: string; xml: string }[] = [];
 
