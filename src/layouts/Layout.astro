@@ -212,10 +212,11 @@ const SCHEMA_FEATURES: Record<string, string[]> = {
   ]
 };
 
-// JSON-LD WebApplication / SoftwareApplication Schema
+// JSON-LD WebApplication Schema
 const webAppSchema = {
   "@context": "https://schema.org",
-  "@type": ["SoftwareApplication", "WebApplication"],
+  "@type": "WebApplication",
+  "@id": `${pageUrl}#webapp`,
   "name": title,
   "url": pageUrl,
   "description": description,
@@ -237,10 +238,36 @@ const webAppSchema = {
   }
 };
 
+// JSON-LD SoftwareApplication Schema (Google Rich Results compliant)
+const softwareAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": `${pageUrl}#software`,
+  "name": title,
+  "url": pageUrl,
+  "description": description,
+  "inLanguage": lang,
+  "applicationCategory": "EducationalApplication",
+  "applicationSubCategory": "Math Calculator",
+  "operatingSystem": "All",
+  "softwareVersion": "2.0.0",
+  "publisher": {
+    "@id": `${site.siteUrl}/#organization`
+  },
+  "featureList": SCHEMA_FEATURES[lang] || SCHEMA_FEATURES.en,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
+};
+
 // JSON-LD WebSite Schema
 const webSiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${site.siteUrl}/#website`,
   "name": site.siteName,
   "url": absoluteUrl('/'),
   "description": site.siteDescription,
@@ -253,6 +280,7 @@ const webSiteSchema = {
 const faqPageSchema = faqItems && faqItems.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": `${pageUrl}#faq`,
   "inLanguage": lang,
   "mainEntity": faqItems.map(item => ({
     "@type": "Question",
@@ -264,7 +292,7 @@ const faqPageSchema = faqItems && faqItems.length > 0 ? {
   }))
 } : null;
 
-const schemas = [orgSchema, webAppSchema, webSiteSchema, faqPageSchema].filter(Boolean);
+const schemas = [orgSchema, webAppSchema, softwareAppSchema, webSiteSchema, faqPageSchema].filter(Boolean);
 ---
 
 <!DOCTYPE html>

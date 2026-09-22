@@ -26,7 +26,7 @@
   "hero": {
     "badge": "Herramienta gratuita de raíz cuadrada y raíz cúbica",
     "title": {
-      "part1": "Racine Carrée",
+      "part1": "Raíz Cuadrada",
       "part2": "Calculadora"
     },
     "subtitle": "La calculadora Racine Carree más completa disponible. Calcule la raíz cuadrada o cúbica de cualquier número (positivo, negativo, decimal o fracción) al instante. Obtenga el resultado decimal exacto, la forma radical simplificada, el funcionamiento paso a paso y tablas de referencia completas. 100% gratis. Sin registro. Sin límites.",
@@ -99,7 +99,7 @@
     }
   },
   "footer": {
-    "brand": "Calculadora de carrera de Racine",
+    "brand": "Calculadora Racine Carrée",
     "tagline": "La herramienta gratuita de raíces cuadradas y cúbicas más completa en línea.",
     "language": "Idioma",
     "rights": "Todos los derechos reservados.",

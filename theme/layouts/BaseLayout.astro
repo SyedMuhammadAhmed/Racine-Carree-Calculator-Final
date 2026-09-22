@@ -14,6 +14,11 @@ import {
   type AlternateLink,
 } from '../../src/utils/seo';
 
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 interface Props {
   title: string;
   description: string;
@@ -26,6 +31,7 @@ interface Props {
   isContactPage?: boolean;
   schemaSlot?: boolean;
   alternateLinks?: AlternateLink[];
+  faqItems?: FAQItem[];
 }
 
 const {
@@ -40,6 +46,7 @@ const {
   isContactPage = false,
   schemaSlot = false,
   alternateLinks = [],
+  faqItems,
 } = Astro.props;
 
 const requestedLocale = locale;
@@ -148,7 +155,73 @@ const contactSchema = isContactPage ? {
   url: canonicalUrl
 } : null;
 
-const schemas = [webSiteSchema, orgSchema, siteNavigationSchema, aboutSchema, contactSchema].filter(Boolean);
+// JSON-LD WebApplication Schema
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": `${canonicalUrl}#webapp`,
+  "name": title,
+  "url": canonicalUrl,
+  "description": description,
+  "inLanguage": activeLocale,
+  "applicationCategory": "EducationalApplication",
+  "applicationSubCategory": "Math Calculator",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Requires HTML5 web browser.",
+  "softwareVersion": "2.0.0",
+  "publisher": {
+    "@id": `${site.siteUrl}/#organization`
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
+};
+
+// JSON-LD SoftwareApplication Schema
+const softwareAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": `${canonicalUrl}#software`,
+  "name": title,
+  "url": canonicalUrl,
+  "description": description,
+  "inLanguage": activeLocale,
+  "applicationCategory": "EducationalApplication",
+  "applicationSubCategory": "Math Calculator",
+  "operatingSystem": "All",
+  "softwareVersion": "2.0.0",
+  "publisher": {
+    "@id": `${site.siteUrl}/#organization`
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
+};
+
+// JSON-LD FAQPage Schema (if FAQ items exist)
+const faqPageSchema = faqItems && faqItems.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${canonicalUrl}#faq`,
+  "inLanguage": activeLocale,
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+} : null;
+
+const isNoIndex = typeof robots === 'string' && robots.includes('noindex');
+const schemas = isNoIndex ? [] : [webSiteSchema, orgSchema, webAppSchema, softwareAppSchema, siteNavigationSchema, aboutSchema, contactSchema, faqPageSchema].filter(Boolean);
 ---
 
 <html lang={activeLocale} dir={htmlDir}>

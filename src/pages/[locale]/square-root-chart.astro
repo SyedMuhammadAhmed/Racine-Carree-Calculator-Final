@@ -41,7 +41,7 @@ const chartFaqs = chartContent.faqs;
   alternateLinks={alternateLinks}
   faqItems={chartFaqs}
 >
-  <Navbar lang={lang} />
+  <Navbar lang={lang} contentLang={lang} />
   <main id="main-content">
     <section class="above-fold" id="hero">
       <div class="above-fold-stack">
@@ -85,5 +85,5 @@ const chartFaqs = chartContent.faqs;
     <!-- Rich Educational Content & FAQs -->
     <ChartGeneratorContent lang={lang} faqs={chartFaqs} />
   </main>
-  <Footer lang={lang} />
+  <Footer lang={lang} contentLang={lang} />
 </Layout>

@@ -8,14 +8,15 @@ interface Props {
   contentLang?: string;
 }
 
-const { lang = DEFAULT_LOCALE, contentLang = DEFAULT_LOCALE } = Astro.props;
+const { lang, contentLang } = Astro.props;
 const localePrefixPattern = new RegExp(`^/(${LOCALES.join('|')})(?=/|$)`);
 const pathLocale = Astro.url.pathname.match(localePrefixPattern)?.[1];
-const requestedLocale = pathLocale || lang;
+const requestedLocale = pathLocale || lang || DEFAULT_LOCALE;
 const activeLocale = LOCALES.includes(requestedLocale as Locale)
   ? requestedLocale as Locale
   : DEFAULT_LOCALE;
-const contentLocale = LOCALES.includes(contentLang as Locale) ? contentLang : DEFAULT_LOCALE;
+const resolvedContentLang = contentLang || activeLocale;
+const contentLocale = LOCALES.includes(resolvedContentLang as Locale) ? resolvedContentLang : DEFAULT_LOCALE;
 const currentPathWithoutLocale = Astro.url.pathname.replace(localePrefixPattern, '') || '/';
 const isHomePath = currentPathWithoutLocale === '/';
 const homeUrl = getLocalizedUrl('/', activeLocale);

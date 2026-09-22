@@ -41,7 +41,7 @@ const cubeFaqs = cubeContent.faqs;
   alternateLinks={alternateLinks}
   faqItems={cubeFaqs}
 >
-  <Navbar lang={lang} />
+  <Navbar lang={lang} contentLang={lang} />
   <main id="main-content">
     <section class="above-fold" id="hero">
       <div class="above-fold-stack">
@@ -86,5 +86,5 @@ const cubeFaqs = cubeContent.faqs;
 
     <PerfectCubeContent lang={lang} faqs={cubeFaqs} />
   </main>
-  <Footer lang={lang} />
+  <Footer lang={lang} contentLang={lang} />
 </Layout>

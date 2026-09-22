@@ -19,14 +19,15 @@ interface Props {
   contentLang?: string;
 }
 
-const { lang = DEFAULT_LOCALE, contentLang = DEFAULT_LOCALE } = Astro.props;
+const { lang, contentLang } = Astro.props;
 const localePrefixPattern = new RegExp(`^/(${LOCALES.join('|')})(?=/|$)`);
 const pathLocale = Astro.url.pathname.match(localePrefixPattern)?.[1];
-const requestedLocale = pathLocale || lang;
+const requestedLocale = pathLocale || lang || DEFAULT_LOCALE;
 const activeLocale = LOCALES.includes(requestedLocale as Locale)
   ? requestedLocale as Locale
   : DEFAULT_LOCALE;
-const contentLocale = LOCALES.includes(contentLang as Locale) ? contentLang : DEFAULT_LOCALE;
+const resolvedContentLang = contentLang || activeLocale;
+const contentLocale = LOCALES.includes(resolvedContentLang as Locale) ? resolvedContentLang : DEFAULT_LOCALE;
 const currentPathWithoutLocale = Astro.url.pathname.replace(localePrefixPattern, '') || '/';
 const isHomePath = currentPathWithoutLocale === '/';
 const homeUrl = getLocalizedUrl('/', activeLocale);
@@ -94,10 +95,10 @@ const year = new Date().getFullYear();
       <div class="footer-redesign__col">
         <h3 class="footer-redesign__col-title">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><line x1="4" y1="12" x2="20" y2="12"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
-          Calculators
+          {t('nav.calculators', 'Calculators')}
         </h3>
         <nav class="footer-redesign__links" aria-label="Calculator links">
-          <a href={sectionHref('hero')}>Racine Carrée Calculator</a>
+          <a href={sectionHref('hero')}>{brand}</a>
           <a href={getLocalizedUrl('/racine-cubique-calculator/', activeLocale)}>{t('nav.cbrt', 'Racine Cubique Calculator')}</a>
           <a href={getLocalizedUrl('/nth-root-calculator/', activeLocale)}>{t('nav.nth', 'Nth Root Calculator')}</a>
           <a href={getLocalizedUrl('/square-root-chart/', activeLocale)}>{t('nav.chart', 'Square Root Chart Generator')}</a>
@@ -121,12 +122,12 @@ const year = new Date().getFullYear();
       <div class="footer-redesign__col">
         <h3 class="footer-redesign__col-title">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          Legal
+          {t('footer.legal', 'Legal')}
         </h3>
         <nav class="footer-redesign__links" aria-label="Legal links">
           <a href={pageHref('/privacy/')}>{t('nav.privacy', 'Privacy Policy')}{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a>
-          <a href={pageHref('/terms/')}>Terms &amp; Conditions{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a>
-          <a href={pageHref('/disclaimer/')}>Disclaimer{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a>
+          <a href={pageHref('/terms/')}>{t('nav.terms', 'Terms & Conditions')}{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a>
+          <a href={pageHref('/disclaimer/')}>{t('nav.disclaimer', 'Disclaimer')}{activeLocale !== DEFAULT_LOCALE ? ' (EN)' : ''}</a>
           <a href="https://www.dmca.com/Protection/Status.aspx?url=https://www.racinecarreecalculatorr.com" target="_blank" rel="noopener noreferrer" class="dmca-legal-link">DMCA Protection</a>
         </nav>
       </div>
