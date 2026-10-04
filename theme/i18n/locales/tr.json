@@ -24,12 +24,12 @@
     "disclaimer": "Yasal Uyarı"
   },
   "hero": {
-    "badge": "Ücretsiz Karekök ve Küp Kök Aracı",
+    "badge": "Ücretsiz Karekök Hesap Makinesi",
     "title": {
       "part1": "Karekök",
       "part2": "Hesap Makinesi"
     },
-    "subtitle": "Mevcut en eksiksiz Racine Carree Hesap Makinesi. Herhangi bir sayının (pozitif, negatif, ondalık veya kesirli) karekökünü veya küpkökünü anında hesaplayın. Tam ondalık sonucu, basitleştirilmiş radikal formu, adım adım çalışmaları ve tam referans tablolarını edinin. %100 ücretsiz. Kayıt yok. Sınır yok.",
+    "subtitle": "Herhangi bir sayının karekökünü (racine carrée) kesin ondalık değerler, sadeleştirilmiş kök biçimi ve adım adım çözümlerle anında hesaplayın. %100 ücretsiz ve sınırsız.",
     "pill": {
       "instant": "Anında",
       "stepByStep": "Adım adım",

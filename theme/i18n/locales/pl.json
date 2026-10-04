@@ -24,12 +24,12 @@
     "disclaimer": "Zastrzeżenia prawne"
   },
   "hero": {
-    "badge": "Bezpłatne narzędzie do pierwiastkowania kwadratowego i sześciennego",
+    "badge": "Darmowy kalkulator pierwiastka kwadratowego",
     "title": {
       "part1": "Pierwiastek Kwadratowy",
       "part2": "Kalkulator"
     },
-    "subtitle": "Najbardziej kompletny dostępny kalkulator Racine Carree. Natychmiast oblicz pierwiastek kwadratowy lub pierwiastek sześcienny dowolnej liczby — dodatniej, ujemnej, dziesiętnej lub ułamkowej. Uzyskaj dokładny wynik dziesiętny, uproszczoną formę pierwiastkową, obliczenia krok po kroku i pełne tabele referencyjne. 100% za darmo. Brak rejestracji. Żadnych ograniczeń.",
+    "subtitle": "Oblicz pierwiastek kwadratowy (racine carrée) dowolnej liczby natychmiast z dokładnymi wartościami dziesiętnymi, uproszczoną formą i rozwiązaniem krok po kroku. 100% za darmo i bez limitów.",
     "pill": {
       "instant": "Natychmiastowe",
       "stepByStep": "Krok po kroku",

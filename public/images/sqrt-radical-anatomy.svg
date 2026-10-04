@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%" aria-label="Anatomy of a Square Root: Radical Sign, Index, Radicand, and Root">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <filter id="shadow2" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="800" height="420" rx="16" fill="url(#bgGrad2)" stroke="#334155" stroke-width="1"/>
+
+  <!-- Subtle glow circles behind expression -->
+  <circle cx="280" cy="200" r="140" fill="#6366f1" opacity="0.1"/>
+  <circle cx="560" cy="200" r="140" fill="#10b981" opacity="0.1"/>
+
+  <!-- Top Title -->
+  <text x="400" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#818cf8" text-anchor="middle" letter-spacing="1.5">MATHEMATICAL NOTATION ANATOMY</text>
+  <text x="400" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">Every Component of the Square Root Expression</text>
+
+  <!-- Main Math Expression Box -->
+  <g transform="translate(150, 105)">
+    <!-- Main Center Panel -->
+    <rect x="0" y="0" width="500" height="180" rx="16" fill="#1e293b" fill-opacity="0.75" stroke="#334155" stroke-width="1.5" filter="url(#shadow2)"/>
+
+    <!-- 1. Index Callout (Top-Left) -->
+    <!-- Callout Box -->
+    <rect x="25" y="-12" width="130" height="34" rx="8" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="90" y="10" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#c7d2fe" text-anchor="middle">Index = 2</text>
+    <line x1="90" y1="22" x2="105" y2="72" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <circle cx="105" cy="72" r="3.5" fill="#6366f1"/>
+
+    <!-- Index character '(2)' in pale tone to show it is usually implicit -->
+    <text x="105" y="90" font-family="system-ui, -apple-system, serif" font-size="28" font-style="italic" font-weight="700" fill="#a5b4fc" opacity="0.85">(2)</text>
+
+    <!-- 2. Radical Symbol (√) -->
+    <path d="M 125,120 L 140,150 L 175,65 L 320,65" fill="none" stroke="#6366f1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Radical Symbol Callout (Bottom-Left) -->
+    <rect x="35" y="150" width="140" height="42" rx="8" fill="#0f172a" stroke="#818cf8" stroke-width="1.5"/>
+    <text x="105" y="168" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#818cf8" text-anchor="middle">Radical Sign (√)</text>
+    <text x="105" y="184" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#94a3b8" text-anchor="middle">Root operation</text>
+    <line x1="140" y1="150" x2="148" y2="135" stroke="#818cf8" stroke-width="1.5"/>
+    <circle cx="148" cy="135" r="3.5" fill="#818cf8"/>
+
+    <!-- 3. Vinculum (Top horizontal bar) Callout -->
+    <rect x="205" y="-12" width="135" height="34" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="272" y="10" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">Vinculum (Overbar)</text>
+    <line x1="272" y1="22" x2="272" y2="62" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <circle cx="272" cy="62" r="3.5" fill="#38bdf8"/>
+
+    <!-- 4. Radicand (49) -->
+    <text x="245" y="138" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="800" fill="#38bdf8" text-anchor="middle">49</text>
+    
+    <!-- Radicand Callout (Bottom-Middle) -->
+    <rect x="185" y="150" width="145" height="42" rx="8" fill="#0c4a6e" stroke="#0ea5e9" stroke-width="1.5"/>
+    <text x="257" y="168" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#7dd3fc" text-anchor="middle">Radicand (49)</text>
+    <text x="257" y="184" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#bae6fd" text-anchor="middle">Value being rooted</text>
+    <line x1="257" y1="150" x2="257" y2="142" stroke="#0ea5e9" stroke-width="1.5"/>
+
+    <!-- Equal Sign -->
+    <text x="350" y="132" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="500" fill="#94a3b8" text-anchor="middle">=</text>
+
+    <!-- 5. Root / Result (7) -->
+    <text x="425" y="138" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="800" fill="#10b981" text-anchor="middle">7</text>
+
+    <!-- Root Callout (Right) -->
+    <rect x="355" y="-12" width="135" height="42" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="422" y="7" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#6ee7b7" text-anchor="middle">Principal Root (7)</text>
+    <text x="422" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#a7f3d0" text-anchor="middle">Because 7 × 7 = 49</text>
+    <line x1="422" y1="30" x2="425" y2="78" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <circle cx="425" cy="78" r="3.5" fill="#10b981"/>
+  </g>
+
+  <!-- Bottom Equivalent Power Notation Strip -->
+  <g transform="translate(150, 320)">
+    <rect width="500" height="52" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="24" y="31" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#94a3b8">EQUIVALENT EXPONENT FORM:</text>
+    <text x="250" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="800" fill="#ffffff">x^(1/2) = √x &#160;&#160;&#8660;&#160;&#160; 49^(1/2) = 7</text>
+  </g>
+
+  <!-- Footer Watermark -->
+  <text x="400" y="405" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b" text-anchor="middle" letter-spacing="0.5">RACINE CARREE CALCULATOR &#8226; MATHEMATICAL RADICAL SPECIFICATION</text>
+</svg>

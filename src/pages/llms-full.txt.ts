@@ -4,7 +4,7 @@ export const prerender = true;
 
 export async function GET() {
   const baseUrl = site.siteUrl.replace(/\/+$/, '');
-  const llmsFullTxt = `# ${site.siteName} — Full Documentation & Tools
+  const llmsFullTxt = `# ${site.siteName}: Full Documentation & Tools
 
 > Comprehensive documentation, mathematical formulas, and tool reference for ${site.siteName}.
 

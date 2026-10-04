@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%" aria-label="Real-world application: Pythagorean theorem diagonal calculation">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="triGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="shadow4" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="420" rx="16" fill="url(#bgGrad4)" stroke="#334155" stroke-width="1"/>
+
+  <!-- Top Title -->
+  <text x="400" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#818cf8" text-anchor="middle" letter-spacing="1.5">REAL-WORLD APPLICATION &#8226; CONSTRUCTION &amp; GEOMETRY</text>
+  <text x="400" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">Finding Diagonal Distance Using Square Roots</text>
+
+  <!-- Left: Right-Angle Triangle Diagram (3-4-5 Triangle) -->
+  <g transform="translate(60, 95)">
+    <!-- Right Angle Triangle (base = 200, height = 150) -->
+    <!-- Triangle Fill & Stroke -->
+    <polygon points="40,190 240,190 40,40" fill="url(#triGrad)" stroke="#6366f1" stroke-width="3" filter="url(#shadow4)"/>
+    
+    <!-- Right Angle Symbol -->
+    <rect x="40" y="172" width="18" height="18" fill="none" stroke="#a5b4fc" stroke-width="2"/>
+    <circle cx="49" cy="181" r="2" fill="#a5b4fc"/>
+
+    <!-- Side a (Vertical Leg: 3 m) -->
+    <text x="22" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#38bdf8" text-anchor="middle">a = 3 m</text>
+    <rect x="2" y="132" width="40" height="20" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+    <text x="22" y="146" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#7dd3fc" text-anchor="middle">3² = 9</text>
+
+    <!-- Side b (Horizontal Base: 4 m) -->
+    <text x="140" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#38bdf8" text-anchor="middle">b = 4 m</text>
+    <rect x="120" y="224" width="40" height="20" rx="4" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+    <text x="140" y="238" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#7dd3fc" text-anchor="middle">4² = 16</text>
+
+    <!-- Hypotenuse c (Diagonal: 5 m) -->
+    <text x="165" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="900" fill="#10b981" text-anchor="middle">c = 5 m</text>
+    <rect x="195" y="85" width="60" height="22" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1"/>
+    <text x="225" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#6ee7b7" text-anchor="middle">c² = 25</text>
+  </g>
+
+  <!-- Right: Calculation Breakdown Card -->
+  <g transform="translate(370, 95)">
+    <rect width="370" height="250" rx="14" fill="#1e293b" fill-opacity="0.8" stroke="#334155" stroke-width="1.5" filter="url(#shadow4)"/>
+    
+    <!-- Title -->
+    <text x="24" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#f8fafc">Pythagorean Theorem: a² + b² = c²</text>
+    <line x1="24" y1="46" x2="346" y2="46" stroke="#334155" stroke-width="1"/>
+
+    <!-- Step 1: Sum of Squares -->
+    <g transform="translate(24, 62)">
+      <text x="0" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#94a3b8">STEP 1: SQUARE BOTH KNOWN SIDES</text>
+      <text x="0" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#cbd5e1">3² + 4² = 9 + 16 = 25</text>
+    </g>
+
+    <!-- Step 2: Extract Root -->
+    <g transform="translate(24, 116)">
+      <rect width="322" height="60" rx="8" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-width="1.5"/>
+      <text x="14" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#6ee7b7">STEP 2: TAKE THE SQUARE ROOT (RACINE CARRÉE)</text>
+      <text x="14" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="900" fill="#10b981">c = √(25) = 5 meters</text>
+    </g>
+
+    <!-- Practical Use Note -->
+    <g transform="translate(24, 196)">
+      <text x="0" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">
+        <tspan x="0" dy="0">Carpenters and architects use this &quot;3-4-5 rule&quot;</tspan>
+        <tspan x="0" dy="16">every day to guarantee perfectly square 90° corners.</tspan>
+      </text>
+    </g>
+  </g>
+
+  <!-- Footer Watermark -->
+  <text x="400" y="395" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b" text-anchor="middle" letter-spacing="0.5">RACINE CARREE CALCULATOR &#8226; REAL-WORLD PYTHAGOREAN PROOF</text>
+</svg>

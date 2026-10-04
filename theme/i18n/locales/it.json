@@ -24,12 +24,12 @@
     "disclaimer": "Disclaimer"
   },
   "hero": {
-    "badge": "Strumento gratuito per radice quadrata e radice cubica",
+    "badge": "Calcolatore di Radice Quadrata Gratuito",
     "title": {
       "part1": "Radice Quadrata",
       "part2": "Calcolatrice"
     },
-    "subtitle": "Il calcolatore Racine Carree più completo disponibile. Calcola istantaneamente la radice quadrata o cubica di qualsiasi numero: positivo, negativo, decimale o frazione. Ottieni il risultato decimale esatto, la forma radicale semplificata, il funzionamento passo passo e le tabelle di riferimento complete. 100% gratuito. Nessuna registrazione. Nessun limite.",
+    "subtitle": "Calcola la radice quadrata (racine carrée) di qualsiasi numero istantaneamente con decimali esatti, forma radicale semplificata e soluzioni passo dopo passo. 100% gratuito e senza limiti.",
     "pill": {
       "instant": "Istantaneo",
       "stepByStep": "Passo dopo passo",

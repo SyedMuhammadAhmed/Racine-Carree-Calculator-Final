@@ -24,12 +24,12 @@
     "disclaimer": "Ansvarsfriskrivning"
   },
   "hero": {
-    "badge": "Gratis verktyg för kvadratrot och kubrot",
+    "badge": "Gratis kvadratrotskalkylator",
     "title": {
       "part1": "Kvadratrot",
       "part2": "Miniräknare"
     },
-    "subtitle": "Den mest kompletta Racine Carree-kalkylatorn som finns. Beräkna kvadratroten eller kubikroten av valfritt tal – positivt, negativt, decimalt eller bråktal – direkt. Få det exakta decimalresultatet, förenklad radikal form, steg-för-steg-funktioner och fullständiga referenstabeller. 100% gratis. Ingen anmälan. Inga gränser.",
+    "subtitle": "Beräkna kvadratroten (racine carrée) ur valfritt tal direkt med exakta decimaler, förenklad rotform och steg-för-steg-lösningar. 100% gratis utan gränser.",
     "pill": {
       "instant": "Omedelbar",
       "stepByStep": "Steg-för-steg",

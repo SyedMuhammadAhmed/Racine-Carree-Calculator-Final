@@ -49,9 +49,16 @@ export async function GET() {
 
     // Default (EN) version
     const defaultUrl = `${baseUrl}${defaultPath}`;
+    const imagesXml = page.slug === '' ? [
+      `<image:image><image:loc>${baseUrl}/images/sqrt-geometric-concept.svg</image:loc><image:title>Geometric Concept of Square Root</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/sqrt-radical-anatomy.svg</image:loc><image:title>Radical Notation Anatomy</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/sqrt-perfect-squares-grid.svg</image:loc><image:title>Geometric Progression of Perfect Squares</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/sqrt-pythagorean-theorem.svg</image:loc><image:title>Pythagorean Theorem Square Root Real-World Application</image:title></image:image>`
+    ].join('') : '';
+
     entries.push({
       url: defaultUrl,
-      xml: `<url><loc>${defaultUrl}</loc><lastmod>${lastmod}</lastmod><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${alternateTags}</url>`,
+      xml: `<url><loc>${defaultUrl}</loc><lastmod>${lastmod}</lastmod><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${alternateTags}${imagesXml}</url>`,
     });
 
     // 17 Localized editions
@@ -59,7 +66,7 @@ export async function GET() {
       const locUrl = `${baseUrl}/${loc}${defaultPath}`;
       entries.push({
         url: locUrl,
-        xml: `<url><loc>${locUrl}</loc><lastmod>${lastmod}</lastmod><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${alternateTags}</url>`,
+        xml: `<url><loc>${locUrl}</loc><lastmod>${lastmod}</lastmod><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${alternateTags}${imagesXml}</url>`,
       });
     }
   }
