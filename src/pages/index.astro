@@ -6,17 +6,17 @@ import Calculator from '../components/Calculator.astro';
 import ContentSections from '../components/ContentSections.astro';
 import Footer from '../components/Footer.astro';
 import { getHtmlDir } from '../../theme/i18n/utils';
-import { useTranslations, getLocaleFaqs } from '../../theme/i18n/translations';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { useTranslations } from '../../theme/i18n/translations';
 import site from '../config/site.json';
 import { getHomeAlternateLinks } from '../utils/seo';
+import { getHomeContent } from '../data/i18n/content/homeContent';
 
 const lang = 'en';
 const t = await useTranslations(lang);
+const content = getHomeContent(lang);
 const title = t('site.title', 'Racine Carree Calculator | Online Square Root Calculator');
 const description = t('site.description', 'Free online Racine Carree Calculator. Calculate square roots instantly with exact decimals, simplified radicals, and step-by-step mathematical solutions.');
 const alternateLinks = getHomeAlternateLinks();
-const sqrtFaqs = getLocaleFaqs(lang, 'sqrt');
 ---
 
 <Layout
@@ -26,7 +26,7 @@ const sqrtFaqs = getLocaleFaqs(lang, 'sqrt');
   dir={getHtmlDir(lang)}
   canonicalUrl={`${site.siteUrl}/`}
   alternateLinks={alternateLinks}
-  faqItems={sqrtFaqs}
+  faqItems={content.faqs}
 >
   <Navbar lang={lang} />
   <main id="main-content">
@@ -36,7 +36,7 @@ const sqrtFaqs = getLocaleFaqs(lang, 'sqrt');
         <Calculator lang={lang} />
       </div>
     </section>
-    <ContentSections lang={lang} faqs={sqrtFaqs} />
+    <ContentSections lang={lang} faqs={content.faqs} />
   </main>
   <Footer lang={lang} />
 </Layout>

@@ -8,6 +8,7 @@ export interface HomeContent extends HomeBoilerplate {
     href: string;
     subitems?: Array<{ title: string; href: string }>;
   }>;
+  faqs: Array<{ question: string; answer: string }>;
 }
 
 const TOC_TITLES: Record<string, string> = {
@@ -73,30 +74,23 @@ export function getHomeContent(locale: string): HomeContent {
     },
     {
       title: bp.s7Title,
-      href: "#section-positive-numbers"
+      href: "#section-perfect-squares"
     },
     {
       title: bp.s8Title,
-      href: "#section-negative-numbers"
+      href: "#section-irrational-numbers"
     },
     {
       title: bp.s9Title,
-      href: "#section-difference-cubique"
+      href: "#section-decimals-fractions"
     },
     {
       title: bp.s10Title,
-      href: "#section-applications",
-      subitems: [
-        { title: bp.s10Apps[0]?.title || "App 1", href: "#app-construction" },
-        { title: bp.s10Apps[1]?.title || "App 2", href: "#app-finance" },
-        { title: bp.s10Apps[2]?.title || "App 3", href: "#app-physics" },
-        { title: bp.s10Apps[3]?.title || "App 4", href: "#app-cs" },
-        { title: bp.s10Apps[4]?.title || "App 5", href: "#app-everyday" }
-      ]
+      href: "#section-negative-numbers"
     },
     {
       title: bp.s11Title,
-      href: "#section-simplification"
+      href: "#section-difference-squaring"
     },
     {
       title: bp.s12Title,
@@ -104,14 +98,25 @@ export function getHomeContent(locale: string): HomeContent {
     },
     {
       title: bp.s13Title,
-      href: "#section-perfect-squares"
+      href: "#section-simplification"
     },
     {
       title: bp.s14Title,
-      href: "#section-faqs"
+      href: "#section-applications",
+      subitems: [
+        { title: bp.s14Apps[0]?.title || "App 1", href: "#app-construction" },
+        { title: bp.s14Apps[1]?.title || "App 2", href: "#app-finance" },
+        { title: bp.s14Apps[2]?.title || "App 3", href: "#app-physics" },
+        { title: bp.s14Apps[3]?.title || "App 4", href: "#app-cs" },
+        { title: bp.s14Apps[4]?.title || "App 5", href: "#app-everyday" }
+      ]
     },
     {
       title: bp.s15Title,
+      href: "#section-faqs"
+    },
+    {
+      title: bp.s16Title,
       href: "#section-recap"
     }
   ];
@@ -119,6 +124,7 @@ export function getHomeContent(locale: string): HomeContent {
   return {
     ...bp,
     tocTitle,
-    toc
+    toc,
+    faqs: bp.s15Faqs || []
   };
 }

@@ -3,453 +3,1997 @@ import TableOfContents from './TableOfContents.astro';
 import { getLocalizedUrl, DEFAULT_LOCALE, type Locale } from '../../theme/i18n/utils';
 import { getHomeContent } from '../data/i18n/content/homeContent';
 import { getAuthorByline } from '../data/i18n/commonI18n';
+import {
+  REFERENCE_TABLE_50,
+  PERFECT_SQUARES_20,
+  SIMPLIFICATION_11,
+  IRRATIONAL_EXAMPLES,
+  DECIMAL_EXAMPLES,
+  FRACTION_EXAMPLES,
+  NEGATIVE_EXAMPLES
+} from '../data/sqrtData';
 
 interface Props {
   lang?: string;
   faqs?: Array<{ question: string; answer: string }>;
 }
+
 const { lang = DEFAULT_LOCALE, faqs = [] } = Astro.props;
 const currentLocale = (lang || DEFAULT_LOCALE) as Locale;
 const localizedUrl = (path: string) => getLocalizedUrl(path, currentLocale);
 
 const content = getHomeContent(lang);
 const authorByline = getAuthorByline(lang);
-
-const table100Rows = Array.from({ length: 100 }, (_, i) => {
-  const n = i + 1;
-  const root = Math.sqrt(n);
-  const isPerfect = Number.isInteger(root);
-  return {
-    n,
-    rootFormatted: root.toFixed(3),
-    isPerfect
-  };
-});
-
-const perfectSquaresList = [
-  { n1: 1, sq1: 1, n2: 11, sq2: 121 },
-  { n1: 2, sq1: 4, n2: 12, sq2: 144 },
-  { n1: 3, sq1: 9, n2: 13, sq2: 169 },
-  { n1: 4, sq1: 16, n2: 14, sq2: 196 },
-  { n1: 5, sq1: 25, n2: 15, sq2: 225 },
-  { n1: 6, sq1: 36, n2: 16, sq2: 256 },
-  { n1: 7, sq1: 49, n2: 17, sq2: 289 },
-  { n1: 8, sq1: 64, n2: 18, sq2: 324 },
-  { n1: 9, sq1: 81, n2: 19, sq2: 361 },
-  { n1: 10, sq1: 100, n2: 20, sq2: 400 },
-];
+const displayFaqs = (faqs && faqs.length > 0) ? faqs : content.faqs;
 ---
 
 <article class="seo-article" id="what-is-racine">
 
-        <!-- Table of Contents -->
-        <div class="article-container" style="padding-top: 0; padding-bottom: 0;">
-            <TableOfContents items={content.toc} title={content.tocTitle} isOpen={false} lang={lang} />
+    <!-- Interactive Hero Feature Ribbon -->
+    <div class="article-container" style="padding-bottom: var(--space-md);">
+        <div class="interactive-ribbon">
+            <div class="ribbon-badges">
+                <span class="ribbon-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    {content.badgeInstant}
+                </span>
+                <span class="ribbon-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+                    {content.badgeRadical}
+                </span>
+                <span class="ribbon-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    {content.badgeSteps}
+                </span>
+                <span class="ribbon-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    {content.badgeFree}
+                </span>
+            </div>
+
+            <!-- Quick-Try Interactive Chips -->
+            <div class="quick-try-bar">
+                <span class="quick-try-label">{content.quickTryLabel}</span>
+                <div class="quick-try-chips">
+                    <button type="button" class="quick-try-chip" data-num="144" title="Test √144 in calculator">√144 = 12</button>
+                    <button type="button" class="quick-try-chip" data-num="72" title="Test √72 in calculator">√72 = 6√2</button>
+                    <button type="button" class="quick-try-chip" data-num="50" title="Test √50 in calculator">√50 ≈ 7.07</button>
+                    <button type="button" class="quick-try-chip" data-num="0.25" title="Test √0.25 in calculator">√0.25 = 0.5</button>
+                    <button type="button" class="quick-try-chip" data-num="-16" title="Test √(-16) in calculator">√(-16) = 4i</button>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Section 1: What Is Racine Carrée -->
-        <section class="article-section" id="section-what-is-square-root">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> {content.s1Eyebrow}</div>
-                <h2 class="article-h2">{content.s1Title}</h2>
-                <p>{content.s1P1}</p>
-                <p>
-                  {content.s1P2}
-                  &nbsp;<a href={localizedUrl('/racine-cubique-calculator/')} style="color: var(--primary-500); font-weight: 600;">{content.s9ThCube}</a>,
-                  &nbsp;<a href={localizedUrl('/nth-root-calculator/')} style="color: var(--primary-500); font-weight: 600;">ⁿ√x</a>.
-                </p>
-                <p>{content.s1P3}</p>
+    <!-- Table of Contents -->
+    <div class="article-container" style="padding-top: 0; padding-bottom: 0;">
+        <TableOfContents items={content.toc} title={content.tocTitle} isOpen={false} lang={lang} />
+    </div>
 
-                <div class="examples-grid">
-                    {content.s1Cards.map(card => (
-                      <div class="example-card">
-                          <span class="example-expr">{card.expr}</span>
-                          <span class="example-reason">{card.reason}</span>
-                      </div>
-                    ))}
-                </div>
+    <!-- Section 1: What Is Racine Carrée (Square Root)? -->
+    <section class="article-section" id="section-what-is-square-root">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </span>
+                {content.s1Eyebrow}
             </div>
-        </section>
+            <h2 class="article-h2">{content.s1Title}</h2>
+            <p>{content.s1P1}</p>
+            <p>{content.s1P2}</p>
+            <p>{content.s1P3}</p>
 
-        <figure class="section-image">
-            <img src="/images/sqrt-concept.webp" alt={content.s1Caption} loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
-            <figcaption>{content.s1Caption}</figcaption>
-        </figure>
-
-        <!-- Section 2: How to Use the Calculator -->
-        <section class="article-section article-section--alt" id="section-how-to-use">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> {content.s2Eyebrow}</div>
-                <h2 class="article-h2">{content.s2Title}</h2>
-                <p>{content.s2Intro}</p>
-                <div class="steps-visual">
-                    {content.s2Steps.map((step, idx) => (
-                      <div class="step-card" id={`step-${idx === 0 ? 'input' : idx === 1 ? 'calc' : 'result'}`}>
-                          <div class="step-number">{idx + 1}</div>
-                          <div class="step-content">
-                              <h3>{step.title}</h3>
-                              <p>{step.text}</p>
-                          </div>
-                      </div>
-                    ))}
+            <!-- Interactive Anatomy Card -->
+            <div class="anatomy-box" id="radicalAnatomy">
+                <div class="anatomy-header">
+                    <span class="anatomy-tag">{content.s1AnatomyTitle}</span>
+                    <span class="anatomy-hint">Click or hover over any part</span>
                 </div>
-                <p>{content.s2Conclusion}</p>
-            </div>
-        </section>
-
-        <!-- Section 3: Notation -->
-        <section class="article-section" id="section-notation">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17c2 0 2.8-1 2.8-2.8V10c0-2 1-3.3 3.2-3"/><path d="M9 11.2h5.7"/></svg></span> {content.s3Eyebrow}</div>
-                <h2 class="article-h2">{content.s3Title}</h2>
-                <p>{content.s3Intro}</p>
-                <div class="examples-grid">
-                    {content.s3Cards.map(card => (
-                      <div class="example-card">
-                          <span class="example-expr">{card.expr}</span>
-                          <span class="example-reason">{card.reason}</span>
-                      </div>
-                    ))}
+                <div class="anatomy-visual">
+                    <span class="anatomy-part anatomy-part--symbol" data-part="symbol" tabindex="0" role="button" aria-label="Radical Symbol">√</span>
+                    <span class="anatomy-part anatomy-part--radicand" data-part="radicand" tabindex="0" role="button" aria-label="Radicand">49</span>
+                    <span class="anatomy-equals">=</span>
+                    <span class="anatomy-part anatomy-part--root" data-part="root" tabindex="0" role="button" aria-label="Root Result">7</span>
                 </div>
-                <p>{content.s3P1}</p>
-                <p>{content.s3P2}</p>
-                <div class="math-block"><span class="math-formula">x^(1/2) = √x</span></div>
-                <p>{content.s3P3}</p>
-            </div>
-        </section>
-
-        <figure class="section-image">
-            <img src="/images/sqrt-notation.webp" alt={content.s3Caption} loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
-            <figcaption>{content.s3Caption}</figcaption>
-        </figure>
-
-        <!-- Section 4: Formula -->
-        <section class="article-section article-section--alt" id="section-formula">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></span> {content.s4Eyebrow}</div>
-                <h2 class="article-h2">{content.s4Title}</h2>
-                <p>{content.s4Intro}</p>
-                <div class="math-block"><span class="math-formula">If x = √y, then x × x = y (or x² = y)</span></div>
-                <p>{content.s4P1}</p>
-            </div>
-        </section>
-
-        <!-- Section 5: Five Core Laws -->
-        <section class="article-section" id="section-laws">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> {content.s5Eyebrow}</div>
-                <h2 class="article-h2">{content.s5Title}</h2>
-                <p>{content.s5Intro}</p>
-                <div class="law-cards">
-                    {content.s5Laws.map((law, idx) => (
-                      <div class="law-card">
-                          <div class="law-header">
-                            <div class="law-number">{idx + 1}</div>
-                            <div>
-                              <div class="law-label">{law.name}</div>
-                              <div class="law-subtitle">{law.subtitle}</div>
-                            </div>
-                          </div>
-                          <div class="math-block">
-                            <span class="math-formula">
-                              {idx === 0 && '√(a × b) = √a × √b'}
-                              {idx === 1 && '√(a ÷ b) = √a ÷ √b'}
-                              {idx === 2 && '√(a²) = a (for a ≥ 0)'}
-                              {idx === 3 && '√a × √a = a'}
-                              {idx === 4 && '√1 = 1   and   √0 = 0'}
-                            </span>
-                          </div>
-                          <p class="law-example"><strong>{law.example}</strong></p>
-                          <p class="law-explanation">{law.explanation}</p>
-                      </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 6: Calculation Methods -->
-        <section class="article-section article-section--alt" id="section-methods">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></span> {content.s6Eyebrow}</div>
-                <h2 class="article-h2">{content.s6Title}</h2>
-                <p>{content.s6Intro}</p>
-
-                <h3 class="article-h3" id="method-calculator">{content.s6M1Title}</h3>
-                <p>{content.s6M1Text}</p>
-
-                <h3 class="article-h3" id="method-factorization">{content.s6M2Title}</h3>
-                <p>{content.s6M2Intro}</p>
-                <div class="method-example">
-                    <div class="method-title">{content.s6M2ExTitle}</div>
-                    <ul class="method-steps-list">
-                        {content.s6M2Steps.map(step => (
-                          <li>{step}</li>
-                        ))}
-                    </ul>
-                </div>
-
-                <h3 class="article-h3" id="method-division">{content.s6M3Title}</h3>
-                <p>{content.s6M3Text}</p>
-
-                <h3 class="article-h3" id="method-estimation">{content.s6M4Title}</h3>
-                <p>{content.s6M4Intro}</p>
-                <div class="method-example">
-                    <div class="method-title">{content.s6M4ExTitle}</div>
-                    <ul class="method-steps-list">
-                        {content.s6M4Steps.map(step => (
-                          <li>{step}</li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 7: Positive Numbers Table -->
-        <section class="article-section" id="section-positive-numbers">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span> {content.s7Eyebrow}</div>
-                <h2 class="article-h2">{content.s7Title}</h2>
-                <p>{content.s7Intro}</p>
-                <div class="table-scroll-wrapper">
-                    <div class="table-scroll-hint">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8L22 12L18 16"/><path d="M6 8L2 12L6 16"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-                        {content.s12ScrollHint}
-                    </div>
-                    <table class="data-table">
-                        <thead><tr><th>{content.s7ThNumber}</th><th>{content.s7ThRoot}</th><th>{content.s7ThWhy}</th></tr></thead>
-                        <tbody>
-                            <tr><td>4</td><td>2</td><td>{content.s7Row4}</td></tr>
-                            <tr><td>25</td><td>5</td><td>{content.s7Row25}</td></tr>
-                            <tr><td>64</td><td>8</td><td>{content.s7Row64}</td></tr>
-                            <tr><td>2</td><td>≈1.414</td><td>{content.s7Row2}</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p>{content.s7Conclusion}</p>
-            </div>
-        </section>
-
-        <!-- Section 8: Negative Numbers & Imaginary -->
-        <section class="article-section article-section--alt" id="section-negative-numbers">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg></span> {content.s8Eyebrow}</div>
-                <h2 class="article-h2">{content.s8Title}</h2>
-                <p>{content.s8P1}</p>
-                <p>{content.s8P2}</p>
-                <div class="math-block"><span class="math-formula">i = √(−1)</span></div>
-                <p>{content.s8P3}</p>
-                <div class="method-example">
-                    <div class="method-title">{content.s8ExTitle}</div>
-                    <ul class="method-steps-list">
-                        <li>{content.s8ExStep}</li>
-                    </ul>
-                </div>
-                <p>{content.s8Conclusion}</p>
-            </div>
-        </section>
-
-        <!-- Section 9: Difference Between Racine Carrée and Racine Cubique -->
-        <section class="article-section" id="section-difference-cubique">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span> {content.s9Eyebrow}</div>
-                <h2 class="article-h2">{content.s9Title}</h2>
-                <p>{content.s9Intro}</p>
-                <div class="table-scroll-wrapper">
-                    <table class="data-table data-table--comparison">
-                        <thead><tr><th></th><th>{content.s9ThSquare}</th><th>{content.s9ThCube}</th></tr></thead>
-                        <tbody>
-                            <tr><td>{content.s9RowSymbol}</td><td>√</td><td>∛</td></tr>
-                            <tr><td>{content.s9RowMult}</td><td>{content.s9RowMultSquare}</td><td>{content.s9RowMultCube}</td></tr>
-                            <tr><td>{content.s9RowEx}</td><td>√25 = 5</td><td>∛27 = 3</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 10: Real-Life Applications -->
-        <section class="article-section article-section--alt" id="section-applications">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span> {content.s10Eyebrow}</div>
-                <h2 class="article-h2">{content.s10Title}</h2>
-                <p>{content.s10Intro}</p>
-                <div class="applications-grid">
-                    {content.s10Apps.map((app, idx) => (
-                      <div class="app-card" id={`app-${idx === 0 ? 'construction' : idx === 1 ? 'finance' : idx === 2 ? 'physics' : idx === 3 ? 'cs' : 'everyday'}`}>
-                          <div class="app-icon">
-                            {idx === 0 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="15" y1="22" x2="15" y2="2"/><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg>}
-                            {idx === 1 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>}
-                            {idx === 2 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4"/></svg>}
-                            {idx === 3 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>}
-                            {idx === 4 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>}
-                          </div>
-                          <div class="app-card-content">
-                              <h3>{app.title}</h3>
-                              <p>{app.text}</p>
-                          </div>
-                      </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 11: Simplification Table -->
-        <section class="article-section" id="section-simplification">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg></span> {content.s11Eyebrow}</div>
-                <h2 class="article-h2">{content.s11Title}</h2>
-                <p>{content.s11Intro}</p>
-                <div class="table-scroll-wrapper">
-                    <table class="data-table data-table--compact">
-                        <thead><tr><th>{content.s11ThExpr}</th><th>{content.s11ThForm}</th><th>{content.s11ThWhy}</th></tr></thead>
-                        <tbody>
-                            <tr><td>√8</td><td>2√2</td><td>8 = 4 × 2, √4 = 2</td></tr>
-                            <tr><td>√12</td><td>2√3</td><td>12 = 4 × 3</td></tr>
-                            <tr><td>√18</td><td>3√2</td><td>18 = 9 × 2</td></tr>
-                            <tr><td>√20</td><td>2√5</td><td>20 = 4 × 5</td></tr>
-                            <tr><td>√50</td><td>5√2</td><td>50 = 25 × 2</td></tr>
-                            <tr><td>√72</td><td>6√2</td><td>72 = 36 × 2</td></tr>
-                            <tr><td>√98</td><td>7√2</td><td>98 = 49 × 2</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p>{content.s11Conclusion}</p>
-            </div>
-        </section>
-
-        <!-- Section 12: Reference Table 1-100 -->
-        <section class="article-section article-section--alt" id="reference-tables">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></span> {content.s12Eyebrow}</div>
-                <h2 class="article-h2">{content.s12Title}</h2>
-                <p>{content.s12Intro}</p>
-                <p style="margin-top: 8px; font-weight: 500;">
-                  <a href={localizedUrl('/square-root-chart/')} style="color: var(--primary-600); font-weight: 700; text-decoration: underline;">
-                    {content.s12ChartLinkText}
-                  </a>
-                </p>
-                <div class="table-scroll-wrapper table-scroll-wrapper--large">
-                    <div class="table-scroll-hint"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M18 13l-6 6-6-6"/></svg> {content.s12ScrollHint}</div>
-                    <table class="data-table data-table--reference data-table--vertical">
-                        <thead><tr><th>{content.s12ColNumber}</th><th>{content.s12ColRoot}</th><th>{content.s12ColType}</th></tr></thead>
-                        <tbody>
-                            {table100Rows.map(row => (
-                              <tr class={row.isPerfect ? "tr-perfect" : undefined}>
-                                <td>{row.n}</td>
-                                <td>{row.rootFormatted}</td>
-                                <td>
-                                  {row.isPerfect ? (
-                                    <span class="badge-perfect">{content.s12BadgePerfect}</span>
-                                  ) : (
-                                    content.s12BadgeIrrational
-                                  )}
-                                </td>
-                              </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 13: Perfect Squares -->
-        <section class="article-section" id="section-perfect-squares">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg></span> {content.s13Eyebrow}</div>
-                <h2 class="article-h2">{content.s13Title}</h2>
-                <p>{content.s13Intro}</p>
-                <div class="table-scroll-wrapper">
-                    <table class="data-table">
-                        <thead><tr><th>{content.s12ColNumber}</th><th>Square (n²)</th><th>{content.s12ColNumber}</th><th>Square (n²)</th></tr></thead>
-                        <tbody>
-                            {perfectSquaresList.map(item => (
-                              <tr>
-                                <td>{item.n1}</td>
-                                <td>{item.sq1}</td>
-                                <td>{item.n2}</td>
-                                <td>{item.sq2}</td>
-                              </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-                <p>
-                  {content.s13Conclusion}
-                  &nbsp;<a href={localizedUrl('/perfect-square-calculator/')} style="color: var(--primary-500); font-weight: 600;">
-                    {content.s13Eyebrow}
-                  </a>.
-                </p>
-            </div>
-        </section>
-
-        <figure class="section-image">
-            <img src="/images/sqrt-perfect-squares.webp" alt={content.s13Caption} loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
-            <figcaption>{content.s13Caption}</figcaption>
-        </figure>
-
-        <!-- Section 14: FAQs -->
-        <section class="article-section article-section--alt" id="section-faqs">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> {content.s14Eyebrow}</div>
-                <h2 class="article-h2">{content.s14Title}</h2>
-                <div class="faq-list">
-                    {faqs && faqs.length > 0 && (
-                        faqs.map((faq) => (
-                            <details class="faq-item">
-                                <summary class="faq-question">{faq.question}</summary>
-                                <div class="faq-answer"><p>{faq.answer}</p></div>
-                            </details>
-                        ))
-                    )}
-                </div>
-
-                <!-- Author Byline & Social Sharing Bar below FAQs -->
-                <div class="article-header-meta" style="margin-top: 40px; margin-bottom: 0;">
-                    <div class="article-author-byline">
-                        <a href="/about-us/" class="author-avatar-link" aria-label="Syed Muhammad Ahmed, Founder and Creator">
-                            <img src="/images/syed-muhammad-ahmed-racine-carree-calculator.jpg" alt="Syed Muhammad Ahmed, Founder and Creator of Racine Carree Calculator" width="44" height="44" loading="lazy" decoding="async" class="author-avatar" />
-                        </a>
-                        <div class="author-details">
-                            <span class="author-verified-label">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                                {authorByline.writtenBy}
-                            </span>
-                            <a href="/about-us/" class="author-name-link">Syed Muhammad Ahmed</a>
-                            <span class="author-title">{authorByline.authorRole}</span>
+                <div class="anatomy-cards-grid">
+                    <div class="anatomy-info-card active" id="info-symbol">
+                        <span class="anatomy-info-badge">√</span>
+                        <div>
+                            <strong>{content.s1RadicalSymbol}</strong>
+                            <p>{content.s1RadicalSymbolDesc}</p>
                         </div>
                     </div>
-                    <div class="social-share-group">
-                        <span class="social-share-label">{authorByline.share}</span>
-                        <a href="https://twitter.com/intent/tweet?text=Free%20Racine%20Carree%20Calculator%20with%20step-by-step%20solutions&url=https://www.racinecarreecalculatorr.com/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--x" aria-label="Share on X" title="Share on X">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        </a>
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.racinecarreecalculatorr.com/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--linkedin" aria-label="Share on LinkedIn" title="Share on LinkedIn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        </a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.racinecarreecalculatorr.com/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--facebook" aria-label="Share on Facebook" title="Share on Facebook">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </a>
-                        <a href="https://api.whatsapp.com/send?text=Check%20out%20Racine%20Carree%20Calculator:%20https://www.racinecarreecalculatorr.com/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--whatsapp" aria-label="Share on WhatsApp" title="Share on WhatsApp">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                        </a>
+                    <div class="anatomy-info-card" id="info-radicand">
+                        <span class="anatomy-info-badge">49</span>
+                        <div>
+                            <strong>{content.s1Radicand}</strong>
+                            <p>{content.s1RadicandDesc}</p>
+                        </div>
+                    </div>
+                    <div class="anatomy-info-card" id="info-root">
+                        <span class="anatomy-info-badge">7</span>
+                        <div>
+                            <strong>{content.s1Root}</strong>
+                            <p>{content.s1RootDesc}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Section 15: Quick Recap -->
-        <section class="article-section" id="section-recap">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> {content.s15Eyebrow}</div>
-                <h2 class="article-h2">{content.s15Title}</h2>
-                <div class="warning-box" style="border-color: var(--primary-200);">
-                    <div class="warning-icon" style="background: var(--primary-50); color: var(--primary-500);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-                    <div class="warning-content">
-                        <strong>{content.s15BoxTitle}</strong>
-                        <p>{content.s15BoxText}</p>
+            <!-- Basic Examples Grid -->
+            <div class="examples-grid">
+                {content.s1Cards.map(card => (
+                  <div class="example-card">
+                      <span class="example-expr">{card.expr}</span>
+                      <span class="example-reason">{card.reason}</span>
+                  </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <figure class="section-image">
+        <img src="/images/sqrt-concept.webp" alt={content.s1Caption} loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
+        <figcaption>{content.s1Caption}</figcaption>
+    </figure>
+
+    <!-- Section 2: How to Use the Racine Carree Calculator -->
+    <section class="article-section article-section--alt" id="section-how-to-use">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </span>
+                {content.s2Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s2Title}</h2>
+            <p>{content.s2Intro}</p>
+
+            <div class="steps-visual">
+                {content.s2Steps.map((step, idx) => (
+                  <div class="step-card" id={`step-${idx === 0 ? 'input' : idx === 1 ? 'calc' : 'result'}`}>
+                      <div class="step-number">{idx + 1}</div>
+                      <div class="step-content">
+                          <h3>{step.title}</h3>
+                          <p>{step.text}</p>
+                      </div>
+                  </div>
+                ))}
+            </div>
+            <p class="reassurance-note">{content.s2Conclusion}</p>
+        </div>
+    </section>
+
+    <!-- Section 3: Square Root Notation: The √ Symbol and x^(1/2) -->
+    <section class="article-section" id="section-notation">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17c2 0 2.8-1 2.8-2.8V10c0-2 1-3.3 3.2-3"/><path d="M9 11.2h5.7"/></svg>
+                </span>
+                {content.s3Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s3Title}</h2>
+            <p>{content.s3Intro}</p>
+
+            <div class="examples-grid">
+                {content.s3Cards.map(card => (
+                  <div class="example-card">
+                      <span class="example-expr">{card.expr}</span>
+                      <span class="example-reason">{card.reason}</span>
+                  </div>
+                ))}
+            </div>
+
+            <p>{content.s3P1}</p>
+            <p>{content.s3P2}</p>
+
+            <!-- Interactive Notation Mode Switcher -->
+            <div class="interactive-notation-switcher">
+                <div class="notation-tabs" role="tablist">
+                    <button type="button" class="notation-tab active" data-format="radical">{content.s3ToggleRadical}</button>
+                    <button type="button" class="notation-tab" data-format="exponent">{content.s3ToggleExponent}</button>
+                    <button type="button" class="notation-tab" data-format="code">{content.s3ToggleCode}</button>
+                </div>
+                <div class="notation-display">
+                    <div class="notation-view active" id="view-radical">
+                        <span class="math-formula">√x = y &nbsp;&Longleftrightarrow&nbsp; y² = x</span>
+                        <span class="view-desc">Standard mathematical radical sign</span>
+                    </div>
+                    <div class="notation-view" id="view-exponent">
+                        <span class="math-formula">x^(1/2) = √x &nbsp;&Longleftrightarrow&nbsp; 49^(1/2) = 7</span>
+                        <span class="view-desc">Fractional power notation used in advanced algebra</span>
+                    </div>
+                    <div class="notation-view" id="view-code">
+                        <span class="math-formula">Math.sqrt(x) /* JavaScript */ &nbsp;|&nbsp; x ** 0.5 /* Python */</span>
+                        <span class="view-desc">Syntax used in programming and scientific calculators</span>
                     </div>
                 </div>
             </div>
-        </section>
+
+            <p>{content.s3P3}</p>
+        </div>
+    </section>
+
+    <figure class="section-image">
+        <img src="/images/sqrt-notation.webp" alt={content.s3Caption} loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
+        <figcaption>{content.s3Caption}</figcaption>
+    </figure>
+
+    <!-- Section 4: What Is the Square Root Formula? -->
+    <section class="article-section article-section--alt" id="section-formula">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+                </span>
+                {content.s4Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s4Title}</h2>
+            <p>{content.s4Intro}</p>
+
+            <div class="math-block">
+                <span class="math-formula">If y = √x, then y × y = x &nbsp;(or y² = x)</span>
+            </div>
+
+            <p>{content.s4P1}</p>
+
+            <!-- Principal Root Callout Box -->
+            <div class="principal-root-card">
+                <div class="principal-root-header">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <h3>{content.s4PrincipalTitle}</h3>
+                </div>
+                <p>{content.s4PrincipalText}</p>
+                <div class="principal-comparison">
+                    <div class="comparison-pill positive">
+                        <span class="pill-label">Principal Root</span>
+                        <code>√25 = +5</code>
+                    </div>
+                    <div class="comparison-pill negative">
+                        <span class="pill-label">Dual Algebraic Solutions</span>
+                        <code>x² = 25 &rArr; x = &plusmn;5</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Five Essential Properties of Square Roots -->
+    <section class="article-section" id="section-laws">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </span>
+                {content.s5Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s5Title}</h2>
+            <p>{content.s5Intro}</p>
+
+            <div class="law-cards">
+                {content.s5Laws.map((law, idx) => (
+                  <div class="law-card">
+                      <div class="law-header">
+                        <div class="law-number">{idx + 1}</div>
+                        <div>
+                          <div class="law-label">{law.name}</div>
+                          <div class="law-subtitle">{law.subtitle}</div>
+                        </div>
+                        <button type="button" class="btn-copy-formula" data-formula={law.subtitle} title="Copy formula">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        </button>
+                      </div>
+                      <div class="math-block">
+                        <span class="math-formula">
+                          {idx === 0 && '√(a × b) = √a × √b'}
+                          {idx === 1 && '√(a ÷ b) = √a ÷ √b'}
+                          {idx === 2 && '√(a²) = |a|'}
+                          {idx === 3 && '√a × √a = a'}
+                          {idx === 4 && '√(√a) = a^(1/4)'}
+                        </span>
+                      </div>
+                      <p class="law-example"><strong>{law.example}</strong></p>
+                      <p class="law-explanation">{law.explanation}</p>
+                  </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: How to Calculate Square Root: Four Methods -->
+    <section class="article-section article-section--alt" id="section-methods">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </span>
+                {content.s6Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s6Title}</h2>
+            <p>{content.s6Intro}</p>
+
+            <!-- Interactive Method Tabs Switcher -->
+            <div class="method-interactive-tabs">
+                <div class="method-tabs-nav" role="tablist">
+                    <button type="button" class="method-tab-btn active" data-method="m1">
+                        <span class="tab-badge">1</span>
+                        <span>{content.s6M1Title.split(':')[0]}</span>
+                    </button>
+                    <button type="button" class="method-tab-btn" data-method="m2">
+                        <span class="tab-badge">2</span>
+                        <span>{content.s6M2Title.split(':')[0]}</span>
+                    </button>
+                    <button type="button" class="method-tab-btn" data-method="m3">
+                        <span class="tab-badge">3</span>
+                        <span>{content.s6M3Title.split(':')[0]}</span>
+                    </button>
+                    <button type="button" class="method-tab-btn" data-method="m4">
+                        <span class="tab-badge">4</span>
+                        <span>{content.s6M4Title.split(':')[0]}</span>
+                    </button>
+                </div>
+
+                <!-- Method 1 Content -->
+                <div class="method-panel active" id="method-panel-m1">
+                    <h3 class="article-h3" id="method-calculator">{content.s6M1Title}</h3>
+                    <p>{content.s6M1Text}</p>
+                    <div style="margin-top: 16px;">
+                        <a href="#hero" class="btn-calc-action">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+                            {content.s6M1Action}
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Method 2 Content -->
+                <div class="method-panel" id="method-panel-m2">
+                    <h3 class="article-h3" id="method-factorization">{content.s6M2Title}</h3>
+                    <p>{content.s6M2Intro}</p>
+                    <div class="method-example">
+                        <div class="method-title">{content.s6M2ExTitle}</div>
+                        <ul class="method-steps-list">
+                            {content.s6M2Steps.map(step => (
+                              <li>{step}</li>
+                            ))}
+                        </ul>
+                        <div class="factorization-cards">
+                            <div class="factor-demo-box">
+                                <span class="demo-target">√144</span>
+                                <span class="demo-arrow">&rarr;</span>
+                                <span class="demo-calc">2 &times; 2 &times; 2 &times; 2 &times; 3 &times; 3 &rarr; (2&times;2) &times; (2&times;2) &times; (3&times;3) &rarr; 2 &times; 2 &times; 3 = <strong>12</strong></span>
+                            </div>
+                            <div class="factor-demo-box">
+                                <span class="demo-target">√72</span>
+                                <span class="demo-arrow">&rarr;</span>
+                                <span class="demo-calc">2 &times; 2 &times; 2 &times; 3 &times; 3 &rarr; 6 stays outside, 2 stays inside &rarr; <strong>6√2</strong> (&approx;8.485)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Method 3 Content -->
+                <div class="method-panel" id="method-panel-m3">
+                    <h3 class="article-h3" id="method-division">{content.s6M3Title}</h3>
+                    <p>{content.s6M3Intro}</p>
+                    <div class="method-example">
+                        <ul class="method-steps-list">
+                            {content.s6M3Steps.map(step => (
+                              <li>{step}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <p style="margin-top: 12px;">{content.s6M3Text}</p>
+                </div>
+
+                <!-- Method 4 Content -->
+                <div class="method-panel" id="method-panel-m4">
+                    <h3 class="article-h3" id="method-estimation">{content.s6M4Title}</h3>
+                    <p>{content.s6M4Intro}</p>
+                    <div class="method-example">
+                        <div class="method-title">{content.s6M4ExTitle}</div>
+                        <ul class="method-steps-list">
+                            {content.s6M4Steps.map(step => (
+                              <li>{step}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <p class="reassurance-note" style="margin-top: 12px;">{content.s6M4Note}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Perfect Squares: What They Are and Why They Matter -->
+    <section class="article-section" id="section-perfect-squares">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                </span>
+                {content.s7Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s7Title}</h2>
+            <p>{content.s7Intro}</p>
+
+            <div class="table-scroll-wrapper">
+                <table class="data-table data-table--compact">
+                    <thead>
+                        <tr>
+                            <th>{content.s7ThNumber}</th>
+                            <th>{content.s7ThSquare}</th>
+                            <th>{content.s7ThRoot}</th>
+                            <th>{content.s7ThNumber}</th>
+                            <th>{content.s7ThSquare}</th>
+                            <th>{content.s7ThRoot}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Array.from({ length: 10 }).map((_, i) => {
+                          const r1 = PERFECT_SQUARES_20[i];
+                          const r2 = PERFECT_SQUARES_20[i + 10];
+                          return (
+                            <tr>
+                                <td><strong>{r1.n}</strong></td>
+                                <td><span class="badge-perfect">{r1.square}</span></td>
+                                <td>√{r1.square} = {r1.root}</td>
+                                <td><strong>{r2.n}</strong></td>
+                                <td><span class="badge-perfect">{r2.square}</span></td>
+                                <td>√{r2.square} = {r2.root}</td>
+                            </tr>
+                          );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+            <p style="margin-top: 14px;">
+                {content.s7Conclusion}
+                &nbsp;<a href={localizedUrl('/perfect-square-calculator/')} style="color: var(--primary-600); font-weight: 700; text-decoration: underline;">
+                    {content.s7Eyebrow} &rarr;
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <figure class="section-image">
+        <img src="/images/sqrt-perfect-squares.webp" alt={content.s7Caption} loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
+        <figcaption>{content.s7Caption}</figcaption>
+    </figure>
+
+    <!-- Section 8: Non-Perfect Squares and Irrational Numbers -->
+    <section class="article-section article-section--alt" id="section-irrational-numbers">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                </span>
+                {content.s8Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s8Title}</h2>
+            <p>{content.s8Intro}</p>
+
+            <div class="irrational-cards-grid">
+                {IRRATIONAL_EXAMPLES.map(ex => (
+                    <div class="irrational-card">
+                        <div class="irrational-expr">{ex.expr}</div>
+                        <div class="irrational-val">{ex.val}</div>
+                        <div class="irrational-badge">Non-repeating &amp; infinite</div>
+                    </div>
+                ))}
+            </div>
+
+            <p style="margin-top: 18px;">{content.s8Text}</p>
+            <p class="reassurance-note">{content.s8CalcNote}</p>
+        </div>
+    </section>
+
+    <!-- Section 9: Square Roots of Decimals and Fractions -->
+    <section class="article-section" id="section-decimals-fractions">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </span>
+                {content.s9Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s9Title}</h2>
+            <p>{content.s9Intro}</p>
+
+            <div class="dual-columns-grid">
+                <!-- Decimals Card -->
+                <div class="glass-card">
+                    <h3 class="article-h3" style="margin-top: 0;">{content.s9DecimalsTitle}</h3>
+                    <p>{content.s9DecimalsIntro}</p>
+                    <ul class="method-steps-list">
+                        {DECIMAL_EXAMPLES.map(ex => (
+                            <li><strong>{ex.expr} = {ex.val}</strong> &nbsp;({ex.reason})</li>
+                        ))}
+                    </ul>
+                </div>
+
+                <!-- Fractions Card -->
+                <div class="glass-card">
+                    <h3 class="article-h3" style="margin-top: 0;">{content.s9FractionsTitle}</h3>
+                    <p>{content.s9FractionsIntro}</p>
+                    <ul class="method-steps-list">
+                        {FRACTION_EXAMPLES.map(ex => (
+                            <li><strong>{ex.expr}</strong> = {ex.step} = <strong>{ex.val}</strong></li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+
+            <p style="margin-top: 18px;">{content.s9Conclusion}</p>
+        </div>
+    </section>
+
+    <!-- Section 10: Square Roots of Negative Numbers and the Imaginary Unit -->
+    <section class="article-section article-section--alt" id="section-negative-numbers">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+                </span>
+                {content.s10Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s10Title}</h2>
+            <p>{content.s10P1}</p>
+            <p>{content.s10P2}</p>
+
+            <div class="math-block">
+                <span class="math-formula">i = √(&minus;1) &nbsp;&Longleftrightarrow&nbsp; i² = &minus;1 &nbsp;&Longleftrightarrow&nbsp; √(&minus;a) = √a &times; i</span>
+            </div>
+
+            <div class="method-example">
+                <div class="method-title">{content.s10ExTitle}</div>
+                <div class="negative-grid">
+                    {NEGATIVE_EXAMPLES.map(ex => (
+                        <div class="negative-item">
+                            <span class="neg-expr">{ex.expr}</span>
+                            <span class="neg-arrow">&rarr;</span>
+                            <span class="neg-val">{ex.val}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <p style="margin-top: 14px;">{content.s10P3}</p>
+            <p class="reassurance-note">{content.s10Conclusion}</p>
+        </div>
+    </section>
+
+    <!-- Section 11: The Difference Between Squaring and Square Root -->
+    <section class="article-section" id="section-difference-squaring">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                </span>
+                {content.s11Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s11Title}</h2>
+            <p>{content.s11Intro}</p>
+
+            <!-- Bidirectional Visualizer -->
+            <div class="inverse-visualizer">
+                <div class="inv-node">
+                    <span class="inv-num">8</span>
+                    <span class="inv-label">Number</span>
+                </div>
+                <div class="inv-flow">
+                    <div class="flow-arrow flow-forward">
+                        <span>Squaring (8²) &rarr;</span>
+                    </div>
+                    <div class="flow-arrow flow-backward">
+                        <span>&larr; Square Root (√64)</span>
+                    </div>
+                </div>
+                <div class="inv-node">
+                    <span class="inv-num">64</span>
+                    <span class="inv-label">Square (n²)</span>
+                </div>
+            </div>
+
+            <div class="table-scroll-wrapper" style="margin-top: 20px;">
+                <table class="data-table data-table--comparison">
+                    <thead>
+                        <tr>
+                            <th>{content.s11ThOp}</th>
+                            <th>{content.s11ThWhat}</th>
+                            <th>{content.s11ThEx}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>{content.s11RowSquare}</strong></td>
+                            <td>{content.s11RowSquareDesc}</td>
+                            <td><code>8² = 64</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>{content.s11RowRoot}</strong></td>
+                            <td>{content.s11RowRootDesc}</td>
+                            <td><code>√64 = 8</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p style="margin-top: 14px;">{content.s11Inverse}</p>
+            <p>{content.s11Absolute}</p>
+        </div>
+    </section>
+
+    <!-- Section 12: Complete Reference Table: Square Roots of 1 to 50 -->
+    <section class="article-section article-section--alt" id="reference-tables">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                </span>
+                {content.s12Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s12Title}</h2>
+            <p>{content.s12Intro}</p>
+
+            <p style="margin-top: 8px; font-weight: 500;">
+              <a href={localizedUrl('/square-root-chart/')} style="color: var(--primary-600); font-weight: 700; text-decoration: underline;">
+                {content.s12ChartLinkText}
+              </a>
+            </p>
+
+            <!-- Interactive Search & Filter Controls -->
+            <div class="table-interactive-controls">
+                <div class="table-filter-pills" role="group" aria-label="Table filter">
+                    <button type="button" class="tbl-filter-pill active" data-filter="all">{content.s12FilterAll}</button>
+                    <button type="button" class="tbl-filter-pill" data-filter="perfect">{content.s12FilterPerfect}</button>
+                    <button type="button" class="tbl-filter-pill" data-filter="irrational">{content.s12FilterIrrational}</button>
+                </div>
+                <div class="table-search-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="sqrtTableSearch" placeholder={content.s12SearchPlaceholder} autocomplete="off" />
+                </div>
+            </div>
+
+            <div class="table-scroll-wrapper table-scroll-wrapper--large">
+                <div class="table-scroll-hint">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M18 13l-6 6-6-6"/></svg>
+                    {content.s12ScrollHint}
+                </div>
+                <table class="data-table data-table--reference" id="refTable50">
+                    <thead>
+                        <tr>
+                            <th>{content.s12ColNumber}</th>
+                            <th>{content.s12ColRoot}</th>
+                            <th>{content.s12ColSimplified}</th>
+                            <th>{content.s12ColType}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {REFERENCE_TABLE_50.map(row => (
+                          <tr class={row.isPerfect ? "tr-perfect" : undefined} data-perfect={row.isPerfect ? "true" : "false"} data-num={row.n} data-root={row.rootFormatted} data-simp={row.simplified}>
+                            <td><strong>{row.n}</strong>{row.isPerfect && ' *'}</td>
+                            <td><code>{row.rootFormatted}</code></td>
+                            <td><span class="radical-token">{row.simplified}</span></td>
+                            <td>
+                              {row.isPerfect ? (
+                                <span class="badge-perfect">{content.s12BadgePerfect}</span>
+                              ) : (
+                                <span class="badge-irrational">{content.s12BadgeIrrational}</span>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 13: Square Root Simplification Examples -->
+    <section class="article-section" id="section-simplification">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+                </span>
+                {content.s13Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s13Title}</h2>
+            <p>{content.s13Intro}</p>
+
+            <div class="table-scroll-wrapper">
+                <table class="data-table data-table--compact">
+                    <thead>
+                        <tr>
+                            <th>{content.s13ThExpr}</th>
+                            <th>{content.s13ThForm}</th>
+                            <th>{content.s13ThWhy}</th>
+                            <th>Test</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {SIMPLIFICATION_11.map(item => (
+                            <tr>
+                                <td><strong>{item.original}</strong></td>
+                                <td><code>{item.factored}</code> &rarr; <span class="badge-perfect">{item.simplified}</span></td>
+                                <td>{item.why}</td>
+                                <td>
+                                    <button type="button" class="btn-test-calc" data-num={item.original.replace('√', '')} title={`Calculate ${item.original}`}>
+                                        &rarr; Calc
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+            <p style="margin-top: 14px;">{content.s13Conclusion}</p>
+        </div>
+    </section>
+
+    <!-- Section 14: Real-World Applications of Square Roots -->
+    <section class="article-section article-section--alt" id="section-applications">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                </span>
+                {content.s14Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s14Title}</h2>
+            <p>{content.s14Intro}</p>
+
+            <div class="applications-grid">
+                {content.s14Apps.map((app, idx) => (
+                  <div class="app-card" id={`app-${idx === 0 ? 'construction' : idx === 1 ? 'finance' : idx === 2 ? 'physics' : idx === 3 ? 'cs' : 'everyday'}`}>
+                      <div class="app-icon">
+                        {idx === 0 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="15" y1="22" x2="15" y2="2"/><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg>}
+                        {idx === 1 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>}
+                        {idx === 2 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4"/></svg>}
+                        {idx === 3 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>}
+                        {idx === 4 && <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>}
+                      </div>
+                      <div class="app-card-content">
+                          <h3>{app.title}</h3>
+                          <p>{app.text}</p>
+                      </div>
+                  </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 15: Frequently Asked Questions (All 10 FAQs) -->
+    <section class="article-section" id="section-faqs">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </span>
+                {content.s15Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s15Title}</h2>
+
+            <div class="faq-list">
+                {displayFaqs && displayFaqs.length > 0 && (
+                    displayFaqs.map((faq, idx) => (
+                        <details class="faq-item" open={idx === 0 ? true : undefined}>
+                            <summary class="faq-question">
+                                <span>{faq.question}</span>
+                                <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            </summary>
+                            <div class="faq-answer"><p>{faq.answer}</p></div>
+                        </details>
+                    ))
+                )}
+            </div>
+
+            <!-- Author Byline & Social Sharing Bar -->
+            <div class="article-header-meta" style="margin-top: 40px; margin-bottom: 0;">
+                <div class="article-author-byline">
+                    <a href="/about-us/" class="author-avatar-link" aria-label="Syed Muhammad Ahmed, Founder and Creator">
+                        <img src="/images/syed-muhammad-ahmed-racine-carree-calculator.jpg" alt="Syed Muhammad Ahmed, Founder and Creator of Racine Carree Calculator" width="44" height="44" loading="lazy" decoding="async" class="author-avatar" />
+                    </a>
+                    <div class="author-details">
+                        <span class="author-verified-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                            {authorByline.writtenBy}
+                        </span>
+                        <a href="/about-us/" class="author-name-link">Syed Muhammad Ahmed</a>
+                        <span class="author-title">{authorByline.authorRole}</span>
+                    </div>
+                </div>
+                <div class="social-share-group">
+                    <span class="social-share-label">{authorByline.share}</span>
+                    <a href="https://twitter.com/intent/tweet?text=Free%20Racine%20Carree%20Calculator%20with%20step-by-step%20solutions&url=https://www.racinecarreecalculatorr.com/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--x" aria-label="Share on X" title="Share on X">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.racinecarreecalculatorr.com/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--linkedin" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.racinecarreecalculatorr.com/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--facebook" aria-label="Share on Facebook" title="Share on Facebook">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?text=Check%20out%20Racine%20Carree%20Calculator:%20https://www.racinecarreecalculatorr.com/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--whatsapp" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 16: Quick Summary & Key Takeaways -->
+    <section class="article-section article-section--alt" id="section-recap">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                {content.s16Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s16Title}</h2>
+
+            <div class="recap-summary-card">
+                <div class="recap-header">
+                    <span class="recap-star-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </span>
+                    <h3>{content.s16BoxTitle}</h3>
+                </div>
+                <p class="recap-body">{content.s16BoxText}</p>
+                <div class="recap-bullets">
+                    <div class="recap-bullet">
+                        <span class="recap-bullet-icon">&check;</span>
+                        <span><strong>Definition:</strong> √x is the non-negative value y such that y² = x.</span>
+                    </div>
+                    <div class="recap-bullet">
+                        <span class="recap-bullet-icon">&check;</span>
+                        <span><strong>Simplification:</strong> Factor out perfect square integers using √(a &times; b) = √a &times; √b.</span>
+                    </div>
+                    <div class="recap-bullet">
+                        <span class="recap-bullet-icon">&check;</span>
+                        <span><strong>Complex Numbers:</strong> Negative numbers evaluate cleanly via the imaginary unit i (√(&minus;a) = i√a).</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </article>
+
+<script is:inline>
+  // Interactive Client Script for Homepage Article Interactions
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Quick-Try Chips & Calculation test triggers
+    const triggerCalculation = (num) => {
+      const input = document.getElementById('sqrtInput');
+      const btn = document.getElementById('sqrtCalcBtn');
+      if (input && btn) {
+        input.value = num;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+        btn.click();
+        const stage = document.getElementById('calculators') || input;
+        stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    };
+
+    document.querySelectorAll('.quick-try-chip, .btn-test-calc').forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        e.preventDefault();
+        const num = chip.getAttribute('data-num');
+        if (num) triggerCalculation(num);
+      });
+    });
+
+    // 2. Radical Anatomy Explorer Interactive Tabs
+    const anatomyParts = document.querySelectorAll('.anatomy-part');
+    const anatomyCards = document.querySelectorAll('.anatomy-info-card');
+
+    anatomyParts.forEach(part => {
+      const activatePart = () => {
+        const target = part.getAttribute('data-part');
+        anatomyParts.forEach(p => p.classList.remove('active'));
+        part.classList.add('active');
+        anatomyCards.forEach(c => {
+          c.classList.remove('active');
+          if (c.id === `info-${target}`) {
+            c.classList.add('active');
+          }
+        });
+      };
+      part.addEventListener('mouseenter', activatePart);
+      part.addEventListener('click', activatePart);
+      part.addEventListener('focus', activatePart);
+    });
+
+    // 3. Interactive Notation Mode Switcher
+    const notationTabs = document.querySelectorAll('.notation-tab');
+    const notationViews = document.querySelectorAll('.notation-view');
+
+    notationTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const fmt = tab.getAttribute('data-format');
+        notationTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        notationViews.forEach(v => {
+          v.classList.remove('active');
+          if (v.id === `view-${fmt}`) {
+            v.classList.add('active');
+          }
+        });
+      });
+    });
+
+    // 4. Interactive Calculation Methods Switcher
+    const methodTabs = document.querySelectorAll('.method-tab-btn');
+    const methodPanels = document.querySelectorAll('.method-panel');
+
+    methodTabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const m = btn.getAttribute('data-method');
+        methodTabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        methodPanels.forEach(p => {
+          p.classList.remove('active');
+          if (p.id === `method-panel-${m}`) {
+            p.classList.add('active');
+          }
+        });
+      });
+    });
+
+    // 5. Table 1-50 Filter Pills & Live Search
+    const tableRows = document.querySelectorAll('#refTable50 tbody tr');
+    const filterPills = document.querySelectorAll('.tbl-filter-pill');
+    const searchInput = document.getElementById('sqrtTableSearch');
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    const applyTableFiltering = () => {
+      const q = searchQuery.toLowerCase().trim();
+      tableRows.forEach(row => {
+        const isPerfect = row.getAttribute('data-perfect') === 'true';
+        const num = row.getAttribute('data-num') || '';
+        const root = (row.getAttribute('data-root') || '').toLowerCase();
+        const simp = (row.getAttribute('data-simp') || '').toLowerCase();
+
+        let matchesFilter = true;
+        if (currentFilter === 'perfect' && !isPerfect) matchesFilter = false;
+        if (currentFilter === 'irrational' && isPerfect) matchesFilter = false;
+
+        let matchesSearch = true;
+        if (q) {
+          matchesSearch = num.includes(q) || root.includes(q) || simp.includes(q);
+        }
+
+        row.style.display = (matchesFilter && matchesSearch) ? '' : 'none';
+      });
+    };
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentFilter = pill.getAttribute('data-filter') || 'all';
+        applyTableFiltering();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        applyTableFiltering();
+      });
+    }
+
+    // 6. Copy Formula Buttons
+    document.querySelectorAll('.btn-copy-formula').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const formula = btn.getAttribute('data-formula');
+        if (formula && navigator.clipboard) {
+          navigator.clipboard.writeText(formula).then(() => {
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<span style="font-size: 11px; font-weight: 700; color: var(--primary-500);">&check; Copied</span>';
+            setTimeout(() => {
+              btn.innerHTML = originalHtml;
+            }, 1800);
+          });
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* --- Interactive Ribbon & Quick-Try Bar --- */
+  .interactive-ribbon {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-md) var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+  }
+
+  .ribbon-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ribbon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-full);
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+
+  .ribbon-badge svg {
+    color: var(--primary-500);
+  }
+
+  .quick-try-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: var(--space-xs);
+    border-top: 1px dashed var(--border-light);
+  }
+
+  .quick-try-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .quick-try-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .quick-try-chip {
+    background: var(--bg-glass-strong);
+    border: 1px solid var(--primary-300);
+    border-radius: var(--radius-full);
+    padding: 4px 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--primary-600);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  [data-theme="dark"] .quick-try-chip {
+    color: var(--primary-300);
+    border-color: rgba(99, 102, 241, 0.4);
+  }
+
+  .quick-try-chip:hover {
+    background: var(--primary-500);
+    color: #fff;
+    border-color: var(--primary-500);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.25);
+  }
+
+  /* --- Interactive Radical Anatomy Box --- */
+  .anatomy-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    margin: var(--space-xl) 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .anatomy-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .anatomy-tag {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary-500);
+  }
+
+  .anatomy-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .anatomy-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: var(--space-lg) 0;
+    font-size: 3.2rem;
+    font-family: var(--font-mono, monospace);
+    font-weight: 800;
+    color: var(--text-heading);
+  }
+
+  .anatomy-part {
+    cursor: pointer;
+    padding: 4px 14px;
+    border-radius: var(--radius-md);
+    border: 2px dashed transparent;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+
+  .anatomy-part--symbol {
+    color: var(--primary-500);
+  }
+
+  .anatomy-part--radicand {
+    color: #ec4899;
+  }
+
+  .anatomy-part--root {
+    color: #10b981;
+  }
+
+  .anatomy-part:hover,
+  .anatomy-part.active {
+    background: var(--bg-glass-strong);
+    border-color: currentColor;
+    transform: scale(1.08);
+  }
+
+  .anatomy-equals {
+    color: var(--text-muted);
+  }
+
+  .anatomy-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .anatomy-info-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: all 0.25s ease;
+  }
+
+  .anatomy-info-card.active {
+    border-color: var(--primary-500);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
+    background: var(--bg-card);
+  }
+
+  .anatomy-info-badge {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-md);
+    background: var(--gradient-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .anatomy-info-card strong {
+    display: block;
+    font-size: 0.92rem;
+    color: var(--text-heading);
+    margin-bottom: 4px;
+  }
+
+  .anatomy-info-card p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* --- Interactive Notation Mode Switcher --- */
+  .interactive-notation-switcher {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    margin: var(--space-xl) 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .notation-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .notation-tab {
+    background: transparent;
+    border: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .notation-tab:hover {
+    color: var(--text-heading);
+    background: var(--bg-glass);
+  }
+
+  .notation-tab.active {
+    color: #fff;
+    background: var(--gradient-primary);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
+  }
+
+  .notation-view {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: var(--space-md) 0;
+  }
+
+  .notation-view.active {
+    display: flex;
+  }
+
+  .view-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* --- Principal Root Card --- */
+  .principal-root-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-left: 4px solid var(--primary-500);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+
+  .principal-root-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    color: var(--primary-500);
+  }
+
+  .principal-root-header h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--text-heading);
+  }
+
+  .principal-comparison {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: var(--space-md);
+  }
+
+  .comparison-pill {
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .comparison-pill.positive {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+  }
+
+  .comparison-pill.negative {
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .pill-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .comparison-pill code {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  /* --- Interactive Formula Copy Button --- */
+  .btn-copy-formula {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: var(--radius-sm);
+    margin-left: auto;
+    transition: all 0.2s ease;
+  }
+
+  .btn-copy-formula:hover {
+    color: var(--primary-500);
+    background: var(--bg-glass-strong);
+  }
+
+  /* --- Interactive Method Tabs --- */
+  .method-interactive-tabs {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    margin: var(--space-xl) 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .method-tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .method-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 10px 16px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tab-badge {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--border-default);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .method-tab-btn.active {
+    background: var(--gradient-primary);
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .method-tab-btn.active .tab-badge {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
+
+  .method-panel {
+    display: none;
+  }
+
+  .method-panel.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .factorization-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .factor-demo-box {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 10px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+  }
+
+  .demo-target {
+    font-weight: 800;
+    color: var(--primary-500);
+    font-size: 1.05rem;
+  }
+
+  .demo-arrow {
+    color: var(--text-muted);
+  }
+
+  .btn-calc-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gradient-primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .btn-calc-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+  }
+
+  /* --- Irrational Cards Grid --- */
+  .irrational-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .irrational-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    text-align: center;
+    box-shadow: var(--shadow-xs);
+    transition: all 0.2s ease;
+  }
+
+  .irrational-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-400);
+  }
+
+  .irrational-expr {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary-500);
+    margin-bottom: 6px;
+  }
+
+  .irrational-val {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.88rem;
+    color: var(--text-heading);
+    margin-bottom: 8px;
+  }
+
+  .irrational-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-glass);
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+  }
+
+  /* --- Dual Columns Grid (Decimals & Fractions) --- */
+  .dual-columns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+
+  .glass-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* --- Negative Grid --- */
+  .negative-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .negative-item {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.95rem;
+  }
+
+  .neg-expr {
+    font-weight: 700;
+    color: #ec4899;
+  }
+
+  .neg-arrow {
+    color: var(--text-muted);
+  }
+
+  .neg-val {
+    font-weight: 800;
+    color: #10b981;
+  }
+
+  /* --- Inverse Visualizer (Squaring vs Square Root) --- */
+  .inverse-visualizer {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 16px;
+    margin: var(--space-lg) 0;
+    flex-wrap: wrap;
+  }
+
+  .inv-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .inv-num {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  }
+
+  .inv-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .inv-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 200px;
+  }
+
+  .flow-arrow {
+    background: var(--bg-glass-strong);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-full);
+    padding: 6px 14px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-600);
+  }
+
+  [data-theme="dark"] .flow-arrow {
+    color: var(--primary-300);
+  }
+
+  /* --- Table Search & Filter Controls --- */
+  .table-interactive-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: var(--space-md) 0;
+  }
+
+  .table-filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tbl-filter-pill {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-full);
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tbl-filter-pill:hover {
+    color: var(--text-heading);
+    border-color: var(--border-default);
+  }
+
+  .tbl-filter-pill.active {
+    background: var(--gradient-primary);
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .table-search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    padding: 6px 16px;
+    flex-grow: 1;
+    max-width: 320px;
+  }
+
+  .table-search-box svg {
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .table-search-box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-heading);
+    font-size: 0.85rem;
+    width: 100%;
+  }
+
+  .badge-irrational {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-glass);
+  }
+
+  .btn-test-calc {
+    background: var(--bg-glass-strong);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    color: var(--primary-600);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-test-calc:hover {
+    background: var(--primary-500);
+    color: #fff;
+  }
+
+  /* --- Recap Summary Card --- */
+  .recap-summary-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .recap-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: var(--space-md);
+  }
+
+  .recap-star-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .recap-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-heading);
+  }
+
+  .recap-body {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-body);
+    margin-bottom: var(--space-lg);
+  }
+
+  .recap-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px dashed var(--border-light);
+    padding-top: var(--space-md);
+  }
+
+  .recap-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-heading);
+  }
+
+  .recap-bullet-icon {
+    color: #10b981;
+    font-weight: 900;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .reassurance-note {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: var(--space-md);
+  }
+
+  .faq-chevron {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    color: var(--text-muted);
+  }
+
+  details[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script is:inline>
+(function() {
+  function initContentInteractions() {
+    // 1. Quick-try chips & Table test buttons: Send values to calculator
+    const quickChips = document.querySelectorAll('.quick-try-chip, .btn-test-calc');
+    quickChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const num = chip.getAttribute('data-num');
+        if (!num) return;
+        
+        const calcInput = document.getElementById('sqrtInput') || document.querySelector('#calculator-section input[type="number"], .calculator-card input');
+        const calcBtn = document.getElementById('sqrtCalcBtn') || document.querySelector('#calculator-section button[type="submit"], .calculator-card button[type="submit"], .calc-submit-btn');
+        
+        if (calcInput) {
+          calcInput.value = num;
+          calcInput.dispatchEvent(new Event('input', { bubbles: true }));
+          calcInput.dispatchEvent(new Event('change', { bubbles: true }));
+          
+          if (calcBtn) {
+            calcBtn.click();
+          }
+          
+          // Smooth scroll to calculator
+          const targetSection = document.getElementById('calculator-section') || document.getElementById('hero') || calcInput;
+          const headerOffset = 80;
+          const elementPosition = targetSection.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          
+          calcInput.focus();
+        }
+      });
+    });
+
+    // 2. Radical Anatomy Interactive Inspector
+    const anatomyParts = document.querySelectorAll('.anatomy-part');
+    const anatomyCards = document.querySelectorAll('.anatomy-info-card');
+    
+    function activateAnatomyPart(partName) {
+      anatomyParts.forEach(p => {
+        if (p.getAttribute('data-part') === partName) {
+          p.classList.add('active');
+        } else {
+          p.classList.remove('active');
+        }
+      });
+      anatomyCards.forEach(c => {
+        if (c.id === 'info-' + partName) {
+          c.classList.add('active');
+        } else {
+          c.classList.remove('active');
+        }
+      });
+    }
+
+    anatomyParts.forEach(part => {
+      const partName = part.getAttribute('data-part');
+      part.addEventListener('mouseenter', () => activateAnatomyPart(partName));
+      part.addEventListener('click', () => activateAnatomyPart(partName));
+      part.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          activateAnatomyPart(partName);
+        }
+      });
+    });
+
+    anatomyCards.forEach(card => {
+      const partName = card.id.replace('info-', '');
+      card.addEventListener('click', () => activateAnatomyPart(partName));
+    });
+
+    // 3. Notation Mode Switcher
+    const notationTabs = document.querySelectorAll('.notation-tab');
+    const notationViews = document.querySelectorAll('.notation-view');
+    
+    notationTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const format = tab.getAttribute('data-format');
+        notationTabs.forEach(t => t.classList.toggle('active', t === tab));
+        notationViews.forEach(v => {
+          v.classList.toggle('active', v.id === 'view-' + format);
+        });
+      });
+    });
+
+    // 4. Method Tabs (Section 6)
+    const methodTabs = document.querySelectorAll('.method-tab-btn');
+    const methodPanels = document.querySelectorAll('.method-panel');
+    
+    methodTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const method = tab.getAttribute('data-method');
+        methodTabs.forEach(t => t.classList.toggle('active', t === tab));
+        methodPanels.forEach(p => {
+          p.classList.toggle('active', p.id === 'method-panel-' + method);
+        });
+      });
+    });
+
+    // 5. 1 to 50 Reference Table Filter & Search
+    const refTable = document.getElementById('refTable50');
+    const searchInput = document.getElementById('sqrtTableSearch');
+    const filterPills = document.querySelectorAll('.tbl-filter-pill');
+    
+    if (refTable) {
+      let currentFilter = 'all';
+      let currentQuery = '';
+      const rows = Array.from(refTable.querySelectorAll('tbody tr'));
+      
+      function updateTableFilter() {
+        rows.forEach(row => {
+          const isPerfect = row.getAttribute('data-perfect') === 'true';
+          const num = row.getAttribute('data-num') || '';
+          const root = (row.getAttribute('data-root') || '').toLowerCase();
+          const simp = (row.getAttribute('data-simp') || '').toLowerCase();
+          
+          let matchesFilter = true;
+          if (currentFilter === 'perfect') {
+            matchesFilter = isPerfect;
+          } else if (currentFilter === 'irrational') {
+            matchesFilter = !isPerfect;
+          }
+          
+          let matchesSearch = true;
+          if (currentQuery) {
+            matchesSearch = num.includes(currentQuery) || root.includes(currentQuery) || simp.includes(currentQuery);
+          }
+          
+          row.style.display = (matchesFilter && matchesSearch) ? '' : 'none';
+        });
+      }
+
+      filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          filterPills.forEach(p => p.classList.toggle('active', p === pill));
+          currentFilter = pill.getAttribute('data-filter') || 'all';
+          updateTableFilter();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentQuery = (e.target.value || '').trim().toLowerCase();
+          updateTableFilter();
+        });
+      }
+    }
+
+    // 6. Interactive Math Formula Copy
+    const copyButtons = document.querySelectorAll('.btn-copy-formula');
+    copyButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const formula = btn.getAttribute('data-formula') || btn.parentElement?.textContent?.trim() || '';
+        try {
+          await navigator.clipboard.writeText(formula);
+          const origText = btn.innerHTML;
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.innerHTML = origText;
+            btn.classList.remove('copied');
+          }, 2000);
+        } catch (err) {
+          console.warn('Clipboard copy failed:', err);
+        }
+      });
+    });
+  }
+
+  // Initialize on DOM load and Astro page swaps
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContentInteractions);
+  } else {
+    initContentInteractions();
+  }
+  document.addEventListener('astro:page-load', initContentInteractions);
+})();
+</script>
