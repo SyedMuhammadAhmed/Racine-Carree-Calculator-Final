@@ -8,7 +8,10 @@ import { getHtmlDir } from '../../theme/i18n/utils';
 import site from '../config/site.json';
 import { getPageAlternateLinks } from '../utils/seo';
 
+import { getCbrtContent } from '../data/i18n/content/cbrtContent';
+
 const lang = 'en';
+const content = getCbrtContent(lang);
 const title = 'Racine Cubique Calculator | Free Online Cube Root Calculator';
 const description = 'Calculate cube roots instantly with our free Racine Cubique Calculator. Get exact decimal results, simplified radicals, and step-by-step workings.';
 const canonicalUrl = `${site.siteUrl}/racine-cubique-calculator/`;
@@ -17,28 +20,7 @@ const alternateLinks = getPageAlternateLinks('/racine-cubique-calculator/');
 // Numbers for the Quick Calculate section (1-20 sequential, followed by classic cubes)
 const quickCubeNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 27, 64, 125, 216, 343, 512, 729, 1000];
 
-const cbrtFaqs = [
-  {
-    question: "How do I use the Racine Cubique Calculator?",
-    answer: "Enter your number into the input field and click Calculate to receive instant exact decimal values, simplified cube roots, and step-by-step solutions."
-  },
-  {
-    question: "Can cube roots of negative numbers be calculated?",
-    answer: "Yes! Unlike square roots, cube roots of negative numbers have real solutions because multiplying three negative numbers results in a negative value (e.g., ∛(-27) = -3)."
-  },
-  {
-    question: "What does \"racine cubique\" mean?",
-    answer: "Racine cubique is the French term for cube root: finding a value that, when multiplied by itself three times, produces the given number."
-  },
-  {
-    question: "What is the difference between a cube root and a square root?",
-    answer: "A square root asks what number multiplied 2 times equals x (index 2). A cube root asks what number multiplied 3 times equals x (index 3)."
-  },
-  {
-    question: "Is this calculator free to use?",
-    answer: "Yes, our Racine Cubique Calculator is 100% free with unlimited calculations."
-  }
-];
+const cbrtFaqs = content.faqs;
 ---
 
 <Layout

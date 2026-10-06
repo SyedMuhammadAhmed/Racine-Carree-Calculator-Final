@@ -2,18 +2,39 @@
 import TableOfContents from './TableOfContents.astro';
 import { getLocalizedUrl, DEFAULT_LOCALE, type Locale } from '../../theme/i18n/utils';
 import { getCbrtContent } from '../data/i18n/content/cbrtContent';
-import { getAuthorByline } from '../data/i18n/commonI18n';
+import { getAuthorByline, getScrollHint } from '../data/i18n/commonI18n';
 
 interface Props {
   lang?: string;
   faqs?: Array<{ question: string; answer: string }>;
 }
+
 const { lang = DEFAULT_LOCALE, faqs = [] } = Astro.props;
 const currentLocale = (lang || DEFAULT_LOCALE) as Locale;
 const localizedUrl = (path: string) => getLocalizedUrl(path, currentLocale);
 
 const content = getCbrtContent(lang);
 const authorByline = getAuthorByline(lang);
+const scrollHintText = getScrollHint(lang);
+const ui = content.interactive;
+const displayFaqs = (faqs && faqs.length >= 10) ? faqs : content.faqs;
+
+// Generate 1-100 reference table data with simplification
+function simplifyCbrt(n: number): string {
+  if (n <= 0) return '';
+  let maxCubeFactor = 1;
+  for (let i = 2; i * i * i <= n; i++) {
+    if (n % (i * i * i) === 0) {
+      maxCubeFactor = i;
+    }
+  }
+  if (maxCubeFactor > 1) {
+    const remainder = n / (maxCubeFactor * maxCubeFactor * maxCubeFactor);
+    if (remainder === 1) return `${maxCubeFactor}`;
+    return `${maxCubeFactor}∛${remainder}`;
+  }
+  return `∛${n}`;
+}
 
 const table100Rows = Array.from({ length: 100 }, (_, i) => {
   const n = i + 1;
@@ -21,430 +42,1575 @@ const table100Rows = Array.from({ length: 100 }, (_, i) => {
   const isPerfect = Math.round(root) ** 3 === n;
   return {
     n,
-    rootFormatted: root.toFixed(3),
+    rootFormatted: isPerfect ? `${Math.round(root)}` : root.toFixed(4),
+    simplified: isPerfect ? `${Math.round(root)}` : simplifyCbrt(n),
     isPerfect
   };
 });
 
+// Key perfect cubes reference list
 const perfectCubesList = [
-  { n1: 1, c1: 1, n2: 6, c2: 216 },
-  { n1: 2, c1: 8, n2: 7, c2: 343 },
-  { n1: 3, c1: 27, n2: 8, c2: 512 },
-  { n1: 4, c1: 64, n2: 9, c2: 729 },
-  { n1: 5, c1: 125, n2: 10, c2: 1000 },
+  { n: 1, cube: 1 },
+  { n: 2, cube: 8 },
+  { n: 3, cube: 27 },
+  { n: 4, cube: 64 },
+  { n: 5, cube: 125 },
+  { n: 6, cube: 216 },
+  { n: 7, cube: 343 },
+  { n: 8, cube: 512 },
+  { n: 9, cube: 729 },
+  { n: 10, cube: 1000 },
+  { n: 11, cube: 1331 },
+  { n: 12, cube: 1728 },
+  { n: 15, cube: 3375 },
+  { n: 20, cube: 8000 },
+  { n: 25, cube: 15625 },
+  { n: 50, cube: 125000 },
+  { n: 100, cube: 1000000 }
+];
+
+// Common simplification examples
+const commonSimplifications = [
+  { expr: "∛16", simp: "2∛2", factor: "16 = 2³ × 2 = 8 × 2", num: 16 },
+  { expr: "∛24", simp: "2∛3", factor: "24 = 2³ × 3 = 8 × 3", num: 24 },
+  { expr: "∛32", simp: "2∛4", factor: "32 = 2³ × 4 = 8 × 4", num: 32 },
+  { expr: "∛40", simp: "2∛5", factor: "40 = 2³ × 5 = 8 × 5", num: 40 },
+  { expr: "∛48", simp: "2∛6", factor: "48 = 2³ × 6 = 8 × 6", num: 48 },
+  { expr: "∛54", simp: "3∛2", factor: "54 = 3³ × 2 = 27 × 2", num: 54 },
+  { expr: "∛56", simp: "2∛7", factor: "56 = 2³ × 7 = 8 × 7", num: 56 },
+  { expr: "∛72", simp: "2∛9", factor: "72 = 2³ × 9 = 8 × 9", num: 72 },
+  { expr: "∛108", simp: "3∛4", factor: "108 = 3³ × 4 = 27 × 4", num: 108 },
+  { expr: "∛128", simp: "4∛2", factor: "128 = 4³ × 2 = 64 × 2", num: 128 }
 ];
 ---
 
 <article class="seo-article" id="what-is-cubique">
 
-        <!-- Table of Contents -->
-        <div class="article-container" style="padding-top: 0; padding-bottom: 0;">
-            <TableOfContents items={content.toc} title={content.tocTitle} isOpen={false} lang={lang} />
+    <!-- Interactive Hero Feature Ribbon -->
+    <div class="article-container" style="padding-bottom: var(--space-md);">
+        <div class="interactive-ribbon">
+            <div class="ribbon-badges">
+                <span class="ribbon-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    {ui.badgeInstant}
+                </span>
+                <span class="ribbon-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+                    {ui.badgeRadical}
+                </span>
+                <span class="ribbon-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    {ui.badgeSteps}
+                </span>
+                <span class="ribbon-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    {ui.badgeFree}
+                </span>
+            </div>
+
+            <!-- Quick-Try Interactive Chips -->
+            <div class="quick-try-bar">
+                <span class="quick-try-label">{ui.quickTryLabel}</span>
+                <div class="quick-try-chips">
+                    <button type="button" class="quick-try-chip" data-cbrt-num="27" title="Test ∛27 in calculator">∛27 = 3</button>
+                    <button type="button" class="quick-try-chip" data-cbrt-num="-64" title="Test ∛(-64) in calculator">∛(-64) = -4</button>
+                    <button type="button" class="quick-try-chip" data-cbrt-num="54" title="Test ∛54 in calculator">∛54 = 3∛2</button>
+                    <button type="button" class="quick-try-chip" data-cbrt-num="50" title="Test ∛50 in calculator">∛50 ≈ 3.68</button>
+                    <button type="button" class="quick-try-chip" data-cbrt-num="0.008" title="Test ∛0.008 in calculator">∛0.008 = 0.2</button>
+                    <button type="button" class="quick-try-chip" data-cbrt-num="3375" title="Test ∛3375 in calculator">∛3375 = 15</button>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Section 1: What Is Racine Cubique -->
-        <section class="article-section" id="section-what-is-cube-root">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> {content.s1Eyebrow}</div>
-                <h2 class="article-h2">{content.s1Title}</h2>
-                <p>{content.s1P1}</p>
-                <p>{content.s1P2}</p>
-                <div class="examples-grid">
-                    {content.s1Cards.map(c => (
-                      <div class="example-card"><span class="example-expr">{c.expr}</span><span class="example-reason">{c.reason}</span></div>
-                    ))}
+    <!-- Table of Contents -->
+    <div class="article-container" style="padding-top: 0; padding-bottom: 0;">
+        <TableOfContents items={content.toc} title={content.tocTitle} isOpen={false} lang={lang} />
+    </div>
+
+    <!-- Section 1: What Is Racine Cubique -->
+    <section class="article-section" id="section-what-is-cube-root">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+                {content.s1Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s1Title}</h2>
+            <p>{content.s1P1}</p>
+            <p>{content.s1P2}</p>
+
+            <!-- Interactive Radical Anatomy Card -->
+            <div class="anatomy-box" id="radicalAnatomy">
+                <div class="anatomy-header">
+                    <span class="anatomy-tag">{ui.anatomyTag}</span>
+                    <span class="anatomy-hint">{ui.anatomyHint}</span>
                 </div>
-                <p>{content.s1P3}</p>
-            </div>
-        </section>
-
-        <figure class="section-image">
-            <img src="/images/cbrt-concept.webp" alt="3D cube geometry diagram for racine cubique calculator" loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
-            <figcaption>{content.s1Caption}</figcaption>
-        </figure>
-
-        <!-- Section 2: How to Use -->
-        <section class="article-section article-section--alt" id="section-cbrt-how-to-use">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> {content.s2Eyebrow}</div>
-                <h2 class="article-h2">{content.s2Title}</h2>
-                <p>{content.s2Intro}</p>
-                <div class="steps-visual">
-                    <div class="step-card" id="cbrt-step-input"><div class="step-number">1</div><div class="step-content"><h3>{content.s2Steps[0]?.title}</h3><p>{content.s2Steps[0]?.text}</p></div></div>
-                    <div class="step-card" id="cbrt-step-calc"><div class="step-number">2</div><div class="step-content"><h3>{content.s2Steps[1]?.title}</h3><p>{content.s2Steps[1]?.text}</p></div></div>
-                    <div class="step-card" id="cbrt-step-result"><div class="step-number">3</div><div class="step-content"><h3>{content.s2Steps[2]?.title}</h3><p>{content.s2Steps[2]?.text}</p></div></div>
+                <div class="anatomy-visual">
+                    <span class="anatomy-part anatomy-part--degree active" data-part="degree" tabindex="0" role="button" aria-label={ui.anatomyDegree}>³</span>
+                    <span class="anatomy-part anatomy-part--symbol" data-part="symbol" tabindex="0" role="button" aria-label={ui.anatomySymbol}>√</span>
+                    <span class="anatomy-part anatomy-part--radicand" data-part="radicand" tabindex="0" role="button" aria-label={ui.anatomyRadicand}>27</span>
+                    <span class="anatomy-equals">=</span>
+                    <span class="anatomy-part anatomy-part--root" data-part="root" tabindex="0" role="button" aria-label={ui.anatomyRoot}>3</span>
                 </div>
-                <p>{content.s2Conclusion}</p>
-            </div>
-        </section>
-
-        <!-- Section 3: Notation -->
-        <section class="article-section" id="section-cbrt-notation">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17c2 0 2.8-1 2.8-2.8V10c0-2 1-3.3 3.2-3"/><path d="M9 11.2h5.7"/></svg></span> {content.s3Eyebrow}</div>
-                <h2 class="article-h2">{content.s3Title}</h2>
-                <p>{content.s3Intro}</p>
-                <div class="examples-grid">
-                    {content.s3Cards.map(c => (
-                      <div class="example-card"><span class="example-expr">{c.expr}</span><span class="example-reason">{c.reason}</span></div>
-                    ))}
+                <div class="anatomy-cards-grid">
+                    <div class="anatomy-info-card active" id="info-degree">
+                        <div class="anatomy-card-title">{ui.anatomyDegree}</div>
+                        <p class="anatomy-card-desc">{ui.anatomyDegreeDesc}</p>
+                    </div>
+                    <div class="anatomy-info-card" id="info-symbol">
+                        <div class="anatomy-card-title">{ui.anatomySymbol}</div>
+                        <p class="anatomy-card-desc">{ui.anatomySymbolDesc}</p>
+                    </div>
+                    <div class="anatomy-info-card" id="info-radicand">
+                        <div class="anatomy-card-title">{ui.anatomyRadicand}</div>
+                        <p class="anatomy-card-desc">{ui.anatomyRadicandDesc}</p>
+                    </div>
+                    <div class="anatomy-info-card" id="info-root">
+                        <div class="anatomy-card-title">{ui.anatomyRoot}</div>
+                        <p class="anatomy-card-desc">{ui.anatomyRootDesc}</p>
+                    </div>
                 </div>
-                <p>{content.s3P1}</p>
-                <div class="math-block"><span class="math-formula">x^(1/3) = ∛x</span></div>
-                <p>{content.s3P2}</p>
-                <p>{content.s3P3}</p>
             </div>
-        </section>
 
-        <figure class="section-image">
-            <img src="/images/cbrt-notation.webp" alt="Radical notation index diagram for racine cubique calculator" loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
-            <figcaption>{content.s3Caption}</figcaption>
-        </figure>
-
-        <!-- Section 4: Formula -->
-        <section class="article-section article-section--alt" id="section-cbrt-formula">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></span> {content.s4Eyebrow}</div>
-                <h2 class="article-h2">{content.s4Title}</h2>
-                <p>{content.s4Intro}</p>
-                <div class="math-block"><span class="math-formula">If x = ∛y, then x × x × x = y (or x³ = y)</span></div>
-                <p>{content.s4P1}</p>
+            <div class="examples-grid">
+                {content.s1Cards.map(c => (
+                  <div class="example-card">
+                    <span class="example-expr">{c.expr}</span>
+                    <span class="example-reason">{c.reason}</span>
+                  </div>
+                ))}
             </div>
-        </section>
+            <p>{content.s1P3}</p>
+        </div>
+    </section>
 
-        <!-- Section 5: Five Core Laws -->
-        <section class="article-section" id="section-cbrt-laws">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> {content.s5Eyebrow}</div>
-                <h2 class="article-h2">{content.s5Title}</h2>
-                <p>{content.s5Intro}</p>
-                <div class="law-cards">
-                    {content.s5Laws.map((law, idx) => (
-                      <div class="law-card">
-                          <div class="law-header">
-                            <div class="law-number">{idx + 1}</div>
-                            <div><div class="law-label">{law.name}</div><div class="law-subtitle">{law.subtitle}</div></div>
-                          </div>
-                          <div class="math-block"><span class="math-formula">{law.example}</span></div>
-                          <p class="law-explanation">{law.explanation}</p>
+    <figure class="section-image">
+        <img src="/images/cbrt-concept.webp" alt="3D cube geometry diagram for racine cubique calculator" loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
+        <figcaption>{content.s1Caption}</figcaption>
+    </figure>
+
+    <!-- Section 2: How to Use -->
+    <section class="article-section article-section--alt" id="section-cbrt-how-to-use">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+                {content.s2Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s2Title}</h2>
+            <p>{content.s2Intro}</p>
+            <div class="steps-visual">
+                <div class="step-card" id="cbrt-step-input">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>{content.s2Steps[0]?.title}</h3>
+                        <p>{content.s2Steps[0]?.text}</p>
+                    </div>
+                </div>
+                <div class="step-card" id="cbrt-step-calc">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>{content.s2Steps[1]?.title}</h3>
+                        <p>{content.s2Steps[1]?.text}</p>
+                    </div>
+                </div>
+                <div class="step-card" id="cbrt-step-result">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>{content.s2Steps[2]?.title}</h3>
+                        <p>{content.s2Steps[2]?.text}</p>
+                    </div>
+                </div>
+            </div>
+            <p>{content.s2Conclusion}</p>
+        </div>
+    </section>
+
+    <!-- Section 3: Notation & Switcher -->
+    <section class="article-section" id="section-cbrt-notation">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17c2 0 2.8-1 2.8-2.8V10c0-2 1-3.3 3.2-3"/><path d="M9 11.2h5.7"/></svg></span>
+                {content.s3Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s3Title}</h2>
+            <p>{content.s3Intro}</p>
+
+            <!-- Interactive Notation Mode Switcher -->
+            <div class="notation-switcher-box">
+                <div class="notation-tabs" role="tablist">
+                    <button type="button" class="notation-tab active" data-format="radical" role="tab">{ui.tabRadical}</button>
+                    <button type="button" class="notation-tab" data-format="exponent" role="tab">{ui.tabExponent}</button>
+                    <button type="button" class="notation-tab" data-format="code" role="tab">{ui.tabCode}</button>
+                    <button type="button" class="notation-tab" data-format="sheet" role="tab">{ui.tabSheet}</button>
+                    <button type="button" class="notation-tab" data-format="latex" role="tab">{ui.tabLatex}</button>
+                    <button type="button" class="notation-tab" data-format="typing" role="tab">{ui.tabTyping}</button>
+                </div>
+                <div class="notation-content-panels">
+                    <div class="notation-view active" id="view-radical">
+                        <div class="math-block">
+                            <span class="math-formula">∛64 = 4</span>
+                            <button type="button" class="btn-copy-formula" data-formula="∛64 = 4" title={ui.copyBtn}>{ui.copyBtn}</button>
+                        </div>
+                        <p class="notation-desc">Standard mathematical radical notation using index 3 and radical sign.</p>
+                    </div>
+                    <div class="notation-view" id="view-exponent">
+                        <div class="math-block">
+                            <span class="math-formula">64^(1/3) = 4</span>
+                            <button type="button" class="btn-copy-formula" data-formula="64^(1/3) = 4" title={ui.copyBtn}>{ui.copyBtn}</button>
+                        </div>
+                        <p class="notation-desc">Fractional power representation: raising any number to 1/3 equals its cube root.</p>
+                    </div>
+                    <div class="notation-view" id="view-code">
+                        <div class="math-block">
+                            <span class="math-formula">Math.cbrt(64) // 4</span>
+                            <button type="button" class="btn-copy-formula" data-formula="Math.cbrt(64)" title={ui.copyBtn}>{ui.copyBtn}</button>
+                        </div>
+                        <p class="notation-desc">Standard in JavaScript, Python (<code>64 ** (1/3)</code>), C, Java, and modern runtimes.</p>
+                    </div>
+                    <div class="notation-view" id="view-sheet">
+                        <div class="math-block">
+                            <span class="math-formula">=POWER(A1, 1/3)</span>
+                            <button type="button" class="btn-copy-formula" data-formula="=POWER(A1, 1/3)" title={ui.copyBtn}>{ui.copyBtn}</button>
+                        </div>
+                        <p class="notation-desc">Excel and Google Sheets formula. Alternatively use <code>=A1^(1/3)</code>.</p>
+                    </div>
+                    <div class="notation-view" id="view-latex">
+                        <div class="math-block">
+                            <span class="math-formula">\sqrt[3]{64}</span>
+                            <button type="button" class="btn-copy-formula" data-formula="\sqrt[3]{64}" title={ui.copyBtn}>{ui.copyBtn}</button>
+                        </div>
+                        <p class="notation-desc">LaTeX mathematical typesetting command for academic papers and documents.</p>
+                    </div>
+                    <div class="notation-view" id="view-typing">
+                        <div class="math-block">
+                            <span class="math-formula">Unicode: U+221B | HTML: &amp;#8731; | 221B + Alt+X</span>
+                            <button type="button" class="btn-copy-formula" data-formula="∛" title="Copy ∛">{ui.copyBtn} ∛</button>
+                        </div>
+                        <p class="notation-desc">On Windows: type 221B then press Alt+X. On Mac: Cmd+Ctrl+Space. HTML: <code>&amp;#8731;</code>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p>{content.s3P1}</p>
+            <div class="math-block"><span class="math-formula">x^(1/3) = ∛x</span></div>
+            <p>{content.s3P2}</p>
+            <p>{content.s3P3}</p>
+        </div>
+    </section>
+
+    <figure class="section-image">
+        <img src="/images/cbrt-notation.webp" alt="Radical notation index diagram for racine cubique calculator" loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
+        <figcaption>{content.s3Caption}</figcaption>
+    </figure>
+
+    <!-- Section 4: Formula -->
+    <section class="article-section article-section--alt" id="section-cbrt-formula">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></span>
+                {content.s4Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s4Title}</h2>
+            <p>{content.s4Intro}</p>
+            <div class="math-block">
+                <span class="math-formula">If y = ∛x, then y × y × y = x (or y³ = x)</span>
+                <button type="button" class="btn-copy-formula" data-formula="If y = ∛x, then y³ = x" title={ui.copyBtn}>{ui.copyBtn}</button>
+            </div>
+            <p>{content.s4P1}</p>
+        </div>
+    </section>
+
+    <!-- Section 5: Five Core Laws -->
+    <section class="article-section" id="section-cbrt-laws">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+                {content.s5Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s5Title}</h2>
+            <p>{content.s5Intro}</p>
+            <div class="law-cards">
+                {content.s5Laws.map((law, idx) => (
+                  <div class="law-card">
+                      <div class="law-header">
+                        <div class="law-number">{idx + 1}</div>
+                        <div>
+                          <div class="law-label">{law.name}</div>
+                          <div class="law-subtitle">{law.subtitle}</div>
+                        </div>
                       </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 6: Calculation Methods -->
-        <section class="article-section article-section--alt" id="section-cbrt-methods">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></span> {content.s6Eyebrow}</div>
-                <h2 class="article-h2">{content.s6Title}</h2>
-                <p>{content.s6Intro}</p>
-
-                <div class="method-card" id="cbrt-method-calculator">
-                    <div class="method-badge">Method 1</div>
-                    <h3 class="method-title">{content.s6M1Title}</h3>
-                    <p>{content.s6M1Text}</p>
-                </div>
-
-                <div class="method-card" id="cbrt-method-factorization">
-                    <div class="method-badge">Method 2</div>
-                    <h3 class="method-title">{content.s6M2Title}</h3>
-                    <p>{content.s6M2Intro}</p>
-                    <div class="worked-example">
-                        <div class="example-tag">{content.s6M2ExTitle}</div>
-                        <ol class="example-steps">
-                            {content.s6M2Steps.map(step => (
-                              <li>{step}</li>
-                            ))}
-                        </ol>
-                    </div>
-                </div>
-
-                <div class="method-card" id="cbrt-method-newton">
-                    <div class="method-badge">Method 3</div>
-                    <h3 class="method-title">{content.s6M3Title}</h3>
-                    <p>{content.s6M3Text}</p>
-                    <div class="math-block"><span class="math-formula">x_(n+1) = (2·x_n + A / x_n²) / 3</span></div>
-                </div>
-
-                <div class="method-card" id="cbrt-method-estimation">
-                    <div class="method-badge">Method 4</div>
-                    <h3 class="method-title">{content.s6M4Title}</h3>
-                    <p>{content.s6M4Intro}</p>
-                    <div class="worked-example">
-                        <div class="example-tag">{content.s6M4ExTitle}</div>
-                        <ol class="example-steps">
-                            {content.s6M4Steps.map(step => (
-                              <li>{step}</li>
-                            ))}
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 7: Positive Numbers -->
-        <section class="article-section" id="section-cbrt-positive">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> {content.s7Eyebrow}</div>
-                <h2 class="article-h2">{content.s7Title}</h2>
-                <p>{content.s7Intro}</p>
-                <div class="table-scroll-wrapper">
-                    <table class="data-table">
-                        <thead><tr><th>{content.s7ThNumber}</th><th>{content.s7ThRoot}</th><th>{content.s7ThWhy}</th></tr></thead>
-                        <tbody>
-                            <tr><td>8</td><td>2</td><td>{content.s7Row8}</td></tr>
-                            <tr><td>125</td><td>5</td><td>{content.s7Row125}</td></tr>
-                            <tr><td>512</td><td>8</td><td>{content.s7Row512}</td></tr>
-                            <tr><td>1,000</td><td>10</td><td>{content.s7Row10}</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p>{content.s7Conclusion}</p>
-            </div>
-        </section>
-
-        <!-- Section 8: Negative Numbers -->
-        <section class="article-section article-section--alt" id="section-cbrt-negative">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span> {content.s8Eyebrow}</div>
-                <h2 class="article-h2">{content.s8Title}</h2>
-                <p>{content.s8P1}</p>
-                <p>{content.s8P2}</p>
-                <div class="worked-example">
-                    <div class="example-tag">{content.s8ExTitle}</div>
-                    <p>{content.s8ExStep}</p>
-                </div>
-                <p>{content.s8Conclusion}</p>
-                <div class="warning-box">
-                    <div class="warning-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-                    <div class="warning-content">
-                        <strong>{content.s8WarningTitle}</strong>
-                        <p>{content.s8WarningText}</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 9: Difference vs Square Root -->
-        <section class="article-section" id="section-cbrt-diff">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span> {content.s9Eyebrow}</div>
-                <h2 class="article-h2">{content.s9Title}</h2>
-                <p>{content.s9Intro}</p>
-                <div class="table-scroll-wrapper">
-                    <table class="data-table">
-                        <thead><tr><th>Property</th><th>{content.s9ThCube}</th><th>{content.s9ThSquare}</th></tr></thead>
-                        <tbody>
-                            <tr><td>{content.s9RowSymbol}</td><td>∛ (index 3)</td><td>√ (index 2)</td></tr>
-                            <tr><td>{content.s9RowMult}</td><td>{content.s9RowMultCube}</td><td>{content.s9RowMultSquare}</td></tr>
-                            <tr><td>{content.s9RowEx}</td><td>{content.s9RowExCube}</td><td>{content.s9RowExSquare}</td></tr>
-                            <tr><td>{content.s9RowNegative}</td><td>{content.s9RowNegativeCube}</td><td>{content.s9RowNegativeSquare}</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 10: Real-Life Applications -->
-        <section class="article-section article-section--alt" id="section-cbrt-applications">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span> {content.s10Eyebrow}</div>
-                <h2 class="article-h2">{content.s10Title}</h2>
-                <p>{content.s10Intro}</p>
-                <div class="app-cards-grid">
-                    {content.s10Apps.map(app => (
-                      <div class="app-card">
-                          <h3>{app.title}</h3>
-                          <p>{app.text}</p>
+                      <div class="math-block">
+                          <span class="math-formula">{law.example}</span>
+                          <button type="button" class="btn-copy-formula" data-formula={law.example} title={ui.copyBtn}>{ui.copyBtn}</button>
                       </div>
-                    ))}
-                </div>
+                      <p class="law-explanation">{law.explanation}</p>
+                  </div>
+                ))}
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Section 11: Simplification Table -->
-        <section class="article-section" id="section-cbrt-simplification">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span> {content.s11Eyebrow}</div>
-                <h2 class="article-h2">{content.s11Title}</h2>
-                <p>{content.s11Intro}</p>
-                <div class="table-scroll-wrapper">
-                    <table class="data-table">
-                        <thead><tr><th>{content.s11ThExpr}</th><th>{content.s11ThForm}</th><th>{content.s11ThWhy}</th></tr></thead>
-                        <tbody>
-                            <tr><td>∛16</td><td>2∛2</td><td>∛(8 × 2) = ∛8 × ∛2 = 2∛2</td></tr>
-                            <tr><td>∛24</td><td>2∛3</td><td>∛(8 × 3) = ∛8 × ∛3 = 2∛3</td></tr>
-                            <tr><td>∛32</td><td>2∛4</td><td>∛(8 × 4) = ∛8 × ∛4 = 2∛4</td></tr>
-                            <tr><td>∛40</td><td>2∛5</td><td>∛(8 × 5) = ∛8 × ∛5 = 2∛5</td></tr>
-                            <tr><td>∛48</td><td>2∛6</td><td>∛(8 × 6) = ∛8 × ∛6 = 2∛6</td></tr>
-                            <tr><td>∛54</td><td>3∛2</td><td>∛(27 × 2) = ∛27 × ∛2 = 3∛2</td></tr>
-                            <tr><td>∛56</td><td>2∛7</td><td>∛(8 × 7) = ∛8 × ∛7 = 2∛7</td></tr>
-                            <tr><td>∛72</td><td>2∛9</td><td>∛(8 × 9) = ∛8 × ∛9 = 2∛9</td></tr>
-                            <tr><td>∛108</td><td>3∛4</td><td>∛(27 × 4) = ∛27 × ∛4 = 3∛4</td></tr>
-                            <tr><td>∛128</td><td>4∛2</td><td>∛(64 × 2) = ∛64 × ∛2 = 4∛2</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p>{content.s11Conclusion}</p>
+    <!-- Section 6: Calculation Methods -->
+    <section class="article-section article-section--alt" id="section-cbrt-methods">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></span>
+                {content.s6Eyebrow}
             </div>
-        </section>
+            <h2 class="article-h2">{content.s6Title}</h2>
+            <p>{content.s6Intro}</p>
 
-        <!-- Section 12: Reference Table 1-100 -->
-        <section class="article-section article-section--alt" id="section-cbrt-reference">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></span> {content.s12Eyebrow}</div>
-                <h2 class="article-h2">{content.s12Title}</h2>
-                <p>{content.s12Intro}</p>
-                <p class="scroll-hint"><span class="scroll-hint-icon">👉</span> {content.s12ScrollHint}</p>
-                <div class="table-scroll-wrapper">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>{content.s12ColNumber}</th>
-                                <th>{content.s12ColRoot}</th>
-                                <th>{content.s12ColType}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {table100Rows.map(row => (
-                                <tr class={row.isPerfect ? "tr-perfect" : ""}>
-                                    <td>{row.n}</td>
-                                    <td>{row.rootFormatted}</td>
-                                    <td>
-                                        {row.isPerfect ? (
-                                            <span class="badge-perfect">{content.s12BadgePerfect}</span>
-                                        ) : (
-                                            content.s12BadgeIrrational
-                                        )}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 13: Perfect Cubes -->
-        <section class="article-section" id="section-cbrt-perfect-cubes">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span> {content.s13Eyebrow}</div>
-                <h2 class="article-h2">{content.s13Title}</h2>
-                <p>{content.s13Intro}</p>
-                <div class="table-scroll-wrapper">
-                    <table class="data-table">
-                        <thead><tr><th>Number</th><th>Cube</th><th>Number</th><th>Cube</th></tr></thead>
-                        <tbody>
-                            {perfectCubesList.map(item => (
-                              <tr>
-                                <td>{item.n1}</td>
-                                <td>{item.c1}</td>
-                                <td>{item.n2}</td>
-                                <td>{item.c2}</td>
-                              </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <figure class="section-image">
-            <img src="/images/cbrt-perfect-cubes.webp" alt="Perfect cubes reference chart for racine cubique calculator" loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
-            <figcaption>{content.s13Caption}</figcaption>
-        </figure>
-
-        <!-- Section 14: FAQs -->
-        <section class="article-section article-section--alt" id="section-cbrt-faqs">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> {content.s14Eyebrow}</div>
-                <h2 class="article-h2">{content.s14Title}</h2>
-                <div class="faq-list">
-                    {faqs && faqs.length > 0 ? (
-                        faqs.map((faq) => (
-                            <details class="faq-item">
-                                <summary class="faq-question">{faq.question}</summary>
-                                <div class="faq-answer"><p>{faq.answer}</p></div>
-                            </details>
-                        ))
-                    ) : (
-                        <>
-                            <details class="faq-item">
-                                <summary class="faq-question">How do I use the Racine Cubique Calculator?</summary>
-                                <div class="faq-answer"><p>Type any number into the box above and click Calculate. The tool instantly returns the cube root, including a simplified form where one exists, and it correctly handles negative numbers as real values.</p></div>
-                            </details>
-                            <details class="faq-item">
-                                <summary class="faq-question">Can I calculate cube roots manually?</summary>
-                                <div class="faq-answer"><p>Yes. For perfect cubes, prime factorization works cleanly. For everything else, estimation (finding which two perfect cubes your number falls between) gets you close fast.</p></div>
-                            </details>
-                            <details class="faq-item">
-                                <summary class="faq-question">What does "racine cubique" mean?</summary>
-                                <div class="faq-answer"><p>It's French for "cube root." A racine cubique calculator and a cube root calculator do exactly the same job.</p></div>
-                            </details>
-                            <details class="faq-item">
-                                <summary class="faq-question">Can cube roots of negative numbers be calculated?</summary>
-                                <div class="faq-answer"><p>Yes, and this is one of the biggest differences between cube roots and square roots. The cube root of a negative number is simply a negative real number — for example, ∛-8 = -2. No imaginary numbers involved.</p></div>
-                            </details>
-                            <details class="faq-item">
-                                <summary class="faq-question">Can I calculate cube roots of decimals or large numbers?</summary>
-                                <div class="faq-answer"><p>Yes. The calculator handles decimals, whole numbers, and large values with full precision.</p></div>
-                            </details>
-                            <details class="faq-item">
-                                <summary class="faq-question">Is this calculator free to use?</summary>
-                                <div class="faq-answer"><p>Yes — no sign-up, no downloads, no usage limits.</p></div>
-                            </details>
-                        </>
-                    )}
+            <!-- Interactive Method Switcher Tabs -->
+            <div class="method-tabs-wrapper">
+                <div class="method-tabs-nav" role="tablist">
+                    <button type="button" class="method-tab-btn active" data-method="calculator" role="tab">{ui.methodCalc}</button>
+                    <button type="button" class="method-tab-btn" data-method="factorization" role="tab">{ui.methodFactors}</button>
+                    <button type="button" class="method-tab-btn" data-method="estimation" role="tab">{ui.methodEstimate}</button>
                 </div>
 
-                <!-- Author Byline & Social Sharing Bar below FAQs -->
-                <div class="article-header-meta" style="margin-top: 40px; margin-bottom: 0;">
-                    <div class="article-author-byline">
-                        <a href="/about-us/" class="author-avatar-link" aria-label="Syed Muhammad Ahmed, Founder and Creator">
-                            <img src="/images/syed-muhammad-ahmed-racine-carree-calculator.jpg" alt="Syed Muhammad Ahmed, Founder and Creator of Racine Carree Calculator" width="44" height="44" loading="lazy" decoding="async" class="author-avatar" />
-                        </a>
-                        <div class="author-details">
-                            <span class="author-verified-label">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                                {authorByline.writtenBy}
-                            </span>
-                            <a href="/about-us/" class="author-name-link">Syed Muhammad Ahmed</a>
-                            <span class="author-title">{authorByline.founderTitle}</span>
+                <div class="method-panels">
+                    <!-- Method 1: Calculator -->
+                    <div class="method-panel active" id="method-panel-calculator">
+                        <div class="method-badge">Method 1</div>
+                        <h3 class="method-title">{content.s6M1Title}</h3>
+                        <p>{content.s6M1Text}</p>
+                        <div class="method-action-box">
+                            <button type="button" class="btn-calc-primary btn-test-calc" data-cbrt-num="3375">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                <span>{ui.testBtn} (∛3375)</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="social-share-group">
-                        <span class="social-share-label">{authorByline.share}:</span>
-                        <a href="https://twitter.com/intent/tweet?text=Free%20Racine%20Cubique%20Calculator%20with%20step-by-step%20solutions&url=https://www.racinecarreecalculatorr.com/racine-cubique-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--x" aria-label="Share on X" title="Share on X">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        </a>
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.racinecarreecalculatorr.com/racine-cubique-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--linkedin" aria-label="Share on LinkedIn" title="Share on LinkedIn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        </a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.racinecarreecalculatorr.com/racine-cubique-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--facebook" aria-label="Share on Facebook" title="Share on Facebook">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </a>
-                        <a href="https://api.whatsapp.com/send?text=Check%20out%20Racine%20Cubique%20Calculator:%20https://www.racinecarreecalculatorr.com/racine-cubique-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--whatsapp" aria-label="Share on WhatsApp" title="Share on WhatsApp">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Section 15: Quick Recap -->
-        <section class="article-section" id="section-cbrt-recap">
-            <div class="article-container">
-                <div class="section-eyebrow"><span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> {content.s15Eyebrow}</div>
-                <h2 class="article-h2">{content.s15Title}</h2>
-                <div class="warning-box" style="border-color: var(--primary-200);">
-                    <div class="warning-icon" style="background: var(--primary-50); color: var(--primary-500);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-                    <div class="warning-content">
-                        <strong>{content.s15BoxTitle}</strong>
-                        <p>{content.s15BoxText}</p>
+                    <!-- Method 2: Prime Factorization -->
+                    <div class="method-panel" id="method-panel-factorization">
+                        <div class="method-badge">Method 2</div>
+                        <h3 class="method-title">{content.s6M2Title}</h3>
+                        <p>{content.s6M2Intro}</p>
+                        <div class="worked-example">
+                            <div class="example-tag">{content.s6M2ExTitle}</div>
+                            <ol class="example-steps">
+                                {content.s6M2Steps.map(step => (
+                                  <li>{step}</li>
+                                ))}
+                            </ol>
+                        </div>
+                        <div class="worked-example" style="margin-top: 16px;">
+                            <div class="example-tag">Extended Example: Find ∛3375</div>
+                            <ol class="example-steps">
+                                <li>Decompose into prime factors: 3375 = 3 × 3 × 3 × 5 × 5 × 5</li>
+                                <li>Group into sets of three: (3 × 3 × 3) × (5 × 5 × 5) = 3³ × 5³</li>
+                                <li>Take one factor from each group: 3 × 5 = 15</li>
+                                <li>Therefore, ∛3375 = 15.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Method 3: Estimation -->
+                    <div class="method-panel" id="method-panel-estimation">
+                        <div class="method-badge">Method 3</div>
+                        <h3 class="method-title">{content.s6M4Title}</h3>
+                        <p>{content.s6M4Intro}</p>
+                        <div class="worked-example">
+                            <div class="example-tag">{content.s6M4ExTitle}</div>
+                            <ol class="example-steps">
+                                {content.s6M4Steps.map(step => (
+                                  <li>{step}</li>
+                                ))}
+                            </ol>
+                        </div>
+                        <div class="estimation-range-box">
+                            <div class="estimation-bar">
+                                <div class="estimation-marker marker-low"><span>27</span><strong>3³</strong></div>
+                                <div class="estimation-marker marker-target"><span>50</span><strong>∛50 ≈ 3.68</strong></div>
+                                <div class="estimation-marker marker-high"><span>64</span><strong>4³</strong></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+
+    <!-- Section 7: Perfect Cubes Reference -->
+    <section class="article-section" id="section-cbrt-perfect-cubes">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+                {content.s13Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s13Title}</h2>
+            <p>{content.s13Intro}</p>
+
+            <!-- Visual Perfect Cubes Grid -->
+            <div class="cubes-grid">
+                {perfectCubesList.slice(0, 12).map(item => (
+                    <div class="cube-card" data-cbrt-num={item.cube} role="button" tabindex="0" title={`Test ∛${item.cube} in calculator`}>
+                        <div class="cube-head">
+                            <span class="cube-base">{item.n}³</span>
+                            <span class="cube-eq">=</span>
+                            <span class="cube-val">{item.cube.toLocaleString()}</span>
+                        </div>
+                        <div class="cube-root-label">∛{item.cube.toLocaleString()} = {item.n}</div>
+                    </div>
+                ))}
+            </div>
+
+            <p class="scroll-hint"><span class="scroll-hint-icon">👉</span> {scrollHintText}</p>
+            <div class="table-scroll-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>Number (n)</th><th>Cube (n³)</th><th>Cube Root (∛n³)</th><th>Quick Test</th></tr></thead>
+                    <tbody>
+                        {perfectCubesList.map(item => (
+                          <tr>
+                            <td><strong>{item.n}</strong></td>
+                            <td>{item.cube.toLocaleString()}</td>
+                            <td><span class="badge-perfect">{item.n}</span></td>
+                            <td>
+                              <button type="button" class="btn-table-test" data-cbrt-num={item.cube}>
+                                ∛{item.cube.toLocaleString()}
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <figure class="section-image">
+        <img src="/images/cbrt-perfect-cubes.webp" alt="Perfect cubes reference chart for racine cubique calculator" loading="lazy" decoding="async" fetchpriority="low" sizes="(max-width: 840px) 100vw, 800px" width="800" height="448">
+        <figcaption>{content.s13Caption}</figcaption>
+    </figure>
+
+    <!-- Section 8: Negative Numbers -->
+    <section class="article-section article-section--alt" id="section-cbrt-negative">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
+                {content.s8Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s8Title}</h2>
+            <p>{content.s8P1}</p>
+            <p>{content.s8P2}</p>
+
+            <div class="negative-comparison-grid">
+                <div class="neg-card neg-card--square">
+                    <div class="neg-badge">Square Root (Index 2)</div>
+                    <div class="math-block"><span class="math-formula">√(-16) = No Real Root</span></div>
+                    <p>Requires the imaginary unit <em>i</em> (±4i) because squaring any real number produces a non-negative result.</p>
+                </div>
+                <div class="neg-card neg-card--cube">
+                    <div class="neg-badge">Cube Root (Index 3)</div>
+                    <div class="math-block"><span class="math-formula">∛(-64) = -4</span></div>
+                    <p>100% Real solution! Multiplying three negative numbers gives a negative product: (-4) × (-4) × (-4) = -64.</p>
+                </div>
+            </div>
+
+            <div class="worked-example" style="margin-top: 20px;">
+                <div class="example-tag">{content.s8ExTitle}</div>
+                <p>{content.s8ExStep}</p>
+                <div class="math-block"><span class="math-formula">∛(-x) = -∛x</span></div>
+            </div>
+            <p>{content.s8Conclusion}</p>
+
+            <div class="warning-box">
+                <div class="warning-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                <div class="warning-content">
+                    <strong>{content.s8WarningTitle}</strong>
+                    <p>{content.s8WarningText}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Decimals and Fractions -->
+    <section class="article-section" id="section-cbrt-decimals-fractions">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16 12H8"/><path d="M12 8v8"/></svg></span>
+                {ui.decimalsTitle} &amp; {ui.fractionsTitle}
+            </div>
+            <h2 class="article-h2">{ui.decimalsTitle} &amp; {ui.fractionsTitle}</h2>
+
+            <div class="grid-two-col">
+                <div class="col-card">
+                    <h3 class="col-card-title">{ui.decimalsTitle}</h3>
+                    <p>{ui.decimalsIntro}</p>
+                    <div class="worked-example">
+                        <div class="example-tag">Example: ∛0.008</div>
+                        <ol class="example-steps">
+                            <li>0.008 = 8 / 1000 = 8 × 10⁻³</li>
+                            <li>∛(8 / 1000) = ∛8 / ∛1000 = 2 / 10</li>
+                            <li>2 / 10 = 0.2</li>
+                        </ol>
+                        <button type="button" class="btn-table-test" data-cbrt-num="0.008">Test ∛0.008</button>
+                    </div>
+                </div>
+
+                <div class="col-card">
+                    <h3 class="col-card-title">{ui.fractionsTitle}</h3>
+                    <p>{ui.fractionsIntro}</p>
+                    <div class="worked-example">
+                        <div class="example-tag">Example: ∛(8 / 27)</div>
+                        <ol class="example-steps">
+                            <li>Apply quotient rule: ∛(8 / 27) = ∛8 / ∛27</li>
+                            <li>Evaluate numerator: ∛8 = 2</li>
+                            <li>Evaluate denominator: ∛27 = 3</li>
+                            <li>Result: 2 / 3 ≈ 0.6667</li>
+                        </ol>
+                        <button type="button" class="btn-table-test" data-cbrt-num="0.296296">Test ∛(8/27)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Simplification Table -->
+    <section class="article-section article-section--alt" id="section-cbrt-simplification">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span>
+                {content.s11Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s11Title}</h2>
+            <p>{content.s11Intro}</p>
+            <div class="table-scroll-wrapper">
+                <table class="data-table">
+                    <thead><tr><th>{content.s11ThExpr}</th><th>{content.s11ThForm}</th><th>{content.s11ThWhy}</th><th>Actions</th></tr></thead>
+                    <tbody>
+                        {commonSimplifications.map(item => (
+                          <tr>
+                            <td><strong>{item.expr}</strong></td>
+                            <td><span class="badge-simp">{item.simp}</span></td>
+                            <td>{item.factor}</td>
+                            <td>
+                              <div class="action-btn-group">
+                                <button type="button" class="btn-copy-formula" data-formula={`${item.expr} = ${item.simp}`} title={ui.copyBtn}>{ui.copyBtn}</button>
+                                <button type="button" class="btn-table-test" data-cbrt-num={item.num} title="Test in calculator">Test</button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <p>{content.s11Conclusion}</p>
+        </div>
+    </section>
+
+    <!-- Section 11: Difference vs Square Root -->
+    <section class="article-section" id="section-cbrt-diff">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+                {content.s9Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s9Title}</h2>
+            <p>{content.s9Intro}</p>
+            <div class="table-scroll-wrapper">
+                <table class="data-table diff-table">
+                    <thead><tr><th>Property / Feature</th><th>{content.s9ThCube}</th><th>{content.s9ThSquare}</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>{content.s9RowSymbol}</strong></td><td><span class="badge-accent">∛ (Index 3)</span></td><td>√ (Index 2)</td></tr>
+                        <tr><td><strong>Exponent Form</strong></td><td>x^(1/3)</td><td>x^(1/2)</td></tr>
+                        <tr><td><strong>{content.s9RowNegative}</strong></td><td><span class="badge-perfect">{content.s9RowNegativeCube}</span></td><td><span class="badge-warning">{content.s9RowNegativeSquare}</span></td></tr>
+                        <tr><td><strong>{content.s9RowMult}</strong></td><td>{content.s9RowMultCube}</td><td>{content.s9RowMultSquare}</td></tr>
+                        <tr><td><strong>Number of Real Roots</strong></td><td>Exactly 1 for all real numbers</td><td>1 for positive / 0 for negative</td></tr>
+                        <tr><td><strong>Graph Symmetry</strong></td><td>Odd function (symmetric about origin)</td><td>Defined only for x ≥ 0</td></tr>
+                        <tr><td><strong>Output Sign</strong></td><td>Always matches input sign (∛(-8) = -2)</td><td>Always non-negative (principal root)</td></tr>
+                        <tr><td><strong>{content.s9RowEx}</strong></td><td>{content.s9RowExCube}</td><td>{content.s9RowExSquare}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 12: Reference Table 1-100 with Live Search & Filter -->
+    <section class="article-section article-section--alt" id="section-cbrt-reference">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></span>
+                {content.s12Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s12Title}</h2>
+            <p>{content.s12Intro}</p>
+
+            <!-- Table Filter Toolbar -->
+            <div class="table-toolbar">
+                <div class="tbl-filter-pills">
+                    <button type="button" class="tbl-filter-pill active" data-filter="all">{ui.filterAll}</button>
+                    <button type="button" class="tbl-filter-pill" data-filter="perfect">{ui.filterPerfect}</button>
+                    <button type="button" class="tbl-filter-pill" data-filter="irrational">{ui.filterIrrational}</button>
+                </div>
+                <div class="table-search-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="search" id="cbrtTableSearch" placeholder={ui.searchPlaceholder} aria-label="Search cube root reference table">
+                </div>
+            </div>
+
+            <p class="scroll-hint"><span class="scroll-hint-icon">👉</span> {content.s12ScrollHint}</p>
+            <div class="table-scroll-wrapper">
+                <table class="data-table" id="cbrtRefTable100">
+                    <thead>
+                        <tr>
+                            <th>{content.s12ColNumber}</th>
+                            <th>{content.s12ColRoot}</th>
+                            <th>{ui.colSimp}</th>
+                            <th>{content.s12ColType}</th>
+                            <th>Quick Test</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {table100Rows.map(row => (
+                            <tr class={row.isPerfect ? "tr-perfect" : ""} data-perfect={row.isPerfect ? "true" : "false"} data-num={row.n} data-root={row.rootFormatted} data-simp={row.simplified}>
+                                <td><strong>{row.n}</strong></td>
+                                <td>{row.rootFormatted}</td>
+                                <td><code>{row.simplified}</code></td>
+                                <td>
+                                    {row.isPerfect ? (
+                                        <span class="badge-perfect">{content.s12BadgePerfect}</span>
+                                    ) : (
+                                        <span class="badge-irrational">{content.s12BadgeIrrational}</span>
+                                    )}
+                                </td>
+                                <td>
+                                    <button type="button" class="btn-table-test" data-cbrt-num={row.n}>
+                                        ∛{row.n}
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 13: Real-Life Applications -->
+    <section class="article-section" id="section-cbrt-applications">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+                {content.s10Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s10Title}</h2>
+            <p>{content.s10Intro}</p>
+            <div class="app-cards-grid">
+                {content.s10Apps.map((app, idx) => (
+                  <div class="app-card">
+                      <div class="app-card-icon">
+                        {idx === 0 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M13 21V3l6 4v14"/></svg>}
+                        {idx === 1 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>}
+                        {idx === 2 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>}
+                        {idx === 3 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>}
+                      </div>
+                      <h3>{app.title}</h3>
+                      <p>{app.text}</p>
+                  </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 14: How Calculator Works -->
+    <section class="article-section article-section--alt" id="section-cbrt-how-it-works">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+                {ui.howWorksEyebrow}
+            </div>
+            <h2 class="article-h2">{ui.howWorksTitle}</h2>
+            <div class="how-works-grid">
+                {ui.howWorksSteps.map((step, idx) => (
+                    <div class="how-step-card">
+                        <div class="how-step-num">{idx + 1}</div>
+                        <div class="how-step-body">
+                            <h4>{step.title}</h4>
+                            <p>{step.desc}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 15: 10 Comprehensive FAQs -->
+    <section class="article-section" id="section-cbrt-faqs">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+                {content.s14Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s14Title}</h2>
+            <div class="faq-list">
+                {displayFaqs.map((faq) => (
+                    <details class="faq-item">
+                        <summary class="faq-question">{faq.question}</summary>
+                        <div class="faq-answer"><p>{faq.answer}</p></div>
+                    </details>
+                ))}
+            </div>
+
+            <!-- Author Byline & Social Sharing Bar -->
+            <div class="article-header-meta" style="margin-top: 40px; margin-bottom: 0;">
+                <div class="article-author-byline">
+                    <a href={localizedUrl('/about-us/')} class="author-avatar-link" aria-label="Syed Muhammad Ahmed, Founder and Creator">
+                        <img src="/images/syed-muhammad-ahmed-racine-carree-calculator.jpg" alt="Syed Muhammad Ahmed, Founder and Creator of Racine Carree Calculator" width="44" height="44" loading="lazy" decoding="async" class="author-avatar" />
+                    </a>
+                    <div class="author-details">
+                        <span class="author-verified-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                            {authorByline.writtenBy}
+                        </span>
+                        <a href={localizedUrl('/about-us/')} class="author-name-link">Syed Muhammad Ahmed</a>
+                        <span class="author-title">{authorByline.founderTitle || "Founder & Creator"}</span>
+                    </div>
+                </div>
+                <div class="social-share-group">
+                    <span class="social-share-label">{authorByline.share}:</span>
+                    <a href="https://twitter.com/intent/tweet?text=Free%20Racine%20Cubique%20Calculator%20with%20step-by-step%20solutions&url=https://www.racinecarreecalculatorr.com/racine-cubique-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--x" aria-label="Share on X" title="Share on X">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.racinecarreecalculatorr.com/racine-cubique-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--linkedin" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.racinecarreecalculatorr.com/racine-cubique-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--facebook" aria-label="Share on Facebook" title="Share on Facebook">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?text=Check%20out%20Racine%20Cubique%20Calculator:%20https://www.racinecarreecalculatorr.com/racine-cubique-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--whatsapp" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 16: Quick Key Takeaway / Recap -->
+    <section class="article-section article-section--alt" id="section-cbrt-recap">
+        <div class="article-container">
+            <div class="section-eyebrow">
+                <span class="eyebrow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+                {content.s15Eyebrow}
+            </div>
+            <h2 class="article-h2">{content.s15Title}</h2>
+            <div class="warning-box" style="border-color: var(--primary-200);">
+                <div class="warning-icon" style="background: var(--primary-50); color: var(--primary-500);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="warning-content">
+                    <strong>{content.s15BoxTitle}</strong>
+                    <p>{content.s15BoxText}</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </article>
+
+<script is:inline>
+  // Client-Side Interactive Script for Racine Cubique Page
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Quick-Try Chips & Calculation test triggers
+    const triggerCbrtCalculation = (num) => {
+      const input = document.getElementById('cbrtInput');
+      const btn = document.getElementById('cbrtCalcBtn');
+      if (input && btn) {
+        input.value = num;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+        btn.click();
+        const stage = document.getElementById('calculators') || input;
+        stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    };
+
+    document.querySelectorAll('.quick-try-chip, .btn-test-calc, .btn-table-test, .cube-card').forEach(elem => {
+      elem.addEventListener('click', (e) => {
+        e.preventDefault();
+        const num = elem.getAttribute('data-cbrt-num');
+        if (num) triggerCbrtCalculation(num);
+      });
+    });
+
+    // 2. Radical Anatomy Explorer Interactive Switcher
+    const anatomyParts = document.querySelectorAll('.anatomy-part');
+    const anatomyCards = document.querySelectorAll('.anatomy-info-card');
+
+    anatomyParts.forEach(part => {
+      const activatePart = () => {
+        const target = part.getAttribute('data-part');
+        if (!target) return;
+        anatomyParts.forEach(p => p.classList.remove('active'));
+        part.classList.add('active');
+        anatomyCards.forEach(c => {
+          c.classList.remove('active');
+          if (c.id === `info-${target}`) {
+            c.classList.add('active');
+          }
+        });
+      };
+      part.addEventListener('mouseenter', activatePart);
+      part.addEventListener('click', activatePart);
+      part.addEventListener('focus', activatePart);
+    });
+
+    // 3. Interactive Notation Mode Switcher
+    const notationTabs = document.querySelectorAll('.notation-tab');
+    const notationViews = document.querySelectorAll('.notation-view');
+
+    notationTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const fmt = tab.getAttribute('data-format');
+        notationTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        notationViews.forEach(v => {
+          v.classList.remove('active');
+          if (v.id === `view-${fmt}`) {
+            v.classList.add('active');
+          }
+        });
+      });
+    });
+
+    // 4. Interactive Calculation Methods Switcher
+    const methodTabs = document.querySelectorAll('.method-tab-btn');
+    const methodPanels = document.querySelectorAll('.method-panel');
+
+    methodTabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const m = btn.getAttribute('data-method');
+        methodTabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        methodPanels.forEach(p => {
+          p.classList.remove('active');
+          if (p.id === `method-panel-${m}`) {
+            p.classList.add('active');
+          }
+        });
+      });
+    });
+
+    // 5. Table 1-100 Filter Pills & Live Search
+    const tableRows = document.querySelectorAll('#cbrtRefTable100 tbody tr');
+    const filterPills = document.querySelectorAll('.tbl-filter-pill');
+    const searchInput = document.getElementById('cbrtTableSearch');
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    const applyTableFiltering = () => {
+      const q = searchQuery.toLowerCase().trim();
+      tableRows.forEach(row => {
+        const isPerfect = row.getAttribute('data-perfect') === 'true';
+        const num = row.getAttribute('data-num') || '';
+        const root = (row.getAttribute('data-root') || '').toLowerCase();
+        const simp = (row.getAttribute('data-simp') || '').toLowerCase();
+
+        let matchesFilter = true;
+        if (currentFilter === 'perfect' && !isPerfect) matchesFilter = false;
+        if (currentFilter === 'irrational' && isPerfect) matchesFilter = false;
+
+        let matchesSearch = true;
+        if (q) {
+          matchesSearch = num.includes(q) || root.includes(q) || simp.includes(q);
+        }
+
+        row.style.display = (matchesFilter && matchesSearch) ? '' : 'none';
+      });
+    };
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentFilter = pill.getAttribute('data-filter') || 'all';
+        applyTableFiltering();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        applyTableFiltering();
+      });
+    }
+
+    // 6. Copy Formula Buttons
+    document.querySelectorAll('.btn-copy-formula').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const formula = btn.getAttribute('data-formula');
+        if (formula && navigator.clipboard) {
+          navigator.clipboard.writeText(formula).then(() => {
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<span style="font-size: 11px; font-weight: 700; color: var(--primary-500);">&check; Copied</span>';
+            setTimeout(() => {
+              btn.innerHTML = originalHtml;
+            }, 1800);
+          });
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* --- Interactive Ribbon & Quick-Try Bar --- */
+  .interactive-ribbon {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-md) var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+  }
+
+  .ribbon-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ribbon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-full);
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+
+  .ribbon-badge svg {
+    color: var(--primary-500);
+  }
+
+  .quick-try-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: var(--space-xs);
+    border-top: 1px dashed var(--border-light);
+  }
+
+  .quick-try-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .quick-try-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .quick-try-chip {
+    background: var(--bg-glass-strong);
+    border: 1px solid var(--primary-300);
+    border-radius: var(--radius-full);
+    padding: 4px 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--primary-600);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  [data-theme="dark"] .quick-try-chip {
+    color: var(--primary-300);
+    border-color: rgba(99, 102, 241, 0.4);
+  }
+
+  .quick-try-chip:hover {
+    background: var(--primary-500);
+    color: #fff;
+    border-color: var(--primary-500);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.25);
+  }
+
+  /* --- Interactive Radical Anatomy Box --- */
+  .anatomy-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    margin: var(--space-xl) 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .anatomy-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .anatomy-tag {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary-500);
+  }
+
+  .anatomy-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .anatomy-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: var(--space-lg) 0;
+    font-size: 3.2rem;
+    font-family: var(--font-mono, monospace);
+    font-weight: 800;
+    color: var(--text-heading);
+  }
+
+  .anatomy-part {
+    cursor: pointer;
+    padding: 4px 12px;
+    border-radius: var(--radius-md);
+    border: 2px dashed transparent;
+    transition: all 0.2s ease;
+  }
+
+  .anatomy-part:hover, .anatomy-part.active {
+    background: var(--primary-50);
+    border-color: var(--primary-500);
+    color: var(--primary-600);
+    transform: translateY(-2px);
+  }
+
+  [data-theme="dark"] .anatomy-part:hover, [data-theme="dark"] .anatomy-part.active {
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--primary-300);
+  }
+
+  .anatomy-part--degree {
+    font-size: 2rem;
+    align-self: flex-start;
+    margin-right: -4px;
+    color: var(--primary-500);
+  }
+
+  .anatomy-cards-grid {
+    margin-top: var(--space-md);
+    position: relative;
+    min-height: 80px;
+  }
+
+  .anatomy-info-card {
+    display: none;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md) var(--space-lg);
+    animation: fadeIn 0.25s ease forwards;
+  }
+
+  .anatomy-info-card.active {
+    display: block;
+  }
+
+  .anatomy-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-600);
+    margin-bottom: 4px;
+  }
+
+  [data-theme="dark"] .anatomy-card-title {
+    color: var(--primary-300);
+  }
+
+  .anatomy-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* --- Interactive Notation Mode Switcher --- */
+  .notation-switcher-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    margin: var(--space-lg) 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .notation-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .notation-tab {
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .notation-tab:hover {
+    color: var(--text-heading);
+    background: var(--bg-glass);
+  }
+
+  .notation-tab.active {
+    color: var(--primary-600);
+    background: var(--primary-50);
+  }
+
+  [data-theme="dark"] .notation-tab.active {
+    color: var(--primary-300);
+    background: rgba(99, 102, 241, 0.15);
+  }
+
+  .notation-view {
+    display: none;
+  }
+
+  .notation-view.active {
+    display: block;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .notation-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin: 8px 0 0 0;
+  }
+
+  /* --- Method Switcher --- */
+  .method-tabs-wrapper {
+    margin: var(--space-lg) 0;
+  }
+
+  .method-tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: var(--space-md);
+  }
+
+  .method-tab-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .method-tab-btn:hover {
+    border-color: var(--primary-300);
+    color: var(--text-heading);
+  }
+
+  .method-tab-btn.active {
+    background: var(--primary-500);
+    color: #fff;
+    border-color: var(--primary-500);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  }
+
+  .method-panel {
+    display: none;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .method-panel.active {
+    display: block;
+    animation: fadeIn 0.25s ease;
+  }
+
+  .method-action-box {
+    margin-top: var(--space-md);
+  }
+
+  /* Estimation visualizer */
+  .estimation-range-box {
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px dashed var(--border-default);
+  }
+
+  .estimation-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 10px 0;
+  }
+
+  .estimation-bar::before {
+    content: '';
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 50%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-300), var(--primary-500));
+    border-radius: 2px;
+    z-index: 1;
+  }
+
+  .estimation-marker {
+    position: relative;
+    z-index: 2;
+    background: var(--bg-card);
+    border: 2px solid var(--primary-500);
+    border-radius: var(--radius-md);
+    padding: 6px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .marker-target {
+    background: var(--primary-50);
+    border-color: var(--primary-600);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+  }
+
+  /* --- Visual Perfect Cubes Grid --- */
+  .cubes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+    margin: var(--space-lg) 0;
+  }
+
+  .cube-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .cube-card:hover {
+    border-color: var(--primary-500);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .cube-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--primary-600);
+  }
+
+  [data-theme="dark"] .cube-head {
+    color: var(--primary-300);
+  }
+
+  .cube-root-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* --- Negative comparison grid --- */
+  .negative-comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: var(--space-lg) 0;
+  }
+
+  .neg-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    border: 1px solid var(--border-default);
+  }
+
+  .neg-card--cube {
+    border-color: var(--primary-300);
+    background: var(--primary-50);
+  }
+
+  [data-theme="dark"] .neg-card--cube {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.3);
+  }
+
+  .neg-badge {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--text-heading);
+  }
+
+  /* --- Two column grid for Decimals/Fractions --- */
+  .grid-two-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin: var(--space-lg) 0;
+  }
+
+  .col-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .col-card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 8px;
+  }
+
+  /* --- Table Toolbar & Search --- */
+  .table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: var(--space-md);
+  }
+
+  .tbl-filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tbl-filter-pill {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tbl-filter-pill:hover {
+    color: var(--text-heading);
+    border-color: var(--primary-300);
+  }
+
+  .tbl-filter-pill.active {
+    background: var(--primary-500);
+    color: #fff;
+    border-color: var(--primary-500);
+  }
+
+  .table-search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    padding: 6px 14px;
+    min-width: 240px;
+  }
+
+  .table-search-box input {
+    border: none;
+    background: transparent;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    width: 100%;
+    outline: none;
+  }
+
+  .btn-table-test {
+    background: var(--bg-glass-strong);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary-600);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  [data-theme="dark"] .btn-table-test {
+    color: var(--primary-300);
+  }
+
+  .btn-table-test:hover {
+    background: var(--primary-500);
+    color: #fff;
+    border-color: var(--primary-500);
+  }
+
+  .btn-copy-formula {
+    background: var(--bg-glass-strong);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 3px 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    margin-left: 8px;
+  }
+
+  .btn-copy-formula:hover {
+    border-color: var(--primary-500);
+    color: var(--primary-600);
+  }
+
+  .action-btn-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .badge-simp {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: var(--primary-50);
+    color: var(--primary-600);
+    border: 1px solid var(--primary-200);
+  }
+
+  [data-theme="dark"] .badge-simp {
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--primary-300);
+    border-color: rgba(99, 102, 241, 0.3);
+  }
+
+  .badge-accent {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: var(--accent-50);
+    color: var(--accent-600);
+    border: 1px solid var(--accent-200);
+  }
+
+  .badge-warning {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: var(--warm-50);
+    color: var(--warm-600);
+    border: 1px solid var(--warm-200);
+  }
+
+  /* --- How It Works Steps --- */
+  .how-works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: var(--space-lg);
+  }
+
+  .how-step-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .how-step-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary-500);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 800;
+  }
+
+  .how-step-body h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin: 0 0 4px 0;
+  }
+
+  .how-step-body p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .table-toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .table-search-box {
+      min-width: 100%;
+    }
+  }
+</style>

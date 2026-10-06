@@ -1,5 +1,6 @@
 // Educational content builder for Racine Cubique (Cube Root) across all 18 languages
 import { getCbrtBoilerplate, type CbrtBoilerplate } from './cbrtBoilerplate';
+import { getCbrtInteractiveI18n, type CbrtInteractiveI18n } from './cbrtInteractive';
 
 export interface CbrtContent extends CbrtBoilerplate {
   tocTitle: string;
@@ -8,6 +9,8 @@ export interface CbrtContent extends CbrtBoilerplate {
     href: string;
     subitems?: Array<{ title: string; href: string }>;
   }>;
+  interactive: CbrtInteractiveI18n;
+  faqs: Array<{ question: string; answer: string }>;
 }
 
 const TOC_TITLES: Record<string, string> = {
@@ -33,6 +36,7 @@ const TOC_TITLES: Record<string, string> = {
 
 export function getCbrtContent(locale: string): CbrtContent {
   const bp = getCbrtBoilerplate(locale);
+  const interactive = getCbrtInteractiveI18n(locale);
   const tocTitle = TOC_TITLES[locale] || TOC_TITLES.en;
 
   const toc = [
@@ -67,21 +71,32 @@ export function getCbrtContent(locale: string): CbrtContent {
       subitems: [
         { title: bp.s6M1Title, href: "#cbrt-method-calculator" },
         { title: bp.s6M2Title, href: "#cbrt-method-factorization" },
-        { title: bp.s6M3Title, href: "#cbrt-method-newton" },
         { title: bp.s6M4Title, href: "#cbrt-method-estimation" }
       ]
     },
     {
-      title: bp.s7Title,
-      href: "#section-cbrt-positive"
+      title: bp.s13Title,
+      href: "#section-cbrt-perfect-cubes"
     },
     {
       title: bp.s8Title,
       href: "#section-cbrt-negative"
     },
     {
+      title: interactive.decimalsTitle + " & " + interactive.fractionsTitle,
+      href: "#section-cbrt-decimals-fractions"
+    },
+    {
+      title: bp.s11Title,
+      href: "#section-cbrt-simplification"
+    },
+    {
       title: bp.s9Title,
       href: "#section-cbrt-diff"
+    },
+    {
+      title: bp.s12Title,
+      href: "#section-cbrt-reference"
     },
     {
       title: bp.s10Title,
@@ -94,16 +109,8 @@ export function getCbrtContent(locale: string): CbrtContent {
       ]
     },
     {
-      title: bp.s11Title,
-      href: "#section-cbrt-simplification"
-    },
-    {
-      title: bp.s12Title,
-      href: "#section-cbrt-reference"
-    },
-    {
-      title: bp.s13Title,
-      href: "#section-cbrt-perfect-cubes"
+      title: interactive.howWorksTitle,
+      href: "#section-cbrt-how-it-works"
     },
     {
       title: bp.s14Title,
@@ -118,6 +125,8 @@ export function getCbrtContent(locale: string): CbrtContent {
   return {
     ...bp,
     tocTitle,
-    toc
+    toc,
+    interactive,
+    faqs: interactive.faqs
   };
 }

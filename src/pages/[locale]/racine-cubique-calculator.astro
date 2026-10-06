@@ -9,6 +9,7 @@ import { useTranslations, getLocaleFaqs } from '../../../theme/i18n/translations
 import site from '../../config/site.json';
 import { getPageAlternateLinks } from '../../utils/seo';
 import { getCbrtBoilerplate } from '../../data/i18n/content/cbrtBoilerplate';
+import { getCbrtContent } from '../../data/i18n/content/cbrtContent';
 
 export const prerender = true;
 
@@ -20,6 +21,7 @@ export function getStaticPaths() {
 
 const lang = getLocaleFromParams(Astro.params);
 const bp = getCbrtBoilerplate(lang);
+const cbrtContent = getCbrtContent(lang);
 const t = await useTranslations(lang);
 const title = t('cbrt.title', 'Racine Cubique Calculator | Free Online Cube Root Calculator');
 const description = t('cbrt.description', 'Calculate cube roots instantly with our free Racine Cubique Calculator. Get exact decimal results, simplified radicals, and step-by-step workings.');
@@ -27,6 +29,7 @@ const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/racine-cubique-calculat
 const alternateLinks = getPageAlternateLinks('/racine-cubique-calculator/');
 
 const cbrtFaqs = getLocaleFaqs(lang, 'cbrt');
+const effectiveFaqs = cbrtContent.faqs && cbrtContent.faqs.length >= 10 ? cbrtContent.faqs : cbrtFaqs;
 
 const quickCubeNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 27, 64, 125, 216, 343, 512, 729, 1000];
 ---
@@ -38,7 +41,7 @@ const quickCubeNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
   dir={getHtmlDir(lang)}
   canonicalUrl={canonicalUrl}
   alternateLinks={alternateLinks}
-  faqItems={cbrtFaqs}
+  faqItems={effectiveFaqs}
 >
   <Navbar lang={lang} contentLang={lang} />
   <main id="main-content">
@@ -140,7 +143,7 @@ const quickCubeNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
         </section>
       </div>
     </section>
-    <CubeRootContent lang={lang} faqs={cbrtFaqs} />
+    <CubeRootContent lang={lang} faqs={effectiveFaqs} />
   </main>
   <Footer lang={lang} contentLang={lang} />
 </Layout>
