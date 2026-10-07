@@ -449,7 +449,7 @@ const squareWidgetI18n = getSquareWidgetI18n(lang);
       resultArea.classList.add('has-result');
 
       if (isPerfect) {
-        // YES — IT IS A PERFECT SQUARE
+        // YES - IT IS A PERFECT SQUARE
         const lowerRoot = root > 0 ? root - 1 : 0;
         const higherRoot = root + 1;
         const lowerSquare = lowerRoot * lowerRoot;
@@ -571,7 +571,7 @@ const squareWidgetI18n = getSquareWidgetI18n(lang);
           </div>
         `;
       } else {
-        // NO — NOT A PERFECT SQUARE
+        // NO - NOT A PERFECT SQUARE
         const floorRoot = Math.floor(root);
         const ceilRoot = Math.ceil(root);
         const lowerSquare = floorRoot * floorRoot;

@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" aria-label="Geometric Concept of Perfect Cubes: Complete 3D Assembly vs Incomplete Non-Cube">
+  <defs>
+    <!-- Background Canvas Gradient -->
+    <linearGradient id="bgGradCubeGeom" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <!-- Complete Cube Face Gradients (Emerald / Teal) -->
+    <linearGradient id="compTopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="compLeftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="compRightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#065f46"/>
+    </linearGradient>
+
+    <!-- Incomplete Block Face Gradients (Rose / Amber) -->
+    <linearGradient id="incompTopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="incompLeftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+    <linearGradient id="incompRightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b91c1c"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+
+    <!-- Card Backgrounds -->
+    <linearGradient id="cardGradGeom" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="shadowGeom" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="450" rx="16" fill="url(#bgGradCubeGeom)" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Subtle Blueprint Grid -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="1">
+    <line x1="100" y1="0" x2="100" y2="450"/>
+    <line x1="200" y1="0" x2="200" y2="450"/>
+    <line x1="300" y1="0" x2="300" y2="450"/>
+    <line x1="400" y1="0" x2="400" y2="450"/>
+    <line x1="500" y1="0" x2="500" y2="450"/>
+    <line x1="600" y1="0" x2="600" y2="450"/>
+    <line x1="700" y1="0" x2="700" y2="450"/>
+  </g>
+
+  <!-- Title Header -->
+  <g transform="translate(40, 34)">
+    <rect x="0" y="0" width="148" height="24" rx="12" fill="#6366f1" fill-opacity="0.2" stroke="#818cf8" stroke-width="1"/>
+    <text x="74" y="16" fill="#a5b4fc" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="0.5">3D GEOMETRIC PROOF</text>
+    <text x="0" y="46" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="20" font-weight="800">What Makes a Number a &quot;Perfect Cube&quot;?</text>
+    <text x="0" y="68" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13">An integer is a perfect cube only when its unit blocks assemble into a complete, gap-free 3D cube.</text>
+  </g>
+
+  <!-- Left Card: Complete Perfect Cube (27 Blocks) -->
+  <g transform="translate(40, 115)">
+    <rect width="345" height="255" rx="14" fill="url(#cardGradGeom)" stroke="#10b981" stroke-width="1.5" filter="url(#shadowGeom)"/>
+
+    <!-- Badge -->
+    <rect x="18" y="16" width="130" height="24" rx="12" fill="#065f46" stroke="#10b981" stroke-width="1"/>
+    <circle cx="30" cy="28" r="4" fill="#34d399"/>
+    <text x="78" y="32" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="11" font-weight="800">PERFECT CUBE</text>
+
+    <!-- Isometric 3x3x3 Cube Render (Center: 172, 115) -->
+    <g transform="translate(172, 110)">
+      <!-- Top Face: 3x3 Sub-blocks -->
+      <polygon points="0,-48 70,-8 0,32 -70,-8" fill="url(#compTopGrad)" stroke="#a7f3d0" stroke-width="1.5"/>
+      <!-- Grid lines on Top Face -->
+      <line x1="-23.3" y1="-34.7" x2="46.7" y2="5.3" stroke="#047857" stroke-width="1"/>
+      <line x1="-46.7" y1="-21.3" x2="23.3" y2="18.7" stroke="#047857" stroke-width="1"/>
+      <line x1="23.3" y1="-34.7" x2="-46.7" y2="5.3" stroke="#047857" stroke-width="1"/>
+      <line x1="46.7" y1="-21.3" x2="-23.3" y2="18.7" stroke="#047857" stroke-width="1"/>
+
+      <!-- Left Face: 3x3 Sub-blocks -->
+      <polygon points="-70,-8 0,32 0,102 -70,62" fill="url(#compLeftGrad)" stroke="#6ee7b7" stroke-width="1.5"/>
+      <!-- Grid lines on Left Face -->
+      <line x1="-46.7" y1="5.3" x2="-46.7" y2="75.3" stroke="#064e3b" stroke-width="1"/>
+      <line x1="-23.3" y1="18.7" x2="-23.3" y2="88.7" stroke="#064e3b" stroke-width="1"/>
+      <line x1="-70,15.3" x2="0,55.3" stroke="#064e3b" stroke-width="1"/>
+      <line x1="-70,38.7" x2="0,78.7" stroke="#064e3b" stroke-width="1"/>
+
+      <!-- Right Face: 3x3 Sub-blocks -->
+      <polygon points="0,32 70,-8 70,62 0,102" fill="url(#compRightGrad)" stroke="#34d399" stroke-width="1.5"/>
+      <!-- Grid lines on Right Face -->
+      <line x1="23.3" y1="18.7" x2="23.3" y2="88.7" stroke="#064e3b" stroke-width="1"/>
+      <line x1="46.7" y1="5.3" x2="46.7" y2="75.3" stroke="#064e3b" stroke-width="1"/>
+      <line x1="0,55.3" x2="70,15.3" stroke="#064e3b" stroke-width="1"/>
+      <line x1="0,78.7" x2="70,38.7" stroke="#064e3b" stroke-width="1"/>
+    </g>
+
+    <!-- Formula & Explanation -->
+    <text x="172" y="215" fill="#f8fafc" font-family="ui-monospace, monospace" font-size="16" font-weight="800" text-anchor="middle">3 × 3 × 3 = 27 Blocks</text>
+    <text x="172" y="235" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">Equal length, width, height: ∛27 = 3 (Integer Root)</text>
+  </g>
+
+  <!-- Right Card: Incomplete Non-Cube (50 Blocks) -->
+  <g transform="translate(415, 115)">
+    <rect width="345" height="255" rx="14" fill="url(#cardGradGeom)" stroke="#ef4444" stroke-width="1.5" filter="url(#shadowGeom)"/>
+
+    <!-- Badge -->
+    <rect x="18" y="16" width="130" height="24" rx="12" fill="#7f1d1d" stroke="#ef4444" stroke-width="1"/>
+    <circle cx="30" cy="28" r="4" fill="#f87171"/>
+    <text x="78" y="32" fill="#fca5a5" font-family="system-ui, sans-serif" font-size="11" font-weight="800">NOT A CUBE</text>
+
+    <!-- Incomplete 3D Stacking with Voids (Center: 172, 110) -->
+    <g transform="translate(172, 110)">
+      <!-- Base 27 Solid Cube Layer (Dimmed) -->
+      <polygon points="0,-48 70,-8 0,32 -70,-8" fill="#334155" stroke="#475569" stroke-width="1.2"/>
+      <polygon points="-70,-8 0,32 0,102 -70,62" fill="#1e293b" stroke="#475569" stroke-width="1.2"/>
+      <polygon points="0,32 70,-8 70,62 0,102" fill="#0f172a" stroke="#475569" stroke-width="1.2"/>
+
+      <!-- Incomplete Top Blocks Added (23 blocks over 27 = 50 total) -->
+      <!-- Left Partial Top Addition -->
+      <polygon points="-46.7,-48 0,-21.3 -23.3,-8 -70,-34.7" fill="url(#incompTopGrad)" stroke="#fca5a5" stroke-width="1.2"/>
+      <polygon points="-70,-34.7 -23.3,-8 -23.3,18.7 -70,-8" fill="url(#incompLeftGrad)" stroke="#f87171" stroke-width="1.2"/>
+      <polygon points="-23.3,-8 0,-21.3 0,5.3 -23.3,18.7" fill="url(#incompRightGrad)" stroke="#ef4444" stroke-width="1.2"/>
+
+      <!-- Right Side Empty Void / Missing Blocks Indicator -->
+      <path d="M 10,-8 L 60,20 L 40,32" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,3"/>
+      <rect x="15" y="-30" width="75" height="20" rx="10" fill="#78350f" stroke="#f59e0b" stroke-width="1"/>
+      <text x="52" y="-16" fill="#fde68a" font-family="system-ui, sans-serif" font-size="10" font-weight="700" text-anchor="middle">MISSING 14</text>
+    </g>
+
+    <!-- Formula & Explanation -->
+    <text x="172" y="215" fill="#fca5a5" font-family="ui-monospace, monospace" font-size="16" font-weight="800" text-anchor="middle">50 Blocks (Cannot Tile a Cube)</text>
+    <text x="172" y="235" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">∛50 ≈ 3.684 (Between 3³=27 and 4³=64)</text>
+  </g>
+
+  <!-- Bottom Key Takeaway Banner -->
+  <g transform="translate(40, 390)">
+    <rect width="720" height="38" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="24" cy="19" r="6" fill="#6366f1"/>
+    <text x="40" y="24" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="13">
+      <tspan font-weight="700" fill="#818cf8">Key Takeaway:</tspan> Every perfect cube corresponds to an exact whole-number integer volume with zero fractional remainder.
+    </text>
+  </g>
+</svg>

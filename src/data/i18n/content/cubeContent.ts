@@ -209,11 +209,16 @@ const en: CubeContent = {
     ]
   },
   faqs: [
-    { question: "What is a perfect cube in simple terms?", answer: "A perfect cube is an integer resulting from multiplying a whole number by itself three times. For example, 27 is a perfect cube because 3 × 3 × 3 = 27." },
-    { question: "Can a negative number be a perfect cube?", answer: "Yes! Multiplying three negative numbers produces a negative result: (-4) × (-4) × (-4) = -64. Thus, -64 is a valid real perfect cube with root -4." },
-    { question: "Is 0 a perfect cube?", answer: "Yes, 0 is a perfect cube because 0 × 0 × 0 = 0 (0³ = 0)." },
-    { question: "Can a number be both a perfect square and a perfect cube?", answer: "Yes! Numbers whose prime exponents are multiples of 6 (the least common multiple of 2 and 3) are both squares and cubes. Examples include 1, 64 (8² and 4³), 729 (27² and 9³), and 4096 (64² and 16³)." },
-    { question: "Is this calculator completely free to use?", answer: "Yes, our Perfect Cube Calculator is 100% free with unlimited checks, instant answers, and detailed step-by-step mathematical proofs." }
+    { question: "What is a perfect cube in simple terms?", answer: "A perfect cube is any whole number that you can get by multiplying another whole number by itself three times. For example, 27 is a perfect cube because 3 × 3 × 3 = 27." },
+    { question: "Can a negative number be a perfect cube?", answer: "Yes! Multiplying an odd number of negative factors results in a negative product: (-4) × (-4) × (-4) = -64. Thus, -64 is a valid real perfect cube with cube root -4." },
+    { question: "Is 0 considered a perfect cube?", answer: "Yes. Zero is an integer, and 0 × 0 × 0 = 0 (0³ = 0). Its principal cube root is 0." },
+    { question: "How do you check if a large number is a perfect cube without a calculator?", answer: "Find the prime factorization of the number. If every prime factor has an exponent divisible by 3, the number is a perfect cube. In addition, compute its digital root: if the repeated digit sum is not 1, 8, or 9, it cannot be a cube." },
+    { question: "Why is 64 both a perfect square and a perfect cube?", answer: "A number that is both a square and a cube is a sixth power (k⁶). Because 2⁶ = 64, it can be written as 8² = 64 and 4³ = 64. Numbers of this form are known as perfect sixth powers." },
+    { question: "What is the smallest positive perfect cube?", answer: "The smallest positive perfect cube is 1, because 1 × 1 × 1 = 1. If non-positive integers are included, 0 is smaller, and negative cubes extend infinitely to negative infinity." },
+    { question: "How many perfect cubes are there between 1 and 100?", answer: "There are exactly 4 perfect cubes between 1 and 100 inclusive: 1 (1³), 8 (2³), 27 (3³), and 64 (4³). The next cube is 125 (5³), which exceeds 100." },
+    { question: "Is 100 a perfect cube?", answer: "No. The cube root of 100 is approximately 4.6416, which is not an integer. The prime factorization of 100 is 2² × 5², neither of which has an exponent divisible by 3." },
+    { question: "What is the difference between a square root and a cube root?", answer: "A square root asks what number multiplied by itself gives the original value. A cube root asks what number multiplied by itself three times gives the original value." },
+    { question: "Is this online perfect cube calculator free?", answer: "Yes. Our calculator is 100% free with unlimited checks, instant answers, and detailed step-by-step mathematical proofs." }
   ]
 };
 

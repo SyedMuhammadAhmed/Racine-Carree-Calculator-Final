@@ -2,8 +2,7 @@
 import TableOfContents from './TableOfContents.astro';
 import { getLocalizedUrl, DEFAULT_LOCALE, type Locale } from '../../theme/i18n/utils';
 import { getCubeContent } from '../data/i18n/content/cubeContent';
-import { getAuthorByline, getScrollHint } from '../data/i18n/commonI18n';
-import { getCubeWidgetI18n } from '../data/i18n/widgetI18n';
+import { getAuthorByline } from '../data/i18n/commonI18n';
 
 interface Props {
   lang?: string;
@@ -17,13 +16,107 @@ const content = getCubeContent(lang);
 const cubeToc = content.toc;
 const effectiveFaqs = (faqs && faqs.length > 0) ? faqs : content.faqs;
 const authorByline = getAuthorByline(lang);
-const scrollHintText = getScrollHint(lang);
-const cubeWidgetI18n = getCubeWidgetI18n(lang);
 
-const first30Cubes = Array.from({ length: 30 }, (_, i) => {
-  const n = i + 1;
-  return { n, cube: n * n * n };
+// Format numbers according to locale (commas for French/German, dots for English/others)
+const isCommaLocale = lang === 'fr' || lang === 'de';
+const formatNum = (val: number, decimals: number = 3) => {
+  const str = val.toFixed(decimals);
+  return isCommaLocale ? str.replace('.', ',') : str;
+};
+
+// The 10 perfect cubes from 1 to 1000
+const first10Cubes = [
+  { k: 1, formula: "1 × 1 × 1", cube: 1, factors: "1", root: "1" },
+  { k: 2, formula: "2 × 2 × 2", cube: 8, factors: "2³", root: "2" },
+  { k: 3, formula: "3 × 3 × 3", cube: 27, factors: "3³", root: "3" },
+  { k: 4, formula: "4 × 4 × 4", cube: 64, factors: "2⁶ = (2²)³", root: "4" },
+  { k: 5, formula: "5 × 5 × 5", cube: 125, factors: "5³", root: "5" },
+  { k: 6, formula: "6 × 6 × 6", cube: 216, factors: "2³ × 3³", root: "6" },
+  { k: 7, formula: "7 × 7 × 7", cube: 343, factors: "7³", root: "7" },
+  { k: 8, formula: "8 × 8 × 8", cube: 512, factors: "2⁹ = (2³)³", root: "8" },
+  { k: 9, formula: "9 × 9 × 9", cube: 729, factors: "3⁶ = (3²)³", root: "9" },
+  { k: 10, formula: "10 × 10 × 10", cube: 1000, factors: "2³ × 5³", root: "10" }
+];
+
+// The 21 perfect cubes from 1 to 10,000
+const cubesUpTo10000 = Array.from({ length: 21 }, (_, i) => {
+  const k = i + 1;
+  return { k, cube: k * k * k };
 });
+
+// Nearest cube bounding interval examples
+const nearestCubeExamples = [
+  { target: 50, root: formatNum(3.684031, 3), lowerK: 3, lowerCube: 27, upperK: 4, upperCube: 64, nearest: 64, diff: "64 - 50 = 14" },
+  { target: 200, root: formatNum(5.848035, 3), lowerK: 5, lowerCube: 125, upperK: 6, upperCube: 216, nearest: 216, diff: "216 - 200 = 16" },
+  { target: 500, root: formatNum(7.937005, 3), lowerK: 7, lowerCube: 343, upperK: 8, upperCube: 512, nearest: 512, diff: "512 - 500 = 12" },
+  { target: 800, root: formatNum(9.283178, 3), lowerK: 9, lowerCube: 729, upperK: 10, upperCube: 1000, nearest: 729, diff: "800 - 729 = 71" }
+];
+
+// Mental math last-digit mapping
+const lastDigitMapping = [
+  { kDigit: 0, cubeDigit: 0, formula: "0³ = 0", pattern: "Preserved (Same digit)" },
+  { kDigit: 1, cubeDigit: 1, formula: "1³ = 1", pattern: "Preserved (Same digit)" },
+  { kDigit: 2, cubeDigit: 8, formula: "2³ = 8", pattern: "Complements to 10 (2 + 8 = 10)" },
+  { kDigit: 3, cubeDigit: 7, formula: "3³ = 27", pattern: "Complements to 10 (3 + 7 = 10)" },
+  { kDigit: 4, cubeDigit: 4, formula: "4³ = 64", pattern: "Preserved (Same digit)" },
+  { kDigit: 5, cubeDigit: 5, formula: "5³ = 125", pattern: "Preserved (Same digit)" },
+  { kDigit: 6, cubeDigit: 6, formula: "6³ = 216", pattern: "Preserved (Same digit)" },
+  { kDigit: 7, cubeDigit: 3, formula: "7³ = 343", pattern: "Complements to 10 (7 + 3 = 10)" },
+  { kDigit: 8, cubeDigit: 2, formula: "8³ = 512", pattern: "Complements to 10 (8 + 2 = 10)" },
+  { kDigit: 9, cubeDigit: 9, formula: "9³ = 729", pattern: "Preserved (Same digit)" }
+];
+
+// UI localization dictionary for headings and labels
+const uiDict: Record<string, Record<string, string>> = {
+  en: {
+    copy: "Copy",
+    copied: "Copied!",
+    targetNumber: "Target (N)",
+    cubeRoot: "Cube Root (∛N)",
+    lowerBound: "Lower Cube (k³)",
+    upperBound: "Upper Cube ((k+1)³)",
+    nearestCube: "Nearest Cube",
+    distance: "Distance",
+    codeTitle: "How to Check for Perfect Cubes in Code and Spreadsheets",
+    codeLead: "Verify cube numbers automatically in Excel, Google Sheets, Python, and JavaScript:",
+    excelTitle: "1. Microsoft Excel & Google Sheets",
+    pythonTitle: "2. Python (Exact Integer Logic)",
+    jsTitle: "3. JavaScript",
+    intlTitle: "International Curriculum Standards: US, UK, Canada, Australia, Germany, and France",
+    extendedTitle: "Extended List of Perfect Cubes from 1 to 10,000",
+    extendedLead: "Between 1 and 10,000 inclusive, there are exactly 21 perfect cubes because 21³ = 9,261 and 22³ = 10,648.",
+    imgGeometricCaption: "3D Geometric Proof: 27 unit blocks assemble into a complete 3×3×3 cube, while 50 blocks leave incomplete layers and broken voids.",
+    imgBijectionCaption: "Mental Math Secret: The 1-to-1 last-digit bijection between base roots and cube endings, and how to extract 6-digit roots in seconds.",
+    imgIntervalCaption: "Bounding Intervals: Locating the nearest perfect cube using the interval k³ < N < (k + 1)³.",
+    imgProgressionCaption: "The First 10 Perfect Cubes (1 to 1000): Visual 3D cube growth from 1³ to 10³.",
+    imgVolumeCaption: "Engineering & Science: Real-world volumetric capacity, aerodynamic drag power (P ∝ v³), and spatial octrees."
+  },
+  fr: {
+    copy: "Copier",
+    copied: "Copié !",
+    targetNumber: "Nombre Cible (N)",
+    cubeRoot: "Racine Cubique (∛N)",
+    lowerBound: "Cube Inférieur (k³)",
+    upperBound: "Cube Supérieur ((k+1)³)",
+    nearestCube: "Cube le Plus Proche",
+    distance: "Écart",
+    codeTitle: "Comment Vérifier un Cube Parfait en Code et sur Tableur",
+    codeLead: "Vérifiez automatiquement vos nombres avec Excel, Google Sheets, Python et JavaScript :",
+    excelTitle: "1. Microsoft Excel & Google Sheets",
+    pythonTitle: "2. Python (Logique Entière Exacte)",
+    jsTitle: "3. JavaScript",
+    intlTitle: "Normes Mathématiques Internationales : France, Allemagne, États-Unis, Royaume-Uni",
+    extendedTitle: "Liste Complète des Cubes Parfaits de 1 à 10 000",
+    extendedLead: "Entre 1 et 10 000 inclus, il existe exactement 21 cubes parfaits car 21³ = 9 261 et 22³ = 10 648.",
+    imgGeometricCaption: "Démonstration Géométrique 3D : 27 cubes unitaires forment un cube parfait de 3×3×3, tandis que 50 blocs laissent des vides incomplets.",
+    imgBijectionCaption: "Calcul Mental : Bijection univoque du dernier chiffre des cubes et extraction instantanée de racines cubiques à 6 chiffres.",
+    imgIntervalCaption: "Intervalles d'Encadrement : Trouver le cube parfait le plus proche avec k³ < N < (k + 1)³.",
+    imgProgressionCaption: "Les 10 Premiers Cubes Parfaits (1 à 1000) : Progression visuelle des volumes de 1³ à 10³.",
+    imgVolumeCaption: "Sciences & Ingénierie : Applications volumétriques, traînée aérodynamique (P ∝ v³) et arbres octrees."
+  }
+};
+
+const currentUi = uiDict[lang] || uiDict['en'];
 ---
 
 <article class="seo-article" id="perfect-cube-guide">
@@ -32,63 +125,7 @@ const first30Cubes = Array.from({ length: 30 }, (_, i) => {
     <TableOfContents items={cubeToc} title={content.tocTitle} isOpen={false} lang={lang} />
   </div>
 
-  <!-- Section 1: What is a Perfect Cube? -->
-  <section class="article-section" id="section-what-is-perfect-cube">
-    <div class="article-container">
-      <div class="section-eyebrow">
-        <span class="eyebrow-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-            <line x1="12" y1="22.08" x2="12" y2="12"/>
-          </svg>
-        </span>
-        {content.s1.eyebrow}
-      </div>
-      <h2 class="article-h2">{content.s1.title}</h2>
-      <p class="article-lead">
-        {content.s1.lead}
-      </p>
-      <p>
-        {content.s1.p1}
-      </p>
-      <p>
-        {content.s1.p2}
-      </p>
-
-      <div class="examples-grid" style="margin: 20px 0 28px 0;">
-        <div class="example-card">
-          <span class="example-expr">3³ = 27</span>
-          <span class="example-reason">∛27 = 3</span>
-        </div>
-        <div class="example-card">
-          <span class="example-expr">5³ = 125</span>
-          <span class="example-reason">∛125 = 5</span>
-        </div>
-        <div class="example-card">
-          <span class="example-expr">(-4)³ = -64</span>
-          <span class="example-reason">∛(-64) = -4</span>
-        </div>
-      </div>
-
-      <div class="law-cards-grid" style="margin-top: 24px;">
-        {content.s1.cards.map((card, idx) => (
-          <div class="law-card">
-            <div class="law-number">
-              {idx === 0 && <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>}
-              {idx === 1 && <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>}
-              {idx === 2 && <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>}
-              {idx === 3 && <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l-.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>}
-            </div>
-            <h3 class="law-title">{card.title}</h3>
-            <p class="law-text">{card.text}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 2: How to Use -->
+  <!-- Section 1: How to Use the Calculator -->
   <section class="article-section article-section--alt" id="section-how-to-use">
     <div class="article-container">
       <div class="section-eyebrow">
@@ -98,9 +135,8 @@ const first30Cubes = Array.from({ length: 30 }, (_, i) => {
         {content.s2.eyebrow}
       </div>
       <h2 class="article-h2">{content.s2.title}</h2>
-      <p>
-        {content.s2.intro}
-      </p>
+      <p>{content.s2.intro}</p>
+
       <div class="steps-visual" style="margin-top: 24px;">
         {content.s2.steps.map((step, idx) => (
           <div class="step-card" id={`step-cube-${idx + 1}`}>
@@ -115,8 +151,64 @@ const first30Cubes = Array.from({ length: 30 }, (_, i) => {
     </div>
   </section>
 
-  <!-- Section 3: 4 Proven Tests -->
-  <section class="article-section" id="section-four-tests">
+  <!-- Section 2: What Is a Perfect Cube? Definition & 3D Geometry -->
+  <section class="article-section" id="section-what-is-perfect-cube">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </span>
+        {content.s1.eyebrow}
+      </div>
+      <h2 class="article-h2">{content.s1.title}</h2>
+      <p class="article-lead">{content.s1.lead}</p>
+      <p>{content.s1.p1}</p>
+      <p>{content.s1.p2}</p>
+
+      <div class="examples-grid" style="margin: 20px 0 28px 0;">
+        <div class="example-card">
+          <span class="example-expr">3³ = 27</span>
+          <span class="example-reason">∛27 = 3 (Integer Root)</span>
+        </div>
+        <div class="example-card">
+          <span class="example-expr">5³ = 125</span>
+          <span class="example-reason">∛125 = 5 (Integer Root)</span>
+        </div>
+        <div class="example-card">
+          <span class="example-expr">(-4)³ = -64</span>
+          <span class="example-reason">∛(-64) = -4 (Real Root!)</span>
+        </div>
+      </div>
+
+      <div class="law-cards-grid" style="margin-top: 24px;">
+        {content.s1.cards.map((card, idx) => (
+          <div class="law-card">
+            <div class="law-number">
+              {idx === 0 && <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>}
+              {idx === 1 && <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>}
+              {idx === 2 && <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>}
+              {idx === 3 && <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="3" r="1.5" fill="#fff"/><line x1="5" y1="12" x2="19" y2="12"/><circle cx="12" cy="21" r="1.5" fill="#fff"/></svg>}
+            </div>
+            <h3 class="law-title">{card.title}</h3>
+            <p class="law-text">{card.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Section Image 1: 3D Geometric Volume Concept -->
+    <figure class="section-image">
+      <img src="/images/perfect-cube-geometric-concept.svg" alt={currentUi.imgGeometricCaption} loading="lazy" decoding="async" width="800" height="450" />
+      <figcaption>{currentUi.imgGeometricCaption}</figcaption>
+    </figure>
+  </section>
+
+  <!-- Section 3: 4 Proven Mathematical Tests -->
+  <section class="article-section article-section--alt" id="section-four-tests">
     <div class="article-container">
       <div class="section-eyebrow">
         <span class="eyebrow-icon">
@@ -125,9 +217,11 @@ const first30Cubes = Array.from({ length: 30 }, (_, i) => {
         {content.s3.eyebrow}
       </div>
       <h2 class="article-h2">{content.s3.title}</h2>
-      <p class="article-lead">
-        {content.s3.intro}
-      </p>
+      <p class="article-lead">{content.s3.intro}</p>
+
+      <div class="math-block" style="margin: 20px 0;">
+        <span class="math-formula">If &Sqrt;&oline;N&oline; = k &isin; &Zopf;, then N is a Perfect Cube (k &times; k &times; k = N)</span>
+      </div>
 
       <div class="cube-methods-grid" style="margin-top: 28px;">
         {content.s3.tests.map((test, idx) => (
@@ -149,51 +243,158 @@ const first30Cubes = Array.from({ length: 30 }, (_, i) => {
     </div>
   </section>
 
-  <!-- Section 4: First 30 Perfect Cubes -->
-  <section class="article-section article-section--alt" id="section-first-30-cubes">
+  <!-- Section 4: Worked Verification Examples -->
+  <section class="article-section" id="section-worked-examples">
     <div class="article-container">
       <div class="section-eyebrow">
         <span class="eyebrow-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         </span>
-        {content.s4.eyebrow}
+        Step-by-Step Proofs
       </div>
-      <h2 class="article-h2">{content.s4.title}</h2>
+      <h2 class="article-h2">Step-by-Step Worked Verification Examples</h2>
+
+      <div class="tip-card" style="margin: 20px 0;">
+        <div class="tip-card-header">
+          <span class="tip-badge" style="background: linear-gradient(135deg, #10b981, #059669);">
+            PERFECT CUBE
+          </span>
+          <h3 class="tip-card-title">Example 1: Testing 512</h3>
+        </div>
+        <p style="margin-top: 10px; color: var(--text-secondary); line-height: 1.7;">
+          <code>∛512 = 8</code> : 8 × 8 × 8 = 512. Prime factorization is 2⁹ with exponent 9 divisible by 3. Digital root: 5 + 1 + 2 = 8 (valid).
+        </p>
+      </div>
+
+      <div class="tip-card" style="margin: 20px 0;">
+        <div class="tip-card-header">
+          <span class="tip-badge" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+            NOT A CUBE
+          </span>
+          <h3 class="tip-card-title">Example 2: Testing 100</h3>
+        </div>
+        <p style="margin-top: 10px; color: var(--text-secondary); line-height: 1.7;">
+          <code>∛100 ≈ 4.642</code> : 100 sits strictly between 4³ = 64 and 5³ = 125. Prime factors are 2² × 5², neither exponent is divisible by 3.
+        </p>
+      </div>
+
+      <div class="tip-card" style="margin: 20px 0;">
+        <div class="tip-card-header">
+          <span class="tip-badge" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
+            REAL NEGATIVE CUBE
+          </span>
+          <h3 class="tip-card-title">Example 3: Testing -216</h3>
+        </div>
+        <p style="margin-top: 10px; color: var(--text-secondary); line-height: 1.7;">
+          <code>∛(-216) = -6</code> : (-6) × (-6) × (-6) = 36 × (-6) = -216. Odd roots preserve negative signs, producing a valid real integer root.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Mental Math Shortcuts: 1-to-1 Last-Digit Bijection -->
+  <section class="article-section article-section--alt" id="section-mental-math">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </span>
+        Mental Math
+      </div>
+      <h2 class="article-h2">Mental Math Shortcuts: The 1-to-1 Last-Digit Bijection</h2>
       <p class="article-lead">
-        {content.s4.desc}
+        Unlike perfect squares (which can only end in 0, 1, 4, 5, 6, or 9), every digit from 0 to 9 can be the last digit of a perfect cube. In fact, there is a strict one-to-one bijection between the ones digit of a base integer and the ones digit of its cube:
       </p>
 
-      <div class="table-scroll-wrapper table-scroll-wrapper--large" style="max-height: 520px; margin-top: 24px;">
-        <div class="table-scroll-hint">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg>
-          {scrollHintText}
-        </div>
-        <table class="data-table data-table--vertical data-table--reference">
+      <div class="table-scroll-wrapper" style="margin-top: 20px;">
+        <table class="data-table">
           <thead>
             <tr>
-              <th scope="col">{content.s4.colN}</th>
-              <th scope="col">{content.s4.colCube}</th>
-              <th scope="col">{content.s4.colRoot}</th>
-              <th scope="col">{content.s4.colParity}</th>
+              <th scope="col">Base Last Digit (k)</th>
+              <th scope="col">Cube Calculation (k³ mod 10)</th>
+              <th scope="col">Cube Last Digit (k³)</th>
+              <th scope="col">Memory Rule</th>
             </tr>
           </thead>
           <tbody>
-            {first30Cubes.map(({ n, cube }) => (
+            {lastDigitMapping.map((item) => (
               <tr>
-                <td><strong>{n}</strong></td>
-                <td><span style="font-family: var(--font-mono); font-weight: 700; color: var(--primary-600);">{cube.toLocaleString('en-US')}</span></td>
-                <td><span style="font-family: var(--font-mono); color: var(--text-primary);">{n}</span></td>
-                <td><span class={n % 2 === 0 ? "badge-even" : "badge-odd"}>{n % 2 === 0 ? cubeWidgetI18n.statEven : cubeWidgetI18n.statOdd}</span></td>
+                <td><strong>{item.kDigit}</strong></td>
+                <td style="font-family: var(--font-mono);">{item.formula}</td>
+                <td style="font-family: var(--font-mono); font-weight: 700; color: var(--primary-600);">{item.cubeDigit}</td>
+                <td style="font-size: 0.86rem; color: var(--text-secondary);">{item.pattern}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      <div class="tip-card" style="margin-top: 24px;">
+        <div class="tip-card-header">
+          <span class="tip-badge">PRO TRICK</span>
+          <h3 class="tip-card-title">Extracting Cube Roots of Large Numbers (Up to 1,000,000) in 3 Seconds</h3>
+        </div>
+        <p style="margin-top: 10px; color: var(--text-secondary); line-height: 1.7;">
+          To find the cube root of <strong>175,616</strong>:
+          <br />1. <strong>Ones Digit:</strong> The number ends in 6. Looking at our table, a cube ending in 6 must have a root ending in <strong>6</strong>.
+          <br />2. <strong>Tens Digit:</strong> Cross off the last three digits (616), leaving <strong>175</strong>. The largest perfect cube below 175 is 125 (5³). So the tens digit is <strong>5</strong>.
+          <br />Result: <code>∛175616 = 56</code>. Verified: 56 × 56 × 56 = 175,616!
+        </p>
+      </div>
+    </div>
+
+    <!-- Section Image: Last-Digit Bijection & Mental Extraction Diagram -->
+    <figure class="section-image">
+      <img src="/images/perfect-cube-last-digit-bijection.svg" alt={currentUi.imgBijectionCaption} loading="lazy" decoding="async" width="800" height="450" />
+      <figcaption>{currentUi.imgBijectionCaption}</figcaption>
+    </figure>
+  </section>
+
+  <!-- Section 6: Edge Cases: Zero, Negatives, Fractions, Decimals -->
+  <section class="article-section" id="section-edge-cases">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </span>
+        Special Cases
+      </div>
+      <h2 class="article-h2">Edge Cases: Zero, Negative Cubes, Fractions, and Decimals</h2>
+      <p class="article-lead">
+        Odd powers behave differently from even powers. Here is how special numeric sets are evaluated:
+      </p>
+
+      <div class="law-cards-grid" style="margin-top: 24px;">
+        <div class="law-card">
+          <h3 class="law-title">1. Is Zero a Perfect Cube?</h3>
+          <p class="law-text">
+            <strong>Yes.</strong> 0 is an integer, and 0 × 0 × 0 = 0 (0³ = 0). Its principal cube root is exactly 0.
+          </p>
+        </div>
+        <div class="law-card">
+          <h3 class="law-title">2. Negative Perfect Cubes</h3>
+          <p class="law-text">
+            <strong>Fully Real.</strong> Unlike square roots which require the imaginary unit i, odd roots preserve signs: (-k)³ = -k³. For example, ∛(-64) = -4.
+          </p>
+        </div>
+        <div class="law-card">
+          <h3 class="law-title">3. Rational Fractions</h3>
+          <p class="law-text">
+            A fraction is a cubic power if both its numerator and denominator are perfect cubes: 27/64 = (3/4)³.
+          </p>
+        </div>
+        <div class="law-card">
+          <h3 class="law-title">4. Finite Decimals</h3>
+          <p class="law-text">
+            Decimals are cubes if the significant digits form a cube and the number of decimal places is a multiple of 3: 0.027 = (0.3)³, 0.000125 = (0.05)³.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Section 5: Nearest Perfect Cube -->
-  <section class="article-section" id="section-nearest-cube">
+  <!-- Section 7: Nearest Perfect Cube (Bounding Intervals) -->
+  <section class="article-section article-section--alt" id="section-nearest-cube">
     <div class="article-container">
       <div class="section-eyebrow">
         <span class="eyebrow-icon">
@@ -202,82 +403,220 @@ const first30Cubes = Array.from({ length: 30 }, (_, i) => {
         {content.s5.eyebrow}
       </div>
       <h2 class="article-h2">{content.s5.title}</h2>
-      <p class="article-lead">
-        {content.s5.p1}
-      </p>
-      <p>
-        {content.s5.p2}
-      </p>
-    </div>
-  </section>
+      <p class="article-lead">{content.s5.p1}</p>
+      <p>{content.s5.p2}</p>
 
-  <!-- Section 6: Make Any Number a Perfect Cube -->
-  <section class="article-section article-section--alt" id="section-make-cube">
-    <div class="article-container">
-      <div class="section-eyebrow">
-        <span class="eyebrow-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </span>
-        {content.s6.eyebrow}
-      </div>
-      <h2 class="article-h2">{content.s6.title}</h2>
-      <p class="article-lead">
-        {content.s6.p1}
-      </p>
-      <div class="law-cards-grid" style="margin-top: 20px;">
-        <div class="law-card">
-          <div class="law-number"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
-          <h3 class="law-title">{content.s6.multTitle}</h3>
-          <p class="law-text">{content.s6.multText}</p>
-        </div>
-        <div class="law-card">
-          <div class="law-number"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="1.5" fill="#fff"/><line x1="5" y1="12" x2="19" y2="12"/><circle cx="12" cy="18" r="1.5" fill="#fff"/></svg></div>
-          <h3 class="law-title">{content.s6.divTitle}</h3>
-          <p class="law-text">{content.s6.divText}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 7: Squares vs Cubes -->
-  <section class="article-section" id="section-squares-vs-cubes">
-    <div class="article-container">
-      <div class="section-eyebrow">
-        <span class="eyebrow-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        </span>
-        {content.s7.eyebrow}
-      </div>
-      <h2 class="article-h2">{content.s7.title}</h2>
-      <p class="article-lead">
-        {content.s7.p1}
-      </p>
-
-      <div class="table-scroll-wrapper" style="margin-top: 24px;">
-        <table class="data-table data-table--comparison">
+      <div class="table-scroll-wrapper" style="margin-top: 20px;">
+        <table class="data-table">
           <thead>
             <tr>
-              <th scope="col">{content.s7.table.propCol}</th>
-              <th scope="col">{content.s7.table.squareCol}</th>
-              <th scope="col">{content.s7.table.cubeCol}</th>
+              <th scope="col">{currentUi.targetNumber}</th>
+              <th scope="col">{currentUi.cubeRoot}</th>
+              <th scope="col">{currentUi.lowerBound}</th>
+              <th scope="col">{currentUi.upperBound}</th>
+              <th scope="col">{currentUi.nearestCube}</th>
+              <th scope="col">{currentUi.distance}</th>
             </tr>
           </thead>
           <tbody>
-            {content.s7.table.rows.map((row) => (
+            {nearestCubeExamples.map((item) => (
               <tr>
-                <td><strong>{row.prop}</strong></td>
-                <td>{row.square}</td>
-                <td>{row.cube}</td>
+                <td><strong>{item.target}</strong></td>
+                <td style="font-family: var(--font-mono);">{item.root}</td>
+                <td>{item.lowerCube} ({item.lowerK}³)</td>
+                <td>{item.upperCube} ({item.upperK}³)</td>
+                <td style="font-family: var(--font-mono); font-weight: 700; color: var(--emerald-600, #059669);">{item.nearest}</td>
+                <td style="font-size: 0.86rem; color: var(--text-secondary);">{item.diff}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
     </div>
+
+    <!-- Section Image 2: Bounding Intervals Diagram -->
+    <figure class="section-image">
+      <img src="/images/perfect-cube-bounding-intervals.svg" alt={currentUi.imgIntervalCaption} loading="lazy" decoding="async" width="800" height="440" />
+      <figcaption>{currentUi.imgIntervalCaption}</figcaption>
+    </figure>
   </section>
 
-  <!-- Section 8: Real-World Applications -->
-  <section class="article-section article-section--alt" id="section-applications">
+  <!-- Section 8: The 10 Perfect Cubes from 1 to 1000 Reference Table -->
+  <section class="article-section" id="section-first-30-cubes">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </span>
+        Reference Table
+      </div>
+      <h2 class="article-h2">The 10 Perfect Cubes from 1 to 1000 Reference Table</h2>
+      <p class="article-lead">Between 1 and 1000 inclusive, there are exactly 10 perfect cubes:</p>
+
+      <div class="table-scroll-wrapper" style="margin-top: 20px;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Base Root (k)</th>
+              <th scope="col">Formula (k × k × k)</th>
+              <th scope="col">Perfect Cube (k³)</th>
+              <th scope="col">Prime Factorization</th>
+              <th scope="col">∛k³</th>
+            </tr>
+          </thead>
+          <tbody>
+            {first10Cubes.map((item) => (
+              <tr>
+                <td style="font-weight: 700; color: var(--text-primary);">{item.k}</td>
+                <td>{item.formula}</td>
+                <td style="font-family: var(--font-mono); color: var(--primary-600); font-weight: 700;">{item.cube}</td>
+                <td style="font-family: var(--font-mono); font-size: 0.88rem;">{item.factors}</td>
+                <td style="font-family: var(--font-mono); color: var(--emerald-600, #059669); font-weight: 700;">{item.root}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section Image 3: Perfect Cubes Progression -->
+    <figure class="section-image">
+      <img src="/images/cbrt-perfect-cubes-progression.svg" alt={currentUi.imgProgressionCaption} loading="lazy" decoding="async" width="800" height="420" />
+      <figcaption>{currentUi.imgProgressionCaption}</figcaption>
+    </figure>
+  </section>
+
+  <!-- Section 9: Extended List from 1 to 10,000 -->
+  <section class="article-section article-section--alt" id="section-extended-10000">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </span>
+        1 - 10,000
+      </div>
+      <h2 class="article-h2">{currentUi.extendedTitle}</h2>
+      <p class="article-lead">{currentUi.extendedLead}</p>
+
+      <div class="table-scroll-wrapper" style="max-height: 380px; margin-top: 20px;">
+        <table class="data-table data-table--compact">
+          <thead>
+            <tr>
+              <th scope="col">k</th>
+              <th scope="col">k³</th>
+              <th scope="col">k</th>
+              <th scope="col">k³</th>
+              <th scope="col">k</th>
+              <th scope="col">k³</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: 7 }, (_, rowIdx) => {
+              const c1 = rowIdx + 1;
+              const c2 = rowIdx + 8;
+              const c3 = rowIdx + 15;
+              return (
+                <tr>
+                  <td><strong>{c1}</strong></td><td>{c1 * c1 * c1}</td>
+                  {c2 <= 21 ? (
+                    <><td><strong>{c2}</strong></td><td>{c2 * c2 * c2}</td></>
+                  ) : (<td>-</td><td>-</td>)}
+                  {c3 <= 21 ? (
+                    <><td><strong>{c3}</strong></td><td><strong>{c3 * c3 * c3}</strong></td></>
+                  ) : (<td>-</td><td>-</td>)}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 10: Code and Spreadsheet Formulas -->
+  <section class="article-section" id="section-code-spreadsheets">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        </span>
+        Code &amp; Spreadsheets
+      </div>
+      <h2 class="article-h2">{currentUi.codeTitle}</h2>
+      <p class="article-lead">{currentUi.codeLead}</p>
+
+      <div class="steps-flow" style="margin-top: 24px;">
+        <!-- Excel -->
+        <div class="step-card">
+          <h3 class="step-title">{currentUi.excelTitle}</h3>
+          <div class="copy-box" style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-surface-elevated); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+            <code id="pcFormulaExcel" style="font-size: 0.82rem;">{lang === 'fr' ? '=SI(ARRONDI(A2^(1/3); 0)^3 = A2; "Cube Parfait"; "Non")' : '=IF(ROUND(A2^(1/3), 0)^3 = A2, "Perfect Cube", "Not a Cube")'}</code>
+            <button type="button" class="btn-copy-code" data-target="pcFormulaExcel" style="padding: 4px 10px; font-size: 0.78rem; border-radius: var(--radius-sm); background: var(--primary-500); color: white; border: none; cursor: pointer;">{currentUi.copy}</button>
+          </div>
+        </div>
+
+        <!-- Python -->
+        <div class="step-card">
+          <h3 class="step-title">{currentUi.pythonTitle}</h3>
+          <div class="copy-box" style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-surface-elevated); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+            <code id="pcFormulaPy" style="font-size: 0.82rem;">def is_cube(n): return round(abs(n)**(1/3))**3 == abs(n)</code>
+            <button type="button" class="btn-copy-code" data-target="pcFormulaPy" style="padding: 4px 10px; font-size: 0.78rem; border-radius: var(--radius-sm); background: var(--primary-500); color: white; border: none; cursor: pointer;">{currentUi.copy}</button>
+          </div>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="step-card">
+          <h3 class="step-title">{currentUi.jsTitle}</h3>
+          <div class="copy-box" style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-surface-elevated); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+            <code id="pcFormulaJs" style="font-size: 0.82rem;">const isCube = n =&gt; Math.round(Math.cbrt(n))**3 === n;</code>
+            <button type="button" class="btn-copy-code" data-target="pcFormulaJs" style="padding: 4px 10px; font-size: 0.78rem; border-radius: var(--radius-sm); background: var(--primary-500); color: white; border: none; cursor: pointer;">{currentUi.copy}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 11: International Curriculum Standards -->
+  <section class="article-section article-section--alt" id="section-international">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </span>
+        Curriculums
+      </div>
+      <h2 class="article-h2">{currentUi.intlTitle}</h2>
+
+      <div class="law-cards-grid" style="margin-top: 24px;">
+        <div class="law-card">
+          <h3 class="law-title">US, UK, Canada &amp; Australia</h3>
+          <p class="law-text">
+            <strong>Terminology:</strong> Perfect Cube or Cube Number.
+          </p>
+          <ul style="margin: 8px 0 0 16px; font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+            <li><strong>United States:</strong> Common Core standard CCSS.MATH.CONTENT.8.EE.A.2 (Grade 8).</li>
+            <li><strong>United Kingdom:</strong> GCSE Mathematics Subject Content 8.01 (Edexcel, AQA, OCR non-calculator paper).</li>
+            <li><strong>Canada &amp; Australia:</strong> Australian curriculum ACMNA180 and Canadian provincial Grade 8/9 units.</li>
+          </ul>
+        </div>
+
+        <div class="law-card">
+          <h3 class="law-title">Germany &amp; France</h3>
+          <p class="law-text">
+            <strong>Terminology:</strong> <em>Kubikzahlen</em> (German) and <em>Cubes parfaits</em> (French).
+          </p>
+          <ul style="margin: 8px 0 0 16px; font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+            <li><strong>Germany (DIN 1333):</strong> Taught in Realschule/Gymnasium (Klassen 8/9) with radical exactitude.</li>
+            <li><strong>France (Collège Cycle 4):</strong> Classes de 4ème/3ème under formal power rules and volume computations.</li>
+            <li>Uses decimal comma notation (∛50 ≈ 3,684).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 12: Real-World Applications -->
+  <section class="article-section" id="section-applications">
     <div class="article-container">
       <div class="section-eyebrow">
         <span class="eyebrow-icon">
@@ -286,6 +625,7 @@ const first30Cubes = Array.from({ length: 30 }, (_, i) => {
         {content.s8.eyebrow}
       </div>
       <h2 class="article-h2">{content.s8.title}</h2>
+
       <div class="law-cards-grid" style="margin-top: 24px;">
         {content.s8.apps.map((app) => (
           <div class="law-card">
@@ -295,14 +635,73 @@ const first30Cubes = Array.from({ length: 30 }, (_, i) => {
         ))}
       </div>
     </div>
+
+    <!-- Section Image 4: Volume & Engineering Application -->
+    <figure class="section-image">
+      <img src="/images/cbrt-volume-application.svg" alt={currentUi.imgVolumeCaption} loading="lazy" decoding="async" width="800" height="420" />
+      <figcaption>{currentUi.imgVolumeCaption}</figcaption>
+    </figure>
   </section>
 
-  <!-- Section 9: FAQs -->
+  <!-- Section 13: Common Mistakes to Avoid -->
+  <section class="article-section article-section--alt" id="section-mistakes">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </span>
+        Mistakes to Avoid
+      </div>
+      <h2 class="article-h2">Common Mistakes and Misconceptions to Avoid</h2>
+
+      <div class="tip-card" style="margin: 20px 0; border-left: 4px solid var(--rose-500, #f43f5e);">
+        <div class="tip-card-header">
+          <span class="tip-badge" style="background: var(--rose-500, #f43f5e);">#1</span>
+          <h3 class="tip-card-title">Confusing Cubing with Multiplying by 3</h3>
+        </div>
+        <p style="margin-top: 10px; color: var(--text-secondary); line-height: 1.7;">
+          Cubing a number means multiplying it by itself three times (4³ = 4 × 4 × 4 = 64), not multiplying it by three (4 × 3 = 12).
+        </p>
+      </div>
+
+      <div class="tip-card" style="margin: 20px 0; border-left: 4px solid var(--rose-500, #f43f5e);">
+        <div class="tip-card-header">
+          <span class="tip-badge" style="background: var(--rose-500, #f43f5e);">#2</span>
+          <h3 class="tip-card-title">Assuming Negative Numbers Cannot Be Cubes</h3>
+        </div>
+        <p style="margin-top: 10px; color: var(--text-secondary); line-height: 1.7;">
+          Unlike square roots, odd roots preserve negative signs. Multiplying three negative numbers gives a negative product: (-5) × (-5) × (-5) = -125.
+        </p>
+      </div>
+
+      <div class="tip-card" style="margin: 20px 0; border-left: 4px solid var(--rose-500, #f43f5e);">
+        <div class="tip-card-header">
+          <span class="tip-badge" style="background: var(--rose-500, #f43f5e);">#3</span>
+          <h3 class="tip-card-title">Trying to Rule Out Cubes by Last Digits Alone</h3>
+        </div>
+        <p style="margin-top: 10px; color: var(--text-secondary); line-height: 1.7;">
+          Every digit from 0 to 9 can end a perfect cube. You cannot eliminate a candidate by its last digit alone; you must use prime factors or modulo 9 digital roots.
+        </p>
+      </div>
+
+      <div class="tip-card" style="margin: 20px 0; border-left: 4px solid var(--rose-500, #f43f5e);">
+        <div class="tip-card-header">
+          <span class="tip-badge" style="background: var(--rose-500, #f43f5e);">#4</span>
+          <h3 class="tip-card-title">Floating-Point Rounding Pitfalls in Calculators</h3>
+        </div>
+        <p style="margin-top: 10px; color: var(--text-secondary); line-height: 1.7;">
+          In computers, computing 125^(1/3) frequently yields 4.999999999999999. Naively checking if int(125^(1/3)) == 5 can fail without proper rounding logic.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 14: FAQs -->
   <section class="article-section" id="section-faqs">
     <div class="article-container">
       <div class="section-eyebrow">
         <span class="eyebrow-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         </span>
         {content.s9.eyebrow}
       </div>
@@ -331,27 +730,12 @@ const first30Cubes = Array.from({ length: 30 }, (_, i) => {
             <span class="author-title">{authorByline.authorRole}</span>
           </div>
         </div>
-        <div class="social-share-group">
-          <span class="social-share-label">{authorByline.share}</span>
-          <a href="https://twitter.com/intent/tweet?text=Free%20Perfect%20Cube%20Calculator%20with%20step-by-step%20solutions&url=https://www.racinecarreecalculatorr.com/perfect-cube-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--x" aria-label="Share on X" title="Share on X">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.racinecarreecalculatorr.com/perfect-cube-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--linkedin" aria-label="Share on LinkedIn" title="Share on LinkedIn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.racinecarreecalculatorr.com/perfect-cube-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--facebook" aria-label="Share on Facebook" title="Share on Facebook">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-          <a href="https://api.whatsapp.com/send?text=Check%20out%20Perfect%20Cube%20Calculator:%20https://www.racinecarreecalculatorr.com/perfect-cube-calculator/" target="_blank" rel="noopener noreferrer" class="share-btn share-btn--whatsapp" aria-label="Share on WhatsApp" title="Share on WhatsApp">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-          </a>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 10: Quick Recap -->
-  <section class="article-section" id="section-recap">
+  <!-- Section 15: Quick Recap -->
+  <section class="article-section article-section--alt" id="section-recap">
     <div class="article-container">
       <div class="section-eyebrow">
         <span class="eyebrow-icon">
@@ -360,7 +744,7 @@ const first30Cubes = Array.from({ length: 30 }, (_, i) => {
         {content.s10.eyebrow}
       </div>
       <h2 class="article-h2">{content.s10.title}</h2>
-      <div class="law-cards-grid" style="margin-top: 20px;">
+      <div class="law-cards-grid" style="margin-top: 24px;">
         {content.s10.cards.map((card) => (
           <div class="law-card">
             <h3 class="law-title">{card.title}</h3>
@@ -371,3 +755,27 @@ const first30Cubes = Array.from({ length: 30 }, (_, i) => {
     </div>
   </section>
 </article>
+
+<!-- Script for copy buttons -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const copyBtns = document.querySelectorAll('.btn-copy-code');
+    copyBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          navigator.clipboard.writeText(targetEl.textContent || '').then(() => {
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.style.background = 'var(--emerald-500, #10b981)';
+            setTimeout(() => {
+              btn.textContent = originalText;
+              btn.style.background = 'var(--primary-500)';
+            }, 2000);
+          });
+        }
+      });
+    });
+  });
+</script>

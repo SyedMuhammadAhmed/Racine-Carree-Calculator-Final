@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" aria-label="1-to-1 Last-Digit Bijection for Perfect Cubes and Instant Mental Root Extraction">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradBijection" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <!-- Card Backgrounds -->
+    <linearGradient id="cardGradBijection" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <!-- Preserved Green Gradient -->
+    <linearGradient id="gradPreserved" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0.3"/>
+    </linearGradient>
+
+    <!-- Complement Amber Gradient -->
+    <linearGradient id="gradComplement" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="450" rx="16" fill="url(#bgGradBijection)" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Grid lines -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="1">
+    <line x1="100" y1="0" x2="100" y2="450"/>
+    <line x1="200" y1="0" x2="200" y2="450"/>
+    <line x1="300" y1="0" x2="300" y2="450"/>
+    <line x1="400" y1="0" x2="400" y2="450"/>
+    <line x1="500" y1="0" x2="500" y2="450"/>
+    <line x1="600" y1="0" x2="600" y2="450"/>
+    <line x1="700" y1="0" x2="700" y2="450"/>
+  </g>
+
+  <!-- Title Header -->
+  <g transform="translate(40, 32)">
+    <rect x="0" y="0" width="160" height="24" rx="12" fill="#6366f1" fill-opacity="0.2" stroke="#818cf8" stroke-width="1"/>
+    <text x="80" y="16" fill="#a5b4fc" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="0.5">MENTAL MATH SECRET</text>
+    <text x="0" y="46" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="20" font-weight="800">The 1-to-1 Last-Digit Bijection of Perfect Cubes</text>
+    <text x="0" y="66" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13">Every digit from 0 to 9 maps uniquely to a cube ending, enabling instant root extraction.</text>
+  </g>
+
+  <!-- Left: Mapping Rules Container -->
+  <g transform="translate(40, 110)">
+    <!-- Group 1: Preserved Digits (0, 1, 4, 5, 6, 9) -->
+    <rect width="345" height="150" rx="12" fill="url(#gradPreserved)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="16" y="26" fill="#34d399" font-family="system-ui, sans-serif" font-size="12" font-weight="800">RULE 1: PRESERVED DIGITS (SAME ENDING)</text>
+    <text x="16" y="44" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">The cube ends in the exact same digit as its base root:</text>
+
+    <!-- 6 Pill Chips -->
+    <g transform="translate(16, 56)">
+      <!-- 0 -> 0 -->
+      <g transform="translate(0, 0)">
+        <rect width="45" height="32" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+        <text x="22.5" y="21" fill="#f8fafc" font-family="ui-monospace, monospace" font-size="13" font-weight="700" text-anchor="middle">0 → 0</text>
+      </g>
+      <!-- 1 -> 1 -->
+      <g transform="translate(52, 0)">
+        <rect width="45" height="32" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+        <text x="22.5" y="21" fill="#f8fafc" font-family="ui-monospace, monospace" font-size="13" font-weight="700" text-anchor="middle">1 → 1</text>
+      </g>
+      <!-- 4 -> 4 -->
+      <g transform="translate(104, 0)">
+        <rect width="45" height="32" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+        <text x="22.5" y="21" fill="#f8fafc" font-family="ui-monospace, monospace" font-size="13" font-weight="700" text-anchor="middle">4 → 4</text>
+      </g>
+      <!-- 5 -> 5 -->
+      <g transform="translate(156, 0)">
+        <rect width="45" height="32" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+        <text x="22.5" y="21" fill="#f8fafc" font-family="ui-monospace, monospace" font-size="13" font-weight="700" text-anchor="middle">5 → 5</text>
+      </g>
+      <!-- 6 -> 6 -->
+      <g transform="translate(208, 0)">
+        <rect width="45" height="32" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+        <text x="22.5" y="21" fill="#f8fafc" font-family="ui-monospace, monospace" font-size="13" font-weight="700" text-anchor="middle">6 → 6</text>
+      </g>
+      <!-- 9 -> 9 -->
+      <g transform="translate(260, 0)">
+        <rect width="45" height="32" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+        <text x="22.5" y="21" fill="#f8fafc" font-family="ui-monospace, monospace" font-size="13" font-weight="700" text-anchor="middle">9 → 9</text>
+      </g>
+    </g>
+
+    <text x="16" y="128" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="11">Example: 216 ends in 6, so its root ends in 6 (∛216 = 6).</text>
+  </g>
+
+  <!-- Left Lower: Complementary Pairs (2 <-> 8 and 3 <-> 7) -->
+  <g transform="translate(40, 272)">
+    <rect width="345" height="145" rx="12" fill="url(#gradComplement)" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="16" y="26" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="12" font-weight="800">RULE 2: COMPLEMENTARY PAIRS (SUM TO 10)</text>
+    <text x="16" y="44" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Only 4 digits swap, each pairing sums to exactly 10:</text>
+
+    <!-- Two Swap Boxes -->
+    <g transform="translate(16, 56)">
+      <!-- Pair 1: 2 <-> 8 -->
+      <g transform="translate(0, 0)">
+        <rect width="145" height="42" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+        <text x="72.5" y="26" fill="#fde68a" font-family="ui-monospace, monospace" font-size="14" font-weight="800" text-anchor="middle">2 ↔ 8 (2 + 8 = 10)</text>
+      </g>
+      <!-- Pair 2: 3 <-> 7 -->
+      <g transform="translate(160, 0)">
+        <rect width="145" height="42" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+        <text x="72.5" y="26" fill="#fde68a" font-family="ui-monospace, monospace" font-size="14" font-weight="800" text-anchor="middle">3 ↔ 7 (3 + 7 = 10)</text>
+      </g>
+    </g>
+
+    <text x="16" y="124" fill="#fde68a" font-family="system-ui, sans-serif" font-size="11">Examples: 512 ends in 2 → root is 8; 343 ends in 3 → root is 7.</text>
+  </g>
+
+  <!-- Right: Mental Root Extraction Workflow Card -->
+  <g transform="translate(415, 110)">
+    <rect width="345" height="307" rx="14" fill="url(#cardGradBijection)" stroke="#6366f1" stroke-width="1.5"/>
+    <rect x="18" y="16" width="130" height="24" rx="12" fill="#312e81" stroke="#818cf8" stroke-width="1"/>
+    <text x="83" y="32" fill="#c7d2fe" font-family="system-ui, sans-serif" font-size="11" font-weight="800">SOLVE IN 3 SECONDS</text>
+
+    <text x="18" y="64" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="16" font-weight="800">Find ∛175,616 Without a Calculator</text>
+
+    <!-- Step 1 -->
+    <g transform="translate(18, 80)">
+      <circle cx="12" cy="12" r="12" fill="#10b981"/>
+      <text x="12" y="17" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="800" text-anchor="middle">1</text>
+      <text x="34" y="12" fill="#34d399" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Find Ones Digit:</text>
+      <text x="34" y="28" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Number ends in 6 → Root ends in 6.</text>
+      <rect x="34" y="34" width="70" height="20" rx="4" fill="#065f46"/>
+      <text x="69" y="48" fill="#6ee7b7" font-family="ui-monospace, monospace" font-size="11" font-weight="700" text-anchor="middle">Ones: 6</text>
+    </g>
+
+    <!-- Step 2 -->
+    <g transform="translate(18, 146)">
+      <circle cx="12" cy="12" r="12" fill="#6366f1"/>
+      <text x="12" y="17" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="800" text-anchor="middle">2</text>
+      <text x="34" y="12" fill="#a5b4fc" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Find Tens Digit:</text>
+      <text x="34" y="28" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Drop 616. Remaining part is 175.</text>
+      <text x="34" y="44" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Largest cube &lt; 175 is 125 (5³ = 125).</text>
+      <rect x="34" y="52" width="70" height="20" rx="4" fill="#312e81"/>
+      <text x="69" y="66" fill="#c7d2fe" font-family="ui-monospace, monospace" font-size="11" font-weight="700" text-anchor="middle">Tens: 5</text>
+    </g>
+
+    <!-- Result Box -->
+    <g transform="translate(18, 235)">
+      <rect width="309" height="54" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+      <text x="154.5" y="22" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">COMBINED INSTANT RESULT</text>
+      <text x="154.5" y="44" fill="#ffffff" font-family="ui-monospace, monospace" font-size="19" font-weight="800" text-anchor="middle">∛175616 = 56</text>
+    </g>
+  </g>
+</svg>

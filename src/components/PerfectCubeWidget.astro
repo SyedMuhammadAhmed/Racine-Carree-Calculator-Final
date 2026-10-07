@@ -24,7 +24,7 @@ const widgetI18n = cubeWidgetI18n;
       </span>
       <div class="calc-widget-head-text">
         <h2 class="calc-widget-title">{t('cube.calc.title', 'Perfect Cube Calculator & Checker')}</h2>
-        <p class="calc-widget-desc">{t('cube.calc.desc', 'Check if any number — positive or negative — is a perfect cube. See cube roots, prime powers, and bounding cubes.')}</p>
+        <p class="calc-widget-desc">{t('cube.calc.desc', 'Check if any number (positive or negative) is a perfect cube. See cube roots, prime powers, and bounding cubes.')}</p>
       </div>
     </header>
 
@@ -394,7 +394,7 @@ const widgetI18n = cubeWidgetI18n;
       resultArea.classList.add('has-result');
 
       if (isPerfect) {
-        // YES — PERFECT CUBE (supports positive or negative!)
+        // YES - PERFECT CUBE (supports positive or negative!)
         const root = intRoot;
         const lowerRoot = root - 1;
         const higherRoot = root + 1;
@@ -505,7 +505,7 @@ const widgetI18n = cubeWidgetI18n;
           </div>
         `;
       } else {
-        // NO — NOT A PERFECT CUBE
+        // NO - NOT A PERFECT CUBE
         const floorRoot = Math.floor(realCbrt);
         const ceilRoot = Math.ceil(realCbrt);
         const lowerCube = floorRoot * floorRoot * floorRoot;
