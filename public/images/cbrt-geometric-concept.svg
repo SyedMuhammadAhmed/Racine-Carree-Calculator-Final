@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" aria-label="Geometric concept of cube root: 3D Volume to Edge Length">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradCbrt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <!-- 3D Cube Face Gradients -->
+    <!-- Top Face (Brightest - Direct light) -->
+    <linearGradient id="topFaceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <!-- Left Face (Mid-tone) -->
+    <linearGradient id="leftFaceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#3730a3"/>
+    </linearGradient>
+    <!-- Right Face (Shadow) -->
+    <linearGradient id="rightFaceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4338ca"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+
+    <!-- Card Background -->
+    <linearGradient id="cardGradCbrt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.98"/>
+    </linearGradient>
+
+    <!-- Accent Gradient -->
+    <linearGradient id="accentGradCbrt" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="shadowCbrt" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="450" rx="16" fill="url(#bgGradCbrt)" stroke="#334155" stroke-width="1"/>
+
+  <!-- Ambient Light Glows -->
+  <circle cx="230" cy="235" r="170" fill="#6366f1" opacity="0.12"/>
+  <circle cx="610" cy="225" r="170" fill="#06b6d4" opacity="0.08"/>
+
+  <!-- Header Section -->
+  <text x="400" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#818cf8" text-anchor="middle" letter-spacing="1.5">GEOMETRIC 3D CONCEPT • VOLUME TO EDGE LENGTH</text>
+  <text x="400" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">Finding the Side Length of a 3D Cube From Its Volume</text>
+
+  <!-- Left Side: 3D Isometric 3x3x3 Cube (27 unit blocks) -->
+  <g transform="translate(45, 95)">
+    <!-- 3D Cube Group -->
+    <g filter="url(#shadowCbrt)">
+      <!-- Top Face: (200, 40) -> (304, 100) -> (200, 160) -> (96, 100) -->
+      <polygon points="200,40 304,100 200,160 96,100" fill="url(#topFaceGrad)" stroke="#a5b4fc" stroke-width="1.5"/>
+
+      <!-- Left Face: (96, 100) -> (200, 160) -> (200, 265) -> (96, 205) -->
+      <polygon points="96,100 200,160 200,265 96,205" fill="url(#leftFaceGrad)" stroke="#818cf8" stroke-width="1.5"/>
+
+      <!-- Right Face: (200, 160) -> (304, 100) -> (304, 205) -> (200, 265) -->
+      <polygon points="200,160 304,100 304,205 200,265" fill="url(#rightFaceGrad)" stroke="#6366f1" stroke-width="1.5"/>
+
+      <!-- Top Face 3x3 Grid Lines -->
+      <!-- Parallel to bottom-right edge -->
+      <line x1="165.3" y1="60" x2="269.3" y2="120" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2"/>
+      <line x1="130.7" y1="80" x2="234.7" y2="140" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2"/>
+      <!-- Parallel to bottom-left edge -->
+      <line x1="234.7" y1="60" x2="130.7" y2="120" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2"/>
+      <line x1="269.3" y1="80" x2="165.3" y2="140" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2"/>
+
+      <!-- Left Face 3x3 Grid Lines -->
+      <!-- Vertical divisions -->
+      <line x1="130.7" y1="120" x2="130.7" y2="225" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.2"/>
+      <line x1="165.3" y1="140" x2="165.3" y2="245" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.2"/>
+      <!-- Isometric horizontal divisions -->
+      <line x1="96" y1="135" x2="200" y2="195" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.2"/>
+      <line x1="96" y1="170" x2="200" y2="230" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.2"/>
+
+      <!-- Right Face 3x3 Grid Lines -->
+      <!-- Vertical divisions -->
+      <line x1="234.7" y1="140" x2="234.7" y2="245" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.2"/>
+      <line x1="269.3" y1="120" x2="269.3" y2="225" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.2"/>
+      <!-- Isometric horizontal divisions -->
+      <line x1="200" y1="195" x2="304" y2="135" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.2"/>
+      <line x1="200" y1="230" x2="304" y2="170" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.2"/>
+    </g>
+
+    <!-- Center Floating Badge: Total Volume -->
+    <rect x="120" y="132" width="160" height="56" rx="10" fill="#0f172a" fill-opacity="0.9" stroke="#38bdf8" stroke-width="1.5" filter="url(#shadowCbrt)"/>
+    <text x="200" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle" letter-spacing="1">TOTAL VOLUME (V)</text>
+    <text x="200" y="177" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#38bdf8" text-anchor="middle">27 units³</text>
+
+    <!-- Side Dimension: Length (s = 3) on Left Face Bottom -->
+    <g transform="translate(0, 15)">
+      <line x1="90" y1="208" x2="192" y2="267" stroke="#38bdf8" stroke-width="2"/>
+      <polygon points="90,208 97,206 93,214" fill="#38bdf8"/>
+      <polygon points="192,267 185,269 189,261" fill="#38bdf8"/>
+      <text x="135" y="252" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#38bdf8" text-anchor="middle" transform="rotate(30 135 252)">Length = 3</text>
+    </g>
+
+    <!-- Side Dimension: Width (s = 3) on Right Face Bottom -->
+    <g transform="translate(0, 15)">
+      <line x1="208" y1="267" x2="310" y2="208" stroke="#38bdf8" stroke-width="2"/>
+      <polygon points="208,267 215,269 211,261" fill="#38bdf8"/>
+      <polygon points="310,208 303,206 307,214" fill="#38bdf8"/>
+      <text x="265" y="252" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#38bdf8" text-anchor="middle" transform="rotate(-30 265 252)">Width = 3</text>
+    </g>
+
+    <!-- Side Dimension: Height (s = 3) on Leftmost Edge -->
+    <g transform="translate(-18, 0)">
+      <line x1="96" y1="102" x2="96" y2="203" stroke="#38bdf8" stroke-width="2"/>
+      <polygon points="96,102 92,109 100,109" fill="#38bdf8"/>
+      <polygon points="96,203 92,196 100,196" fill="#38bdf8"/>
+      <text x="78" y="157" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#38bdf8" text-anchor="middle" transform="rotate(-90 78 157)">Height = 3</text>
+    </g>
+  </g>
+
+  <!-- Middle Connector: Cubing vs Cube Root -->
+  <g transform="translate(378, 175)">
+    <!-- Forward Arc (Cubing: 3³ = 27) -->
+    <path d="M 0, -20 Q 25, -45 50, -20" fill="none" stroke="#818cf8" stroke-width="2.5" stroke-dasharray="4 2"/>
+    <polygon points="50,-20 46,-28 54,-25" fill="#818cf8"/>
+    <text x="25" y="-42" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#a5b4fc" text-anchor="middle">Cubing (3³)</text>
+
+    <!-- Reverse Arc (Cube Root: ∛27 = 3) -->
+    <path d="M 50, 30 Q 25, 55 0, 30" fill="none" stroke="#10b981" stroke-width="2.5"/>
+    <polygon points="0,30 4,38 -4,35" fill="#10b981"/>
+    <text x="25" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">Cube Root (∛27)</text>
+  </g>
+
+  <!-- Right Side: Principle & Comparison Panel -->
+  <g transform="translate(450, 95)">
+    <rect width="310" height="295" rx="14" fill="url(#cardGradCbrt)" stroke="#334155" stroke-width="1.5" filter="url(#shadowCbrt)"/>
+
+    <!-- Card Header -->
+    <rect x="20" y="18" width="6" height="22" rx="3" fill="url(#accentGradCbrt)"/>
+    <text x="36" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#f8fafc">3D Geometric Principle</text>
+
+    <!-- Box 1: Cube Volume Formula -->
+    <g transform="translate(18, 52)">
+      <rect width="274" height="52" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="14" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#94a3b8" letter-spacing="0.5">3D VOLUME FORMULA</text>
+      <text x="14" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#cbd5e1">V = s × s × s = s³ = 3³ = 27</text>
+    </g>
+
+    <!-- Box 2: Cube Root Formula -->
+    <g transform="translate(18, 114)">
+      <rect width="274" height="52" rx="8" fill="#064e3b" fill-opacity="0.3" stroke="#059669" stroke-width="1"/>
+      <text x="14" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#6ee7b7" letter-spacing="0.5">CUBE ROOT (INVERSE OPERATION)</text>
+      <text x="14" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#10b981">s = ∛V = ∛27 = 3 units</text>
+    </g>
+
+    <!-- Box 3: 2D vs 3D Core Distinction -->
+    <g transform="translate(18, 178)">
+      <rect width="274" height="98" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#38bdf8">KEY DISTINCTION: 2D VS 3D</text>
+
+      <!-- 2D Line -->
+      <circle cx="20" cy="42" r="3" fill="#818cf8"/>
+      <text x="32" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8"><tspan font-weight="700" fill="#cbd5e1">Square Root (√):</tspan> 2D Area (s²) → Side (s)</text>
+
+      <!-- 3D Line -->
+      <circle cx="20" cy="66" r="3" fill="#10b981"/>
+      <text x="32" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8"><tspan font-weight="700" fill="#34d399">Cube Root (∛):</tspan> 3D Volume (s³) → Edge (s)</text>
+
+      <text x="14" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-style="italic" fill="#64748b">Finding ∛ answers: "What edge builds this volume?"</text>
+    </g>
+  </g>
+</svg>

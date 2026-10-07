@@ -1,0 +1,243 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%" aria-label="Geometric progression of perfect cubes 1 through 5">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradPCP" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <!-- Card Tile Gradients -->
+    <linearGradient id="cubeTopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="cubeLeftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#3730a3"/>
+    </linearGradient>
+    <linearGradient id="cubeRightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4338ca"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="shadowPCP" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="800" height="420" rx="16" fill="url(#bgGradPCP)" stroke="#334155" stroke-width="1"/>
+
+  <!-- Top Header -->
+  <text x="400" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#818cf8" text-anchor="middle" letter-spacing="1.5">GEOMETRIC PROGRESSION OF CUBE NUMBERS</text>
+  <text x="400" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">Why They Are Called &quot;Cube&quot; Numbers: 1³ to 5³</text>
+
+  <!-- Column 1: n = 1 (1³ = 1) -->
+  <g transform="translate(26, 92)">
+    <rect width="136" height="290" rx="12" fill="#1e293b" fill-opacity="0.75" stroke="#334155" stroke-width="1.2" filter="url(#shadowPCP)"/>
+    <text x="68" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#94a3b8" text-anchor="middle">n = 1</text>
+    <text x="68" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b" text-anchor="middle">1 × 1 × 1</text>
+
+    <!-- 1x1x1 Isometric Cube -->
+    <g transform="translate(0, 10)">
+      <!-- Top Face -->
+      <polygon points="68,60 90,72 68,84 46,72" fill="url(#cubeTopGrad)" stroke="#a5b4fc" stroke-width="1.2"/>
+      <!-- Left Face -->
+      <polygon points="46,72 68,84 68,110 46,98" fill="url(#cubeLeftGrad)" stroke="#818cf8" stroke-width="1.2"/>
+      <!-- Right Face -->
+      <polygon points="68,84 90,72 90,98 68,110" fill="url(#cubeRightGrad)" stroke="#6366f1" stroke-width="1.2"/>
+    </g>
+
+    <text x="68" y="160" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#818cf8" text-anchor="middle">1 unit block</text>
+
+    <!-- Formula & Root -->
+    <rect x="14" y="180" width="108" height="42" rx="7" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+    <text x="68" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#94a3b8" text-anchor="middle">CUBE VALUE</text>
+    <text x="68" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#ffffff" text-anchor="middle">1³ = 1</text>
+
+    <rect x="14" y="230" width="108" height="42" rx="7" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-width="1"/>
+    <text x="68" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#6ee7b7" text-anchor="middle">CUBE ROOT</text>
+    <text x="68" y="265" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#34d399" text-anchor="middle">∛1 = 1</text>
+  </g>
+
+  <!-- Column 2: n = 2 (2³ = 8) -->
+  <g transform="translate(178, 92)">
+    <rect width="136" height="290" rx="12" fill="#1e293b" fill-opacity="0.75" stroke="#334155" stroke-width="1.2" filter="url(#shadowPCP)"/>
+    <text x="68" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#94a3b8" text-anchor="middle">n = 2</text>
+    <text x="68" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b" text-anchor="middle">2 × 2 × 2</text>
+
+    <!-- 2x2x2 Isometric Cube (8 blocks) -->
+    <g transform="translate(0, 10)">
+      <!-- Top Face: (68, 52) -> (100, 70) -> (68, 88) -> (36, 70) -->
+      <polygon points="68,52 100,70 68,88 36,70" fill="url(#cubeTopGrad)" stroke="#a5b4fc" stroke-width="1.2"/>
+      <line x1="52" y1="61" x2="84" y2="79" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1"/>
+      <line x1="84" y1="61" x2="52" y2="79" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1"/>
+
+      <!-- Left Face: (36, 70) -> (68, 88) -> (68, 122) -> (36, 104) -->
+      <polygon points="36,70 68,88 68,122 36,104" fill="url(#cubeLeftGrad)" stroke="#818cf8" stroke-width="1.2"/>
+      <line x1="52" y1="79" x2="52" y2="113" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1"/>
+      <line x1="36" y1="87" x2="68" y2="105" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1"/>
+
+      <!-- Right Face: (68, 88) -> (100, 70) -> (100, 104) -> (68, 122) -->
+      <polygon points="68,88 100,70 100,104 68,122" fill="url(#cubeRightGrad)" stroke="#6366f1" stroke-width="1.2"/>
+      <line x1="84" y1="79" x2="84" y2="113" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1"/>
+      <line x1="68" y1="105" x2="100" y2="87" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1"/>
+    </g>
+
+    <text x="68" y="160" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#818cf8" text-anchor="middle">8 unit blocks</text>
+
+    <!-- Formula & Root -->
+    <rect x="14" y="180" width="108" height="42" rx="7" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+    <text x="68" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#94a3b8" text-anchor="middle">CUBE VALUE</text>
+    <text x="68" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#ffffff" text-anchor="middle">2³ = 8</text>
+
+    <rect x="14" y="230" width="108" height="42" rx="7" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-width="1"/>
+    <text x="68" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#6ee7b7" text-anchor="middle">CUBE ROOT</text>
+    <text x="68" y="265" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#34d399" text-anchor="middle">∛8 = 2</text>
+  </g>
+
+  <!-- Column 3: n = 3 (3³ = 27) -->
+  <g transform="translate(330, 92)">
+    <rect width="136" height="290" rx="12" fill="#1e293b" fill-opacity="0.75" stroke="#334155" stroke-width="1.2" filter="url(#shadowPCP)"/>
+    <text x="68" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#94a3b8" text-anchor="middle">n = 3</text>
+    <text x="68" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b" text-anchor="middle">3 × 3 × 3</text>
+
+    <!-- 3x3x3 Isometric Cube (27 blocks) -->
+    <g transform="translate(0, 10)">
+      <!-- Top Face: (68, 48) -> (104, 69) -> (68, 90) -> (32, 69) -->
+      <polygon points="68,48 104,69 68,90 32,69" fill="url(#cubeTopGrad)" stroke="#a5b4fc" stroke-width="1.2"/>
+      <line x1="56" y1="55" x2="92" y2="76" stroke="#ffffff" stroke-opacity="0.35" stroke-width="0.9"/>
+      <line x1="44" y1="62" x2="80" y2="83" stroke="#ffffff" stroke-opacity="0.35" stroke-width="0.9"/>
+      <line x1="80" y1="55" x2="44" y2="76" stroke="#ffffff" stroke-opacity="0.35" stroke-width="0.9"/>
+      <line x1="92" y1="62" x2="56" y2="83" stroke="#ffffff" stroke-opacity="0.35" stroke-width="0.9"/>
+
+      <!-- Left Face: (32, 69) -> (68, 90) -> (68, 128) -> (32, 107) -->
+      <polygon points="32,69 68,90 68,128 32,107" fill="url(#cubeLeftGrad)" stroke="#818cf8" stroke-width="1.2"/>
+      <line x1="44" y1="76" x2="44" y2="114" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.9"/>
+      <line x1="56" y1="83" x2="56" y2="121" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.9"/>
+      <line x1="32" y1="82" x2="68" y2="103" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.9"/>
+      <line x1="32" y1="95" x2="68" y2="116" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.9"/>
+
+      <!-- Right Face: (68, 90) -> (104, 69) -> (104, 107) -> (68, 128) -->
+      <polygon points="68,90 104,69 104,107 68,128" fill="url(#cubeRightGrad)" stroke="#6366f1" stroke-width="1.2"/>
+      <line x1="80" y1="83" x2="80" y2="121" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.9"/>
+      <line x1="92" y1="76" x2="92" y2="114" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.9"/>
+      <line x1="68" y1="103" x2="104" y2="82" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.9"/>
+      <line x1="68" y1="116" x2="104" y2="95" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.9"/>
+    </g>
+
+    <text x="68" y="160" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#818cf8" text-anchor="middle">27 unit blocks</text>
+
+    <!-- Formula & Root -->
+    <rect x="14" y="180" width="108" height="42" rx="7" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+    <text x="68" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#94a3b8" text-anchor="middle">CUBE VALUE</text>
+    <text x="68" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#ffffff" text-anchor="middle">3³ = 27</text>
+
+    <rect x="14" y="230" width="108" height="42" rx="7" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-width="1"/>
+    <text x="68" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#6ee7b7" text-anchor="middle">CUBE ROOT</text>
+    <text x="68" y="265" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#34d399" text-anchor="middle">∛27 = 3</text>
+  </g>
+
+  <!-- Column 4: n = 4 (4³ = 64) -->
+  <g transform="translate(482, 92)">
+    <rect width="136" height="290" rx="12" fill="#1e293b" fill-opacity="0.75" stroke="#334155" stroke-width="1.2" filter="url(#shadowPCP)"/>
+    <text x="68" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#94a3b8" text-anchor="middle">n = 4</text>
+    <text x="68" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b" text-anchor="middle">4 × 4 × 4</text>
+
+    <!-- 4x4x4 Isometric Cube (64 blocks) -->
+    <g transform="translate(0, 10)">
+      <!-- Top Face: (68, 46) -> (106, 68) -> (68, 90) -> (30, 68) -->
+      <polygon points="68,46 106,68 68,90 30,68" fill="url(#cubeTopGrad)" stroke="#a5b4fc" stroke-width="1.2"/>
+      <line x1="58.5" y1="51.5" x2="96.5" y2="73.5" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.8"/>
+      <line x1="49" y1="57" x2="87" y2="79" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.8"/>
+      <line x1="39.5" y1="62.5" x2="77.5" y2="84.5" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.8"/>
+      <line x1="77.5" y1="51.5" x2="39.5" y2="73.5" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.8"/>
+      <line x1="87" y1="57" x2="49" y2="79" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.8"/>
+      <line x1="96.5" y1="62.5" x2="58.5" y2="84.5" stroke="#ffffff" stroke-opacity="0.3" stroke-width="0.8"/>
+
+      <!-- Left Face: (30, 68) -> (68, 90) -> (68, 130) -> (30, 108) -->
+      <polygon points="30,68 68,90 68,130 30,108" fill="url(#cubeLeftGrad)" stroke="#818cf8" stroke-width="1.2"/>
+      <line x1="39.5" y1="73.5" x2="39.5" y2="113.5" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+      <line x1="49" y1="79" x2="49" y2="119" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+      <line x1="58.5" y1="84.5" x2="58.5" y2="124.5" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+      <line x1="30" y1="78" x2="68" y2="100" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+      <line x1="30" y1="88" x2="68" y2="110" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+      <line x1="30" y1="98" x2="68" y2="120" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+
+      <!-- Right Face: (68, 90) -> (106, 68) -> (106, 108) -> (68, 130) -->
+      <polygon points="68,90 106,68 106,108 68,130" fill="url(#cubeRightGrad)" stroke="#6366f1" stroke-width="1.2"/>
+      <line x1="77.5" y1="84.5" x2="77.5" y2="124.5" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+      <line x1="87" y1="79" x2="87" y2="119" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+      <line x1="96.5" y1="73.5" x2="96.5" y2="113.5" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+      <line x1="68" y1="100" x2="106" y2="78" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+      <line x1="68" y1="110" x2="106" y2="88" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+      <line x1="68" y1="120" x2="106" y2="98" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.8"/>
+    </g>
+
+    <text x="68" y="160" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#818cf8" text-anchor="middle">64 unit blocks</text>
+
+    <!-- Formula & Root -->
+    <rect x="14" y="180" width="108" height="42" rx="7" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+    <text x="68" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#94a3b8" text-anchor="middle">CUBE VALUE</text>
+    <text x="68" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#ffffff" text-anchor="middle">4³ = 64</text>
+
+    <rect x="14" y="230" width="108" height="42" rx="7" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-width="1"/>
+    <text x="68" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#6ee7b7" text-anchor="middle">CUBE ROOT</text>
+    <text x="68" y="265" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#34d399" text-anchor="middle">∛64 = 4</text>
+  </g>
+
+  <!-- Column 5: n = 5 (5³ = 125) -->
+  <g transform="translate(634, 92)">
+    <rect width="136" height="290" rx="12" fill="#1e293b" fill-opacity="0.75" stroke="#334155" stroke-width="1.2" filter="url(#shadowPCP)"/>
+    <text x="68" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#94a3b8" text-anchor="middle">n = 5</text>
+    <text x="68" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b" text-anchor="middle">5 × 5 × 5</text>
+
+    <!-- 5x5x5 Isometric Cube (125 blocks) -->
+    <g transform="translate(0, 10)">
+      <!-- Top Face: (68, 44) -> (108, 67) -> (68, 90) -> (28, 67) -->
+      <polygon points="68,44 108,67 68,90 28,67" fill="url(#cubeTopGrad)" stroke="#a5b4fc" stroke-width="1.2"/>
+      <line x1="60" y1="48.6" x2="100" y2="71.6" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.7"/>
+      <line x1="52" y1="53.2" x2="92" y2="76.2" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.7"/>
+      <line x1="44" y1="57.8" x2="84" y2="80.8" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.7"/>
+      <line x1="36" y1="62.4" x2="76" y2="85.4" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.7"/>
+      <line x1="76" y1="48.6" x2="36" y2="71.6" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.7"/>
+      <line x1="84" y1="53.2" x2="44" y2="76.2" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.7"/>
+      <line x1="92" y1="57.8" x2="52" y2="80.8" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.7"/>
+      <line x1="100" y1="62.4" x2="60" y2="85.4" stroke="#ffffff" stroke-opacity="0.25" stroke-width="0.7"/>
+
+      <!-- Left Face: (28, 67) -> (68, 90) -> (68, 132) -> (28, 109) -->
+      <polygon points="28,67 68,90 68,132 28,109" fill="url(#cubeLeftGrad)" stroke="#818cf8" stroke-width="1.2"/>
+      <line x1="36" y1="71.6" x2="36" y2="113.6" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="44" y1="76.2" x2="44" y2="118.2" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="52" y1="80.8" x2="52" y2="122.8" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="60" y1="85.4" x2="60" y2="127.4" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="28" y1="75.4" x2="68" y2="98.4" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="28" y1="83.8" x2="68" y2="106.8" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="28" y1="92.2" x2="68" y2="115.2" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="28" y1="100.6" x2="68" y2="123.6" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+
+      <!-- Right Face: (68, 90) -> (108, 67) -> (108, 109) -> (68, 132) -->
+      <polygon points="68,90 108,67 108,109 68,132" fill="url(#cubeRightGrad)" stroke="#6366f1" stroke-width="1.2"/>
+      <line x1="76" y1="85.4" x2="76" y2="127.4" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="84" y1="80.8" x2="84" y2="122.8" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="92" y1="76.2" x2="92" y2="118.2" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="100" y1="71.6" x2="100" y2="113.6" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="68" y1="98.4" x2="108" y2="75.4" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="68" y1="106.8" x2="108" y2="83.8" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="68" y1="115.2" x2="108" y2="92.2" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+      <line x1="68" y1="123.6" x2="108" y2="100.6" stroke="#ffffff" stroke-opacity="0.2" stroke-width="0.7"/>
+    </g>
+
+    <text x="68" y="160" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#818cf8" text-anchor="middle">125 unit blocks</text>
+
+    <!-- Formula & Root -->
+    <rect x="14" y="180" width="108" height="42" rx="7" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+    <text x="68" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#94a3b8" text-anchor="middle">CUBE VALUE</text>
+    <text x="68" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#ffffff" text-anchor="middle">5³ = 125</text>
+
+    <rect x="14" y="230" width="108" height="42" rx="7" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-width="1"/>
+    <text x="68" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#6ee7b7" text-anchor="middle">CUBE ROOT</text>
+    <text x="68" y="265" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#34d399" text-anchor="middle">∛125 = 5</text>
+  </g>
+</svg>

@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%" aria-label="Real-world application: Storage tank dimension calculation using cube roots">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradApp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <!-- Industrial Tank Gradients -->
+    <linearGradient id="tankTopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="tankLeftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#075985"/>
+    </linearGradient>
+    <linearGradient id="tankRightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c4a6e"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </linearGradient>
+
+    <!-- Water Liquid Fill -->
+    <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <!-- Card Background Gradient -->
+    <linearGradient id="cardGradApp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="shadowApp" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="420" rx="16" fill="url(#bgGradApp)" stroke="#334155" stroke-width="1"/>
+
+  <!-- Ambient Light Glows -->
+  <circle cx="210" cy="220" r="160" fill="#0284c7" opacity="0.12"/>
+  <circle cx="580" cy="210" r="160" fill="#10b981" opacity="0.08"/>
+
+  <!-- Header Section -->
+  <text x="400" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#818cf8" text-anchor="middle" letter-spacing="1.5">REAL-WORLD APPLICATION • STORAGE &amp; ENGINEERING</text>
+  <text x="400" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">Finding Container Dimensions From Known Volume</text>
+
+  <!-- Left: Industrial Storage Reservoir Diagram -->
+  <g transform="translate(45, 95)">
+    <!-- 3D Reservoir Tank -->
+    <g filter="url(#shadowApp)">
+      <!-- Top Face: (160, 30) -> (260, 85) -> (160, 140) -> (60, 85) -->
+      <polygon points="160,30 260,85 160,140 60,85" fill="url(#tankTopGrad)" stroke="#7dd3fc" stroke-width="1.8"/>
+
+      <!-- Top Hatch / Industrial Manhole -->
+      <ellipse cx="160" cy="85" rx="30" ry="16" fill="#0f172a" stroke="#bae6fd" stroke-width="1.5"/>
+      <ellipse cx="160" cy="85" rx="18" ry="9" fill="#0369a1" stroke="#38bdf8" stroke-width="1"/>
+
+      <!-- Left Face: (60, 85) -> (160, 140) -> (160, 245) -> (60, 190) -->
+      <polygon points="60,85 160,140 160,245 60,190" fill="url(#tankLeftGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+
+      <!-- Right Face: (160, 140) -> (260, 85) -> (260, 190) -> (160, 245) -->
+      <polygon points="160,140 260,85 260,190 160,245" fill="url(#tankRightGrad)" stroke="#0284c7" stroke-width="1.5"/>
+
+      <!-- Reinforced Corner Beams -->
+      <line x1="160" y1="140" x2="160" y2="245" stroke="#bae6fd" stroke-width="2.5"/>
+      <line x1="60" y1="85" x2="60" y2="190" stroke="#0284c7" stroke-width="2"/>
+      <line x1="260" y1="85" x2="260" y2="190" stroke="#0369a1" stroke-width="2"/>
+
+      <!-- Horizontal Rib Lines (Industrial Structural Strengthening) -->
+      <line x1="60" y1="120" x2="160" y2="175" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.2"/>
+      <line x1="60" y1="155" x2="160" y2="210" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.2"/>
+      <line x1="160" y1="175" x2="260" y2="120" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.2"/>
+      <line x1="160" y1="210" x2="260" y2="155" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.2"/>
+    </g>
+
+    <!-- Volume Label Badge -->
+    <rect x="90" y="145" width="140" height="52" rx="9" fill="#0f172a" fill-opacity="0.9" stroke="#38bdf8" stroke-width="1.5" filter="url(#shadowApp)"/>
+    <text x="160" y="165" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#94a3b8" text-anchor="middle" letter-spacing="0.5">CONTAINER VOLUME</text>
+    <text x="160" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="800" fill="#38bdf8" text-anchor="middle">V = 216 m³</text>
+
+    <!-- Dimension: Depth (s = 6 m) -->
+    <g transform="translate(0, 15)">
+      <line x1="55" y1="192" x2="152" y2="246" stroke="#38bdf8" stroke-width="2"/>
+      <polygon points="55,192 62,190 58,198" fill="#38bdf8"/>
+      <polygon points="152,246 145,248 149,240" fill="#38bdf8"/>
+      <text x="96" y="233" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#38bdf8" text-anchor="middle" transform="rotate(30 96 233)">Length = 6 m</text>
+    </g>
+
+    <!-- Dimension: Width (s = 6 m) -->
+    <g transform="translate(0, 15)">
+      <line x1="168" y1="246" x2="265" y2="192" stroke="#38bdf8" stroke-width="2"/>
+      <polygon points="168,246 175,248 171,240" fill="#38bdf8"/>
+      <polygon points="265,192 258,190 262,198" fill="#38bdf8"/>
+      <text x="224" y="233" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#38bdf8" text-anchor="middle" transform="rotate(-30 224 233)">Width = 6 m</text>
+    </g>
+
+    <!-- Dimension: Height (s = 6 m) -->
+    <g transform="translate(-16, 0)">
+      <line x1="60" y1="88" x2="60" y2="187" stroke="#38bdf8" stroke-width="2"/>
+      <polygon points="60,88 56,95 64,95" fill="#38bdf8"/>
+      <polygon points="60,187 56,180 64,180" fill="#38bdf8"/>
+      <text x="44" y="142" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#38bdf8" text-anchor="middle" transform="rotate(-90 44 142)">Height = 6 m</text>
+    </g>
+  </g>
+
+  <!-- Right: Engineering Calculation Card -->
+  <g transform="translate(390, 88)">
+    <rect width="365" height="295" rx="14" fill="url(#cardGradApp)" stroke="#334155" stroke-width="1.5" filter="url(#shadowApp)"/>
+
+    <!-- Header -->
+    <text x="22" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#f8fafc">Engineering Problem: Target Volume V = 216 m³</text>
+    <line x1="22" y1="46" x2="343" y2="46" stroke="#334155" stroke-width="1"/>
+
+    <!-- Step 1: Target Capacity -->
+    <g transform="translate(22, 60)">
+      <text x="0" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#94a3b8">STEP 1: SPECIFY VOLUME TARGET</text>
+      <text x="0" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#cbd5e1">Required Capacity: V = 216 m³ (216,000 Liters)</text>
+    </g>
+
+    <!-- Step 2: Apply Cube Root -->
+    <g transform="translate(22, 116)">
+      <text x="0" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#94a3b8">STEP 2: INVERT THE CUBIC FORMULA</text>
+      <text x="0" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#38bdf8">Since V = s³, then edge length s = ∛V</text>
+    </g>
+
+    <!-- Step 3: Compute Exact Edge -->
+    <g transform="translate(22, 172)">
+      <text x="0" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#94a3b8">STEP 3: COMPUTE EXACT EDGE LENGTH</text>
+      <rect x="0" y="22" width="320" height="38" rx="8" fill="#064e3b" fill-opacity="0.3" stroke="#10b981" stroke-width="1.2"/>
+      <text x="160" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="900" fill="#34d399" text-anchor="middle">s = ∛216 = 6.00 meters</text>
+    </g>
+
+    <!-- Step 4: Verification -->
+    <g transform="translate(22, 246)">
+      <text x="0" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#94a3b8">STEP 4: PHYSICAL VERIFICATION</text>
+      <text x="0" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#a5b4fc">6 m × 6 m × 6 m = 216 m³ (Exact Cube Enclosure)</text>
+    </g>
+  </g>
+</svg>
