@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="100%" height="100%" aria-label="Anatomy of Nth Root Radical Notation and Fractional Exponents">
+  <defs>
+    <linearGradient id="bgGradNthAnatomy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <filter id="shadowNth" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="440" rx="16" fill="url(#bgGradNthAnatomy)" stroke="#334155" stroke-width="1"/>
+
+  <!-- Glow Accents -->
+  <circle cx="250" cy="200" r="140" fill="#a855f7" opacity="0.12"/>
+  <circle cx="580" cy="200" r="140" fill="#38bdf8" opacity="0.12"/>
+
+  <!-- Header Text -->
+  <text x="400" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#a855f7" text-anchor="middle" letter-spacing="1.5">MATHEMATICAL NOTATION ANATOMY</text>
+  <text x="400" y="65" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">Nth Root Radical Form &amp; Fractional Exponent Equivalence</text>
+  <text x="400" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="500" fill="#94a3b8" text-anchor="middle">Every component of ⁿ√x = x^(1/n) broken down step by step</text>
+
+  <!-- Main Center Display Container -->
+  <rect x="50" y="105" width="700" height="205" rx="16" fill="#1e293b" fill-opacity="0.85" stroke="#334155" stroke-width="1.5" filter="url(#shadowNth)"/>
+
+  <!-- Left: Radical Form ⁴√81 -->
+  <!-- Callout 1: Index n -->
+  <rect x="75" y="120" width="130" height="34" rx="8" fill="#3b0764" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="140" y="141" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#f3e8ff" text-anchor="middle">Index n (Degree = 4)</text>
+  <line x1="140" y1="154" x2="162" y2="185" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <circle cx="162" cy="185" r="3.5" fill="#c084fc"/>
+
+  <!-- Radical Sign Hook & Bar -->
+  <text x="162" y="202" font-family="system-ui, -apple-system, sans-serif" font-size="30" font-weight="900" fill="#c084fc">4</text>
+  <path d="M 175,236 L 190,262 L 222,176 L 330,176" fill="none" stroke="#818cf8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Radicand 81 -->
+  <text x="276" y="244" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="800" fill="#38bdf8" text-anchor="middle">81</text>
+
+  <!-- Callout 2: Radical Symbol & Vinculum -->
+  <rect x="155" y="278" width="140" height="26" rx="6" fill="#0f172a" stroke="#818cf8" stroke-width="1.2"/>
+  <text x="225" y="295" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#818cf8" text-anchor="middle">Radical Sign &amp; Vinculum</text>
+
+  <!-- Callout 3: Radicand x -->
+  <rect x="295" y="120" width="115" height="34" rx="8" fill="#082f49" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="352" y="141" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#e0f2fe" text-anchor="middle">Radicand (x = 81)</text>
+  <line x1="330" y1="154" x2="300" y2="200" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <circle cx="300" cy="200" r="3.5" fill="#38bdf8"/>
+
+  <!-- Equals Sign -->
+  <text x="375" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="600" fill="#94a3b8" text-anchor="middle">=</text>
+
+  <!-- Middle: Fractional Exponent 81^(1/4) -->
+  <text x="475" y="244" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="800" fill="#38bdf8" text-anchor="middle">81</text>
+  <text x="525" y="200" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="800" fill="#f59e0b">1/4</text>
+
+  <!-- Callout 4: Fractional Exponent -->
+  <rect x="440" y="120" width="145" height="34" rx="8" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="512" y="141" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#fef3c7" text-anchor="middle">Fractional Power (1/n)</text>
+  <line x1="518" y1="154" x2="525" y2="175" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <circle cx="525" cy="175" r="3.5" fill="#f59e0b"/>
+
+  <!-- Equals Sign -->
+  <text x="595" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="600" fill="#94a3b8" text-anchor="middle">=</text>
+
+  <!-- Right: Principal Root 3 -->
+  <text x="670" y="244" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="900" fill="#34d399" text-anchor="middle">3</text>
+
+  <!-- Callout 5: Principal Root -->
+  <rect x="610" y="120" width="125" height="34" rx="8" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="672" y="141" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#d1fae5" text-anchor="middle">Principal Root y = 3</text>
+  <line x1="672" y1="154" x2="672" y2="190" stroke="#34d399" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <circle cx="672" cy="190" r="3.5" fill="#34d399"/>
+
+  <!-- Bottom 3 Key Rules Cards -->
+  <g transform="translate(50, 325)">
+    <!-- Card 1 -->
+    <rect x="0" y="0" width="220" height="90" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="18" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#c084fc">1. The Index (n)</text>
+    <text x="18" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">Degree of root extraction.</text>
+    <text x="18" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">If omitted, index is assumed 2 (√).</text>
+
+    <!-- Card 2 -->
+    <rect x="240" y="0" width="220" height="90" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="258" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#38bdf8">2. The Radicand (x)</text>
+    <text x="258" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">The base input value.</text>
+    <text x="258" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">Must be ≥ 0 when index n is even.</text>
+
+    <!-- Card 3 -->
+    <rect x="480" y="0" width="220" height="90" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="498" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#34d399">3. The Power Check</text>
+    <text x="498" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">Inverse of exponentiation.</text>
+    <text x="498" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">Verified by checking yⁿ = x (3⁴ = 81).</text>
+  </g>
+</svg>

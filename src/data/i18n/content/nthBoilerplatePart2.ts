@@ -68,7 +68,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s6EvenSubtitle: "Из отрицательных чисел в действительных числах корень не существует",
     s6EvenExample: "Пример: ⁴√(−16) не имеет решений в ℝ, так как любое вещественное число в четной степени неотрицательно.",
     s6BoxTitle: "Почему так происходит",
-    s6BoxText: "Четное число отрицательных множителей дает положительный знак, а нечетное — сохраняет минус.",
+    s6BoxText: "Четное число отрицательных множителей дает положительный знак, а нечетное сохраняет минус.",
     s7Eyebrow: "Упрощение",
     s7Title: "Как упрощать корни n-й степени",
     s7Intro: "Упрощение корней выполняется вынесением точных n-х степеней из-под знака радикала:",
@@ -81,7 +81,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s8Intro: "Корни высших степеней широко используются в науке и инженерии:",
     s8Apps: [
       { title: "Финансы и среднегодовой темп роста (CAGR)", text: "CAGR рассчитывается через корень n-й степени: CAGR = ⁿ√(Конец/Начало) − 1. Для 5 лет используется корень 5-й степени." },
-      { title: "Статистика и среднее геометрическое", text: "Среднее геометрическое n значений равно ⁿ√(x₁·x₂·...·xₙ) — стандарт для темпов роста." },
+      { title: "Статистика и среднее геометрическое", text: "Среднее геометрическое n значений равно ⁿ√(x₁·x₂·...·xₙ), стандарт для темпов роста." },
       { title: "Инженерия и физика", text: "Аэродинамика и физика твердого тела используют корни n-й степени в законах степенных зависимостей." },
       { title: "Информатика и криптография", text: "Асимметричное шифрование (напр. RSA) опирается на сложность вычисления модульных корней n-й степени." }
     ],
@@ -99,7 +99,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s11Title: "Краткий итог",
     s11BoxTitle: "Главное правило",
     s11BoxText: "Корень n-й степени находит число, которое при возведении в степень n дает x. Нечетные степени допускают отрицательные числа; четные требуют положительных значений.",
-    quickCalcLabel: "Быстрый расчет — корень n-й степени",
+    quickCalcLabel: "Быстрый расчет: корень n-й степени",
     quickCalcSublabel: "Нажмите на пару чисел для мгновенного расчета"
   },
 
@@ -201,7 +201,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s11Title: "Krótkie podsumowanie",
     s11BoxTitle: "Najważniejsze informacje",
     s11BoxText: "Pierwiastek n-tego stopnia znajduje liczbę, która pomnożona n razy przez samą siebie daje x. Nieparzyste stopnie akceptują ujemne liczby; parzyste wymagają liczb dodatnich.",
-    quickCalcLabel: "Szybkie obliczenie — pierwiastek n-tego stopnia",
+    quickCalcLabel: "Szybkie obliczenie: pierwiastek n-tego stopnia",
     quickCalcSublabel: "Kliknij parę liczb, aby uzyskać natychmiastowy wynik"
   },
 
@@ -285,7 +285,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s8Intro: "Högre rötter används flitigt i modern teknik och ekonomi:",
     s8Apps: [
       { title: "Finans & CAGR (Årlig tillväxttakt)", text: "CAGR beräknas via n:te roten: CAGR = ⁿ√(Slutvärde/Startvärde) − 1. För en 5-årsperiod används en 5:e rot." },
-      { title: "Statistik & Geometriskt medelvärde", text: "Geometriska medelvärdet för n värden är ⁿ√(x₁·x₂·...·xₙ) — perfekt för tillväxttakter." },
+      { title: "Statistik & Geometriskt medelvärde", text: "Geometriska medelvärdet för n värden är ⁿ√(x₁·x₂·...·xₙ), perfekt för tillväxttakter." },
       { title: "Ingenjörskonst & Fysik", text: "Aerodynamik och materialvetenskap använder högre rötter i flerdimensionella lagar." },
       { title: "Datavetenskap & Kryptografi", text: "Asymmetrisk kryptering (t.ex. RSA) bygger på svårigheten att beräkna modulära n:te rötter." }
     ],
@@ -303,7 +303,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s11Title: "Kort sammanfattning",
     s11BoxTitle: "Det viktigaste",
     s11BoxText: "N:te roten tar reda på vilket tal som multiplicerat med sig självt n gånger ger x. Udda index hanterar negativa tal reellt, jämna index kräver positiva tal.",
-    quickCalcLabel: "Snabbkalkyl — n:te roten",
+    quickCalcLabel: "Snabbkalkyl: n:te roten",
     quickCalcSublabel: "Klicka på ett talpar för omedelbart resultat"
   },
 
@@ -387,7 +387,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s8Intro: "Yüksek dereceli kökler mühendislik ve finansın kalbinde yer alır:",
     s8Apps: [
       { title: "Finans & Bileşik Yıllık Büyüme Oranı (CAGR)", text: "CAGR formülü n'inci kökü kullanır: CAGR = ⁿ√(Bitiş/Başlangıç) − 1. 5 yıllık getiri için 5. kök alınır." },
-      { title: "İstatistik & Geometrik Ortalama", text: "n adet verinin geometrik ortalaması ⁿ√(x₁·x₂·...·xₙ) ile bulunur — oranlar için idealdir." },
+      { title: "İstatistik & Geometrik Ortalama", text: "n adet verinin geometrik ortalaması ⁿ√(x₁·x₂·...·xₙ) ile bulunur, oranlar için idealdir." },
       { title: "Mühendislik & Fizik", text: "Aerodinamik ve malzeme fiziğinde çok boyutlu güç yasalarında n'inci kökler kullanılır." },
       { title: "Bilgisayar Bilimi & Kriptografi", text: "RSA şifreleme algoritması modüler n'inci kök çıkarmanın hesaplama zorluğuna dayanır." }
     ],
@@ -405,7 +405,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s11Title: "Kısa Özet",
     s11BoxTitle: "Önemli Nokta",
     s11BoxText: "N'inci dereceden kök, kendisiyle n kez çarpıldığında x veren sayıyı bulur. Tek dereceler gerçel negatif sayılara izin verirken, çift dereceler pozitif değer ister.",
-    quickCalcLabel: "Hızlı Hesaplama — N'inci Dereceden Kök",
+    quickCalcLabel: "Hızlı Hesaplama: N'inci Dereceden Kök",
     quickCalcSublabel: "Anında sonuç için sayı çiftine tıklayın"
   },
 
@@ -489,7 +489,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s8Intro: "Akar derajat tinggi berperan penting dalam sains dan teknologi:",
     s8Apps: [
       { title: "Keuangan & CAGR (Pertumbuhan Tahunan)", text: "CAGR dihitung menggunakan akar pangkat n: CAGR = ⁿ√(Akhir/Awal) − 1. Periode 5 tahun memakai akar pangkat 5." },
-      { title: "Statistika & Rata-rata Geometris", text: "Rata-rata geometris n data dihitung dengan ⁿ√(x₁·x₂·...·xₙ) — tepat untuk rasio pertumbuhan." },
+      { title: "Statistika & Rata-rata Geometris", text: "Rata-rata geometris n data dihitung dengan ⁿ√(x₁·x₂·...·xₙ), tepat untuk rasio pertumbuhan." },
       { title: "Teknik & Fisika", text: "Aerodinamika dan ilmu material memakai akar pangkat n dalam persamaan hukum skala multivariabel." },
       { title: "Ilmu Komputer & Kriptografi", text: "Kriptografi RSA bergantung pada kesulitan komputasi mengekstrak akar modular berpangkat n." }
     ],
@@ -507,7 +507,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s11Title: "Ringkasan Singkat",
     s11BoxTitle: "Kesimpulan Utama",
     s11BoxText: "Akar pangkat n menentukan nilai yang jika dikalikan n kali menghasilkan x. Indeks ganjil menerima nilai negatif riil; indeks genap membutuhkan nilai positif.",
-    quickCalcLabel: "Hitung Cepat — Akar Pangkat n",
+    quickCalcLabel: "Hitung Cepat: Akar Pangkat n",
     quickCalcSublabel: "Klik pasangan angka untuk hasil instan"
   },
 
@@ -591,7 +591,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s8Intro: "Punca darjah tinggi digunakan secara meluas dalam sains dan kewangan:",
     s8Apps: [
       { title: "Kewangan & CAGR (Kadar Pertumbuhan Tahunan)", text: "Kadar CAGR menggunakan punca kuasa n: CAGR = ⁿ√(Akhir/Mula) − 1. Tempoh 5 tahun menggunakan punca kuasa lima." },
-      { title: "Statistik & Min Geometri", text: "Min geometri bagi n nilai dikira sebagai ⁿ√(x₁·x₂·...·xₙ) — tepat untuk nisbah pertumbuhan." },
+      { title: "Statistik & Min Geometri", text: "Min geometri bagi n nilai dikira sebagai ⁿ√(x₁·x₂·...·xₙ), tepat untuk nisbah pertumbuhan." },
       { title: "Kejuruteraan & Fizik", text: "Aerodinamik dan sains bahan menggunakan punca kuasa n dalam hukum perskalaan dimensi." },
       { title: "Sains Komputer & Kriptografi", text: "Kriptografi kunci awam (RSA) bergantung pada kesukaran mengekstrak punca modular kuasa n." }
     ],
@@ -609,7 +609,7 @@ export const NTH_BOILERPLATE_PART2: Record<string, NthBoilerplate> = {
     s11Title: "Rumusan Ringkas",
     s11BoxTitle: "Fakta Utama",
     s11BoxText: "Punca kuasa n menentukan nilai yang apabila didarab n kali menghasilkan x. Indeks ganjil membenarkan nombor negatif nyata; indeks genap memerlukan nilai positif.",
-    quickCalcLabel: "Kiraan Pantas — Punca Kuasa n",
+    quickCalcLabel: "Kiraan Pantas: Punca Kuasa n",
     quickCalcSublabel: "Klik pasangan nombor untuk jawapan serta-merta"
   }
 };

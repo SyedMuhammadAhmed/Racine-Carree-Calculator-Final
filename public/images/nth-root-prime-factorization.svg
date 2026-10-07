@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="100%" height="100%" aria-label="Step-by-Step Prime Factorization and Radical Simplification Workflow">
+  <defs>
+    <linearGradient id="bgGradFactor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <filter id="shadowFactor" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="440" rx="16" fill="url(#bgGradFactor)" stroke="#334155" stroke-width="1"/>
+
+  <!-- Top Title -->
+  <text x="400" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#34d399" text-anchor="middle" letter-spacing="1.5">MANUAL CALCULATION &amp; SIMPLIFICATION METHOD</text>
+  <text x="400" y="65" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">Prime Factorization &amp; Surd Extraction Workflow</text>
+  <text x="400" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="500" fill="#94a3b8" text-anchor="middle">Step-by-step exact simplification for perfect powers and surds</text>
+
+  <!-- 4 Process Step Cards -->
+  <g transform="translate(45, 108)">
+    <!-- Step 1 -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="168" height="205" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadowFactor)"/>
+      <rect x="14" y="14" width="32" height="32" rx="8" fill="#3b0764" stroke="#c084fc" stroke-width="1"/>
+      <text x="30" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#f3e8ff" text-anchor="middle">1</text>
+      <text x="56" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">Decompose</text>
+      
+      <text x="14" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Factor radicand into primes:</text>
+      <rect x="14" y="78" width="140" height="54" rx="6" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+      <text x="84" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">1,296 = 2⁴ × 3⁴</text>
+      <text x="84" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8" text-anchor="middle">250 = 2 × 5³</text>
+      
+      <text x="14" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">Break down into lowest prime building blocks.</text>
+    </g>
+
+    <!-- Arrow 1 -->
+    <path d="M 174,102 L 186,102" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round"/>
+    <polygon points="186,98 194,102 186,106" fill="#6366f1"/>
+
+    <!-- Step 2 -->
+    <g transform="translate(195, 0)">
+      <rect x="0" y="0" width="168" height="205" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadowFactor)"/>
+      <rect x="14" y="14" width="32" height="32" rx="8" fill="#1e3a8a" stroke="#60a5fa" stroke-width="1"/>
+      <text x="30" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#dbeafe" text-anchor="middle">2</text>
+      <text x="56" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">Group by n</text>
+      
+      <text x="14" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Cluster by root index n:</text>
+      <rect x="14" y="78" width="140" height="54" rx="6" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+      <text x="84" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle">For ⁴√: (2⁴), (3⁴)</text>
+      <text x="84" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#818cf8" text-anchor="middle">For ∛: (5³), 2 remains</text>
+      
+      <text x="14" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">Match identical factors to the degree index n.</text>
+    </g>
+
+    <!-- Arrow 2 -->
+    <path d="M 369,102 L 381,102" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round"/>
+    <polygon points="381,98 389,102 381,106" fill="#6366f1"/>
+
+    <!-- Step 3 -->
+    <g transform="translate(390, 0)">
+      <rect x="0" y="0" width="168" height="205" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadowFactor)"/>
+      <rect x="14" y="14" width="32" height="32" rx="8" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
+      <text x="30" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#d1fae5" text-anchor="middle">3</text>
+      <text x="56" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">Extract Outside</text>
+      
+      <text x="14" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Pull full groups out:</text>
+      <rect x="14" y="78" width="140" height="54" rx="6" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+      <text x="84" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#34d399" text-anchor="middle">2 × 3 = 6</text>
+      <text x="84" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#fbbf24" text-anchor="middle">5∛2 (Surd)</text>
+      
+      <text x="14" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">One factor leaves per full group of n.</text>
+    </g>
+
+    <!-- Arrow 3 -->
+    <path d="M 564,102 L 576,102" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round"/>
+    <polygon points="576,98 584,102 576,106" fill="#6366f1"/>
+
+    <!-- Step 4 -->
+    <g transform="translate(585, 0)">
+      <rect x="0" y="0" width="168" height="205" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadowFactor)"/>
+      <rect x="14" y="14" width="32" height="32" rx="8" fill="#78350f" stroke="#fbbf24" stroke-width="1"/>
+      <text x="30" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#fef3c7" text-anchor="middle">4</text>
+      <text x="56" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">Verify Result</text>
+      
+      <text x="14" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Raise answer to power n:</text>
+      <rect x="14" y="78" width="140" height="54" rx="6" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+      <text x="84" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">6⁴ = 1,296 ✓</text>
+      <text x="84" y="118" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#34d399" text-anchor="middle">5³ × 2 = 250 ✓</text>
+      
+      <text x="14" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">Confirms the simplified radical is 100% exact.</text>
+    </g>
+  </g>
+
+  <!-- Bottom Comparison Banner -->
+  <g transform="translate(45, 332)">
+    <rect x="0" y="0" width="710" height="80" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="24" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#a855f7">PERFECT POWER VS. SURD DISTINCTION:</text>
+    <text x="24" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">A perfect nth power (like ⁴√1296 = 6) resolves to a clean rational integer.</text>
+    <text x="24" y="66" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">A non-perfect power (like ∛250 = 5∛2 ≈ 6.2996) is an irrational surd with infinite decimal places.</text>
+  </g>
+</svg>

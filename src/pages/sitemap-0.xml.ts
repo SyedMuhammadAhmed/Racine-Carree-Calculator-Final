@@ -54,6 +54,16 @@ export async function GET() {
       `<image:image><image:loc>${baseUrl}/images/sqrt-radical-anatomy.svg</image:loc><image:title>Radical Notation Anatomy</image:title></image:image>`,
       `<image:image><image:loc>${baseUrl}/images/sqrt-perfect-squares-grid.svg</image:loc><image:title>Geometric Progression of Perfect Squares</image:title></image:image>`,
       `<image:image><image:loc>${baseUrl}/images/sqrt-pythagorean-theorem.svg</image:loc><image:title>Pythagorean Theorem Square Root Real-World Application</image:title></image:image>`
+    ].join('') : page.slug === 'racine-cubique-calculator' ? [
+      `<image:image><image:loc>${baseUrl}/images/cbrt-geometric-concept.svg</image:loc><image:title>Geometric Concept of Cube Root</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/cbrt-radical-anatomy.svg</image:loc><image:title>Radical Notation Anatomy of Cube Root</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/cbrt-perfect-cubes-progression.svg</image:loc><image:title>Geometric Progression of Perfect Cubes</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/cbrt-volume-application.svg</image:loc><image:title>Container Volume to Dimensions Cube Root Real-World Application</image:title></image:image>`
+    ].join('') : page.slug === 'nth-root-calculator' ? [
+      `<image:image><image:loc>${baseUrl}/images/nth-root-radical-anatomy.svg</image:loc><image:title>Radical Notation Anatomy and Fractional Exponent Equivalence</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/nth-root-even-odd-rules.svg</image:loc><image:title>Even vs Odd Root Index Behavior Matrix</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/nth-root-prime-factorization.svg</image:loc><image:title>Prime Factorization and Radical Simplification Workflow</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/nth-root-real-world-applications.svg</image:loc><image:title>Real-World Practical Applications of the Nth Root Formula</image:title></image:image>`
     ].join('') : '';
 
     entries.push({

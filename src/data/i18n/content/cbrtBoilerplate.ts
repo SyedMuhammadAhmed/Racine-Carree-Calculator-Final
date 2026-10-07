@@ -97,6 +97,7 @@ export interface CbrtBoilerplate {
   s10Title: string;
   s10Intro: string;
   s10Apps: Array<{ title: string; text: string }>;
+  s10Caption?: string;
 
   s11Eyebrow: string;
   s11Title: string;
@@ -300,6 +301,7 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
         text: "Finding side lengths from container capacities (e.g. aquarium volume, storage bins) without measuring tools."
       }
     ],
+    s10Caption: "Real-world application: Calculating container dimensions from volume with cube roots",
 
     s11Eyebrow: "Simplification",
     s11Title: "Cube Root Simplification Table",
@@ -441,6 +443,7 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
       { title: "Finance & Croissance Composée", text: "Taux annuel composé sur 3 ans : r = ∛(valeur finale / initiale) - 1." },
       { title: "Mesures Courantes & Bricolage", text: "Déduire les dimensions d'un réservoir d'eau cubique de 27 litres (30 cm d'arête)." }
     ],
+    s10Caption: "Application pratique : calculer les dimensions d'un réservoir à partir de son volume",
 
     s11Eyebrow: "Simplification",
     s11Title: "Tableau de Simplification des Racines Cubiques",
@@ -575,6 +578,7 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
       { title: "Finanzas y CAGR", text: "Tasa de crecimiento anual compuesto a 3 años: r = ∛(Final / Inicial) - 1." },
       { title: "Bricolaje y Depósitos", text: "Conocer la arista de un tanque cúbico de 27 litros (arista de 30 cm)." }
     ],
+    s10Caption: "Aplicación práctica: calcular las dimensiones de un depósito a partir de su volumen",
 
     s11Eyebrow: "Simplificación",
     s11Title: "Tabla de Simplificación de Raíces Cúbicas",

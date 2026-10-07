@@ -290,7 +290,7 @@ export const NTH_BOILERPLATE: Record<string, NthBoilerplate> = {
     s11Title: "En résumé",
     s11BoxTitle: "L'essentiel à retenir",
     s11BoxText: "La racine n-ième identifie le nombre qui, multiplié n fois par lui-même, donne x. Les indices impairs acceptent les réels négatifs ; les indices pairs exigent des valeurs positives. Utilisez notre outil ci-dessus pour calculer immédiatement.",
-    quickCalcLabel: "Calcul Instantané — Racine N-ième",
+    quickCalcLabel: "Calcul Instantané : Racine N-ième",
     quickCalcSublabel: "Cliquez sur une paire pour un résultat immédiat"
   },
 
@@ -392,7 +392,7 @@ export const NTH_BOILERPLATE: Record<string, NthBoilerplate> = {
     s11Title: "Conclusión Rápida",
     s11BoxTitle: "Puntos clave",
     s11BoxText: "La raíz n-ésima halla el valor que multiplicado n veces por sí mismo da x. Los índices impares admiten números negativos reales; los pares exigen valores positivos. Calcula al instante con nuestra herramienta superior.",
-    quickCalcLabel: "Cálculo Instantáneo — Raíz N-ésima",
+    quickCalcLabel: "Cálculo Instantáneo : Raíz N-ésima",
     quickCalcSublabel: "Haz clic en un par para un resultado inmediato"
   },
 
@@ -476,7 +476,7 @@ export const NTH_BOILERPLATE: Record<string, NthBoilerplate> = {
     s8Intro: "Höhere Wurzeln sind unverzichtbar in Wissenschaft und Praxis:",
     s8Apps: [
       { title: "Finanzwesen & CAGR (Wachstumsrate)", text: "Die jährliche Wachstumsrate nutzt n-te Wurzeln: CAGR = ⁿ√(Endwert/Startwert) − 1. Für 5 Jahre eine 5. Wurzel." },
-      { title: "Statistik & Geometrisches Mittel", text: "Das geometrische Mittel von n Datenpunkten lautet ⁿ√(x₁·x₂·...·xₙ) — Standard für Wachstumsraten." },
+      { title: "Statistik & Geometrisches Mittel", text: "Das geometrische Mittel von n Datenpunkten lautet ⁿ√(x₁·x₂·...·xₙ), der Standard für Wachstumsraten." },
       { title: "Ingenieurwesen & Skalierung", text: "Aerodynamik und Materialphysik erfordern n-te Wurzeln bei mehrdimensionalen Potenzabhängigkeiten." },
       { title: "Informatik & Kryptographie", text: "Asymmetrische Verschlüsselungen wie RSA basieren auf der Komplexität modularer n-ter Wurzeln." }
     ],
@@ -494,7 +494,7 @@ export const NTH_BOILERPLATE: Record<string, NthBoilerplate> = {
     s11Title: "Wichtiges auf einen Blick",
     s11BoxTitle: "Kernaussage",
     s11BoxText: "Die n-te Wurzel bestimmt jene Zahl, die n-mal mit sich selbst multipliziert x ergibt. Ungerade Exponenten erlauben negative Zahlen in den reellen Zahlen, gerade erfordern positive Werte.",
-    quickCalcLabel: "Schnellberechnung — n-te Wurzel",
+    quickCalcLabel: "Schnellberechnung: n-te Wurzel",
     quickCalcSublabel: "Klicken Sie auf ein Zahlenpaar für ein Sofortergebnis"
   },
 
@@ -596,7 +596,7 @@ export const NTH_BOILERPLATE: Record<string, NthBoilerplate> = {
     s11Title: "In Breve",
     s11BoxTitle: "Concetto chiave",
     s11BoxText: "La radice ennesima trova il numero che moltiplicato n volte per se stesso dà x. Gli indici dispari accettano numeri negativi reali; quelli pari richiedono valori positivi.",
-    quickCalcLabel: "Calcolo Istantaneo — Radice Ennesima",
+    quickCalcLabel: "Calcolo Istantaneo : Radice Ennesima",
     quickCalcSublabel: "Clicca su una coppia per un risultato immediato"
   },
 
@@ -698,7 +698,7 @@ export const NTH_BOILERPLATE: Record<string, NthBoilerplate> = {
     s11Title: "Conclusão Rápida",
     s11BoxTitle: "Conceito essencial",
     s11BoxText: "A raiz enésima determina o número que multiplicado n vezes por si mesmo produz x. Índices ímpares aceitam números negativos reais; pares requerem valores positivos.",
-    quickCalcLabel: "Cálculo Instantâneo — Raiz Enésima",
+    quickCalcLabel: "Cálculo Instantâneo : Raiz Enésima",
     quickCalcSublabel: "Clique em um par para um resultado imediato"
   }
 };
