@@ -228,7 +228,7 @@ export const CUBE_WIDGET_I18N: Record<string, CubeWidgetI18n> = {
   },
   ru: {
     verdictYesPill: "ПОЛНЫЙ КУБ ПОДТВЕРЖДЕН",
-    verdictYesTitle: "ДА! {n} — это точный куб!",
+    verdictYesTitle: "ДА! {n} - это точный куб!",
     verdictYesSub: "Точный целый корень: ∛({n}) = {root} без дробного остатка",
     verdictNoPill: "НЕ ЯВЛЯЕТСЯ ТОЧНЫМ КУБОМ",
     verdictNoTitle: "НЕТ, {n} НЕ является точным кубом",
@@ -687,7 +687,7 @@ export const SQUARE_WIDGET_I18N: Record<string, SquareWidgetI18n> = {
   },
   ru: {
     verdictYesPill: "ТОЧНЫЙ КВАДРАТ ПОДТВЕРЖДЕН",
-    verdictYesTitle: "ДА! {n} — это точный квадрат!",
+    verdictYesTitle: "ДА! {n} - это точный квадрат!",
     verdictYesSub: "Точный целый корень: √{n} = {root} без дробного остатка",
     verdictNoPill: "НЕ ЯВЛЯЕТСЯ ТОЧНЫМ КВАДРАТОМ",
     verdictNoTitle: "НЕТ, {n} НЕ является точным квадратом",

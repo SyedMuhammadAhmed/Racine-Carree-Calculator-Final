@@ -20,7 +20,7 @@ const canonicalUrl = `${site.siteUrl}/404/`;
 >
     <div class="article-container" style="min-h: 60vh; padding: 48px 16px 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
         <Breadcrumbs items={[{ label: 'Home', url: '/' }, { label: '404 Error' }]} />
-        <div style="margin-top: 32px; background: var(--bg-surface-elevated); border: 1px solid var(--border-default); border-radius: var(--radius-2xl); padding: 48px 32px; max-width: 580px; width: 100%; box-shadow: var(--shadow-lg);">
+        <div style="margin-top: 32px; background: var(--bg-surface-elevated); border: 1px solid var(--border-default); border-radius: var(--radius-2xl); padding: 48px 32px; max-width: 680px; width: 100%; box-shadow: var(--shadow-lg);">
             <div style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px; background: rgba(124, 58, 237, 0.12); border: 1px solid rgba(124, 58, 237, 0.25); border-radius: 9999px; font-size: 0.85rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">
                 404 Error
             </div>
@@ -30,17 +30,29 @@ const canonicalUrl = `${site.siteUrl}/404/`;
             <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px;">
                 Sorry, the page or calculation tool you are looking for does not exist or may have been moved. Try one of our calculators below:
             </p>
-            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; text-align: left;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 28px; text-align: left; width: 100%;">
                 <a href="/" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-md); text-decoration: none; color: var(--text-primary); font-weight: 600; transition: border-color 0.2s, background-color 0.2s;">
-                    <span>√ Racine Carrée (Square Root) Calculator</span>
+                    <span>√ Square Root (Racine Carrée)</span>
                     <span style="color: var(--primary-500); font-weight: 700;">→</span>
                 </a>
                 <a href="/racine-cubique-calculator/" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-md); text-decoration: none; color: var(--text-primary); font-weight: 600; transition: border-color 0.2s, background-color 0.2s;">
-                    <span>∛ Racine Cubique (Cube Root) Calculator</span>
+                    <span>∛ Cube Root (Racine Cubique)</span>
                     <span style="color: var(--primary-500); font-weight: 700;">→</span>
                 </a>
                 <a href="/nth-root-calculator/" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-md); text-decoration: none; color: var(--text-primary); font-weight: 600; transition: border-color 0.2s, background-color 0.2s;">
-                    <span>ⁿ√ Nth Root Calculator &amp; Exponents</span>
+                    <span>ⁿ√ Nth Root Calculator</span>
+                    <span style="color: var(--primary-500); font-weight: 700;">→</span>
+                </a>
+                <a href="/square-root-chart/" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-md); text-decoration: none; color: var(--text-primary); font-weight: 600; transition: border-color 0.2s, background-color 0.2s;">
+                    <span>⊞ Square Root Chart Generator</span>
+                    <span style="color: var(--primary-500); font-weight: 700;">→</span>
+                </a>
+                <a href="/perfect-square-calculator/" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-md); text-decoration: none; color: var(--text-primary); font-weight: 600; transition: border-color 0.2s, background-color 0.2s;">
+                    <span>²√ Perfect Square Calculator</span>
+                    <span style="color: var(--primary-500); font-weight: 700;">→</span>
+                </a>
+                <a href="/perfect-cube-calculator/" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-md); text-decoration: none; color: var(--text-primary); font-weight: 600; transition: border-color 0.2s, background-color 0.2s;">
+                    <span>³√ Perfect Cube Calculator</span>
                     <span style="color: var(--primary-500); font-weight: 700;">→</span>
                 </a>
             </div>

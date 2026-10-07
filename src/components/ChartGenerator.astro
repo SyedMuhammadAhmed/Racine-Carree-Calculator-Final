@@ -155,7 +155,7 @@ const chartWidgetI18n = getChartWidgetI18n(lang);
           <div class="chart-stat-card">
             <span class="chart-stat-icon" aria-hidden="true">📏</span>
             <div class="chart-stat-info">
-              <span class="chart-stat-value" id="statRangeSpan">—</span>
+              <span class="chart-stat-value" id="statRangeSpan">-</span>
               <span class="chart-stat-label">{chartWidgetI18n.statRange}</span>
             </div>
           </div>
@@ -700,13 +700,13 @@ const chartWidgetI18n = getChartWidgetI18n(lang);
     }
 
     function getSimplifiedRadical(val) {
-      if (!Number.isFinite(val) || val <= 1) return '—';
-      if (!Number.isInteger(val) || val > 1e10) return '—';
+      if (!Number.isFinite(val) || val <= 1) return '-';
+      if (!Number.isInteger(val) || val > 1e10) return '-';
       const root = Math.sqrt(val);
-      if (Number.isInteger(root)) return '—'; // Perfect square, no radical
+      if (Number.isInteger(root)) return '-'; // Perfect square, no radical
 
       const factors = primeFactorize(val);
-      if (!factors || !factors.length) return '—';
+      if (!factors || !factors.length) return '-';
 
       const counts = {};
       factors.forEach(f => { counts[f] = (counts[f] || 0) + 1; });

@@ -2,12 +2,12 @@
 @source "../../theme";
 
 /* ============================================
-   Racine Carrée Calculator — Light Modern Design
+   Racine Carrée Calculator: Light Modern Design
    ============================================ */
 
 /* --- Design Tokens --- */
 :root {
-    /* Primary — warm indigo-violet */
+    /* Primary: warm indigo-violet */
     --primary-50: #f0eeff;
     --primary-100: #e0ddff;
     --primary-200: #c4b5fd;
@@ -17,7 +17,7 @@
     --primary-600: #6d28d9;
     --primary-700: #5b21b6;
 
-    /* Accent — soft teal / sky */
+    /* Accent: soft teal / sky */
     --accent-50: #ecfeff;
     --accent-100: #cffafe;
     --accent-200: #a5f3fc;
@@ -25,7 +25,7 @@
     --accent-400: #22d3ee;
     --accent-500: #06b6d4;
 
-    /* Warm accent — apricot / peach */
+    /* Warm accent: apricot / peach */
     --warm-50: #fff7ed;
     --warm-100: #ffedd5;
     --warm-200: #fed7aa;
@@ -44,7 +44,7 @@
     --green-400: #4ade80;
     --green-500: #22c55e;
 
-    /* Neutrals — warm gray */
+    /* Neutrals: warm gray */
     --neutral-0: #ffffff;
     --neutral-25: #fcfcfd;
     --neutral-50: #f9fafb;
@@ -1323,7 +1323,7 @@ body::before {
 /* ===== Results Panel (directly below Calculate) ===== */
 .result-panel {
     border-radius: var(--radius-lg);
-    /* Empty panel is invisible — no border/background until a result is shown */
+    /* Empty panel is invisible: no border/background until a result is shown */
     border: 1.5px solid transparent;
     background: transparent;
     overflow: hidden;
@@ -2618,7 +2618,7 @@ body::before {
 }
 
 /* ===================================================================
-   ARTICLE CONTENT SECTIONS — SEO Rich Content
+   ARTICLE CONTENT SECTIONS: SEO Rich Content
    =================================================================== */
 
 .seo-article {
@@ -4180,7 +4180,7 @@ body::before {
 }
 
 /* ===================================================================
-   FOOTER — Redesign
+   FOOTER: Redesign
    =================================================================== */
 
 .footer-redesign {

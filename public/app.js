@@ -1,5 +1,5 @@
 /* ============================================
-   Racine Carrée Calculator — Application Logic
+   Racine Carrée Calculator: Application Logic
    ============================================ */
 
 // ---- State ----
@@ -411,7 +411,7 @@ function buildRootFactorSteps(value, degree, symbol) {
         const sign = value < 0 && degree % 2 === 1 ? '−' : '';
 
         if (inside.length === 0) {
-            steps.push({ title: `Group factors in sets of ${degree}`, math: `Every prime factor divides evenly — all come outside the radical` });
+            steps.push({ title: `Group factors in sets of ${degree}`, math: `Every prime factor divides evenly: all come outside the radical` });
             steps.push({ title: 'Multiply outside values', math: `${sign}${outside.map(formatNum).join(' × ')} = ${sign}${formatNum(outsideProduct)}` });
         } else {
             steps.push({ title: `Group factors in sets of ${degree}`, math: `Take complete groups outside; leftover stays inside` });
@@ -550,7 +550,7 @@ function calculateSquareRoot() {
             { label: 'Precision', value: isPerfectSquare ? 'Exact integer result' : 'Rounded display' },
         ],
         summary: isPerfectSquare
-            ? `${resultStr} × ${resultStr} = ${formatNum(value)} — this is a perfect square`
+            ? `${resultStr} × ${resultStr} = ${formatNum(value)}: this is a perfect square`
             : (simplifiedRadical
                 ? `Exact simplified form is ${simplifiedRadical} ≈ ${resultStr}`
                 : `Displayed to up to 12 significant digits. Verify high-stakes calculations independently.`),
@@ -593,7 +593,7 @@ function calculateCubeRoot() {
             { label: 'Domain', value: 'All reals' },
         ],
         summary: isPerfectCube
-            ? `${resultStr}³ = ${resultStr} × ${resultStr} × ${resultStr} = ${formatNum(value)} — perfect cube`
+            ? `${resultStr}³ = ${resultStr} × ${resultStr} × ${resultStr} = ${formatNum(value)}: perfect cube`
             : (simplifiedRadical
                 ? `Exact simplified form is ${simplifiedRadical} ≈ ${resultStr}`
                 : `Displayed to up to 12 significant digits. Verify high-stakes calculations independently.`),

@@ -34,7 +34,6 @@ User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: ${site.siteUrl}/sitemap-index.xml
-Sitemap: ${site.siteUrl}/sitemap.xml
 `.trim();
 
   return new Response(robotsTxt, {

@@ -139,7 +139,7 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
     s1Eyebrow: "Complete Guide",
     s1Title: "What Is Racine Cubique (Cube Root)?",
     s1P1: "Racine cubique is the French word for cube root, and just like its cousin \"racine carrée,\" it's a term people search in English all the time. If you landed here looking for a fast answer, the racine cubique calculator above will give you one instantly. Everything below explains what a cube root actually is, how to find one by hand, and where it shows up outside the classroom.",
-    s1P2: "A cube root is a number that, when multiplied by itself three times, gives you another number. Multiply 3 by itself three times — 3 × 3 × 3 — and you get 27. So we say the cube root of 27 is 3.",
+    s1P2: "A cube root is a number that, when multiplied by itself three times, gives you another number. Multiply 3 by itself three times (3 × 3 × 3) and you get 27. So we say the cube root of 27 is 3.",
     s1P3: "That's the entire idea. Everything else on this page just builds on it.",
     s1Cards: [
       { expr: "∛8 = 2", reason: "because 2 × 2 × 2 = 8" },
@@ -167,18 +167,18 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
       { expr: "3 = index", reason: "How many times to multiply" }
     ],
     s3P1: "You'll also see cube roots written as a fractional exponent:",
-    s3P2: "Both forms mean the same thing — the exponent version is often used in calculators, spreadsheets, and programming because the ∛ symbol isn't always easy to type.",
+    s3P2: "Both forms mean the same thing: the exponent version is often used in calculators, spreadsheets, and programming because the ∛ symbol isn't always easy to type.",
     s3P3: "So whether you write ∛x or x^(1/3), the operation is identical.",
     s3Caption: "The anatomy of a cube root expression and its mathematical terms",
 
     s4Eyebrow: "Formula",
     s4Title: "What Is the Formula for Cube Roots?",
-    s4Intro: "Like square roots, there's no single plug-and-play formula — a cube root is defined by a relationship:",
+    s4Intro: "Like square roots, there's no single plug-and-play formula: a cube root is defined by a relationship:",
     s4P1: "In plain words: whatever answer you get, multiplying it by itself three times has to bring you back to your starting number.",
 
     s5Eyebrow: "Core Laws",
     s5Title: "The Five Core Laws of Cube Roots",
-    s5Intro: "These five rules mirror the foundational square root rules you may already know — but adapted for the third degree:",
+    s5Intro: "These five rules mirror the foundational square root rules you may already know, but adapted for the third degree:",
     s5Laws: [
       {
         name: "Product Rule",
@@ -190,13 +190,13 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
         name: "Quotient Rule",
         subtitle: "Split quotients inside radicals",
         example: "Example: ∛64 ÷ ∛8 = 4 ÷ 2 = 2, and ∛(64÷8) = ∛8 = 2.",
-        explanation: "The mirror of the product rule — take the cube root of a fraction by rooting the numerator and denominator separately."
+        explanation: "The mirror of the product rule: take the cube root of a fraction by rooting the numerator and denominator separately."
       },
       {
         name: "Power Rule",
         subtitle: "Cubing and cube root cancel each other",
         example: "Example: ∛(5³) = ∛125 = 5. Cubing and cube-rooting undo each other.",
-        explanation: "Unlike square roots, which only return non-negative values, the power rule for cube roots works for all real numbers — positive, negative, and zero. ∛((-3)³) = -3."
+        explanation: "Unlike square roots, which only return non-negative values, the power rule for cube roots works for all real numbers (positive, negative, and zero). ∛((-3)³) = -3."
       },
       {
         name: "Self-Cube Rule",
@@ -213,17 +213,17 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
     ],
 
     s6Eyebrow: "Methods",
-    s6Title: "How to Calculate Racine Cubique — Different Methods",
+    s6Title: "How to Calculate Racine Cubique: Different Methods",
     s6Intro: "Four reliable ways to find cube roots:",
     s6M1Title: "1. Using This Racine Cubique Calculator (Fastest)",
-    s6M1Text: "Type in your number, click Calculate, done. This is the method most people reach for once they know it exists — especially for decimals or large numbers.",
+    s6M1Text: "Type in your number, click Calculate, done. This is the method most people reach for once they know it exists, especially for decimals or large numbers.",
     s6M2Title: "2. Prime Factorization Method (Best for Perfect Cubes)",
     s6M2Intro: "This method breaks a number into its prime factors and groups them in sets of three.",
     s6M2ExTitle: "Example: Find ∛216",
     s6M2Steps: [
-      "Step 1 — Break 216 into prime factors: 216 = 2 × 2 × 2 × 3 × 3 × 3",
-      "Step 2 — Group into sets of three: (2 × 2 × 2) × (3 × 3 × 3)",
-      "Step 3 — Take one number from each group: 2 × 3 = 6",
+      "Step 1: Break 216 into prime factors: 216 = 2 × 2 × 2 × 3 × 3 × 3",
+      "Step 2: Group into sets of three: (2 × 2 × 2) × (3 × 3 × 3)",
+      "Step 3: Take one number from each group: 2 × 3 = 6",
       "So ∛216 = 6."
     ],
     s6M3Title: "3. Newton-Raphson Method (Best for Precision)",
@@ -234,7 +234,7 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
     s6M4Steps: [
       "3³ = 27",
       "4³ = 64",
-      "Since 50 is between 27 and 64, ∛50 is between 3 and 4 — closer to 4.",
+      "Since 50 is between 27 and 64, ∛50 is between 3 and 4, closer to 4.",
       "The real answer is about 3.68, so this trick gets you close fast."
     ],
 
@@ -248,10 +248,10 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
     s7Row125: "5 × 5 × 5 = 125",
     s7Row512: "8 × 8 × 8 = 512",
     s7Row10: "Not a whole number, but still a real, exact value",
-    s7Conclusion: "Unlike square roots, cube roots don't have a \"second\" answer to worry about — there's only one real cube root for any given number.",
+    s7Conclusion: "Unlike square roots, cube roots don't have a \"second\" answer to worry about: there's only one real cube root for any given number.",
 
     s8Eyebrow: "Negative Numbers",
-    s8Title: "Cube Roots of Negative Numbers (Why They're Real — Unlike Square Roots)",
+    s8Title: "Cube Roots of Negative Numbers (Why They're Real, Unlike Square Roots)",
     s8P1: "Here's the single most important thing that separates cube roots from square roots: you can take the cube root of a negative number, and the answer is a normal, real number.",
     s8P2: "Why does this work when it doesn't for square roots? Because multiplying three negative numbers together gives you a negative result: negative × negative = positive, then positive × negative = negative.",
     s8ExTitle: "Example: ∛(−64)",
@@ -312,7 +312,7 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
     s11Conclusion: "The trick: find the largest perfect cube that divides evenly into your number, pull it out, and the rest stays under the radical.",
 
     s12Eyebrow: "Reference Tables",
-    s12Title: "Complete Reference Table — Cube Roots 1 to 100",
+    s12Title: "Complete Reference Table: Cube Roots 1 to 100",
     s12Intro: "Bookmark this section for quick lookups. Perfect cubes are highlighted in bold with a badge. Values are rounded to three decimal places.",
     s12ScrollHint: "Scroll to see all 100 values ↓",
     s12ColNumber: "Number (n)",
@@ -322,7 +322,7 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
     s12BadgeIrrational: "Irrational",
 
     s13Eyebrow: "Perfect Cubes",
-    s13Title: "Perfect Cubes — The Essential Memorization List",
+    s13Title: "Perfect Cubes: The Essential Memorization List",
     s13Intro: "A perfect cube is a number you get by multiplying a whole number by itself three times. Cubes grow much faster than squares, which is why this list stops at 10.",
     s13Caption: "Perfect cubes: Whole numbers multiplied by themselves three times",
 
@@ -332,7 +332,7 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
     s15Eyebrow: "Summary",
     s15Title: "A Quick Recap",
     s15BoxTitle: "The Bottom Line",
-    s15BoxText: "A cube root answers one question: what number, multiplied by itself three times, gives you this value? That single idea carries you through everything else on this page — notation, formulas, manual methods, and the fact that (unlike square roots) cube roots handle negative numbers without needing anything imaginary. Use the calculator above for a fast, exact answer, and come back here anytime you want to work through the math yourself.",
+    s15BoxText: "A cube root answers one question: what number, multiplied by itself three times, gives you this value? That single idea carries you through everything else on this page: notation, formulas, manual methods, and the fact that (unlike square roots) cube roots handle negative numbers without needing anything imaginary. Use the calculator above for a fast, exact answer, and come back here anytime you want to work through the math yourself.",
 
     quickCalcLabel: "Instant Cube Root",
     quickCalcSublabel: "Click any number for an instant result"
@@ -469,7 +469,7 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
     s15BoxTitle: "L'Essentiel",
     s15BoxText: "La racine cubique répond à une question simple : quel nombre, multiplié 3 fois par lui-même, donne cette valeur ? Utilisez notre outil ci-dessus pour un calcul immédiat.",
 
-    quickCalcLabel: "Calcul Instantané — Racine Cubique",
+    quickCalcLabel: "Calcul Instantané: Racine Cubique",
     quickCalcSublabel: "Cliquez sur un nombre pour un résultat immédiat"
   },
 
@@ -604,7 +604,7 @@ export const CBRT_BOILERPLATE: Record<string, CbrtBoilerplate> = {
     s15BoxTitle: "Idea Central",
     s15BoxText: "La raíz cúbica resuelve la incógnita: ¿qué número multiplicado 3 veces por sí mismo da este valor? Resuélvelo al instante con nuestra calculadora.",
 
-    quickCalcLabel: "Cálculo Instantáneo — Raíz Cúbica",
+    quickCalcLabel: "Cálculo Instantáneo: Raíz Cúbica",
     quickCalcSublabel: "Haz clic en un número para un resultado inmediato"
   }
 };

@@ -64,6 +64,17 @@ export async function GET() {
       `<image:image><image:loc>${baseUrl}/images/nth-root-even-odd-rules.svg</image:loc><image:title>Even vs Odd Root Index Behavior Matrix</image:title></image:image>`,
       `<image:image><image:loc>${baseUrl}/images/nth-root-prime-factorization.svg</image:loc><image:title>Prime Factorization and Radical Simplification Workflow</image:title></image:image>`,
       `<image:image><image:loc>${baseUrl}/images/nth-root-real-world-applications.svg</image:loc><image:title>Real-World Practical Applications of the Nth Root Formula</image:title></image:image>`
+    ].join('') : page.slug === 'square-root-chart' ? [
+      `<image:image><image:loc>${baseUrl}/images/sqrt-chart-lookup-anatomy.svg</image:loc><image:title>Square Root Chart Reading and Lookup Anatomy</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/sqrt-chart-milestones-1000.svg</image:loc><image:title>Square Root Milestone Reference 1 to 1000</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/sqrt-spreadsheet-workflow.svg</image:loc><image:title>Square Root Spreadsheet and Table Formula Workflow</image:title></image:image>`
+    ].join('') : page.slug === 'perfect-square-calculator' ? [
+      `<image:image><image:loc>${baseUrl}/images/sqrt-perfect-squares-grid.svg</image:loc><image:title>Visual Geometric Grid of Perfect Squares</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/perfect-square-bounding-intervals.svg</image:loc><image:title>Perfect Square Bounding Intervals and Nearest Root Distance</image:title></image:image>`
+    ].join('') : page.slug === 'perfect-cube-calculator' ? [
+      `<image:image><image:loc>${baseUrl}/images/perfect-cube-geometric-concept.svg</image:loc><image:title>Geometric Concept and Prime Factor Triplets of Perfect Cubes</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/perfect-cube-last-digit-bijection.svg</image:loc><image:title>Last Digit Bijection Pattern for Perfect Cubes</image:title></image:image>`,
+      `<image:image><image:loc>${baseUrl}/images/perfect-cube-bounding-intervals.svg</image:loc><image:title>Perfect Cube Bounding Intervals and Nearest Integer Cube Roots</image:title></image:image>`
     ].join('') : '';
 
     entries.push({

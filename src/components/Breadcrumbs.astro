@@ -25,7 +25,7 @@ const schemaItems = items.map((item, index) => {
       ? item.url
       : new URL(item.url, site.siteUrl).toString();
   } else if (!isLast) {
-    // Non-last items should always have a URL — fall back to site root as a safe default.
+    // Non-last items should always have a URL: fall back to site root as a safe default.
     itemUrl = site.siteUrl;
   }
 

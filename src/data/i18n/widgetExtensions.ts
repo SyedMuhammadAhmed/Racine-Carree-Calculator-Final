@@ -73,7 +73,7 @@ export interface ChartExtendedI18n {
 
 export const CUBE_EXTENDED: Record<string, CubeExtendedI18n> = {
   en: {
-    tooltip: "Enter any integer — positive or negative — to check if it equals a whole number multiplied by itself 3 times (k³ = n).",
+    tooltip: "Enter any integer (positive or negative) to check if it equals a whole number multiplied by itself 3 times (k³ = n).",
     placeholder: "e.g. 216 or -27",
     proofTitle: "Proof & Verification Steps",
     stepCalcTitle: "Calculate Cube Root",
@@ -196,14 +196,14 @@ export const CUBE_EXTENDED: Record<string, CubeExtendedI18n> = {
     stepVolumeTitle: "Проверка объема и умножения",
     stepPrimeRule: "Правило делимости степеней простых множителей",
     stepPrimeMath: "{n} = {factors} (каждый показатель степени делится на 3)",
-    summaryYes: "{n} — точный куб, так как его кубический корень — целое число {root}. В геометрии куб со стороной {absRoot} имеет объем {absN}.",
+    summaryYes: "{n} - точный куб, так как его кубический корень: целое число {root}. В геометрии куб со стороной {absRoot} имеет объем {absN}.",
     summaryNo: "{n} находится между {lowerCube} ({lower}³) и {higherCube} ({higher}³). Поскольку между {lower} и {higher} нет целых чисел, {n} не может быть точным кубом.",
     stepComputeTitle: "Вычислить кубический корень",
     stepNonInteger: "не целое",
     stepSandwichTitle: "Тест на зажатие между последовательными целыми числами",
     stepPrimeRuleNo: "Правило степеней простых множителей",
     stepPrimeMathNo: "показатель простого множителя {primes} не кратен 3",
-    closestNote: "Ближайший точный куб — {cube} (разница всего {dist})."
+    closestNote: "Ближайший точный куб: {cube} (разница всего {dist})."
   },
   pl: {
     tooltip: "Wprowadź liczbę całkowitą (dodatnią lub ujemną), aby sprawdzić, czy jest sześcianem liczby całkowitej (k³ = n).",
@@ -301,7 +301,7 @@ export const CUBE_EXTENDED: Record<string, CubeExtendedI18n> = {
     closestNote: "Kuasa tiga sempurna terdekat ialah {cube} (hanya berjarak {dist})."
   },
   ar: {
-    tooltip: "أدخل أي عدد صحيح — موجباً أو سالباً — للتحقق مما إذا كان يساوي مكعب عدد صحيح (k³ = n).",
+    tooltip: "أدخل أي عدد صحيح (موجباً أو سالباً) للتحقق مما إذا كان يساوي مكعب عدد صحيح (k³ = n).",
     placeholder: "مثال: 216 أو -27",
     proofTitle: "خطوات الإثبات والتحقق",
     stepCalcTitle: "حساب الجذر التكعيبي",
@@ -555,8 +555,8 @@ export const SQUARE_EXTENDED: Record<string, SquareExtendedI18n> = {
     statAllExponents: "Все показатели",
     statEvenDivisible: "Четные (делятся на 2)",
     simplifiedRadLabel: "Упрощенный радикал:",
-    closestNote: "Ближайший точный квадрат — {square} (разница всего {dist}).",
-    summaryYes: "{n} — точный квадрат, так как его квадратный корень — целое число {root}. В разложении на простые множители каждый множитель имеет четную степень.",
+    closestNote: "Ближайший точный квадрат: {square} (разница всего {dist}).",
+    summaryYes: "{n} - точный квадрат, так как его квадратный корень: целое число {root}. В разложении на простые множители каждый множитель имеет четную степень.",
     summaryNo: "{n} находится между {lowerSquare} ({lower}²) и {higherSquare} ({higher}²). Поскольку между {lower} и {higher} нет целых чисел, {n} не может быть точным квадратом.",
     proofTitle: "Шаги доказательства и проверки",
     stepCalcTitle: "Вычислить квадратный корень",
