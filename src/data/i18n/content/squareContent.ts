@@ -82,118 +82,121 @@ export interface SquareContent {
 }
 
 const en: SquareContent = {
-  heroPills: ["Instant Proof", "Prime Factors", "Nearest Squares", "100% Free"],
+  heroPills: ["Instant Verification", "Prime Factor Exponents", "Nearest Bounding Squares", "100% Free"],
   tocTitle: "Table of Contents",
   toc: [
     { title: "How to Use the Calculator", href: "#section-how-to-use" },
     { title: "What Is a Perfect Square?", href: "#section-what-is-perfect-square" },
-    { title: "How the Calculator Determines the Result", href: "#section-how-it-works" },
-    { title: "Worked Examples", href: "#section-worked-examples" },
+    { title: "How to Check if a Number Is a Square", href: "#section-how-it-works" },
+    { title: "Worked Verification Examples", href: "#section-worked-examples" },
     {
-      title: "Quick Ways to Check Without a Calculator",
+      title: "Mental Math Shortcuts Without a Calculator",
       href: "#section-shortcuts",
       subitems: [
         { title: "The Last-Digit Rule", href: "#shortcut-last-digit" },
-        { title: "The Digital-Root Rule", href: "#shortcut-digital-root" }
+        { title: "The Digital-Root Rule (Mod 9)", href: "#shortcut-digital-root" }
       ]
     },
-    { title: "Non-Negative Whole Numbers Only", href: "#section-edge-cases" },
-    { title: "Nearest Perfect Squares", href: "#section-nearest-square" },
-    { title: "The First 20 Perfect Squares", href: "#section-first-20-squares" },
-    { title: "Where Perfect Squares Show Up", href: "#section-applications" },
+    { title: "Edge Cases: Zero, Negatives, and Decimals", href: "#section-edge-cases" },
+    { title: "Finding the Nearest Perfect Square", href: "#section-nearest-square" },
+    { title: "The 10 Perfect Squares from 1 to 100", href: "#section-first-20-squares" },
+    { title: "Extended List from 1 to 1000", href: "#section-extended-1000" },
+    { title: "Checking in Code & Spreadsheets", href: "#section-code-spreadsheets" },
+    { title: "International Standards & Curriculums", href: "#section-international" },
+    { title: "Real-World Applications", href: "#section-applications" },
     { title: "Common Mistakes to Avoid", href: "#section-mistakes" },
     { title: "Frequently Asked Questions", href: "#section-faqs" },
-    { title: "A Quick Recap", href: "#section-recap" }
+    { title: "Summary & Key Takeaways", href: "#section-recap" }
   ],
   s1: {
     eyebrow: "Quick Guide",
     title: "How to Use the Perfect Square Calculator",
-    intro: "Check any number in seconds. Follow these 3 easy steps:",
+    intro: "Check any integer in seconds. Follow these 3 easy steps:",
     steps: [
-      { title: "Enter Your Number", text: "Type any whole integer into the input box, or click one of the preset chips." },
-      { title: "Click 'Check Perfect Square'", text: "Hit Enter or click check to run the exact square root and prime factor algorithm." },
-      { title: "Review the Instant Breakdown", text: "Get the verdict, base root, parity, bounding squares, and prime factorization." }
+      { title: "Enter Your Number", text: "Type any positive or negative whole integer into the input box, or click one of the quick preset chips." },
+      { title: "Click 'Check Perfect Square'", text: "Press Enter or click check to run the square root, integer remainder, and prime factor algorithms." },
+      { title: "Review the Instant Breakdown", text: "Inspect the verdict, principal root, parity, bounding square intervals, and prime factorization tree." }
     ]
   },
   s2: {
-    eyebrow: "Concept",
+    eyebrow: "Concept & Formula",
     title: "What Is a Perfect Square?",
-    lead: "A perfect square is an integer that equals a whole number multiplied by itself: n = k² = k × k.",
-    p1: "For example, 25 is a perfect square because 5 × 5 = 25. 144 is a perfect square because 12 × 12 = 144. In contrast, 50 is not a perfect square because √50 ≈ 7.071 (not an integer).",
-    p2: "In 2D geometry, if you have 25 unit square tiles, you can arrange them into a perfect 5×5 square grid. With 50 tiles, you cannot make a square without leftover pieces.",
+    lead: "A perfect square (or square number) is an integer that equals a whole number multiplied by itself: N = k² = k × k where k is an integer.",
+    p1: "For example, 25 is a perfect square because 5 × 5 = 25, and 144 is a perfect square because 12 × 12 = 144. In contrast, 50 is not a perfect square because √50 ≈ 7.071, which is not an integer.",
+    p2: "In 2D geometry, a perfect square represents the total area of a square whose side lengths are whole integers. If you have 25 unit square tiles, you can arrange them into a complete 5×5 square grid without leftover pieces.",
     cards: [
-      { title: "Non-Negative Only", text: "In real numbers, squares can never be negative: (+k)² > 0 and (-k)² > 0." },
-      { title: "Zero and One", text: "0 and 1 are valid perfect squares: 0² = 0 and 1² = 1." },
-      { title: "Parity Rule", text: "The square of an even number is even (4²=16), and the square of an odd number is odd (5²=25)." },
-      { title: "Even Prime Exponents", text: "In prime factorization, every prime exponent must be an even number (divisible by 2)." }
+      { title: "Non-Negative in Real Numbers", text: "Squaring any real number yields a non-negative result: (+k)² > 0 and (-k)² > 0." },
+      { title: "Zero and One Are Squares", text: "0 and 1 are valid perfect squares: 0² = 0 and 1² = 1." },
+      { title: "Parity Rule", text: "The square of an even number is always even (4²=16), and the square of an odd number is always odd (5²=25)." },
+      { title: "Even Prime Exponents", text: "In prime factorization, every prime exponent must be an even integer (divisible by 2)." }
     ]
   },
   s3: {
-    eyebrow: "Algorithm",
-    title: "How the Calculator Determines the Result",
-    intro: "Our calculator checks numbers using multi-stage algebraic verification:",
+    eyebrow: "Verification Methods",
+    title: "How to Check if a Number Is a Perfect Square: Four Methods",
+    intro: "Our calculator evaluates integers using multi-stage mathematical verification:",
     tests: [
-      { title: "1. Square Root Extraction", text: "Computes √n using 64-bit precision floating point math." },
-      { title: "2. Integer Remainder Test", text: "Checks whether the root has zero fractional decimal remainder (Number.isInteger)." },
-      { title: "3. Squaring Verification", text: "Squares the integer root: root × root must strictly equal the input integer n." },
-      { title: "4. Prime Factorization", text: "Breaks n into prime powers to verify that all exponents divide by 2." }
+      { title: "1. The Square Root Test", text: "Computes √N and checks whether the fractional decimal remainder equals zero." },
+      { title: "2. Prime Factorization Rule", text: "Decomposes N into prime powers to verify that every prime exponent is an even number." },
+      { title: "3. Mental Math Last-Digit Rule", text: "Verifies that the terminal digit is 0, 1, 4, 5, 6, or 9 (disqualifying 2, 3, 7, and 8)." },
+      { title: "4. Consecutive Odd Subtraction", text: "Subtracts consecutive odd numbers (1, 3, 5, 7...) until reaching exactly 0 in k steps." }
     ]
   },
   s4: {
     eyebrow: "Case Studies",
-    title: "Worked Examples",
+    title: "Worked Verification Examples",
     examples: [
       { title: "Example 1: Checking 144", expr: "√144 = 12", reason: "12 × 12 = 144 (exact integer)", verdict: "PERFECT SQUARE" },
-      { title: "Example 2: Checking 50", expr: "√50 ≈ 7.071", reason: "Between 7²=49 and 8²=64", verdict: "NOT A PERFECT SQUARE" },
-      { title: "Example 3: Checking -16", expr: "√(-16) = ±4i", reason: "Real squares cannot be negative", verdict: "NOT REAL SQUARE" }
+      { title: "Example 2: Checking 50", expr: "√50 ≈ 7.071", reason: "Between 7²=49 and 8²=64 (not an integer)", verdict: "NOT A PERFECT SQUARE" },
+      { title: "Example 3: Checking -16", expr: "√(-16) = ±4i", reason: "Real squares cannot be negative", verdict: "NOT A REAL SQUARE" }
     ]
   },
   s5: {
-    eyebrow: "Mental Math",
+    eyebrow: "Mental Shortcuts",
     title: "Quick Ways to Check Without a Calculator",
     intro: "Use these two fast mental math shortcuts to spot non-squares in seconds:",
     r1Title: "1. The Last-Digit Rule",
     r1Text: "Every perfect square ends ONLY in 0, 1, 4, 5, 6, or 9. If an integer ends in 2, 3, 7, or 8, it can NEVER be a perfect square!",
     r2Title: "2. The Digital-Root Rule (Mod 9)",
-    r2Text: "Sum digits recursively: the digital root of a perfect square is ALWAYS 1, 4, 7, or 9. If it is 2, 3, 5, 6, or 8, it is not a square."
+    r2Text: "Sum digits recursively: the digital root of a perfect square is ALWAYS 1, 4, 7, or 9. If the digital root is 2, 3, 5, 6, or 8, it is not a square."
   },
   s6: {
     eyebrow: "Boundary Cases",
-    title: "Perfect Squares Are Always Non-Negative Whole Numbers",
-    lead: "Why negative numbers and decimals are handled strictly:",
-    p1: "In real arithmetic, squaring any number always yields a result ≥ 0. Hence, negative integers yield complex imaginary roots (±bi). Decimal numbers are not whole integer perfect squares."
+    title: "Edge Cases: Zero, Negative Numbers, Fractions, and Decimals",
+    lead: "How edge cases and number sets are handled in number theory:",
+    p1: "In real arithmetic, squaring any number always yields a result ≥ 0. Therefore, negative integers yield complex imaginary roots (±bi). 0 is a valid perfect square because 0 × 0 = 0. Rational decimals like 0.25 are rational squares, but not integer perfect squares."
   },
   s7: {
     eyebrow: "Bounding Intervals",
-    title: "Nearest Perfect Squares",
-    lead: "Every non-square integer lies between two consecutive square numbers: k² < n < (k + 1)².",
-    p1: "For example, 50 lies between 49 (7²) and 64 (8²). Since 50 - 49 = 1, 49 is the closest square (only 1 unit away)."
+    title: "How to Find the Nearest Perfect Square",
+    lead: "Every non-square integer N is bounded by two consecutive squares: k² < N < (k + 1)² where k = ⌊√N⌋.",
+    p1: "For example, 50 lies between 49 (7²) and 64 (8²). Since 50 - 49 = 1 and 64 - 50 = 14, 49 is the nearest square (only 1 unit away)."
   },
   s8: {
     eyebrow: "Reference Table",
-    title: "The First 20 Perfect Squares (1² to 20²)",
-    lead: "The essential reference table of squares for students and professionals:",
+    title: "The 10 Perfect Squares from 1 to 100",
+    lead: "The essential reference table of square numbers up to 100:",
     colN: "n",
     colSquare: "Square (n²)",
     colFormula: "Formula"
   },
   s9: {
     eyebrow: "Applications",
-    title: "Where Perfect Squares Show Up",
+    title: "Real-World Applications of Perfect Squares",
     apps: [
-      { title: "Geometry & Area", text: "Finding the side length of square plots, floor tiles, and screen aspect ratios." },
-      { title: "Pythagorean Theorem", text: "Calculating hypotenuse lengths in construction and surveying: a² + b² = c²." },
-      { title: "Physics & Energy", text: "Kinetic energy (½mv²) and gravitational acceleration equations depend on squared terms." },
-      { title: "Computer Science", text: "Quadtrees, 2D matrix transformations, and fast memory block alignment." }
+      { title: "Construction & Area", text: "Finding the side length of square floor tiles, building plots, and layout grids." },
+      { title: "Pythagorean Theorem", text: "Calculating right triangles in carpentry and framing using square triples: a² + b² = c²." },
+      { title: "Physics & Energy", text: "Kinetic energy (½mv²) and gravitational acceleration equations depend directly on squared terms." },
+      { title: "Computer Science", text: "2D textures (256×256, 1024×1024), quadtrees, and memory block alignment rely on square dimensions." }
     ]
   },
   s10: {
     eyebrow: "Pitfalls",
-    title: "Common Mistakes to Avoid",
+    title: "Common Mistakes to Avoid with Perfect Squares",
     mistakes: [
-      { title: "Confusing Square with Doubling", text: "Squaring is multiplying by itself (5²=25), not multiplying by 2 (5×2=10)." },
-      { title: "Assuming Last-Digit Sufficiency", text: "Ending in 4 does not guarantee a square (14 and 24 are not squares; only 4, 64, 144...)." },
-      { title: "Ignoring Negative Sign Rules", text: "-4² with parenthetical distinction: (-4)² = 16, but -(4²) = -16." }
+      { title: "Confusing Squaring with Doubling", text: "Squaring is multiplying a number by itself (5² = 25), not multiplying by 2 (5 × 2 = 10)." },
+      { title: "Assuming Last-Digit Sufficiency", text: "Ending in 4 does not guarantee a square. 24 ends in 4, but 24 is not a square." },
+      { title: "Overlooking Negative Parentheses", text: "Parentheses change mathematical sign: (-4)² = 16, whereas -(4²) = -16." }
     ]
   },
   s11: {
@@ -204,18 +207,23 @@ const en: SquareContent = {
     eyebrow: "Summary",
     title: "A Quick Recap",
     cards: [
-      { title: "Definition", text: "n = k² where k is a whole integer." },
+      { title: "Definition", text: "N = k² where k is a whole integer." },
       { title: "Last Digits", text: "Can only end in 0, 1, 4, 5, 6, 9." },
-      { title: "Prime Powers", text: "Every prime factor exponent must be even (divisible by 2)." },
+      { title: "Prime Powers", text: "Every prime factor exponent must be an even number." },
       { title: "Free Tool", text: "Check any integer above instantly with complete step-by-step proofs." }
     ]
   },
   faqs: [
-    { question: "What is a perfect square in simple terms?", answer: "A perfect square is an integer that can be expressed as the product of two equal integers. For example, 36 is a perfect square because 6 × 6 = 36." },
-    { question: "Can a negative number be a perfect square?", answer: "No, in real arithmetic a negative number cannot be a perfect square because multiplying any real number by itself produces a non-negative result." },
-    { question: "Is 0 a perfect square?", answer: "Yes, 0 is a perfect square because 0 × 0 = 0 (0² = 0)." },
-    { question: "What is the difference between a square root and a perfect square?", answer: "A perfect square is the result (e.g. 25), while the square root is the original base number that was squared (e.g. 5)." },
-    { question: "Is this calculator completely free?", answer: "Yes, our Perfect Square Calculator is 100% free with unlimited checks, instant answers, and detailed step-by-step mathematical proofs." }
+    { question: "What is a perfect square in simple words?", answer: "A perfect square is an integer that you get when you multiply a whole number by itself. For example, 16 is a perfect square because 4 × 4 = 16." },
+    { question: "How can you tell if a number is a perfect square without a calculator?", answer: "Look at the last digit first. If it ends in 2, 3, 7, or 8, it cannot be a square. Next, check its digital root by summing digits recursively: if it is not 1, 4, 7, or 9, it is not a square. Finally, verify that all prime factor exponents are even." },
+    { question: "Is 2 a perfect square?", answer: "No. The square root of 2 is approximately 1.414, which is an irrational number. Because there is no integer that multiplies by itself to equal 2, 2 is not a perfect square." },
+    { question: "Is 50 a perfect square?", answer: "No. The square root of 50 is approximately 7.071. It falls between the two consecutive perfect squares 49 (7²) and 64 (8²). The nearest perfect square to 50 is 49." },
+    { question: "Is 100 a perfect square?", answer: "Yes. 100 is a perfect square because 10 × 10 = 100 (10² = 100)." },
+    { question: "How many perfect squares are there from 1 to 100?", answer: "There are exactly 10 perfect squares from 1 to 100: 1, 4, 9, 16, 25, 36, 49, 64, 81, and 100." },
+    { question: "How many perfect squares are there from 1 to 1000?", answer: "There are exactly 31 perfect squares from 1 to 1000, starting at 1² = 1 and ending at 31² = 961." },
+    { question: "Can a negative number be a perfect square?", answer: "In real-number mathematics, no negative number can be a perfect square because multiplying any real number by itself always produces a non-negative result." },
+    { question: "Is 0 a perfect square?", answer: "Yes, 0 is a valid perfect square because 0 is an integer and 0 × 0 = 0 (0² = 0)." },
+    { question: "Why are prime factor exponents always even for perfect squares?", answer: "When an integer k is squared (k²), every prime factor in k is multiplied by itself, doubling its exponent. Since every prime exponent is multiplied by 2, all exponents in a perfect square must be even numbers." }
   ]
 };
 

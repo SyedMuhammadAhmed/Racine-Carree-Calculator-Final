@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="100%" height="100%" aria-label="Nearest Perfect Square Bounding Intervals Diagram">
+  <defs>
+    <linearGradient id="psBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="boundGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <filter id="psShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="440" rx="16" fill="url(#psBgGrad)" stroke="#334155" stroke-width="1"/>
+
+  <!-- Top Title Bar -->
+  <text x="400" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle" letter-spacing="1.5">BOUNDING INTERVALS &amp; NEAREST SQUARES</text>
+  <text x="400" y="66" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">How Every Non-Square Lies Between Two Consecutive Squares</text>
+
+  <!-- Number Line Axis Diagram (Range 40 to 70) -->
+  <g transform="translate(50, 95)">
+    <rect width="700" height="135" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.2" filter="url(#psShadow)"/>
+
+    <text x="24" y="28" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#94a3b8">Case Study: Testing N = 50</text>
+    <text x="676" y="28" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#38bdf8" text-anchor="end">√50 ≈ 7.071</text>
+
+    <!-- Number line track -->
+    <line x1="40" y1="70" x2="660" y2="70" stroke="#475569" stroke-width="3"/>
+
+    <!-- Lower Bound: 49 (7²) -->
+    <circle cx="210" cy="70" r="10" fill="#10b981" stroke="#34d399" stroke-width="2"/>
+    <text x="210" y="48" font-family="ui-monospace, monospace" font-size="14" font-weight="800" fill="#34d399" text-anchor="middle">49 (7²)</text>
+    <text x="210" y="98" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle">Lower Bound</text>
+
+    <!-- Target Value: 50 -->
+    <circle cx="240" cy="70" r="8" fill="#f59e0b" stroke="#fbbf24" stroke-width="2"/>
+    <text x="240" y="32" font-family="ui-monospace, monospace" font-size="13" font-weight="800" fill="#fbbf24" text-anchor="middle">N = 50</text>
+    <text x="240" y="118" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#fbbf24" text-anchor="middle">Target (+1 distance)</text>
+
+    <!-- Upper Bound: 64 (8²) -->
+    <circle cx="560" cy="70" r="10" fill="#6366f1" stroke="#818cf8" stroke-width="2"/>
+    <text x="560" y="48" font-family="ui-monospace, monospace" font-size="14" font-weight="800" fill="#818cf8" text-anchor="middle">64 (8²)</text>
+    <text x="560" y="98" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle">Upper Bound</text>
+
+    <!-- Distance Arrows -->
+    <!-- d1: 50 - 49 = 1 -->
+    <path d="M 215 62 Q 227 52 235 62" fill="none" stroke="#34d399" stroke-width="2"/>
+    <text x="225" y="44" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#34d399" text-anchor="middle">d = 1</text>
+
+    <!-- d2: 64 - 50 = 14 -->
+    <path d="M 245 62 Q 400 18 555 62" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4,4"/>
+    <text x="400" y="34" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#fda4af" text-anchor="middle">Distance d = 14</text>
+  </g>
+
+  <!-- Formula Callout Cards Grid -->
+  <g transform="translate(50, 245)">
+    <!-- Card 1: Lower Bounding Formula -->
+    <rect x="0" y="0" width="220" height="110" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.2"/>
+    <rect x="0" y="0" width="220" height="28" rx="8" fill="#064e3b"/>
+    <rect x="0" y="16" width="220" height="12" fill="#064e3b"/>
+    <text x="110" y="19" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#a7f3d0" text-anchor="middle">LOWER BOUND FORMULA</text>
+    <text x="110" y="55" font-family="ui-monospace, monospace" font-size="15" font-weight="800" fill="#34d399" text-anchor="middle">k = ⌊√N⌋</text>
+    <text x="110" y="78" font-family="system-ui, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">k = ⌊√50⌋ = 7</text>
+    <text x="110" y="96" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#a7f3d0" text-anchor="middle">S_lower = 7² = 49</text>
+
+    <!-- Card 2: Upper Bounding Formula -->
+    <rect x="240" y="0" width="220" height="110" rx="8" fill="#1e293b" stroke="#6366f1" stroke-width="1.2"/>
+    <rect x="240" y="0" width="220" height="28" rx="8" fill="#312e81"/>
+    <rect x="240" y="16" width="220" height="12" fill="#312e81"/>
+    <text x="350" y="19" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#e0e7ff" text-anchor="middle">UPPER BOUND FORMULA</text>
+    <text x="350" y="55" font-family="ui-monospace, monospace" font-size="15" font-weight="800" fill="#818cf8" text-anchor="middle">(k + 1)²</text>
+    <text x="350" y="78" font-family="system-ui, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">(7 + 1)² = 8²</text>
+    <text x="350" y="96" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#c7d2fe" text-anchor="middle">S_upper = 8² = 64</text>
+
+    <!-- Card 3: Minimum Distance Verdict -->
+    <rect x="480" y="0" width="220" height="110" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+    <rect x="480" y="0" width="220" height="28" rx="8" fill="#78350f"/>
+    <rect x="480" y="16" width="220" height="12" fill="#78350f"/>
+    <text x="590" y="19" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#fde68a" text-anchor="middle">VERDICT: NEAREST SQUARE</text>
+    <text x="590" y="55" font-family="ui-monospace, monospace" font-size="15" font-weight="800" fill="#fbbf24" text-anchor="middle">min(d₁, d₂) = 1</text>
+    <text x="590" y="78" font-family="system-ui, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">49 is 1 away (64 is 14 away)</text>
+    <text x="590" y="96" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#34d399" text-anchor="middle">Nearest = 49</text>
+  </g>
+
+  <!-- Bottom Summary Text -->
+  <g transform="translate(50, 370)">
+    <rect x="0" y="0" width="700" height="48" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="350" y="28" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#94a3b8" text-anchor="middle">General Theorem: k² &lt; N &lt; (k + 1)² for all non-square integers N</text>
+  </g>
+</svg>
