@@ -101,9 +101,13 @@ export async function GET() {
       `<xhtml:link rel="alternate" hreflang="en" href="${pageUrl}"/>`,
     ].join('');
 
+    const staticImagesXml = page.slug === 'about-us'
+      ? `<image:image><image:loc>${baseUrl}/images/syed-muhammad-ahmed-racine-carree-calculator.jpg</image:loc><image:title>Syed Muhammad Ahmed, Founder and Creator</image:title></image:image>`
+      : '';
+
     entries.push({
       url: pageUrl,
-      xml: `<url><loc>${pageUrl}</loc><lastmod>${lastmod}</lastmod><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${staticAlternateTags}</url>`,
+      xml: `<url><loc>${pageUrl}</loc><lastmod>${lastmod}</lastmod><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${staticAlternateTags}${staticImagesXml}</url>`,
     });
   }
 
