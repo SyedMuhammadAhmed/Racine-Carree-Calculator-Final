@@ -13,32 +13,182 @@ const currentLocale = (lang || DEFAULT_LOCALE) as Locale;
 const localizedUrl = (path: string) => getLocalizedUrl(path, currentLocale);
 
 const content = getChartContent(lang);
-// Reload trigger
 const chartToc = content.toc;
 const effectiveFaqs = (faqs && faqs.length > 0) ? faqs : content.faqs;
 const authorByline = getAuthorByline(lang);
 
-const exampleRows = [
-  { num: 1, root: "1.000", isPerfect: true },
-  { num: 2, root: "1.414", isPerfect: false },
-  { num: 3, root: "1.732", isPerfect: false },
-  { num: 4, root: "2.000", isPerfect: true },
-  { num: 5, root: "2.236", isPerfect: false },
-  { num: 6, root: "2.449", isPerfect: false },
-  { num: 7, root: "2.646", isPerfect: false },
-  { num: 8, root: "2.828", isPerfect: false },
-  { num: 9, root: "3.000", isPerfect: true },
-  { num: 10, root: "3.162", isPerfect: false },
-  { num: 11, root: "3.317", isPerfect: false },
-  { num: 12, root: "3.464", isPerfect: false },
-  { num: 13, root: "3.606", isPerfect: false },
-  { num: 14, root: "3.742", isPerfect: false },
-  { num: 15, root: "3.873", isPerfect: false },
-  { num: 16, root: "4.000", isPerfect: true },
-  { num: 17, root: "4.123", isPerfect: false },
-  { num: 18, root: "4.243", isPerfect: false },
-  { num: 19, root: "4.359", isPerfect: false },
-  { num: 20, root: "4.472", isPerfect: false }
+// Format decimal based on locale (French and German use comma, others use dot)
+const isCommaLocale = lang === 'fr' || lang === 'de';
+const formatNum = (val: number, decimals: number = 3) => {
+  const formatted = val.toFixed(decimals);
+  return isCommaLocale ? formatted.replace('.', ',') : formatted;
+};
+
+// UI Localization dictionary for all 18 languages
+const uiDict: Record<string, Record<string, string>> = {
+  en: {
+    searchPlaceholder: "Search number (e.g. 16, 49) or root...",
+    filterAll: "All (100)",
+    filterPerfect: "Perfect Squares",
+    filterIrrational: "Irrational Roots",
+    showingRows: "Showing {count} of {total} rows",
+    copy: "Copy",
+    copied: "Copied!",
+    radicalForm: "Radical Form",
+    anatomyTitle: "Anatomy of Square Root Notation",
+    radSymbol: "Radical Symbol (√)",
+    radSymbolDesc: "Introduced by Christoff Rudolff in 1525, this symbol denotes root extraction.",
+    radicand: "Radicand",
+    radicandDesc: "The positive number or expression located under the radical bar (for example, 49 in √49).",
+    principalRoot: "Principal Square Root",
+    principalRootDesc: "While every positive number has two roots, the radical symbol specifically denotes the positive value (+7).",
+    inverseOp: "Inverse of Squaring",
+    inverseOpDesc: "Finding a square root is the direct inverse mathematical operation of squaring a number (n²).",
+    perfectSquaresTitle: "The 10 Perfect Squares from 1 to 100",
+    nonPerfectTitle: "Non-Perfect Squares & Radical Simplification",
+    extended1000Title: "Extended Range: 1 to 1000 Patterns, Benchmarks, and Milestones",
+    all31Squares: "All 31 Perfect Squares Up to 1000",
+    centuryBenchmarks: "Century Benchmarks (100 to 1000)",
+    centuryRuleDesc: "Every century marker factors using √(k × 100) = 10√k. Multiply the known root of k by 10:",
+    manualMethodsTitle: "How to Calculate Square Roots Manually: Three Proven Methods",
+    primeFactorTitle: "Prime Factorization",
+    primeFactorDesc: "Best for evaluating large perfect squares by pairing identical prime factors.",
+    longDivTitle: "Long Division Method",
+    longDivDesc: "Calculates digit-by-digit accuracy for non-perfect square irrational roots.",
+    babylonianTitle: "Babylonian / Newton-Raphson Method",
+    babylonianDesc: "Fast iterative formula: x_(n+1) = 0.5 × (x_n + S / x_n) that rapidly doubles decimal precision.",
+    spreadsheetsTitle: "How to Generate a Square Root Table in Spreadsheets (Excel & Google Sheets)",
+    ssStep1: "Populate Numbers in Column A",
+    ssStep1Desc: "Type 1 in cell A2 and 2 in cell A3, then drag the fill handle down to row 101.",
+    ssStep2: "Enter the Square Root Formula",
+    ssStep2Desc: "In cell B2, enter the formula below and double-click the fill handle:",
+    ssStep3: "Add Automated Perfect Square Labels",
+    ssStep3Desc: "In cell C2, enter this logical formula to label perfect squares automatically:",
+    internationalTitle: "International Mathematical Conventions: US, UK, Canada, Australia, Germany, and France",
+    decimalPointGroup: "US, UK, Canada & Australia",
+    decimalPointDesc: "Uses a period (.) as the decimal separator (for example, √2 ≈ 1.414). Aligned with US Common Core and UK GCSE.",
+    decimalCommaGroup: "Germany & France",
+    decimalCommaDesc: "Uses a comma (,) as the decimal separator (for example, √2 ≈ 1,414). Aligned with DIN 1333 and AFNOR standards.",
+    applicationsTitle: "Real-World Applications of Square Root Tables and Values",
+    appConstruction: "1. Construction & Geometry",
+    appConstructionDesc: "Carpenters calculate diagonal spans and rafter lengths using the Pythagorean theorem: c = √(a² + b²).",
+    appElectrical: "2. Electrical Engineering & RMS",
+    appElectricalDesc: "AC electricity (120V / 230V) is rated by Root-Mean-Square voltage: V_RMS = V_peak / √2.",
+    appComputing: "3. Computer Graphics & Game Engines",
+    appComputingDesc: "Game engines calculate 2D and 3D distances using Euclidean distance and lookup tables (LUT) for O(1) performance.",
+    imgAnatomyCaption: "Anatomy of square root notation: The radical sign (√), radicand (the number inside), and decimal value.",
+    imgSquaresCaption: "Visual progression of perfect squares: Geometric squares where area equals the square of side length.",
+    imgMilestonesCaption: "The 31 perfect squares from 1 to 1000 and the century factoring rule: √(k × 100) = 10√k.",
+    imgGeometricCaption: "Geometric concept: The square root represents the side length of a square with a known area.",
+    imgSpreadsheetCaption: "Generating square root charts in Excel and Google Sheets using the SQRT formula.",
+    imgPythagoreanCaption: "Practical application: Calculating diagonal distances and right-angle foundations using the Pythagorean theorem."
+  },
+  fr: {
+    searchPlaceholder: "Rechercher un nombre (ex. 16, 49) ou une racine...",
+    filterAll: "Tous (100)",
+    filterPerfect: "Carrés Parfaits",
+    filterIrrational: "Racines Irrationnelles",
+    showingRows: "Affichage de {count} sur {total} lignes",
+    copy: "Copier",
+    copied: "Copié !",
+    radicalForm: "Forme Radicale",
+    anatomyTitle: "Anatomie de la Notation des Racines Carrées",
+    radSymbol: "Symbole Radical (√)",
+    radSymbolDesc: "Introduit par Christoff Rudolff en 1525, il indique l'extraction de la racine carrée.",
+    radicand: "Radicande",
+    radicandDesc: "Le nombre positif situé sous la barre du radical (par exemple 49 dans √49).",
+    principalRoot: "Racine Carrée Principale",
+    principalRootDesc: "Bien qu'un nombre positif ait deux racines, le symbole radical désigne toujours la valeur positive (+7).",
+    inverseOp: "Inverse du Carré",
+    inverseOpDesc: "L'extraction de racine carrée est l'opération réciproque directe de l'élévation au carré (n²).",
+    perfectSquaresTitle: "Les 10 Carrés Parfaits de 1 à 100",
+    nonPerfectTitle: "Carrés Non Parfaits et Simplification Radicale",
+    extended1000Title: "Plage Étendue : Motifs, Repères et Jalons de 1 à 1000",
+    all31Squares: "Les 31 Carrés Parfaits Jusqu'à 1000",
+    centuryBenchmarks: "Repères par Centaine (100 à 1000)",
+    centuryRuleDesc: "Chaque centaine se factorise selon √(k × 100) = 10√k. Multipliez la racine de k par 10 :",
+    manualMethodsTitle: "Comment Calculer une Racine Carrée Manuellement : 3 Méthodes Éprouvées",
+    primeFactorTitle: "Décomposition en Facteurs Premiers",
+    primeFactorDesc: "Idéal pour les carrés parfaits en regroupant les facteurs premiers identiques par paires.",
+    longDivTitle: "Algorithme de Division Longue",
+    longDivDesc: "Permet d'extraire la racine chiffre par chiffre pour les nombres irrationnels.",
+    babylonianTitle: "Méthode Babylonienne (Héron / Newton)",
+    babylonianDesc: "Formule itérative rapide : x_(n+1) = 0,5 × (x_n + S / x_n) doublant la précision à chaque étape.",
+    spreadsheetsTitle: "Comment Générer une Table de Racines Carrées sur Tableur (Excel & Google Sheets)",
+    ssStep1: "Remplir les Nombres dans la Colonne A",
+    ssStep1Desc: "Tapez 1 en A2 et 2 en A3, puis étirez la poignée de recopie jusqu'à la ligne 101.",
+    ssStep2: "Saisir la Formule de Racine Carrée",
+    ssStep2Desc: "En cellule B2, entrez la formule ci-dessous et double-cliquez sur la poignée :",
+    ssStep3: "Ajouter la Détection Automatique des Carrés Parfaits",
+    ssStep3Desc: "En cellule C2, entrez cette formule pour catégoriser automatiquement les résultats :",
+    internationalTitle: "Normes Mathématiques Internationales : France, Allemagne, États-Unis, Royaume-Uni",
+    decimalPointGroup: "États-Unis, Royaume-Uni, Canada & Australie",
+    decimalPointDesc: "Utilise le point (.) comme séparateur décimal (ex. √2 ≈ 1.414). Aligné sur le Common Core et le GCSE.",
+    decimalCommaGroup: "France & Allemagne",
+    decimalCommaDesc: "Utilise la virgule (,) comme séparateur décimal (ex. √2 ≈ 1,414). Conforme aux normes AFNOR et DIN 1333.",
+    applicationsTitle: "Applications Concrètes des Tables de Racines Carrées",
+    appConstruction: "1. Bâtiment & Géométrie",
+    appConstructionDesc: "Calcul des diagonales et des charpentes avec le théorème de Pythagore : c = √(a² + b²).",
+    appElectrical: "2. Électrotechnique & Tension Efficace (RMS)",
+    appElectricalDesc: "La tension alternative (230V) est mesurée en valeur efficace : V_eff = V_crête / √2.",
+    appComputing: "3. Informatique & Jeux Vidéo",
+    appComputingDesc: "Calcul de distance euclidienne et tables de correspondance précalculées (LUT) en temps constant O(1).",
+    imgAnatomyCaption: "Anatomie d'une table de racines carrées : Nombre, forme radicale, précision décimale et statut.",
+    imgSquaresCaption: "Progression géométrique des carrés parfaits : L'aire est égale au côté élevé au carré.",
+    imgMilestonesCaption: "Les 31 carrés parfaits de 1 à 1000 et la règle de factorisation par centaine : √(k × 100) = 10√k.",
+    imgGeometricCaption: "Concept géométrique : La racine carrée représente le côté d'un carré d'aire donnée.",
+    imgSpreadsheetCaption: "Génération automatique d'un tableau sur Excel et Google Sheets avec la formule RACINE.",
+    imgPythagoreanCaption: "Application pratique : Mesure des diagonales et vérification d'équerre avec le théorème de Pythagore."
+  }
+};
+
+const currentUi = uiDict[lang] || uiDict['en'];
+
+// Programmatic complete 100 rows for the interactive reference table
+const full100Rows = Array.from({ length: 100 }, (_, i) => {
+  const num = i + 1;
+  const sqrtVal = Math.sqrt(num);
+  const isPerfect = Number.isInteger(sqrtVal);
+  return {
+    num,
+    radical: `√${num}`,
+    root: formatNum(sqrtVal, 3),
+    isPerfect,
+    type: isPerfect ? content.s6.perfectBadge : content.s6.irrationalBadge
+  };
+});
+
+// The 31 perfect squares from 1 to 1000
+const milestoneSquares = Array.from({ length: 31 }, (_, i) => {
+  const root = i + 1;
+  return {
+    root,
+    square: root * root
+  };
+});
+
+// Century benchmarks from 100 to 1000
+const centuryBenchmarks = [
+  { num: 100, radical: '√100', simplified: '10', root: formatNum(10, 3), note: '10 × 1' },
+  { num: 200, radical: '√200', simplified: '10√2', root: formatNum(14.1421, 3), note: '10 × 1.414' },
+  { num: 300, radical: '√300', simplified: '10√3', root: formatNum(17.3205, 3), note: '10 × 1.732' },
+  { num: 400, radical: '√400', simplified: '20', root: formatNum(20, 3), note: '20 × 1' },
+  { num: 500, radical: '√500', simplified: '10√5', root: formatNum(22.3607, 3), note: '10 × 2.236' },
+  { num: 600, radical: '√600', simplified: '10√6', root: formatNum(24.4949, 3), note: '10 × 2.449' },
+  { num: 700, radical: '√700', simplified: '10√7', root: formatNum(26.4575, 3), note: '10 × 2.646' },
+  { num: 800, radical: '√800', simplified: '20√2', root: formatNum(28.2843, 3), note: '20 × 1.414' },
+  { num: 900, radical: '√900', simplified: '30', root: formatNum(30, 3), note: '30 × 1' },
+  { num: 1000, radical: '√1000', simplified: '10√10', root: formatNum(31.6228, 3), note: '10 × 3.162' }
+];
+
+// High-frequency non-perfect squares
+const nonPerfectExamples = [
+  { num: 2, radical: '√2', simplified: '√2', approx: formatNum(1.414214, 6), threeDec: formatNum(1.414, 3) },
+  { num: 3, radical: '√3', simplified: '√3', approx: formatNum(1.732051, 6), threeDec: formatNum(1.732, 3) },
+  { num: 5, radical: '√5', simplified: '√5', approx: formatNum(2.236068, 6), threeDec: formatNum(2.236, 3) },
+  { num: 10, radical: '√10', simplified: '√10', approx: formatNum(3.162278, 6), threeDec: formatNum(3.162, 3) },
+  { num: 50, radical: '√50', simplified: '5√2', approx: formatNum(7.071068, 6), threeDec: formatNum(7.071, 3) },
+  { num: 75, radical: '√75', simplified: '5√3', approx: formatNum(8.660254, 6), threeDec: formatNum(8.660, 3) }
 ];
 ---
 
@@ -48,8 +198,9 @@ const exampleRows = [
     <TableOfContents items={chartToc} title={content.tocTitle} isOpen={false} lang={lang} />
   </div>
 
-  <!-- Intro Section -->
+  <!-- Section 1: Intro / What Is a Square Root Chart? -->
   <section class="article-section" id="section-intro">
+    <span id="section-what-is-chart" style="display:block; position:relative; top:-80px; visibility:hidden;"></span>
     <div class="article-container">
       <div class="section-eyebrow">
         <span class="eyebrow-icon">
@@ -69,10 +220,24 @@ const exampleRows = [
           </div>
         ))}
       </div>
+
+      <h3 class="article-h3" style="margin-top: 28px;">{currentUi.anatomyTitle}</h3>
+      <ul style="margin: 12px 0 20px 24px; line-height: 1.8; color: var(--text-secondary);">
+        <li><strong>{currentUi.radSymbol}:</strong> {currentUi.radSymbolDesc}</li>
+        <li><strong>{currentUi.radicand}:</strong> {currentUi.radicandDesc}</li>
+        <li><strong>{currentUi.principalRoot}:</strong> {currentUi.principalRootDesc}</li>
+        <li><strong>{currentUi.inverseOp}:</strong> {currentUi.inverseOpDesc}</li>
+      </ul>
     </div>
+
+    <!-- Section Image 1: Square Root Chart & Lookup Anatomy -->
+    <figure class="section-image">
+      <img src="/images/sqrt-chart-lookup-anatomy.svg" alt={currentUi.imgAnatomyCaption} loading="lazy" decoding="async" width="800" height="440" />
+      <figcaption>{currentUi.imgAnatomyCaption}</figcaption>
+    </figure>
   </section>
 
-  <!-- How to Use the Square Root Chart Generator -->
+  <!-- Section 2: How to Use the Generator -->
   <section class="article-section article-section--alt" id="section-how-to-use">
     <div class="article-container">
       <div class="section-eyebrow">
@@ -108,26 +273,333 @@ const exampleRows = [
     </div>
   </section>
 
-  <!-- What Is a Square Root Chart? -->
-  <section class="article-section" id="section-what-is-chart">
+  <!-- Section 3: Interactive 1 to 100 Reference Table -->
+  <section class="article-section" id="section-example-chart">
+    <span id="section-table-1-to-100" style="display:block; position:relative; top:-80px; visibility:hidden;"></span>
     <div class="article-container">
       <div class="section-eyebrow">
         <span class="eyebrow-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M9 12l2 2 4-4"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
         </span>
-        {content.s3.eyebrow}
+        {content.s6.eyebrow}
       </div>
-      <h2 class="article-h2">{content.s3.title}</h2>
-      <p class="article-lead">{content.s3.lead}</p>
-      <ul style="margin: 16px 0 20px 24px; line-height: 1.8; color: var(--text-secondary);">
-        {content.s3.points.map((pt) => (
-          <li>{pt}</li>
-        ))}
-      </ul>
+      <h2 class="article-h2">{content.s6.title}</h2>
+      <p class="article-lead">{content.s6.lead}</p>
+
+      <!-- Interactive Search & Filter Controls -->
+      <div class="table-interactive-toolbar" style="margin: 24px 0 16px 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;">
+        <div style="flex: 1; min-width: 240px; position: relative;">
+          <input 
+            type="text" 
+            id="chartTableSearch" 
+            placeholder={currentUi.searchPlaceholder} 
+            aria-label="Filter square root table"
+            style="width: 100%; padding: 10px 14px 10px 38px; border-radius: var(--radius-md); border: 1px solid var(--border-default); background: var(--bg-surface); color: var(--text-primary); font-size: 0.92rem;"
+          />
+          <svg style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+
+        <div class="filter-chips" style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="button" class="filter-btn active" data-filter="all" id="btnFilterAll">{currentUi.filterAll}</button>
+          <button type="button" class="filter-btn" data-filter="perfect" id="btnFilterPerfect">{currentUi.filterPerfect} (10)</button>
+          <button type="button" class="filter-btn" data-filter="irrational" id="btnFilterIrrational">{currentUi.filterIrrational} (90)</button>
+        </div>
+      </div>
+
+      <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;" id="tableCounterDisplay">
+        Showing 100 of 100 rows
+      </div>
+
+      <div class="table-scroll-wrapper table-scroll-wrapper--large" style="max-height: 560px;">
+        <table class="data-table data-table--vertical data-table--reference" id="mainReferenceTable">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 18%;">{content.s6.colNum}</th>
+              <th scope="col" style="width: 22%;">{currentUi.radicalForm}</th>
+              <th scope="col" style="width: 28%;">{content.s6.colRoot}</th>
+              <th scope="col" style="width: 32%;">{content.s6.colType}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {full100Rows.map((row) => (
+              <tr class={row.isPerfect ? 'tr-perfect' : 'tr-irrational'} data-num={row.num} data-root={row.root} data-perfect={row.isPerfect ? 'true' : 'false'}>
+                <td><strong>{row.num}</strong></td>
+                <td><code style="font-weight: 600; color: var(--text-primary);">{row.radical}</code></td>
+                <td>
+                  <span style={`font-family: var(--font-mono); font-weight: 700; color: ${row.isPerfect ? 'var(--primary-600)' : 'var(--text-primary)'};`}>
+                    {row.root}
+                  </span>
+                </td>
+                <td>
+                  {row.isPerfect ? (
+                    <span class="badge-perfect">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      {content.s6.perfectBadge}
+                    </span>
+                  ) : (
+                    <span class="badge-irrational" style="display:inline-flex;align-items:center;padding:2px 8px;background:var(--neutral-100);color:var(--text-muted);border-radius:var(--radius-full);font-size:0.75rem;font-weight:600;">
+                      {content.s6.irrationalBadge}
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
-  <!-- Square Root Chart vs. Square Root Calculator -->
+  <!-- Section 4: Perfect Squares vs. Non-Perfect Squares -->
+  <section class="article-section article-section--alt" id="section-perfect-vs-nonperfect">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </span>
+        {currentUi.filterPerfect}
+      </div>
+      <h2 class="article-h2">{currentUi.perfectSquaresTitle}</h2>
+      <p class="article-lead">
+        A square root chart cleanly differentiates between rational numbers (integers) and irrational numbers (non-terminating decimal roots).
+      </p>
+
+      <div class="table-scroll-wrapper" style="margin-top: 16px;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">n</th>
+              <th scope="col">n × n</th>
+              <th scope="col">n²</th>
+              <th scope="col">√n²</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>1 × 1</td><td><strong>1</strong></td><td>{formatNum(1, 3)}</td></tr>
+            <tr><td>2</td><td>2 × 2</td><td><strong>4</strong></td><td>{formatNum(2, 3)}</td></tr>
+            <tr><td>3</td><td>3 × 3</td><td><strong>9</strong></td><td>{formatNum(3, 3)}</td></tr>
+            <tr><td>4</td><td>4 × 4</td><td><strong>16</strong></td><td>{formatNum(4, 3)}</td></tr>
+            <tr><td>5</td><td>5 × 5</td><td><strong>25</strong></td><td>{formatNum(5, 3)}</td></tr>
+            <tr><td>6</td><td>6 × 6</td><td><strong>36</strong></td><td>{formatNum(6, 3)}</td></tr>
+            <tr><td>7</td><td>7 × 7</td><td><strong>49</strong></td><td>{formatNum(7, 3)}</td></tr>
+            <tr><td>8</td><td>8 × 8</td><td><strong>64</strong></td><td>{formatNum(8, 3)}</td></tr>
+            <tr><td>9</td><td>9 × 9</td><td><strong>81</strong></td><td>{formatNum(9, 3)}</td></tr>
+            <tr><td>10</td><td>10 × 10</td><td><strong>100</strong></td><td>{formatNum(10, 3)}</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="article-h3" style="margin-top: 32px;">{currentUi.nonPerfectTitle}</h3>
+      <div class="table-scroll-wrapper" style="margin-top: 16px;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Number</th>
+              <th scope="col">Radical</th>
+              <th scope="col">Simplified</th>
+              <th scope="col">Decimal (6 Dec)</th>
+              <th scope="col">Chart (3 Dec)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {nonPerfectExamples.map((item) => (
+              <tr>
+                <td><strong>{item.num}</strong></td>
+                <td><code>{item.radical}</code></td>
+                <td><code>{item.simplified}</code></td>
+                <td style="font-family: var(--font-mono); font-size: 0.88rem;">{item.approx}</td>
+                <td style="font-family: var(--font-mono); font-weight: 700; color: var(--primary-600);">{item.threeDec}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section Image 2: Perfect Squares Visual Grid -->
+    <figure class="section-image">
+      <img src="/images/sqrt-perfect-squares-grid.svg" alt={currentUi.imgSquaresCaption} loading="lazy" decoding="async" width="800" height="420" />
+      <figcaption>{currentUi.imgSquaresCaption}</figcaption>
+    </figure>
+  </section>
+
+  <!-- Section 5: Extended Range: 1 to 1000 Patterns -->
+  <section class="article-section" id="section-range-1000">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </span>
+        1 – 1000 Range
+      </div>
+      <h2 class="article-h2">{currentUi.extended1000Title}</h2>
+      <p class="article-lead">
+        Across the numbers 1 through 1000, there are exactly <strong>31 perfect squares</strong>, because 31² = 961 while 32² = 1024 exceeds 1000.
+      </p>
+
+      <h3 class="article-h3" style="margin-top: 24px;">{currentUi.all31Squares}</h3>
+      <div class="table-scroll-wrapper" style="max-height: 380px; margin-top: 16px;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">n</th><th scope="col">n²</th>
+              <th scope="col">n</th><th scope="col">n²</th>
+              <th scope="col">n</th><th scope="col">n²</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: 11 }, (_, rowIdx) => {
+              const c1 = rowIdx + 1;
+              const c2 = rowIdx + 12;
+              const c3 = rowIdx + 23;
+              return (
+                <tr>
+                  <td><strong>{c1}</strong></td><td>{c1 * c1}</td>
+                  {c2 <= 31 ? (
+                    <><td><strong>{c2}</strong></td><td>{c2 * c2}</td></>
+                  ) : (<td>-</td><td>-</td>)}
+                  {c3 <= 31 ? (
+                    <><td><strong>{c3}</strong></td><td><strong>{c3 * c3}</strong></td></>
+                  ) : (<td>-</td><td>-</td>)}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="article-h3" style="margin-top: 32px;">{currentUi.centuryBenchmarks}</h3>
+      <p>{currentUi.centuryRuleDesc}</p>
+
+      <div class="table-scroll-wrapper" style="margin-top: 16px;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Number</th>
+              <th scope="col">Radical</th>
+              <th scope="col">Factored Form</th>
+              <th scope="col">Root Value</th>
+              <th scope="col">Logic</th>
+            </tr>
+          </thead>
+          <tbody>
+            {centuryBenchmarks.map((bm) => (
+              <tr>
+                <td><strong>{bm.num}</strong></td>
+                <td><code>{bm.radical}</code></td>
+                <td><code>{bm.simplified}</code></td>
+                <td style="font-family: var(--font-mono); font-weight: 700; color: var(--primary-600);">{bm.root}</td>
+                <td style="font-size: 0.86rem; color: var(--text-secondary);">{bm.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section Image 3: 1 to 1000 Milestones -->
+    <figure class="section-image">
+      <img src="/images/sqrt-chart-milestones-1000.svg" alt={currentUi.imgMilestonesCaption} loading="lazy" decoding="async" width="800" height="440" />
+      <figcaption>{currentUi.imgMilestonesCaption}</figcaption>
+    </figure>
+  </section>
+
+  <!-- Section 6: How Values Are Calculated / Manual Methods -->
+  <section class="article-section article-section--alt" id="section-how-calculated">
+    <span id="section-manual-methods" style="display:block; position:relative; top:-80px; visibility:hidden;"></span>
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </span>
+        {content.s5.eyebrow}
+      </div>
+      <h2 class="article-h2">{content.s5.title}</h2>
+      <p class="article-lead">{content.s5.lead}</p>
+      <p>{content.s5.p1}</p>
+
+      <ul style="margin: 12px 0 16px 24px; line-height: 1.8; color: var(--text-secondary);">
+        {content.s5.points.map((pt) => (
+          <li><code>{pt}</code></li>
+        ))}
+      </ul>
+      <p>{content.s5.conclusion}</p>
+
+      <h3 class="article-h3" style="margin-top: 28px;">{currentUi.manualMethodsTitle}</h3>
+      <div class="law-cards-grid" style="margin-top: 16px;">
+        <div class="law-card">
+          <div class="law-number">1</div>
+          <h4 class="law-title">{currentUi.primeFactorTitle}</h4>
+          <p class="law-text">{currentUi.primeFactorDesc}</p>
+        </div>
+        <div class="law-card">
+          <div class="law-number">2</div>
+          <h4 class="law-title">{currentUi.longDivTitle}</h4>
+          <p class="law-text">{currentUi.longDivDesc}</p>
+        </div>
+        <div class="law-card">
+          <div class="law-number">3</div>
+          <h4 class="law-title">{currentUi.babylonianTitle}</h4>
+          <p class="law-text">{currentUi.babylonianDesc}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Image 4: Geometric Concept -->
+    <figure class="section-image">
+      <img src="/images/sqrt-geometric-concept.svg" alt={currentUi.imgGeometricCaption} loading="lazy" decoding="async" width="800" height="450" />
+      <figcaption>{currentUi.imgGeometricCaption}</figcaption>
+    </figure>
+  </section>
+
+  <!-- Section 7: Spreadsheet Generation Guide -->
+  <section class="article-section" id="section-spreadsheets">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        </span>
+        Excel & Sheets
+      </div>
+      <h2 class="article-h2">{currentUi.spreadsheetsTitle}</h2>
+
+      <div class="steps-flow" style="margin-top: 24px;">
+        <div class="step-card">
+          <div class="step-badge">1</div>
+          <h3 class="step-title">{currentUi.ssStep1}</h3>
+          <p class="step-desc">{currentUi.ssStep1Desc}</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">2</div>
+          <h3 class="step-title">{currentUi.ssStep2}</h3>
+          <p class="step-desc">{currentUi.ssStep2Desc}</p>
+          <div class="copy-box" style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-surface-elevated); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+            <code id="excelFormula1">{lang === 'fr' ? '=RACINE(A2)' : '=SQRT(A2)'}</code>
+            <button type="button" class="btn-copy-code" data-target="excelFormula1" style="padding: 4px 10px; font-size: 0.78rem; border-radius: var(--radius-sm); background: var(--primary-500); color: white; border: none; cursor: pointer;">{currentUi.copy}</button>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">3</div>
+          <h3 class="step-title">{currentUi.ssStep3}</h3>
+          <p class="step-desc">{currentUi.ssStep3Desc}</p>
+          <div class="copy-box" style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-surface-elevated); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+            <code id="excelFormula2" style="font-size: 0.82rem;">{lang === 'fr' ? '=SI(RACINE(A2)=ENT(RACINE(A2)); "Carré Parfait"; "Irrationnel")' : '=IF(SQRT(A2)=INT(SQRT(A2)), "Perfect Square", "Irrational")'}</code>
+            <button type="button" class="btn-copy-code" data-target="excelFormula2" style="padding: 4px 10px; font-size: 0.78rem; border-radius: var(--radius-sm); background: var(--primary-500); color: white; border: none; cursor: pointer;">{currentUi.copy}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Image 5: Spreadsheet Workflow -->
+    <figure class="section-image">
+      <img src="/images/sqrt-spreadsheet-workflow.svg" alt={currentUi.imgSpreadsheetCaption} loading="lazy" decoding="async" width="800" height="440" />
+      <figcaption>{currentUi.imgSpreadsheetCaption}</figcaption>
+    </figure>
+  </section>
+
+  <!-- Section 8: Square Root Chart vs. Square Root Calculator -->
   <section class="article-section article-section--alt" id="section-chart-vs-calc">
     <div class="article-container">
       <div class="section-eyebrow">
@@ -159,74 +631,7 @@ const exampleRows = [
     </div>
   </section>
 
-  <!-- How the Values Are Calculated -->
-  <section class="article-section" id="section-how-calculated">
-    <div class="article-container">
-      <div class="section-eyebrow">
-        <span class="eyebrow-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-        </span>
-        {content.s5.eyebrow}
-      </div>
-      <h2 class="article-h2">{content.s5.title}</h2>
-      <p class="article-lead">{content.s5.lead}</p>
-      <p>{content.s5.p1}</p>
-      <ul style="margin: 12px 0 16px 24px; line-height: 1.8; color: var(--text-secondary);">
-        {content.s5.points.map((pt) => (
-          <li><code>{pt}</code></li>
-        ))}
-      </ul>
-      <p>{content.s5.conclusion}</p>
-    </div>
-  </section>
-
-  <!-- Example: A Generated Chart (Range 1–20, 3 Decimal Places) -->
-  <section class="article-section article-section--alt" id="section-example-chart">
-    <div class="article-container">
-      <div class="section-eyebrow">
-        <span class="eyebrow-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-        </span>
-        {content.s6.eyebrow}
-      </div>
-      <h2 class="article-h2">{content.s6.title}</h2>
-      <p class="article-lead">{content.s6.lead}</p>
-
-      <div class="table-scroll-wrapper table-scroll-wrapper--large" style="max-height: 520px; margin-top: 24px;">
-        <table class="data-table data-table--vertical data-table--reference">
-          <thead>
-            <tr>
-              <th scope="col">{content.s6.colNum}</th>
-              <th scope="col">{content.s6.colRoot}</th>
-              <th scope="col">{content.s6.colType}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {exampleRows.map(row => (
-              <tr class={row.isPerfect ? 'tr-perfect' : ''}>
-                <td><strong>{row.num}</strong></td>
-                <td><span style={`font-family: var(--font-mono); font-weight: 700; color: ${row.isPerfect ? 'var(--primary-600)' : 'var(--text-primary)'};`}>{row.root}</span></td>
-                <td>
-                  {row.isPerfect ? (
-                    <span class="badge-perfect">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      {content.s6.perfectBadge}
-                    </span>
-                  ) : (
-                    <span class="badge-irrational" style="display:inline-flex;align-items:center;padding:2px 8px;background:var(--neutral-100);color:var(--text-muted);border-radius:var(--radius-full);font-size:0.75rem;font-weight:600;">
-                      {content.s6.irrationalBadge}
-                    </span>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- How to Read and Use Your Chart -->
+  <!-- Section 9: How to Read and Use Your Chart -->
   <section class="article-section" id="section-read-chart">
     <div class="article-container">
       <div class="section-eyebrow">
@@ -250,7 +655,68 @@ const exampleRows = [
     </div>
   </section>
 
-  <!-- Common Mistakes to Avoid -->
+  <!-- Section 10: International Mathematical Standards -->
+  <section class="article-section article-section--alt" id="section-international-standards">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </span>
+        ISO 80000-1
+      </div>
+      <h2 class="article-h2">{currentUi.internationalTitle}</h2>
+
+      <div class="law-cards-grid" style="margin-top: 24px;">
+        <div class="law-card">
+          <h3 class="law-title">{currentUi.decimalPointGroup}</h3>
+          <p class="law-text">{currentUi.decimalPointDesc}</p>
+        </div>
+
+        <div class="law-card">
+          <h3 class="law-title">{currentUi.decimalCommaGroup}</h3>
+          <p class="law-text">{currentUi.decimalCommaDesc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 11: Real-World Applications -->
+  <section class="article-section" id="section-applications">
+    <div class="article-container">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        </span>
+        STEM
+      </div>
+      <h2 class="article-h2">{currentUi.applicationsTitle}</h2>
+
+      <div class="law-cards-grid" style="margin-top: 24px;">
+        <div class="law-card">
+          <h3 class="law-title">{currentUi.appConstruction}</h3>
+          <p class="law-text">{currentUi.appConstructionDesc}</p>
+        </div>
+
+        <div class="law-card">
+          <h3 class="law-title">{currentUi.appElectrical}</h3>
+          <p class="law-text">{currentUi.appElectricalDesc}</p>
+        </div>
+
+        <div class="law-card">
+          <h3 class="law-title">{currentUi.appComputing}</h3>
+          <p class="law-text">{currentUi.appComputingDesc}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Image 6: Pythagorean Application -->
+    <figure class="section-image">
+      <img src="/images/sqrt-pythagorean-theorem.svg" alt={currentUi.imgPythagoreanCaption} loading="lazy" decoding="async" width="800" height="420" />
+      <figcaption>{currentUi.imgPythagoreanCaption}</figcaption>
+    </figure>
+  </section>
+
+  <!-- Section 12: Common Mistakes to Avoid -->
   <section class="article-section article-section--alt" id="section-common-mistakes">
     <div class="article-container">
       <div class="section-eyebrow">
@@ -273,7 +739,7 @@ const exampleRows = [
     </div>
   </section>
 
-  <!-- Frequently Asked Questions -->
+  <!-- Section 13: Frequently Asked Questions -->
   <section class="article-section" id="section-faqs">
     <div class="article-container">
       <div class="section-eyebrow">
@@ -292,7 +758,7 @@ const exampleRows = [
         ))}
       </div>
 
-      <!-- Author Byline & Social Sharing Bar below FAQs -->
+      <!-- Author Byline below FAQs -->
       <div class="article-header-meta" style="margin-top: 40px; margin-bottom: 0;">
         <div class="article-author-byline">
           <a href="/about-us/" class="author-avatar-link" aria-label="Syed Muhammad Ahmed, Founder and Creator">
@@ -311,8 +777,8 @@ const exampleRows = [
     </div>
   </section>
 
-  <!-- Section 10: Quick Recap -->
-  <section class="article-section" id="section-recap">
+  <!-- Section 14: Quick Recap / Key Takeaways -->
+  <section class="article-section article-section--alt" id="section-recap">
     <div class="article-container">
       <div class="section-eyebrow">
         <span class="eyebrow-icon">
@@ -334,3 +800,111 @@ const exampleRows = [
   </section>
 </article>
 
+<!-- Client Script for Interactive Reference Table Filter & Search, plus Formula Copying -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('chartTableSearch');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const tableRows = document.querySelectorAll('#mainReferenceTable tbody tr');
+    const counterDisplay = document.getElementById('tableCounterDisplay');
+
+    let currentFilter = 'all';
+
+    function updateTable() {
+      const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+      let visibleCount = 0;
+
+      tableRows.forEach((row) => {
+        const num = row.getAttribute('data-num') || '';
+        const root = row.getAttribute('data-root') || '';
+        const isPerfect = row.getAttribute('data-perfect') === 'true';
+
+        let matchesFilter = true;
+        if (currentFilter === 'perfect') {
+          matchesFilter = isPerfect;
+        } else if (currentFilter === 'irrational') {
+          matchesFilter = !isPerfect;
+        }
+
+        let matchesSearch = true;
+        if (query.length > 0) {
+          matchesSearch = num.includes(query) || root.includes(query);
+        }
+
+        if (matchesFilter && matchesSearch) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      if (counterDisplay) {
+        counterDisplay.textContent = `Showing ${visibleCount} of ${tableRows.length} rows`;
+      }
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', updateTable);
+    }
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.getAttribute('data-filter') || 'all';
+        updateTable();
+      });
+    });
+
+    // Copy formula buttons
+    const copyBtns = document.querySelectorAll('.btn-copy-code');
+    copyBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          navigator.clipboard.writeText(targetEl.textContent || '').then(() => {
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.style.background = 'var(--emerald-500, #10b981)';
+            setTimeout(() => {
+              btn.textContent = originalText;
+              btn.style.background = 'var(--primary-500)';
+            }, 2000);
+          });
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .filter-btn {
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-default);
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .filter-btn:hover {
+    border-color: var(--primary-400);
+    color: var(--primary-600);
+  }
+  .filter-btn.active {
+    background: var(--primary-500);
+    color: white;
+    border-color: var(--primary-500);
+    box-shadow: var(--shadow-xs);
+  }
+  .tr-perfect {
+    background: rgba(99, 102, 241, 0.04);
+  }
+  [data-theme="dark"] .tr-perfect {
+    background: rgba(99, 102, 241, 0.08);
+  }
+</style>

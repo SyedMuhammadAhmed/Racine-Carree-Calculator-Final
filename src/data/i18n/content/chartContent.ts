@@ -80,122 +80,127 @@ export interface ChartContent {
 }
 
 const en: ChartContent = {
-  heroPills: ["Custom Ranges", "2–4 Decimal Precision", "Copy CSV & Print", "100% Free"],
+  heroPills: ["Custom Ranges", "2 to 4 Decimal Precision", "Copy CSV & Print", "100% Free"],
   tocTitle: "Table of Contents",
   toc: [
-    { title: "Custom Table Builder", href: "#section-intro" },
-    { title: "How to Use the Generator", href: "#section-how-to-use" },
     { title: "What Is a Square Root Chart?", href: "#section-what-is-chart" },
-    { title: "Chart vs. Calculator", href: "#section-chart-vs-calc" },
-    { title: "How Values Are Calculated", href: "#section-how-calculated" },
-    { title: "Example: Range 1–20 Table", href: "#section-example-chart" },
-    { title: "How to Read & Use Your Chart", href: "#section-read-chart" },
-    { title: "Common Mistakes to Avoid", href: "#section-common-mistakes" },
+    { title: "How to Use the Generator", href: "#section-how-to-use" },
+    { title: "Complete 1 to 100 Reference Table", href: "#section-table-1-to-100" },
+    { title: "Perfect Squares vs. Non-Perfect Squares", href: "#section-perfect-vs-nonperfect" },
+    { title: "Extended Range: 1 to 1000 Patterns", href: "#section-range-1000" },
+    { title: "Manual Calculation Methods", href: "#section-manual-methods" },
+    { title: "Spreadsheet Generation Guide", href: "#section-spreadsheets" },
+    { title: "International Mathematical Standards", href: "#section-international-standards" },
+    { title: "Real-World Applications", href: "#section-applications" },
+    { title: "Common Pitfalls & Mistakes", href: "#section-common-mistakes" },
     { title: "Frequently Asked Questions", href: "#section-faqs" },
-    { title: "A Quick Recap", href: "#section-recap" }
+    { title: "Summary & Key Takeaways", href: "#section-recap" }
   ],
   s1: {
     eyebrow: "Custom Table Builder",
-    title: "Square Root Chart Generator",
-    lead: "Most square root charts online are stuck at a fixed range — usually 1 to 100 — printed once and never customizable. This tool is different: pick any range you need, choose how many decimal places to show, and get a clean, ready-to-use table in seconds.",
-    p1: "Whether you're prepping a printable handout for a class, building a study reference, or just need a wider range than the standard chart, the generator above builds it instantly.",
+    title: "Square Root Chart Generator: Build, Customize, and Print Tables",
+    lead: "Most square root charts online are stuck at a fixed range, usually 1 to 100, printed once and never customizable. This tool allows you to pick any range you need, choose decimal precision, filter perfect squares, and generate a clean, ready-to-use table in seconds.",
+    p1: "Whether you need a quick study guide for algebra homework, a printable classroom poster for students, or an engineering lookup table up to 1000, our generator builds clean reference charts instantly.",
     cards: [
-      { expr: "√25 = 5.000", reason: "Whole integer root (Perfect Square)" },
-      { expr: "√50 ≈ 7.071", reason: "Irrational (3 decimal precision)" },
-      { expr: "√100 = 10.000", reason: "Custom range benchmark" }
+      { expr: "√25 = 5.000", reason: "Rational Whole Root (Perfect Square)" },
+      { expr: "√50 ≈ 7.071", reason: "Irrational Root (3 Decimal Precision)" },
+      { expr: "√100 = 10.000", reason: "Century Milestone Benchmark" }
     ]
   },
   s2: {
     eyebrow: "Quick Instructions",
     title: "How to Use the Square Root Chart Generator",
-    intro: "Building your custom table takes four simple steps:",
+    intro: "Building a custom square root reference table takes only a few quick steps:",
     steps: [
-      { title: "Set your range", text: "Enter a starting number and an ending number (for example, 1 to 50, or 200 to 300)." },
-      { title: "Choose your decimal precision", text: "Pick 2, 3, or 4 decimal places, depending on how exact you need the values." },
-      { title: "Toggle perfect squares only (optional)", text: "Switch this on if you only want whole-number results like 4, 9, 16, and 25 — useful for memorization practice." },
-      { title: "Click Generate", text: "Your custom table appears instantly, ready to copy, print, or screenshot." }
+      { title: "Set your range", text: "Enter a starting number and an ending number (for example, 1 to 100 for school reference, or 100 to 1000 for advanced projects)." },
+      { title: "Choose step interval and decimal precision", text: "Pick increments of 1, 2, 5, or 10, and select 2, 3, or 4 decimal places for non-perfect square approximations." },
+      { title: "Filter perfect squares only (optional)", text: "Toggle this option if you only want integer square roots like 4, 9, 16, and 25 for fast memorization practice." },
+      { title: "Copy, export, or print", text: "Copy your custom table to the clipboard, download as a CSV file for Excel and Google Sheets, or print a clean study sheet." }
     ],
-    warningTitle: "No sign-up, no downloads required",
-    warningText: "Build and export custom tables instantly in any browser, totally free without watermarks or usage restrictions."
+    warningTitle: "No sign-up or software installation required",
+    warningText: "Generate and export high-precision tables directly in your browser, completely free with no usage limits or watermarks."
   },
   s3: {
-    eyebrow: "Definition & Utility",
+    eyebrow: "Definition & Principles",
     title: "What Is a Square Root Chart?",
-    lead: "A square root chart (also called a square root table) is a reference list showing the square root of each number in a range, side by side. Instead of calculating √47 by hand every time you need it, you look it up directly in the table.",
+    lead: "A square root chart (or square root lookup table) is a sequential mathematical reference that pairs numbers with their exact or approximate square roots side by side. Instead of computing roots individually, users can scan and cross-reference values instantly.",
     points: [
-      "Students who need quick lookups while doing algebra or geometry homework",
-      "Teachers who want a printable handout or classroom reference poster",
-      "Anyone reviewing for a test where a fast mental reference beats reaching for a calculator each time"
+      "Helps students spot square number patterns and understand the inverse relationship of squaring.",
+      "Provides teachers and tutors with clean printable reference sheets for classroom tests.",
+      "Serves carpenters, engineers, and scientists with fast lookup values for geometric and physics formulas."
     ]
   },
   s4: {
-    eyebrow: "Comparison",
-    title: "Square Root Chart vs. Square Root Calculator: What's the Difference?",
-    lead: "These solve two different problems, and it's worth knowing which one you actually need:",
-    cardCalcTitle: "Square Root Calculator",
-    cardCalcText: "A square root calculator gives you the answer for one specific number at a time, along with a full explanation of how that answer works.",
-    cardChartTitle: "Square Root Chart Generator",
-    cardChartText: "A square root chart generator gives you many answers at once, laid out for scanning, comparing, printing, or studying — built to your exact range and precision.",
-    summary: "If you're solving a single problem, use the calculator. If you're studying a range of values, building a printable reference, or need a quick-glance table, this generator is the faster tool."
+    eyebrow: "Tool Comparison",
+    title: "Square Root Chart vs. Square Root Calculator: When to Use Each",
+    lead: "Both tools solve root problems, but they serve different mathematical workflows:",
+    cardCalcTitle: "Square Root Calculator (Single Value)",
+    cardCalcText: "A calculator is best when you need an immediate answer for a single number, along with step-by-step radical simplification and prime factor trees.",
+    cardChartTitle: "Square Root Chart Generator (Panoramic Table)",
+    cardChartText: "A chart generator provides an entire numerical sequence simultaneously, allowing you to compare adjacent values, spot patterns, and print full reference tables.",
+    summary: "Use the single calculator when solving a specific homework equation. Use the chart generator when studying a number range, building a cheat sheet, or preparing engineering tables."
   },
   s5: {
-    eyebrow: "Mathematical Principles",
-    title: "How the Values Are Calculated",
-    lead: "Every value in the chart follows the same definition used throughout mathematics: the square root of a number n is the value x such that x × x = n.",
-    p1: "For numbers that aren't perfect squares, the result is an irrational number — meaning its decimal digits go on forever without repeating — so the chart rounds each value to your selected number of decimal places (2, 3, or 4).",
+    eyebrow: "Mathematical Foundation",
+    title: "How Square Root Values Are Calculated",
+    lead: "Every value in a square root table satisfies the foundational algebraic definition: the principal square root of x is the non-negative number y such that y × y = x.",
+    p1: "For numbers that are not perfect squares, the square root is an irrational number with an endless, non-repeating decimal expansion. The generator rounds these values to your chosen precision:",
     points: [
       "√10 ≈ 3.162 (rounded from 3.16227766...)",
-      "√50 ≈ 7.071 (rounded from 7.07106781...)"
+      "√50 ≈ 7.071 (rounded from 7.07106781...)",
+      "√75 ≈ 8.660 (rounded from 8.66025403...)"
     ],
-    conclusion: "Perfect squares, on the other hand, always produce a clean, exact result with no rounding needed — √49 is exactly 7, not an approximation."
+    conclusion: "In contrast, perfect squares yield exact whole integers with zero approximation error, such as √49 = 7 and √100 = 10."
   },
   s6: {
-    eyebrow: "Sample Output",
-    title: "Example: A Generated Chart (Range 1–20, 3 Decimal Places)",
-    lead: "Here's what a generated table looks like by default. Change the range and precision above to build your own.",
-    scrollHint: "Scroll to view table",
-    colNum: "Number",
-    colRoot: "Square Root",
-    colType: "Type",
+    eyebrow: "Interactive Reference",
+    title: "Complete Square Root Table from 1 to 100",
+    lead: "Explore the complete reference table of square roots from 1 to 100. Use the search box and quick filter chips below to locate specific numbers, perfect squares, or irrational values instantly.",
+    scrollHint: "Scroll or search to inspect rows",
+    colNum: "Number (N)",
+    colRoot: "Square Root (√N)",
+    colType: "Classification",
     perfectBadge: "Perfect Square",
     irrationalBadge: "Irrational"
   },
   s7: {
-    eyebrow: "Practical Tips",
-    title: "How to Read and Use Your Chart",
-    lead: "Once your table is generated, here's how to get the most out of it:",
+    eyebrow: "Practical Advice",
+    title: "How to Read and Memorize Your Chart",
+    lead: "To maximize your learning efficiency, apply these three core study principles:",
     tips: [
-      { title: "Scan for perfect squares first", text: "These are your anchor points (1, 4, 9, 16, 25...) — every other value falls between two of them, which helps you sanity-check results at a glance." },
-      { title: "Match the 'Type' column to your task", text: "If you're doing exact algebra work, focus on perfect squares. If you're doing applied math (measurements, statistics, physics), the irrational decimal values are what you'll actually use." },
-      { title: "Use higher decimal precision for technical work", text: "Use 2 decimal places for quick classroom reference. Choose 3 or 4 decimals for engineering and physics calculations." }
+      { title: "Anchor around the 10 perfect squares", text: "Memorize the core anchors (1, 4, 9, 16, 25, 36, 49, 64, 81, 100). Every other number falls between two consecutive squares, giving you an immediate mental estimate." },
+      { title: "Memorize key irrational benchmarks", text: "Remember that √2 is approximately 1.414, √3 is approximately 1.732, and √5 is approximately 2.236. These three values help simplify radical expressions across algebra." },
+      { title: "Select appropriate precision for your task", text: "Use 2 decimal places for fast mental estimation, and switch to 3 or 4 decimal places for physics, geometry, and engineering computations." }
     ]
   },
   s8: {
-    eyebrow: "Pitfalls & Traps",
-    title: "Common Mistakes to Avoid",
+    eyebrow: "Common Pitfalls",
+    title: "Common Mistakes to Avoid with Square Root Charts",
     cautions: [
-      { title: "Treating a rounded value as exact", text: "√10 = 3.162 is an approximation — the real value has infinite non-repeating decimals. For precise engineering or scientific work, carry more decimal places or use exact radical form." },
-      { title: "Confusing a chart lookup with understanding the method", text: "A chart gives you the answer fast, but if you need to show your work in school assignments, you'll still want to know the underlying calculation methods." },
-      { title: "Assuming negative numbers belong on this chart", text: "This chart covers real, positive square roots only. Finding roots of negative numbers requires complex imaginary numbers (i)." }
+      { title: "Treating rounded decimals as exact numbers", text: "Values like √2 ≈ 1.414 are rounded approximations. In pure algebra, keep the exact radical form (√2) to prevent cumulative rounding errors." },
+      { title: "Forgetting the principal root convention", text: "While (-5) × (-5) = 25, the radical symbol √25 strictly denotes the principal (non-negative) root, which is +5." },
+      { title: "Attempting to find real roots of negative numbers", text: "In real-number mathematics, negative radicands have no real solution. Square roots of negative numbers belong to the complex number system using the imaginary unit i." }
     ]
   },
   s9: {
-    eyebrow: "FAQs",
+    eyebrow: "Common Questions",
     title: "Frequently Asked Questions"
   },
   s10: {
-    eyebrow: "Summary",
-    title: "A Quick Recap",
+    eyebrow: "Review",
+    title: "Summary & Key Takeaways",
     takeawayTitle: "Key Takeaways",
-    takeawayText: "A square root chart offers an instant panoramic view of radical values across an entire numerical interval. With our generator above, you can customize your start and end range, set precision up to 4 decimal places, isolate perfect squares, and print or copy clean data tables on demand."
+    takeawayText: "A square root chart provides a structured, panoramic view of square roots across any interval. Memorizing perfect squares, understanding irrational decimal approximations, and using our custom generator allows you to create print-ready tables tailored to any academic or professional need."
   },
   faqs: [
-    { question: "What is a square root chart used for?", answer: "It's a quick-reference table for looking up multiple square root values at once — commonly used by students for homework and exam prep, and by teachers for printable classroom references." },
-    { question: "How is this different from a regular square root calculator?", answer: "A calculator solves one number at a time with a full explanation. This generator builds a custom table across a whole range, which is faster when you need several values or want a printable reference." },
-    { question: "Can I generate a chart beyond 1 to 100?", answer: "Yes — set any start and end range you need, including ranges well beyond 100." },
-    { question: "How many decimal places should I use?", answer: "Two decimals is usually enough for quick classroom or homework reference. Three or four decimals is better if you need more precision for technical or scientific work." },
-    { question: "Can I print or save the generated chart?", answer: "Yes — once your table is generated, you can print the page directly or copy the table as CSV for your own document." },
-    { question: "Does the chart show exact values or rounded values?", answer: "Perfect squares (like 4, 9, 16) show exact integers. Every other number is irrational and gets rounded to your chosen decimal precision." }
+    { question: "What is the principal square root?", answer: "The principal square root is the non-negative square root of a positive real number. While an equation such as x² = 36 has two valid algebraic solutions (6 and -6), the radical symbol √36 strictly denotes the principal non-negative root: +6." },
+    { question: "How do you find the square root of a non-perfect square without a calculator?", answer: "You can use the manual long division method for exact digit-by-digit accuracy, or the Babylonian (Newton-Raphson) approximation formula: x_{n+1} = 0.5 * (x_n + S / x_n). Alternatively, identify the two nearest perfect squares to estimate the root." },
+    { question: "Why are the square roots of non-perfect squares irrational numbers?", answer: "If an integer is not a perfect square, its root cannot be represented as a simple fraction a/b where a and b are integers. Its decimal expansion continues indefinitely without repeating a predictable sequence of digits, requiring rounded approximations on charts." },
+    { question: "How many perfect squares are there between 1 and 100?", answer: "There are exactly 10 perfect squares between 1 and 100 inclusive: 1, 4, 9, 16, 25, 36, 49, 64, 81, and 100." },
+    { question: "How many perfect squares are there between 1 and 1000?", answer: "There are exactly 31 perfect squares between 1 and 1000 inclusive, starting with 1² = 1 and ending with 31² = 961. The next square, 32² = 1024, exceeds 1000." },
+    { question: "Can a negative number have a square root in a standard chart?", answer: "In real-number arithmetic, negative numbers do not have real square roots because multiplying any real number by itself always yields a non-negative result. Negative roots require complex imaginary numbers (i), so standard charts list real numbers only (x ≥ 0)." },
+    { question: "Can I generate and print a square root chart up to 1000 on this website?", answer: "Yes. Use the controls at the top of the page, set the starting value to 1 and the ending value to 1000, choose your desired decimal precision, and click Print or Copy to CSV. The tool generates the full table instantly without any downloads or fees." },
+    { question: "How do I create a square root table in Excel or Google Sheets?", answer: "Enter numbers 1 to 100 in column A, then in cell B2 enter the formula =SQRT(A2). Drag the fill handle down to apply the formula across the entire column, and format the numbers to your desired decimal places." }
   ]
 };
 

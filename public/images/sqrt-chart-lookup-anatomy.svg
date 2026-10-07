@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="100%" height="100%" aria-label="Square Root Chart and Lookup Table Anatomy">
+  <defs>
+    <linearGradient id="chartBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="perfectRowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(99, 102, 241, 0.18)"/>
+      <stop offset="100%" stop-color="rgba(168, 85, 247, 0.08)"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="440" rx="16" fill="url(#chartBgGrad)" stroke="#334155" stroke-width="1"/>
+
+  <!-- Top Title Bar -->
+  <text x="400" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle" letter-spacing="1.5">SQUARE ROOT REFERENCE TABLE ANATOMY</text>
+  <text x="400" y="66" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">How to Read, Scan, and Interpret Chart Data</text>
+
+  <!-- Visual Mock Table Container -->
+  <g transform="translate(40, 90)" filter="url(#cardShadow)">
+    <rect width="720" height="240" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.2"/>
+
+    <!-- Table Header Row -->
+    <rect x="0" y="0" width="720" height="44" rx="12" fill="#0f172a"/>
+    <rect x="0" y="24" width="720" height="20" fill="#0f172a"/>
+    <line x1="0" y1="44" x2="720" y2="44" stroke="#334155" stroke-width="1.2"/>
+
+    <!-- Header Column Titles -->
+    <text x="75" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#94a3b8" text-anchor="middle">NUMBER (N)</text>
+    <text x="215" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#94a3b8" text-anchor="middle">RADICAL FORM</text>
+    <text x="390" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#94a3b8" text-anchor="middle">SQUARE ROOT (3 DEC)</text>
+    <text x="590" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#94a3b8" text-anchor="middle">CLASSIFICATION</text>
+
+    <!-- Row 1: Perfect Square (Anchor) -->
+    <g transform="translate(0, 44)">
+      <rect width="720" height="48" fill="url(#perfectRowGrad)"/>
+      <line x1="0" y1="48" x2="720" y2="48" stroke="#334155" stroke-width="0.8"/>
+      <text x="75" y="29" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="middle">16</text>
+      <text x="215" y="29" font-family="ui-monospace, monospace" font-size="14" font-weight="700" fill="#c7d2fe" text-anchor="middle">√16</text>
+      <text x="390" y="29" font-family="ui-monospace, monospace" font-size="15" font-weight="800" fill="#818cf8" text-anchor="middle">4.000</text>
+      
+      <!-- Badge: Perfect Square -->
+      <rect x="525" y="11" width="130" height="26" rx="13" fill="#312e81" stroke="#6366f1" stroke-width="1"/>
+      <circle cx="542" cy="24" r="4" fill="#a5b4fc"/>
+      <text x="595" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#e0e7ff" text-anchor="middle">PERFECT SQUARE</text>
+    </g>
+
+    <!-- Row 2: Irrational Value -->
+    <g transform="translate(0, 92)">
+      <rect width="720" height="48" fill="transparent"/>
+      <line x1="0" y1="48" x2="720" y2="48" stroke="#334155" stroke-width="0.8"/>
+      <text x="75" y="29" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#cbd5e1" text-anchor="middle">17</text>
+      <text x="215" y="29" font-family="ui-monospace, monospace" font-size="14" font-weight="600" fill="#94a3b8" text-anchor="middle">√17</text>
+      <text x="390" y="29" font-family="ui-monospace, monospace" font-size="14" font-weight="600" fill="#e2e8f0" text-anchor="middle">4.123</text>
+      
+      <!-- Badge: Irrational -->
+      <rect x="535" y="11" width="110" height="26" rx="13" fill="#334155" stroke="#475569" stroke-width="1"/>
+      <text x="590" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8" text-anchor="middle">IRRATIONAL</text>
+    </g>
+
+    <!-- Row 3: Irrational Value (Between Anchors) -->
+    <g transform="translate(0, 140)">
+      <rect width="720" height="48" fill="rgba(245, 158, 11, 0.06)"/>
+      <line x1="0" y1="48" x2="720" y2="48" stroke="#334155" stroke-width="0.8"/>
+      <text x="75" y="29" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#fcd34d" text-anchor="middle">20</text>
+      <text x="215" y="29" font-family="ui-monospace, monospace" font-size="14" font-weight="600" fill="#fbbf24" text-anchor="middle">√20 = 2√5</text>
+      <text x="390" y="29" font-family="ui-monospace, monospace" font-size="14" font-weight="700" fill="#f59e0b" text-anchor="middle">4.472</text>
+      
+      <!-- Badge: Irrational -->
+      <rect x="535" y="11" width="110" height="26" rx="13" fill="#334155" stroke="#475569" stroke-width="1"/>
+      <text x="590" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#94a3b8" text-anchor="middle">IRRATIONAL</text>
+    </g>
+
+    <!-- Row 4: Perfect Square (Next Anchor) -->
+    <g transform="translate(0, 188)">
+      <rect width="720" height="52" rx="12" fill="url(#perfectRowGrad)"/>
+      <text x="75" y="31" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#ffffff" text-anchor="middle">25</text>
+      <text x="215" y="31" font-family="ui-monospace, monospace" font-size="14" font-weight="700" fill="#c7d2fe" text-anchor="middle">√25</text>
+      <text x="390" y="31" font-family="ui-monospace, monospace" font-size="15" font-weight="800" fill="#818cf8" text-anchor="middle">5.000</text>
+      
+      <!-- Badge: Perfect Square -->
+      <rect x="525" y="13" width="130" height="26" rx="13" fill="#312e81" stroke="#6366f1" stroke-width="1"/>
+      <circle cx="542" cy="26" r="4" fill="#a5b4fc"/>
+      <text x="595" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#e0e7ff" text-anchor="middle">PERFECT SQUARE</text>
+    </g>
+  </g>
+
+  <!-- Explanatory Callout Cards at Bottom -->
+  <g transform="translate(40, 350)">
+    <!-- Callout 1: Anchor Points -->
+    <rect x="0" y="0" width="225" height="66" rx="8" fill="#1e293b" stroke="#6366f1" stroke-width="1.2"/>
+    <circle cx="24" cy="22" r="8" fill="#6366f1"/>
+    <text x="24" y="26" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">1</text>
+    <text x="42" y="25" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#e0e7ff">Anchor Points</text>
+    <text x="14" y="48" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Whole roots: √16=4, √25=5</text>
+
+    <!-- Callout 2: Precision -->
+    <rect x="245" y="0" width="230" height="66" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.2"/>
+    <circle cx="269" cy="22" r="8" fill="#3b82f6"/>
+    <text x="269" y="26" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">2</text>
+    <text x="287" y="25" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#dbeafe">Decimal Precision</text>
+    <text x="259" y="48" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Rounded to 2, 3, or 4 places</text>
+
+    <!-- Callout 3: Factoring -->
+    <rect x="495" y="0" width="225" height="66" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+    <circle cx="519" cy="22" r="8" fill="#f59e0b"/>
+    <text x="519" y="26" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">3</text>
+    <text x="537" y="25" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fef3c7">Radical Factoring</text>
+    <text x="509" y="48" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">√20 = √(4 × 5) = 2√5</text>
+  </g>
+</svg>
