@@ -447,10 +447,10 @@ const displayFaqs = (faqs && faqs.length > 0) ? faqs : content.faqs;
                     </tbody>
                 </table>
             </div>
-            <p style="margin-top: 14px;">
+            <p style="margin-top: 14px; font-weight: 500;">
                 {content.s7Conclusion}
-                &nbsp;<a href={localizedUrl('/perfect-square-calculator/')} style="color: var(--primary-600); font-weight: 700; text-decoration: underline;">
-                    {content.s7Eyebrow} &rarr;
+                &nbsp;Want to test any specific number? <a href={localizedUrl('/perfect-square-calculator/')} style="color: var(--primary-600); font-weight: 700; text-decoration: underline;">
+                    Check if any number is a perfect square using our checker &rarr;
                 </a>
             </p>
         </div>
@@ -559,7 +559,12 @@ const displayFaqs = (faqs && faqs.length > 0) ? faqs : content.faqs;
             </div>
 
             <p style="margin-top: 14px;">{content.s10P3}</p>
-            <p class="reassurance-note">{content.s10Conclusion}</p>
+            <p class="reassurance-note">
+                {content.s10Conclusion}
+                &nbsp;Need real roots for negative numbers? <a href={localizedUrl('/racine-cubique-calculator/')} style="color: var(--primary-600); font-weight: 700; text-decoration: underline;">
+                    Calculate cube roots of negative numbers with real solutions &rarr;
+                </a>
+            </p>
         </div>
     </section>
 
