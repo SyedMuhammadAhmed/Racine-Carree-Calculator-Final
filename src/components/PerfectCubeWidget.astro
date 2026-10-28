@@ -344,13 +344,13 @@ const widgetI18n = cubeWidgetI18n;
 
       const rawVal = input.value.trim();
       if (!rawVal) {
-        showError('Please enter an integer to check');
+        showError(document.documentElement.lang === 'fr' ? 'Saisissez un entier à vérifier.' : 'Please enter an integer to check');
         return;
       }
 
       const n = Number(rawVal);
-      if (!Number.isFinite(n) || !Number.isInteger(n)) {
-        showError('Please enter a valid whole number (integer)');
+      if (!/^[+-]?\d+$/.test(rawVal) || !Number.isSafeInteger(n) || Math.abs(n) > 1e12) {
+        showError(document.documentElement.lang === 'fr' ? 'Saisissez un entier compris entre −1 000 000 000 000 et 1 000 000 000 000.' : 'Enter a whole number from −1,000,000,000,000 to 1,000,000,000,000.');
         return;
       }
 

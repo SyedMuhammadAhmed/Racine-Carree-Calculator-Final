@@ -96,7 +96,8 @@
     },
     "history": {
       "title": "Senaste beräkningar"
-    }
+    },
+    "inputHelp": "Ange ett tal eller ett bråk (9/16). Använd punkt eller komma som decimaltecken, utan tusentalsavgränsare."
   },
   "footer": {
     "brand": "Racine Carrée miniräknare",

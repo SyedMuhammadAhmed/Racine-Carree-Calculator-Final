@@ -96,7 +96,8 @@
     },
     "history": {
       "title": "Aktuelle Berechnungen"
-    }
+    },
+    "inputHelp": "Gib eine Zahl oder einen Bruch (9/16) ein. Punkt oder Komma als Dezimalzeichen verwenden, ohne Tausendertrennzeichen."
   },
   "footer": {
     "brand": "Racine Carrée-Rechner",

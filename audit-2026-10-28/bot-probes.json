@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/",
+    "agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "status": 200,
+    "bytes_decoded": 165191,
+    "body_hash": "636e4703ce50c84cf6f24d75c07abb411941d86542550a7ac7f4978b145186ed"
+  },
+  {
+    "path": "/fr/",
+    "agent": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "status": 200,
+    "bytes_decoded": 165158,
+    "body_hash": "26aba161da060354f4fdeae3f27c3d2279cfce2d76d57ed5afebad2920d1e69c"
+  },
+  {
+    "path": "/",
+    "agent": "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "status": 200,
+    "bytes_decoded": 165191,
+    "body_hash": "636e4703ce50c84cf6f24d75c07abb411941d86542550a7ac7f4978b145186ed"
+  },
+  {
+    "path": "/fr/",
+    "agent": "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "status": 200,
+    "bytes_decoded": 165158,
+    "body_hash": "26aba161da060354f4fdeae3f27c3d2279cfce2d76d57ed5afebad2920d1e69c"
+  }
+]

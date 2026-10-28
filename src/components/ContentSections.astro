@@ -191,7 +191,7 @@ const displayFaqs = (faqs && faqs.length > 0) ? faqs : content.faqs;
 
             <!-- Interactive Notation Mode Switcher -->
             <div class="interactive-notation-switcher">
-                <div class="notation-tabs" role="tablist">
+                <div class="notation-tabs" role="group">
                     <button type="button" class="notation-tab active" data-format="radical">{content.s3ToggleRadical}</button>
                     <button type="button" class="notation-tab" data-format="exponent">{content.s3ToggleExponent}</button>
                     <button type="button" class="notation-tab" data-format="code">{content.s3ToggleCode}</button>
@@ -316,7 +316,7 @@ const displayFaqs = (faqs && faqs.length > 0) ? faqs : content.faqs;
 
             <!-- Interactive Method Tabs Switcher -->
             <div class="method-interactive-tabs">
-                <div class="method-tabs-nav" role="tablist">
+                <div class="method-tabs-nav" role="group">
                     <button type="button" class="method-tab-btn active" data-method="m1">
                         <span class="tab-badge">1</span>
                         <span>{content.s6M1Title.split(':')[0]}</span>
@@ -872,151 +872,6 @@ const displayFaqs = (faqs && faqs.length > 0) ? faqs : content.faqs;
     </section>
 
 </article>
-
-<script is:inline>
-  // Interactive Client Script for Homepage Article Interactions
-  document.addEventListener('DOMContentLoaded', () => {
-    // 1. Quick-Try Chips & Calculation test triggers
-    const triggerCalculation = (num) => {
-      const input = document.getElementById('sqrtInput');
-      const btn = document.getElementById('sqrtCalcBtn');
-      if (input && btn) {
-        input.value = num;
-        input.dispatchEvent(new Event('input', { bubbles: true }));
-        input.dispatchEvent(new Event('change', { bubbles: true }));
-        btn.click();
-        const stage = document.getElementById('calculators') || input;
-        stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    };
-
-    document.querySelectorAll('.quick-try-chip, .btn-test-calc').forEach(chip => {
-      chip.addEventListener('click', (e) => {
-        e.preventDefault();
-        const num = chip.getAttribute('data-num');
-        if (num) triggerCalculation(num);
-      });
-    });
-
-    // 2. Radical Anatomy Explorer Interactive Tabs
-    const anatomyParts = document.querySelectorAll('.anatomy-part');
-    const anatomyCards = document.querySelectorAll('.anatomy-info-card');
-
-    anatomyParts.forEach(part => {
-      const activatePart = () => {
-        const target = part.getAttribute('data-part');
-        anatomyParts.forEach(p => p.classList.remove('active'));
-        part.classList.add('active');
-        anatomyCards.forEach(c => {
-          c.classList.remove('active');
-          if (c.id === `info-${target}`) {
-            c.classList.add('active');
-          }
-        });
-      };
-      part.addEventListener('mouseenter', activatePart);
-      part.addEventListener('click', activatePart);
-      part.addEventListener('focus', activatePart);
-    });
-
-    // 3. Interactive Notation Mode Switcher
-    const notationTabs = document.querySelectorAll('.notation-tab');
-    const notationViews = document.querySelectorAll('.notation-view');
-
-    notationTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const fmt = tab.getAttribute('data-format');
-        notationTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        notationViews.forEach(v => {
-          v.classList.remove('active');
-          if (v.id === `view-${fmt}`) {
-            v.classList.add('active');
-          }
-        });
-      });
-    });
-
-    // 4. Interactive Calculation Methods Switcher
-    const methodTabs = document.querySelectorAll('.method-tab-btn');
-    const methodPanels = document.querySelectorAll('.method-panel');
-
-    methodTabs.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const m = btn.getAttribute('data-method');
-        methodTabs.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        methodPanels.forEach(p => {
-          p.classList.remove('active');
-          if (p.id === `method-panel-${m}`) {
-            p.classList.add('active');
-          }
-        });
-      });
-    });
-
-    // 5. Table 1-50 Filter Pills & Live Search
-    const tableRows = document.querySelectorAll('#refTable50 tbody tr');
-    const filterPills = document.querySelectorAll('.tbl-filter-pill');
-    const searchInput = document.getElementById('sqrtTableSearch');
-
-    let currentFilter = 'all';
-    let searchQuery = '';
-
-    const applyTableFiltering = () => {
-      const q = searchQuery.toLowerCase().trim();
-      tableRows.forEach(row => {
-        const isPerfect = row.getAttribute('data-perfect') === 'true';
-        const num = row.getAttribute('data-num') || '';
-        const root = (row.getAttribute('data-root') || '').toLowerCase();
-        const simp = (row.getAttribute('data-simp') || '').toLowerCase();
-
-        let matchesFilter = true;
-        if (currentFilter === 'perfect' && !isPerfect) matchesFilter = false;
-        if (currentFilter === 'irrational' && isPerfect) matchesFilter = false;
-
-        let matchesSearch = true;
-        if (q) {
-          matchesSearch = num.includes(q) || root.includes(q) || simp.includes(q);
-        }
-
-        row.style.display = (matchesFilter && matchesSearch) ? '' : 'none';
-      });
-    };
-
-    filterPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        filterPills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        currentFilter = pill.getAttribute('data-filter') || 'all';
-        applyTableFiltering();
-      });
-    });
-
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value;
-        applyTableFiltering();
-      });
-    }
-
-    // 6. Copy Formula Buttons
-    document.querySelectorAll('.btn-copy-formula').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const formula = btn.getAttribute('data-formula');
-        if (formula && navigator.clipboard) {
-          navigator.clipboard.writeText(formula).then(() => {
-            const originalHtml = btn.innerHTML;
-            btn.innerHTML = '<span style="font-size: 11px; font-weight: 700; color: var(--primary-500);">&check; Copied</span>';
-            setTimeout(() => {
-              btn.innerHTML = originalHtml;
-            }, 1800);
-          });
-        }
-      });
-    });
-  });
-</script>
 
 <style>
   /* --- Interactive Ribbon & Quick-Try Bar --- */

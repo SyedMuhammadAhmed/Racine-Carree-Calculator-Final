@@ -96,7 +96,8 @@
     },
     "history": {
       "title": "Cálculos recientes"
-    }
+    },
+    "inputHelp": "Introduce un número o una fracción (9/16). Usa punto o coma decimal, sin separadores de miles."
   },
   "footer": {
     "brand": "Calculadora Racine Carrée",

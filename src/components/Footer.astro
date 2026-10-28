@@ -35,7 +35,7 @@ const sectionHref = (id: string) => isHomePath ? `#${id}` : `${homeUrl}#${id}`;
 const pageHref = (path: string) => path;
 const t = await useTranslations(contentLocale);
 const brand = t('footer.brand', 'Racine Carrée Calculator');
-const description = t('site.description', 'Free online Racine Carrée Calculator. Calculate square roots with exact decimals, simplified radicals, step-by-step workings, and reference tables.');
+const description = t('site.description', 'Free online Racine Carrée Calculator. Calculate square roots with decimal approximations, simplified radicals, step-by-step workings, and reference tables.');
 const year = new Date().getFullYear();
 ---
 

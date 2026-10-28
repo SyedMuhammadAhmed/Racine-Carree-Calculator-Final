@@ -108,7 +108,7 @@ export const NTH_BOILERPLATE: Record<string, NthBoilerplate> = {
     s2Steps: [
       { title: "Enter the Index (n)", text: "Enter the positive whole-number index into the first box (e.g., 4 for a fourth root)." },
       { title: "Enter Your Number (x)", text: "Enter the radicand into the second box." },
-      { title: "Click Calculate", text: "Click Calculate to get your exact decimal and simplified radical form immediately." }
+      { title: "Click Calculate", text: "Click Calculate to get your decimal approximation and simplified radical form immediately." }
     ],
     s3Eyebrow: "Notation",
     s3Title: "Nth Root Symbol: What Does ⁿ√ Mean?",

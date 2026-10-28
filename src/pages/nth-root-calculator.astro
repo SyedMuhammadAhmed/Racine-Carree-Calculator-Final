@@ -11,8 +11,8 @@ import { getPageAlternateLinks } from '../utils/seo';
 import { getLocaleFaqs } from '../../theme/i18n/translations';
 
 const lang = 'en';
-const title = 'Nth Root Calculator - Free Root Tool for Any Index';
-const description = 'Calculate any root (4th, 5th, or custom index) instantly with our free Nth Root Calculator. Get exact results, simplified forms, and step-by-step work.';
+const title = 'Nth Root Calculator — Integer Degrees & Steps';
+const description = 'Calculate real roots with integer degrees from 1 to 10,000. Get rounded results and factor-based steps for supported integers.';
 const canonicalUrl = `${site.siteUrl}/nth-root-calculator/`;
 const alternateLinks = getPageAlternateLinks('/nth-root-calculator/');
 
@@ -104,7 +104,8 @@ const quickNthPairs = [
                         </div>
                         <div class="input-wrapper">
                           <span class="input-prefix" aria-hidden="true">x</span>
-                          <input type="number" inputmode="decimal" id="nthValue" class="calc-input" placeholder="e.g. 625" step="any" autocomplete="off" aria-label="Number (x)">
+                          <input type="text" inputmode="text" id="nthValue" class="calc-input" placeholder="625, 0.25, 1/16" step="any" autocomplete="off" aria-label="Number (x)">
+                                <p class="input-format-help">{t("calc.inputHelp")}</p>
                         </div>
                       </div>
                     </div>
@@ -134,7 +135,7 @@ const quickNthPairs = [
                 <span class="quick-calc-sublabel">Click any pair for an instant result</span>
               </div>
             </div>
-            <div class="quick-calc-chips quick-calc-chips--nth" role="list" id="nthChips">
+            <div class="quick-calc-chips quick-calc-chips--nth" role="group" id="nthChips">
               {quickNthPairs.map(([n, x]) => (
                 <button
                   type="button"
@@ -143,7 +144,7 @@ const quickNthPairs = [
                   data-value={x}
                   data-calc-type="nth"
                   aria-label={`Calculate ${n}th root of ${x}`}
-                  role="listitem"
+                  
                 >
                   <span class="quick-chip-degree">{n}√</span>
                   <span class="quick-chip-num">{x}</span>

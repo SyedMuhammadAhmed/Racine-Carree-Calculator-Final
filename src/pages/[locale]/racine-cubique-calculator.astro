@@ -24,7 +24,7 @@ const bp = getCbrtBoilerplate(lang);
 const cbrtContent = getCbrtContent(lang);
 const t = await useTranslations(lang);
 const title = t('cbrt.title', 'Racine Cubique Calculator | Free Online Cube Root Calculator');
-const description = t('cbrt.description', 'Calculate cube roots instantly with our free Racine Cubique Calculator. Get exact decimal results, simplified radicals, and step-by-step workings.');
+const description = t('cbrt.description', 'Calculate cube roots instantly with our free Racine Cubique Calculator. Get decimal approximations, simplified radicals, and step-by-step workings.');
 const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/racine-cubique-calculator/', lang)}`;
 const alternateLinks = getPageAlternateLinks('/racine-cubique-calculator/');
 
@@ -53,7 +53,7 @@ const quickCubeNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
               <span class="title-line">{t('cbrt.hero.part1', 'Racine Cubique')}</span>
               <span class="title-line gradient-text">{t('cbrt.hero.part2', 'Calculator')}</span>
           </h1>
-          <p class="hero-subtitle">{t('cbrt.hero.subtitle', 'Calculate the cube root of any number (positive or negative) instantly. Get the exact decimal result, simplified radical form, and step-by-step workings. 100% free.')}</p>
+          <p class="hero-subtitle">{t('cbrt.hero.subtitle', 'Calculate the cube root of any number (positive or negative) instantly. Get the decimal approximation, simplified radical form, and step-by-step workings. 100% free.')}</p>
           <div class="hero-pills">
               <span class="hero-pill">
                   <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -95,7 +95,8 @@ const quickCubeNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
                       </div>
                       <div class="input-wrapper">
                         <span class="input-prefix" aria-hidden="true">∛</span>
-                        <input type="number" inputmode="decimal" id="cbrtInput" class="calc-input" placeholder="e.g. 27" step="any" autocomplete="off" aria-label={t('calc.label.number', 'Number to calculate')}>
+                        <input type="text" inputmode="text" id="cbrtInput" class="calc-input" placeholder="27, -8, 8/27" step="any" autocomplete="off" aria-label={t('calc.label.number', 'Number to calculate')}>
+                                <p class="input-format-help">{t("calc.inputHelp")}</p>
                       </div>
                     </div>
                   </section>
@@ -124,7 +125,7 @@ const quickCubeNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
                 <span class="quick-calc-sublabel">{bp.quickCalcSublabel}</span>
               </div>
             </div>
-            <div class="quick-calc-chips" role="list" id="cbrtChips">
+            <div class="quick-calc-chips" role="group" id="cbrtChips">
               {quickCubeNumbers.map(n => (
                 <button
                   type="button"
@@ -132,7 +133,7 @@ const quickCubeNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
                   data-value={n}
                   data-calc-type="cbrt"
                   aria-label={`Calculate cube root of ${n}`}
-                  role="listitem"
+                  
                 >
                   <span class="quick-chip-num">{n}</span>
                   <span class="quick-chip-eq" aria-hidden="true">= ?</span>

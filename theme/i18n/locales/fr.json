@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Calculateur Racine Carrée en ligne",
-    "description": "Calculez les racines carrées avec résultats exacts, radicaux simplifiés, étapes détaillées et tableaux de référence gratuits."
+    "title": "Calculatrice de racine carrée — Résultat et étapes",
+    "description": "Calculez une racine carrée, obtenez une approximation décimale et simplifiez les radicaux pris en charge. Gratuit, avec étapes détaillées."
   },
   "nav": {
     "home": "Accueil",
@@ -15,9 +15,9 @@
     "terms": "Conditions d'Utilisation",
     "contact": "Contact",
     "calculators": "Calculateurs",
-    "cbrt": "Calculateur Racine Cubique",
-    "nth": "Calculateur Racine N-ième",
-    "chart": "Générateur de Tableau de Racine Carrée",
+    "cbrt": "Racine cubique",
+    "nth": "Racine n-ième",
+    "chart": "Tableau des racines carrées",
     "perfect": "Calculateur de Carré Parfait",
     "cube": "Calculateur de Cube Parfait",
     "sitemap": "Plan du Site",
@@ -26,10 +26,10 @@
   "hero": {
     "badge": "Calculateur de Racine Carrée Gratuit",
     "title": {
-      "part1": "Racine Carrée",
-      "part2": "Calculatrice"
+      "part1": "Calculatrice de",
+      "part2": "racine carrée"
     },
-    "subtitle": "Calculez la racine carrée de n'importe quel nombre instantanément avec résultat décimal exact, forme radicale simplifiée et étapes détaillées. 100% gratuit et sans limite.",
+    "subtitle": "Calculez la racine carrée d’un nombre ou d’une fraction. Obtenez une approximation décimale et une simplification pour les entiers pris en charge. Gratuit et sans inscription.",
     "pill": {
       "instant": "Instantané",
       "stepByStep": "Pas à pas",
@@ -48,7 +48,7 @@
     },
     "squareRoot": {
       "title": "Racine carrée",
-      "desc": "Calculer √x pour tout nombre positif"
+      "desc": "Racine carrée principale d’un nombre ou d’une fraction"
     },
     "cubeRoot": {
       "title": "Racine cubique",
@@ -96,7 +96,8 @@
     },
     "history": {
       "title": "Calculs récents"
-    }
+    },
+    "inputHelp": "Saisissez un nombre ou une fraction (9/16). Utilisez un point ou une virgule décimale, sans séparateur de milliers."
   },
   "footer": {
     "brand": "Calculatrice Racine Carrée",
@@ -108,12 +109,12 @@
     "legal": "Mentions Légales"
   },
   "cbrt": {
-    "title": "Calculateur Racine Cubique | Calculateur de Racine Cubique en Ligne Gratuit",
-    "description": "Calculez instantanément les racines cubiques avec notre calculateur gratuit. Obtenez des résultats décimaux exacts, radicaux simplifiés et étapes de calcul.",
+    "title": "Calculatrice de racine cubique — Résultat et étapes",
+    "description": "Calculez instantanément les racines cubiques avec notre calculateur gratuit. Obtenez des approximations décimales, radicaux simplifiés et étapes de calcul.",
     "hero": {
-      "part1": "Racine Cubique",
-      "part2": "Calculateur",
-      "subtitle": "Calculez la racine cubique de n'importe quel nombre — positif ou négatif — instantanément. Obtenez le résultat décimal exact, la forme radicale simplifiée et les étapes. 100% gratuit."
+      "part1": "Calculatrice de",
+      "part2": "racine cubique",
+      "subtitle": "Calculez la racine cubique de n'importe quel nombre — positif ou négatif — instantanément. Obtenez le résultat décimal arrondi, la forme radicale simplifiée et les étapes. 100% gratuit."
     },
     "calc": {
       "title": "Calculateur de Racine Cubique",
@@ -123,12 +124,12 @@
     }
   },
   "nth": {
-    "title": "Calculateur Racine N-ième - Outil Gratuit pour Tout Indice",
-    "description": "Calculez n'importe quelle racine (4e, 5e ou indice personnalisé n) instantanément avec notre calculateur de racine n-ième gratuit. Résultats exacts et étapes.",
+    "title": "Calculatrice de racine n-ième — Indices entiers",
+    "description": "Calculez des racines réelles d’indice entier de 1 à 10 000. Obtenez une approximation décimale et des étapes pour les entiers pris en charge.",
     "hero": {
-      "part1": "Racine N-ième",
-      "part2": "Calculateur",
-      "subtitle": "Calculez n'importe quelle racine — racine 4e, 5e ou degré n personnalisé — pour n'importe quel nombre avec forme radicale simplifiée et étapes détaillées."
+      "part1": "Calculatrice de",
+      "part2": "racine n-ième",
+      "subtitle": "Calculez une racine réelle d’indice entier de 1 à 10 000, avec approximation décimale et étapes pour les entiers pris en charge."
     },
     "calc": {
       "title": "Calculateur de Racine N-ième",
@@ -136,7 +137,7 @@
       "btn": "Calculer la Racine N-ième",
       "degreeLabel": "Degré de la racine (indice n)",
       "numberLabel": "Nombre (radicande x)",
-      "tooltipDegree": "Le degré de la racine (n). Par exemple 2 pour carré, 3 pour cube, 4 pour racine quatrième.",
+      "tooltipDegree": "Indice entier de 1 à 10 000 : 2 pour une racine carrée, 3 pour une racine cubique.",
       "tooltipNumber": "Le nombre dont vous souhaitez calculer la racine."
     }
   },
@@ -144,8 +145,8 @@
     "title": "Générateur de Tableau de Racine Carrée – Table Personnalisée",
     "description": "Générez un tableau de racine carrée personnalisé pour n'importe quelle plage de nombres. Choisissez votre précision décimale et imprimez ou copiez gratuitement.",
     "hero": {
-      "part1": "Tableau de Racine Carrée",
-      "part2": "Générateur",
+      "part1": "Tableau des",
+      "part2": "racines carrées",
       "subtitle": "Générez un tableau de racine carrée personnalisé et imprimable pour n'importe quelle plage avec précision décimale au choix."
     },
     "calc": {
@@ -162,8 +163,8 @@
     "title": "Calculateur de Carré Parfait | Est-ce un Carré Parfait ?",
     "description": "Vérifiez instantanément si un nombre est un carré parfait. Obtenez les racines entières, la factorisation première et les carrés encadrants.",
     "hero": {
-      "part1": "Carré Parfait",
-      "part2": "Calculateur & Vérificateur",
+      "part1": "Vérificateur de",
+      "part2": "carrés parfaits",
       "subtitle": "Vérifiez si un nombre entier est un carré parfait. Obtenez les racines entières, les facteurs premiers et les carrés encadrants. 100% gratuit."
     },
     "calc": {
@@ -178,8 +179,8 @@
     "title": "Calculateur de Cube Parfait | Est-ce un Cube Parfait ?",
     "description": "Vérifiez instantanément si un nombre est un cube parfait. Obtenez les racines entières, la factorisation première et les cubes encadrants pour positifs et négatifs.",
     "hero": {
-      "part1": "Cube Parfait",
-      "part2": "Calculateur & Vérificateur",
+      "part1": "Vérificateur de",
+      "part2": "cubes parfaits",
       "subtitle": "Vérifiez si un nombre — positif ou négatif — est un cube parfait. Obtenez les racines entières, puissances premières et cubes encadrants. 100% gratuit."
     },
     "calc": {

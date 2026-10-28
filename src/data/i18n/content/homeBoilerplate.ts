@@ -189,9 +189,9 @@ export const HOME_BOILERPLATE: Record<string, HomeBoilerplate> = {
   // 1. English (en)
   en: {
     leadTitle: "Racine Carree Calculator: Free Online Square Root Calculator",
-    leadP1: "Use our free Racine Carree Calculator to find the square root of any number instantly. Enter a positive number, decimal, fraction, or even a negative number, and get the exact decimal result, simplified radical form, and step-by-step breakdown in seconds. No sign-up required, no limits, and 100% free.",
+    leadP1: "Use our free Racine Carree Calculator to find the square root of any number instantly. Enter a positive number, decimal, fraction, or even a negative number, and get the decimal approximation, simplified radical form, and step-by-step breakdown in seconds. No sign-up required, no limits, and 100% free.",
     leadP2: "Whether you searched for \"racine carree calculator,\" \"racine carrée calculator,\" or \"square root calculator,\" you have found the right tool. The calculator above gives you the answer in one click, and this guide explains everything you need to know about square roots, from the basic definition to advanced calculation methods.",
-    badgeInstant: "Instant Exact Decimals",
+    badgeInstant: "Instant Decimal Approximations",
     badgeRadical: "Simplified Radical Form",
     badgeSteps: "Step-by-Step Breakdown",
     badgeFree: "100% Free & Unlimited",
@@ -199,7 +199,7 @@ export const HOME_BOILERPLATE: Record<string, HomeBoilerplate> = {
 
     s1Eyebrow: "Definition & Concept",
     s1Title: "What Is Racine Carrée (Square Root)?",
-    s1P1: "Racine carrée is the French term for square root. It is one of the most searched mathematical phrases worldwide, and many students, professionals, and curious learners type \"racine carree calculator\" into search engines when they need a quick way to calculate the square root of a number.",
+    s1P1: "The principal square root of a nonnegative number x is the nonnegative number whose square equals x. For example, √49 = 7. The equation y² = 49 has two solutions, 7 and −7.",
     s1P2: "A square root is a value that, when multiplied by itself, produces the original number. If you multiply 7 by 7, you get 49. So the square root of 49 is 7. This works because the operation reverses squaring: squaring builds a number up, and the square root brings it back down.",
     s1P3: "In mathematical terms, the square root of a number x is a number y such that y × y = x. This is written as y² = x, which is the inverse relationship between squaring and finding a square root.",
     s1Cards: [
@@ -224,7 +224,7 @@ export const HOME_BOILERPLATE: Record<string, HomeBoilerplate> = {
     s2Steps: [
       { title: "Type Your Number", text: "Enter any number into the input box above. The calculator accepts whole numbers, decimals, fractions, and negative numbers." },
       { title: "Click Calculate", text: "Press the Calculate button. The calculator processes your input instantly using precise mathematical algorithms." },
-      { title: "Read Your Result", text: "The calculator displays the square root as an exact decimal, a simplified radical form when applicable (for example, √72 = 6√2), and a step-by-step breakdown." }
+      { title: "Read Your Result", text: "The calculator displays the square root as an decimal approximation, a simplified radical form when applicable (for example, √72 = 6√2), and a step-by-step breakdown." }
     ],
     s2Conclusion: "That is the entire process. You do not need to know any formulas or methods to use the tool. The rest of this page explains how square roots actually work.",
 
@@ -291,7 +291,7 @@ export const HOME_BOILERPLATE: Record<string, HomeBoilerplate> = {
     s6Title: "How to Calculate Square Root: Four Methods",
     s6Intro: "There is more than one way to find the square root of a number. Each method suits different situations:",
     s6M1Title: "Method 1: Using This Racine Carrée Calculator (Fastest)",
-    s6M1Text: "Enter your number above and click Calculate. The tool returns the exact decimal result, simplified radical form, and step-by-step breakdown instantly. This is the quickest and most accurate option for any number.",
+    s6M1Text: "Enter your number above and click Calculate. The tool returns the decimal approximation, simplified radical form, and step-by-step breakdown instantly. This is the quickest and most accurate option for any number.",
     s6M1Action: "Jump to Calculator Above",
     s6M2Title: "Method 2: Prime Factorization (Best for Perfect Squares)",
     s6M2Intro: "This method works exceptionally well for whole numbers and perfect squares.",
@@ -334,7 +334,7 @@ export const HOME_BOILERPLATE: Record<string, HomeBoilerplate> = {
     s8Title: "Non-Perfect Squares and Irrational Numbers",
     s8Intro: "When a positive integer is not a perfect square, its square root is an irrational number. This means its decimal representation never terminates and never repeats.",
     s8Text: "These numbers are real numbers that cannot be written as a fraction of two integers. They exist alongside mathematical constants like pi (π).",
-    s8CalcNote: "Our Racine Carree Calculator computes these to full decimal precision and supplies the exact simplified radical form.",
+    s8CalcNote: "Our Racine Carree Calculator computes these to up to 12 significant digits and supplies the exact simplified radical form.",
 
     s9Eyebrow: "Decimals & Fractions",
     s9Title: "Square Roots of Decimals and Fractions",
@@ -369,7 +369,7 @@ export const HOME_BOILERPLATE: Record<string, HomeBoilerplate> = {
 
     s12Eyebrow: "Reference Tables",
     s12Title: "Complete Reference Table: Square Roots of 1 to 50",
-    s12Intro: "Quick lookup table for numbers from 1 to 50 with exact decimal roots, simplified radical representations, and perfect square indicators.",
+    s12Intro: "Quick lookup table for numbers from 1 to 50 with approximate decimal roots, simplified radical representations, and perfect square indicators.",
     s12ChartLinkText: "Need a full printable square root chart up to 100 or custom ranges? Check our Square Root Chart Generator.",
     s12ScrollHint: "Scroll down to browse all 50 values ↓",
     s12ColNumber: "Number (n)",
@@ -407,7 +407,7 @@ export const HOME_BOILERPLATE: Record<string, HomeBoilerplate> = {
     s15Faqs: [
       {
         question: "How do I use the Racine Carree Calculator?",
-        answer: "Enter your number in the input field above and click Calculate. You will instantly receive the exact decimal result, the simplified radical form (e.g., √72 = 6√2), and a step-by-step breakdown."
+        answer: "Enter your number in the input field above and click Calculate. You will instantly receive the decimal approximation, the simplified radical form (e.g., √72 = 6√2), and a step-by-step breakdown."
       },
       {
         question: "What does \"racine carrée\" mean?",
@@ -459,9 +459,9 @@ export const HOME_BOILERPLATE: Record<string, HomeBoilerplate> = {
   // 2. French (fr)
   fr: {
     leadTitle: "Calculateur Racine Carrée : Outil en Ligne Gratuit",
-    leadP1: "Utilisez notre calculateur gratuit de racine carrée pour trouver instantanément la racine de n'importe quel nombre. Entrez un entier positif, un nombre décimal, une fraction ou un nombre négatif pour obtenir le résultat décimal exact, la forme radicale simplifiée et les étapes de calcul en quelques secondes. Sans inscription, sans limites et 100 % gratuit.",
+    leadP1: "Utilisez notre calculateur gratuit de racine carrée pour trouver instantanément la racine de n'importe quel nombre. Entrez un entier positif, un nombre décimal, une fraction ou un nombre négatif pour obtenir le résultat décimal arrondi, la forme radicale simplifiée et les étapes de calcul en quelques secondes. Sans inscription, sans limites et 100 % gratuit.",
     leadP2: "Que vous ayez recherché « racine carrée calculateur », « racine carree calculator » ou « square root calculator », vous êtes au bon endroit. L'outil ci-dessus vous donne la réponse en un clic, et ce guide vous explique tout ce qu'il faut savoir sur les racines carrées.",
-    badgeInstant: "Décimales Exactes",
+    badgeInstant: "Approximations décimales",
     badgeRadical: "Forme Radicale Simplifiée",
     badgeSteps: "Étapes Détaillées",
     badgeFree: "100 % Gratuit et Illimité",
@@ -561,7 +561,7 @@ export const HOME_BOILERPLATE: Record<string, HomeBoilerplate> = {
     s6Title: "Comment Calculer une Racine Carrée : 4 Méthodes",
     s6Intro: "Il existe plusieurs techniques pour déterminer une racine carrée selon la situation :",
     s6M1Title: "Méthode 1 : Avec ce Calculateur Racine Carrée (Le plus rapide)",
-    s6M1Text: "Entrez votre nombre ci-dessus et cliquez sur Calculer. L'outil vous donne instantanément le résultat décimal exact et la forme simplifiée.",
+    s6M1Text: "Entrez votre nombre ci-dessus et cliquez sur Calculer. L'outil vous donne instantanément le résultat décimal arrondi et la forme simplifiée.",
     s6M1Action: "Remonter au Calculateur",
     s6M2Title: "Méthode 2 : Décomposition en Facteurs Premiers (Carrés Parfaits)",
     s6M2Intro: "Idéale pour les nombres entiers et les carrés parfaits.",
@@ -677,7 +677,7 @@ export const HOME_BOILERPLATE: Record<string, HomeBoilerplate> = {
     s15Faqs: [
       {
         question: "Comment utiliser le Calculateur Racine Carrée ?",
-        answer: "Entrez votre nombre dans le champ de saisie ci-dessus et cliquez sur Calculer. Vous obtiendrez immédiatement le résultat décimal exact, la forme simplifiée (ex. √72 = 6√2) et le détail étape par étape."
+        answer: "Entrez votre nombre dans le champ de saisie ci-dessus et cliquez sur Calculer. Vous obtiendrez immédiatement le résultat décimal arrondi, la forme simplifiée (ex. √72 = 6√2) et le détail étape par étape."
       },
       {
         question: "Que signifie le terme « racine carrée » ?",

@@ -96,7 +96,8 @@
     },
     "history": {
       "title": "Son hesaplamalar"
-    }
+    },
+    "inputHelp": "Bir sayı veya kesir (9/16) girin. Ondalık ayırıcı olarak nokta veya virgül kullanın; binlik ayırıcı kullanmayın."
   },
   "footer": {
     "brand": "Racine Carrée Hesap Makinesi",

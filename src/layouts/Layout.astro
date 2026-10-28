@@ -238,31 +238,6 @@ const webAppSchema = {
   }
 };
 
-// JSON-LD SoftwareApplication Schema (Google Rich Results compliant)
-const softwareAppSchema = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "@id": `${pageUrl}#software`,
-  "name": title,
-  "url": pageUrl,
-  "description": description,
-  "inLanguage": lang,
-  "applicationCategory": "EducationalApplication",
-  "applicationSubCategory": "Math Calculator",
-  "operatingSystem": "All",
-  "softwareVersion": "2.0.0",
-  "publisher": {
-    "@id": `${site.siteUrl}/#organization`
-  },
-  "featureList": SCHEMA_FEATURES[lang] || SCHEMA_FEATURES.en,
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
-  }
-};
-
 // JSON-LD WebSite Schema
 const webSiteSchema = {
   "@context": "https://schema.org",
@@ -292,7 +267,7 @@ const faqPageSchema = faqItems && faqItems.length > 0 ? {
   }))
 } : null;
 
-const schemas = [orgSchema, webAppSchema, softwareAppSchema, webSiteSchema, faqPageSchema].filter(Boolean);
+const schemas = [orgSchema, webAppSchema, webSiteSchema, faqPageSchema].filter(Boolean);
 ---
 
 <!DOCTYPE html>
@@ -360,6 +335,6 @@ const schemas = [orgSchema, webAppSchema, softwareAppSchema, webSiteSchema, faqP
     <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
     </button>
-    <script src="/app.js" defer></script>
+    <script src="../scripts/app.js"></script>
 </body>
 </html>

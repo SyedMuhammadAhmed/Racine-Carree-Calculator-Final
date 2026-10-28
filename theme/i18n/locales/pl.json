@@ -96,7 +96,8 @@
     },
     "history": {
       "title": "Najnowsze obliczenia"
-    }
+    },
+    "inputHelp": "Wpisz liczbę lub ułamek (9/16). Użyj kropki lub przecinka dziesiętnego, bez separatorów tysięcy."
   },
   "footer": {
     "brand": "Kalkulator Racine Carrée",

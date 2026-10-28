@@ -114,7 +114,7 @@ export const CBRT_INTERACTIVE_I18N: Record<string, CbrtInteractiveI18n> = {
         desc: "Applies the mathematical odd symmetry rule ∛(-x) = -∛x, returning exact real solutions for negative inputs."
       },
       {
-        title: "Arbitrary Precision & Step Workings",
+        title: "Rounded Results & Factor-Based Steps",
         desc: "Provides clean decimal approximations and comprehensive step-by-step mathematical reasoning."
       }
     ],

@@ -23,7 +23,7 @@ const lang = getLocaleFromParams(Astro.params);
 const t = await useTranslations(lang);
 const content = getHomeContent(lang);
 const title = t('site.title', 'Racine Carree Calculator | Online Square Root Calculator');
-const description = t('site.description', 'Calculate square roots with exact decimals, simplified radicals, step-by-step workings, and reference tables.');
+const description = t('site.description', 'Calculate square roots with decimal approximations, simplified radicals, step-by-step workings, and reference tables.');
 const canonicalUrl = `${site.siteUrl}${getLocalizedUrl('/', lang)}`;
 const alternateLinks = getHomeAlternateLinks();
 ---

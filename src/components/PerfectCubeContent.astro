@@ -13,7 +13,7 @@ const currentLocale = (lang || DEFAULT_LOCALE) as Locale;
 const localizedUrl = (path: string) => getLocalizedUrl(path, currentLocale);
 
 const content = getCubeContent(lang);
-const cubeToc = content.toc;
+const cubeToc = content.toc.filter(item => !["#section-make-cube", "#section-squares-vs-cubes"].includes(item.href));
 const effectiveFaqs = (faqs && faqs.length > 0) ? faqs : content.faqs;
 const authorByline = getAuthorByline(lang);
 
@@ -439,7 +439,7 @@ const currentUi = uiDict[lang] || uiDict['en'];
       </div>
       <p style="margin-top: 14px; font-weight: 500;">
         When an integer is not a perfect cube, its root is an irrational decimal. <a href={localizedUrl('/racine-cubique-calculator/')} style="color: var(--primary-600); font-weight: 700; text-decoration: underline;">
-          Compute exact decimal cube roots with radical steps &rarr;
+          Compute decimal approximation cube roots with radical steps &rarr;
         </a>
       </p>
     </div>
@@ -565,7 +565,7 @@ const currentUi = uiDict[lang] || uiDict['en'];
         <div class="step-card">
           <h3 class="step-title">{currentUi.excelTitle}</h3>
           <div class="copy-box" style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-surface-elevated); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
-            <code id="pcFormulaExcel" style="font-size: 0.82rem;">{lang === 'fr' ? '=SI(ARRONDI(A2^(1/3); 0)^3 = A2; "Cube Parfait"; "Non")' : '=IF(ROUND(A2^(1/3), 0)^3 = A2, "Perfect Cube", "Not a Cube")'}</code>
+            <code id="pcFormulaExcel" style="font-size: 0.82rem;">{lang === 'fr' ? '=SI(ARRONDI(ABS(A2)^(1/3); 0)^3 = ABS(A2); "Cube Parfait"; "Non")' : '=IF(ROUND(ABS(A2)^(1/3), 0)^3 = ABS(A2), "Perfect Cube", "Not a Cube")'}</code>
             <button type="button" class="btn-copy-code" data-target="pcFormulaExcel" style="padding: 4px 10px; font-size: 0.78rem; border-radius: var(--radius-sm); background: var(--primary-500); color: white; border: none; cursor: pointer;">{currentUi.copy}</button>
           </div>
         </div>
@@ -574,7 +574,7 @@ const currentUi = uiDict[lang] || uiDict['en'];
         <div class="step-card">
           <h3 class="step-title">{currentUi.pythonTitle}</h3>
           <div class="copy-box" style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-surface-elevated); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
-            <code id="pcFormulaPy" style="font-size: 0.82rem;">def is_cube(n): return round(abs(n)**(1/3))**3 == abs(n)</code>
+            <code id="pcFormulaPy" style="font-size: 0.82rem; white-space: pre; overflow-x: auto;">{"def is_cube(n):\n    n = abs(n)\n    low, high = 0, 1 << ((n.bit_length() + 2) // 3)\n    while low <= high:\n        mid = (low + high) // 2\n        cube = mid ** 3\n        if cube == n:\n            return True\n        if cube < n:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return False"}</code>
             <button type="button" class="btn-copy-code" data-target="pcFormulaPy" style="padding: 4px 10px; font-size: 0.78rem; border-radius: var(--radius-sm); background: var(--primary-500); color: white; border: none; cursor: pointer;">{currentUi.copy}</button>
           </div>
         </div>
@@ -583,7 +583,7 @@ const currentUi = uiDict[lang] || uiDict['en'];
         <div class="step-card">
           <h3 class="step-title">{currentUi.jsTitle}</h3>
           <div class="copy-box" style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-surface-elevated); padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
-            <code id="pcFormulaJs" style="font-size: 0.82rem;">const isCube = n =&gt; Math.round(Math.cbrt(n))**3 === n;</code>
+            <code id="pcFormulaJs" style="font-size: 0.82rem;">const isCube = n =&gt; Number.isSafeInteger(n) &amp;&amp; BigInt(Math.round(Math.cbrt(n)))**3n === BigInt(n);</code>
             <button type="button" class="btn-copy-code" data-target="pcFormulaJs" style="padding: 4px 10px; font-size: 0.78rem; border-radius: var(--radius-sm); background: var(--primary-500); color: white; border: none; cursor: pointer;">{currentUi.copy}</button>
           </div>
         </div>

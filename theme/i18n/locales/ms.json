@@ -96,7 +96,8 @@
     },
     "history": {
       "title": "Pengiraan terkini"
-    }
+    },
+    "inputHelp": "Masukkan nombor atau pecahan (9/16). Gunakan titik atau koma perpuluhan, tanpa pemisah ribuan."
   },
   "footer": {
     "brand": "Kalkulator Racine Carrée",

@@ -96,7 +96,8 @@
     },
     "history": {
       "title": "Calcoli recenti"
-    }
+    },
+    "inputHelp": "Inserisci un numero o una frazione (9/16). Usa il punto o la virgola decimale, senza separatori delle migliaia."
   },
   "footer": {
     "brand": "Calcolatrice Racine Carrée",

@@ -155,54 +155,11 @@ const contactSchema = isContactPage ? {
   url: canonicalUrl
 } : null;
 
-// JSON-LD WebApplication Schema
-const webAppSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "@id": `${canonicalUrl}#webapp`,
-  "name": title,
-  "url": canonicalUrl,
-  "description": description,
-  "inLanguage": activeLocale,
-  "applicationCategory": "EducationalApplication",
-  "applicationSubCategory": "Math Calculator",
-  "operatingSystem": "All",
-  "browserRequirements": "Requires JavaScript. Requires HTML5 web browser.",
-  "softwareVersion": "2.0.0",
-  "publisher": {
-    "@id": `${site.siteUrl}/#organization`
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
-  }
-};
-
-// JSON-LD SoftwareApplication Schema
-const softwareAppSchema = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "@id": `${canonicalUrl}#software`,
-  "name": title,
-  "url": canonicalUrl,
-  "description": description,
-  "inLanguage": activeLocale,
-  "applicationCategory": "EducationalApplication",
-  "applicationSubCategory": "Math Calculator",
-  "operatingSystem": "All",
-  "softwareVersion": "2.0.0",
-  "publisher": {
-    "@id": `${site.siteUrl}/#organization`
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
-  }
-};
+const pageSchema = !isAboutPage && !isContactPage ? {
+  "@context": "https://schema.org", "@type": "WebPage",
+  "@id": `${canonicalUrl}#webpage`, name: title, description,
+  url: canonicalUrl, inLanguage: activeLocale,
+} : null;
 
 // JSON-LD FAQPage Schema (if FAQ items exist)
 const faqPageSchema = faqItems && faqItems.length > 0 ? {
@@ -221,7 +178,7 @@ const faqPageSchema = faqItems && faqItems.length > 0 ? {
 } : null;
 
 const isNoIndex = typeof robots === 'string' && robots.includes('noindex');
-const schemas = isNoIndex ? [] : [webSiteSchema, orgSchema, webAppSchema, softwareAppSchema, siteNavigationSchema, aboutSchema, contactSchema, faqPageSchema].filter(Boolean);
+const schemas = isNoIndex ? [] : [webSiteSchema, orgSchema, pageSchema, siteNavigationSchema, aboutSchema, contactSchema, faqPageSchema].filter(Boolean);
 ---
 
 <html lang={activeLocale} dir={htmlDir}>
@@ -296,6 +253,6 @@ const schemas = isNoIndex ? [] : [webSiteSchema, orgSchema, webAppSchema, softwa
     <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
     </button>
-    <script src="/app.js" defer></script>
+    <script src="../../src/scripts/app.js"></script>
   </body>
 </html>

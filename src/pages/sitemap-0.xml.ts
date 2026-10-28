@@ -31,7 +31,6 @@ const staticPages: PageDefinition[] = [
 
 export async function GET() {
   const baseUrl = site.siteUrl.replace(/\/+$/, '');
-  const lastmod = new Date().toISOString();
 
   const entries: { url: string; xml: string }[] = [];
 
@@ -79,7 +78,7 @@ export async function GET() {
 
     entries.push({
       url: defaultUrl,
-      xml: `<url><loc>${defaultUrl}</loc><lastmod>${lastmod}</lastmod><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${alternateTags}${imagesXml}</url>`,
+      xml: `<url><loc>${defaultUrl}</loc><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${alternateTags}${imagesXml}</url>`,
     });
 
     // 17 Localized editions
@@ -87,7 +86,7 @@ export async function GET() {
       const locUrl = `${baseUrl}/${loc}${defaultPath}`;
       entries.push({
         url: locUrl,
-        xml: `<url><loc>${locUrl}</loc><lastmod>${lastmod}</lastmod><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${alternateTags}${imagesXml}</url>`,
+        xml: `<url><loc>${locUrl}</loc><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${alternateTags}${imagesXml}</url>`,
       });
     }
   }
@@ -107,7 +106,7 @@ export async function GET() {
 
     entries.push({
       url: pageUrl,
-      xml: `<url><loc>${pageUrl}</loc><lastmod>${lastmod}</lastmod><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${staticAlternateTags}${staticImagesXml}</url>`,
+      xml: `<url><loc>${pageUrl}</loc><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority>${staticAlternateTags}${staticImagesXml}</url>`,
     });
   }
 

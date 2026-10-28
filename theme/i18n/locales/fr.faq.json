@@ -1,7 +1,7 @@
 [
   {
     "question": "Comment utiliser le Calculateur Racine Carrée ?",
-    "answer": "Entrez votre nombre dans le champ de saisie et cliquez sur Calculer. Vous obtiendrez instantanément le résultat décimal exact, la forme radicale simplifiée (ex. √72 = 6√2) et le détail étape par étape de la décomposition en facteurs premiers.",
+    "answer": "Entrez votre nombre dans le champ de saisie et cliquez sur Calculer. Vous obtiendrez instantanément le résultat décimal arrondi, la forme radicale simplifiée (ex. √72 = 6√2) et le détail étape par étape de la décomposition en facteurs premiers.",
     "display": true,
     "category": "sqrt"
   },

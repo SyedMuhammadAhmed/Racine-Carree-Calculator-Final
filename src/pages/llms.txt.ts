@@ -8,11 +8,11 @@ export async function GET() {
 
 > Free, fast, and high-precision online calculator suite for calculating square roots (racine carrée), cube roots (racine cubique), and nth roots with step-by-step mathematical solutions and reference tables.
 
-${site.siteName} provides instant calculations for all radical and root expressions. Every calculator includes exact decimal values, simplified radical forms, and step-by-step breakdowns for students, educators, and professionals.
+${site.siteName} provides instant calculations for all radical and root expressions. Every calculator includes decimal approximations, simplified radical forms, and step-by-step breakdowns for students, educators, and professionals.
 
 ## Calculators & Tools
 
-- [Square Root Calculator](${baseUrl}/): Instant square root calculator with exact decimals, prominent simplified radical forms (e.g. √72 = 6√2), complex imaginary numbers (± r i for negative inputs), and step-by-step breakdowns.
+- [Square Root Calculator](${baseUrl}/): Instant square root calculator with decimal approximations, prominent simplified radical forms (e.g. √72 = 6√2), complex imaginary numbers (± r i for negative inputs), and step-by-step breakdowns.
 - [Cube Root Calculator](${baseUrl}/racine-cubique-calculator/): Cube root calculator for positive and negative numbers with exact results, simplified cube radicals, and step explanations.
 - [Nth Root Calculator](${baseUrl}/nth-root-calculator/): General root calculator to compute roots of any index or degree (4th root, 5th root, nth root).
 - [Square Root Chart Generator](${baseUrl}/square-root-chart/): Interactive square root chart and reference table generator with customizable ranges, decimal precision, and print-ready formatting.

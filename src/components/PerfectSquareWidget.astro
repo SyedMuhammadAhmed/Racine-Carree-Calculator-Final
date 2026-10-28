@@ -329,13 +329,13 @@ const squareWidgetI18n = getSquareWidgetI18n(lang);
 
       const rawVal = input.value.trim();
       if (!rawVal) {
-        showError('Please enter an integer to check');
+        showError(document.documentElement.lang === 'fr' ? 'Saisissez un entier à vérifier.' : 'Please enter an integer to check');
         return;
       }
 
       const n = Number(rawVal);
-      if (!Number.isFinite(n) || !Number.isInteger(n)) {
-        showError('Please enter a valid whole number (integer)');
+      if (!/^[+-]?\d+$/.test(rawVal) || !Number.isSafeInteger(n) || Math.abs(n) > 1e12) {
+        showError(document.documentElement.lang === 'fr' ? 'Saisissez un entier compris entre −1 000 000 000 000 et 1 000 000 000 000.' : 'Enter a whole number from −1,000,000,000,000 to 1,000,000,000,000.');
         return;
       }
 
@@ -348,7 +348,7 @@ const squareWidgetI18n = getSquareWidgetI18n(lang);
 
         const vPill = i18n.verdictNoPill || 'NEGATIVE INTEGER';
         const vTitle = i18n.verdictNoTitle ? i18n.verdictNoTitle.replace('{n}', formatNumber(n)) : `NO, ${formatNumber(n)} is NOT a Real Perfect Square`;
-        const vSub = i18n.verdictNoSub ? i18n.verdictNoSub.replace('{n}', formatNumber(n)).replace('{root}', `±${rootAbsStr}i`) : `In real numbers, squares cannot be negative: complex square root is ±${rootAbsStr}i`;
+        const vSub = i18n.verdictNoSub ? i18n.verdictNoSub.replace('{n}', formatNumber(n)).replace('{root}', `${rootAbsStr}i`) : `In real numbers, squares cannot be negative: complex square root is ${rootAbsStr}i`;
         const fTitle = i18n.formulaTitle || 'Complex Square Root Formula';
 
         resultArea.classList.add('has-result');
@@ -372,10 +372,10 @@ const squareWidgetI18n = getSquareWidgetI18n(lang);
             <div class="result-formula-card">
               <div class="result-expression">${fTitle}</div>
               <div class="result-answer" style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
-                <span>√(${formatNumber(n)}) = ±${rootAbsStr}i</span>
+                <span>√(${formatNumber(n)}) = ${rootAbsStr}i</span>
               </div>
               <div class="result-proof-sub">
-                Because (±${rootAbsStr}i)² = (${rootAbsStr})² × i² = ${formatNumber(absVal)} × (-1) = ${formatNumber(n)}
+                Because (${rootAbsStr}i)² = (${rootAbsStr})² × i² = ${formatNumber(absVal)} × (-1) = ${formatNumber(n)}
               </div>
             </div>
 
@@ -406,7 +406,7 @@ const squareWidgetI18n = getSquareWidgetI18n(lang);
                   <span class="result-step-num">2</span>
                   <div class="result-step-body">
                     <strong class="result-step-title">Complex Domain Solution</strong>
-                    <span class="result-step-math">√(${formatNumber(n)}) = √(${formatNumber(absVal)}) × √(-1) = ±${rootAbsStr}i</span>
+                    <span class="result-step-math">√(${formatNumber(n)}) = √(${formatNumber(absVal)}) × √(-1) = ${rootAbsStr}i</span>
                   </div>
                 </li>
               </ol>

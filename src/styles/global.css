@@ -79,7 +79,7 @@
     /* Text */
     --text-primary: #1a1a2e;
     --text-secondary: #525266;
-    --text-muted: #8e8ea0;
+    --text-muted: #626277;
     --text-on-primary: #ffffff;
 
     /* Gradients */
@@ -5275,3 +5275,16 @@ details[open] .toc-chevron {
 
 
 
+
+/* Readable supporting text and controls in both themes. */
+.input-label, .toc-count-badge, .section-image figcaption,
+.irrational-badge, .neg-expr, .neg-val, .tbl-filter-pill,
+.footer-redesign__copyright { color: var(--text-secondary); }
+.tbl-filter-pill.active { color: var(--text-on-primary); background: var(--primary-600); }
+[data-theme="dark"] .tbl-filter-pill.active { color: #fff; background: #6d28d9; }
+:where(button, a, input, select, summary):focus-visible { outline: 3px solid var(--primary-500); outline-offset: 4px; }
+[id] { scroll-margin-top: 96px; }
+
+.input-format-help { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.5; margin-top: 8px; grid-column: 1 / -1; }
+.input-wrapper:has(.input-format-help) { flex-wrap: wrap; }
+.input-wrapper .input-format-help { width: 100%; position: static; }

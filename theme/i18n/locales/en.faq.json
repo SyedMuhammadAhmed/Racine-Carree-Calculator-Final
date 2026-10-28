@@ -1,7 +1,7 @@
 [
   {
     "question": "How do I use the Racine Carree Calculator?",
-    "answer": "Enter your number in the input field and click Calculate. You will instantly receive the exact decimal result, the simplified radical form (e.g., √72 = 6√2), and step-by-step prime factorization breakdown.",
+    "answer": "Enter your number in the input field and click Calculate. You will instantly receive the decimal approximation, the simplified radical form (e.g., √72 = 6√2), and step-by-step prime factorization breakdown.",
     "display": true,
     "category": "sqrt"
   },

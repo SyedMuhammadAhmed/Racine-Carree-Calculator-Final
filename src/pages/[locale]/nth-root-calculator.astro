@@ -113,7 +113,8 @@ const quickNthPairs = [
                         </div>
                         <div class="input-wrapper">
                           <span class="input-prefix" aria-hidden="true">x</span>
-                          <input type="number" inputmode="decimal" id="nthValue" class="calc-input" placeholder="e.g. 625" step="any" autocomplete="off" aria-label={t('calc.label.numberX', 'Number (x)')}>
+                          <input type="text" inputmode="text" id="nthValue" class="calc-input" placeholder="625, 0.25, 1/16" step="any" autocomplete="off" aria-label={t('calc.label.numberX', 'Number (x)')}>
+                                <p class="input-format-help">{t("calc.inputHelp")}</p>
                         </div>
                       </div>
                     </div>
@@ -143,7 +144,7 @@ const quickNthPairs = [
                 <span class="quick-calc-sublabel">{bp.quickCalcSublabel}</span>
               </div>
             </div>
-            <div class="quick-calc-chips quick-calc-chips--nth" role="list" id="nthChips">
+            <div class="quick-calc-chips quick-calc-chips--nth" role="group" id="nthChips">
               {quickNthPairs.map(([n, x]) => (
                 <button
                   type="button"
@@ -152,7 +153,7 @@ const quickNthPairs = [
                   data-value={x}
                   data-calc-type="nth"
                   aria-label={`Calculate ${n}th root of ${x}`}
-                  role="listitem"
+                  
                 >
                   <span class="quick-chip-degree">{n}√</span>
                   <span class="quick-chip-num">{x}</span>

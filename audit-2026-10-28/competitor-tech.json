@@ -1,0 +1,71 @@
+[
+  {
+    "url": "https://www.dcode.fr/racine-carree",
+    "status": 200,
+    "bytes_decoded": 34618,
+    "title": "Calcul de Racine Carrée √ - Simplification - Calculatrice en Ligne",
+    "h1": [
+      "Racine Carrée"
+    ],
+    "canonical": [
+      "https://www.dcode.fr/racine-carree"
+    ],
+    "hreflang_count": 2,
+    "schema_types": [
+      "{\"@context\":\"http://schema.org/\",\"@type\":\"Organization\",\"name\":\"dCode\",\"url\":\"https://www.dcode.fr/\",\"foundingDate\": \"2009\"}"
+    ],
+    "scripts": 10,
+    "stylesheets": 4
+  },
+  {
+    "url": "https://calculracine.com/",
+    "status": 200,
+    "bytes_decoded": 19698,
+    "title": "Racine Carree Calculator — (√x) Calculatrice de Racine Carrée | calculracine.com",
+    "h1": [],
+    "canonical": [
+      "https://calculracine.com/"
+    ],
+    "hreflang_count": 0,
+    "schema_types": [
+      "\n  {\n    \"@context\": \"https://schema.org\",\n    \"@type\": \"WebSite\",\n    \"url\": \"https://calculracine.com/\",\n    \"name\": \"calculracine.com\",\n    \"descri",
+      "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Que calcule exactement "
+    ],
+    "scripts": 0,
+    "stylesheets": 1
+  },
+  {
+    "url": "https://www.calculatorsoup.com/calculators/algebra/squareroots.php",
+    "status": 200,
+    "bytes_decoded": 52504,
+    "title": "Square Root Calculator",
+    "h1": [
+      "Square Root Calculator"
+    ],
+    "canonical": [
+      "https://www.calculatorsoup.com/calculators/algebra/squareroots.php"
+    ],
+    "hreflang_count": 0,
+    "schema_types": [],
+    "scripts": 7,
+    "stylesheets": 1
+  },
+  {
+    "url": "https://www.symbolab.com/solver/square-root-calculator",
+    "status": 200,
+    "bytes_decoded": 532814,
+    "title": "Square Root Calculator - Free Online Calculator With Steps & Examples",
+    "h1": [
+      "Square Root Calculator"
+    ],
+    "canonical": [
+      "https://www.symbolab.com/solver/square-root-calculator"
+    ],
+    "hreflang_count": 14,
+    "schema_types": [
+      "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n  {\n    \"@type\": \"ListItem\",\n    \"position\": 1,\n    \"name\":"
+    ],
+    "scripts": 11,
+    "stylesheets": 2
+  }
+]

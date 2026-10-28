@@ -237,13 +237,13 @@ const commonSimplifications = [
 
             <!-- Interactive Notation Mode Switcher -->
             <div class="notation-switcher-box">
-                <div class="notation-tabs" role="tablist">
-                    <button type="button" class="notation-tab active" data-format="radical" role="tab">{ui.tabRadical}</button>
-                    <button type="button" class="notation-tab" data-format="exponent" role="tab">{ui.tabExponent}</button>
-                    <button type="button" class="notation-tab" data-format="code" role="tab">{ui.tabCode}</button>
-                    <button type="button" class="notation-tab" data-format="sheet" role="tab">{ui.tabSheet}</button>
-                    <button type="button" class="notation-tab" data-format="latex" role="tab">{ui.tabLatex}</button>
-                    <button type="button" class="notation-tab" data-format="typing" role="tab">{ui.tabTyping}</button>
+                <div class="notation-tabs" role="group">
+                    <button type="button" class="notation-tab active" data-format="radical">{ui.tabRadical}</button>
+                    <button type="button" class="notation-tab" data-format="exponent">{ui.tabExponent}</button>
+                    <button type="button" class="notation-tab" data-format="code">{ui.tabCode}</button>
+                    <button type="button" class="notation-tab" data-format="sheet">{ui.tabSheet}</button>
+                    <button type="button" class="notation-tab" data-format="latex">{ui.tabLatex}</button>
+                    <button type="button" class="notation-tab" data-format="typing">{ui.tabTyping}</button>
                 </div>
                 <div class="notation-content-panels">
                     <div class="notation-view active" id="view-radical">
@@ -367,17 +367,17 @@ const commonSimplifications = [
 
             <!-- Interactive Method Switcher Tabs -->
             <div class="method-tabs-wrapper">
-                <div class="method-tabs-nav" role="tablist">
-                    <button type="button" class="method-tab-btn active" data-method="calculator" role="tab">{ui.methodCalc}</button>
-                    <button type="button" class="method-tab-btn" data-method="factorization" role="tab">{ui.methodFactors}</button>
-                    <button type="button" class="method-tab-btn" data-method="estimation" role="tab">{ui.methodEstimate}</button>
+                <div class="method-tabs-nav" role="group">
+                    <button type="button" class="method-tab-btn active" data-method="calculator">{ui.methodCalc}</button>
+                    <button type="button" class="method-tab-btn" data-method="factorization">{ui.methodFactors}</button>
+                    <button type="button" class="method-tab-btn" data-method="estimation">{ui.methodEstimate}</button>
                 </div>
 
                 <div class="method-panels">
                     <!-- Method 1: Calculator -->
                     <div class="method-panel active" id="method-panel-calculator">
                         <div class="method-badge">Method 1</div>
-                        <h3 class="method-title">{content.s6M1Title}</h3>
+                        <h3 class="method-title" id="cbrt-method-calculator">{content.s6M1Title}</h3>
                         <p>{content.s6M1Text}</p>
                         <div class="method-action-box">
                             <button type="button" class="btn-calc-primary btn-test-calc" data-cbrt-num="3375">
@@ -390,7 +390,7 @@ const commonSimplifications = [
                     <!-- Method 2: Prime Factorization -->
                     <div class="method-panel" id="method-panel-factorization">
                         <div class="method-badge">Method 2</div>
-                        <h3 class="method-title">{content.s6M2Title}</h3>
+                        <h3 class="method-title" id="cbrt-method-factorization">{content.s6M2Title}</h3>
                         <p>{content.s6M2Intro}</p>
                         <div class="worked-example">
                             <div class="example-tag">{content.s6M2ExTitle}</div>
@@ -414,7 +414,7 @@ const commonSimplifications = [
                     <!-- Method 3: Estimation -->
                     <div class="method-panel" id="method-panel-estimation">
                         <div class="method-badge">Method 3</div>
-                        <h3 class="method-title">{content.s6M4Title}</h3>
+                        <h3 class="method-title" id="cbrt-method-estimation">{content.s6M4Title.replace(/^4[.]/, "3.")}</h3>
                         <p>{content.s6M4Intro}</p>
                         <div class="worked-example">
                             <div class="example-tag">{content.s6M4ExTitle}</div>
@@ -631,7 +631,7 @@ const commonSimplifications = [
             </div>
             <p style="margin-top: 16px; font-weight: 500;">
                 Need to evaluate square roots instead? <a href={localizedUrl('/')} style="color: var(--primary-600); font-weight: 700; text-decoration: underline;">
-                    Calculate square roots with exact decimals and simplified radicals &rarr;
+                    Calculate square roots with decimal approximations and simplified radicals &rarr;
                 </a>
             </p>
         </div>
@@ -714,7 +714,7 @@ const commonSimplifications = [
             <p>{content.s10Intro}</p>
             <div class="app-cards-grid">
                 {content.s10Apps.map((app, idx) => (
-                  <div class="app-card">
+                  <div class="app-card" id={`cbrt-app-${["architecture", "shipping", "physics", "finance"][idx] || idx}`}>
                       <div class="app-card-icon">
                         {idx === 0 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M13 21V3l6 4v14"/></svg>}
                         {idx === 1 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>}
@@ -776,7 +776,7 @@ const commonSimplifications = [
             <!-- Author Byline & Social Sharing Bar -->
             <div class="article-header-meta" style="margin-top: 40px; margin-bottom: 0;">
                 <div class="article-author-byline">
-                    <a href={localizedUrl('/about-us/')} class="author-avatar-link" aria-label="Syed Muhammad Ahmed, Founder and Creator">
+                    <a href="/about-us/" class="author-avatar-link" aria-label="Syed Muhammad Ahmed, Founder and Creator">
                         <img src="/images/syed-muhammad-ahmed-racine-carree-calculator.jpg" alt="Syed Muhammad Ahmed, Founder and Creator of Racine Carree Calculator" width="44" height="44" loading="lazy" decoding="async" class="author-avatar" />
                     </a>
                     <div class="author-details">
@@ -784,7 +784,7 @@ const commonSimplifications = [
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
                             {authorByline.writtenBy}
                         </span>
-                        <a href={localizedUrl('/about-us/')} class="author-name-link">Syed Muhammad Ahmed</a>
+                        <a href="/about-us/" class="author-name-link">Syed Muhammad Ahmed</a>
                         <span class="author-title">{authorByline.founderTitle || "Founder & Creator"}</span>
                     </div>
                 </div>

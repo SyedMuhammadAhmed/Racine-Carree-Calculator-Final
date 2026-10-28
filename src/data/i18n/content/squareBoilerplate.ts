@@ -107,7 +107,7 @@ export const SQUARE_BOILERPLATE: Record<string, SquareBoilerplate> = {
     ],
     s3Intro: "Le calculateur applique trois vérifications rigoureuses :",
     s3Tests: [
-      { title: "1. Test de la racine entière", text: "Calcule √n en précision arbitraire pour confirmer l'absence de reste décimal." },
+      { title: "1. Test de la racine entière", text: "Calcule √n dans la plage d’entiers prise en charge pour confirmer l'absence de reste décimal." },
       { title: "2. Décomposition en facteurs premiers", text: "Décompose n en puissances premières et vérifie que chaque exposant est pair." },
       { title: "3. Filtre de la racine numérique (Mod 9)", text: "Élimine immédiatement les nombres dont la somme répétée des chiffres n'est pas 1, 4, 7 ou 9." }
     ],

@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Racine Carree Calculator | Online Square Root Calculator",
-    "description": "Free online Racine Carree Calculator. Calculate square roots instantly with exact decimals, simplified radicals, and step-by-step mathematical solutions."
+    "title": "Square Root Calculator — Simplified Radicals & Steps",
+    "description": "Calculate square roots with decimal approximations, simplified radicals for supported integers, and worked steps. Free, with no sign-up."
   },
   "nav": {
     "home": "Home",
@@ -26,10 +26,10 @@
   "hero": {
     "badge": "Free Square Root Calculator",
     "title": {
-      "part1": "Racine Carree",
+      "part1": "Square Root",
       "part2": "Calculator"
     },
-    "subtitle": "Calculate the square root (racine carrée) of any number instantly with exact decimals, simplified radical form, and step-by-step solutions. 100% free with no limits.",
+    "subtitle": "Calculate square roots of numbers or fractions. See rounded decimal results and factor-based simplification for supported integers. Free, with no sign-up.",
     "pill": {
       "instant": "Instant",
       "stepByStep": "Step-by-step",
@@ -48,7 +48,7 @@
     },
     "squareRoot": {
       "title": "Square Root",
-      "desc": "Calculate √x for any positive number"
+      "desc": "Find the principal square root of a number or fraction"
     },
     "cubeRoot": {
       "title": "Cube Root",
@@ -96,7 +96,8 @@
     },
     "history": {
       "title": "Recent calculations"
-    }
+    },
+    "inputHelp": "Enter a number or fraction (9/16). A dot or comma is a decimal separator; do not use thousands separators."
   },
   "footer": {
     "brand": "Racine Carree Calculator",
@@ -108,12 +109,12 @@
     "legal": "Legal"
   },
   "cbrt": {
-    "title": "Racine Cubique Calculator | Free Online Cube Root Calculator",
-    "description": "Calculate cube roots instantly with our free Racine Cubique Calculator. Get exact decimal results, simplified radicals, and step-by-step workings.",
+    "title": "Cube Root Calculator — Negative Numbers & Steps",
+    "description": "Calculate cube roots instantly with our free Racine Cubique Calculator. Get decimal approximations, simplified radicals, and step-by-step workings.",
     "hero": {
-      "part1": "Racine Cubique",
+      "part1": "Cube Root",
       "part2": "Calculator",
-      "subtitle": "Calculate the cube root of any number — positive or negative — instantly. Get the exact decimal result, simplified radical form, and step-by-step workings. 100% free."
+      "subtitle": "Calculate the cube root of any number — positive or negative — instantly. Get the decimal approximation, simplified radical form, and step-by-step workings. 100% free."
     },
     "calc": {
       "title": "Cube Root Calculator",
@@ -123,12 +124,12 @@
     }
   },
   "nth": {
-    "title": "Nth Root Calculator - Free Root Tool for Any Index",
+    "title": "Nth Root Calculator — Integer Degrees & Steps",
     "description": "Calculate any root (4th, 5th, or custom index) instantly with our free Nth Root Calculator. Get exact results, simplified forms, and step-by-step work.",
     "hero": {
       "part1": "Nth Root",
       "part2": "Calculator",
-      "subtitle": "Calculate any root — 4th root, 5th root, or any custom degree (n) — for any number. Get exact simplified radicals, decimal approximations, and complete step-by-step solutions."
+      "subtitle": "Calculate real roots with integer degrees from 1 to 10,000. Get rounded results and factor-based steps for supported integers."
     },
     "calc": {
       "title": "Nth Root Calculator",

@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 // Server reload trigger: 2026-09-16T16:08:00
-import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 import siteConfig from "./src/config/site.json" with { type: "json" };
@@ -48,30 +47,8 @@ export default defineConfig({
   trailingSlash: "always",
   output: "static",
   redirects: localeRedirects,
-  integrations: [
-    sitemap({
-      xslUrl: '/sitemap.xsl',
-      i18n: {
-        defaultLocale: "en",
-        locales: sitemapLocales,
-      },
-      serialize(item) {
-        if (item.url === `${siteConfig.siteUrl}/` || item.url.match(/\/[a-z]{2}\/$/)) {
-          item.changefreq = 'weekly';
-          item.priority = 1.0;
-        } else if (item.url.includes('racine-cubique') || item.url.includes('nth-root') || item.url.includes('square-root-chart') || item.url.includes('perfect-square') || item.url.includes('perfect-cube')) {
-          item.changefreq = 'weekly';
-          item.priority = 0.9;
-        } else {
-          item.changefreq = 'monthly';
-          item.priority = 0.6;
-        }
-        item.lastmod = new Date().toISOString();
-        return item;
-      },
-    }),
-  ],
   vite: {
     plugins: [tailwindcss()],
+    build: { assetsInlineLimit: 0 },
   },
 });

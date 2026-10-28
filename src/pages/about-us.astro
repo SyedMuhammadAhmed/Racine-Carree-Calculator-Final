@@ -41,7 +41,7 @@ const alternateLinks = [
                 </h1>
                 
                 <p class="hero-subtitle" style="max-width: 100%; text-align: left; margin-bottom: 40px; font-size: 1.15rem; line-height: 1.7;">
-                    Racine Carree Calculator is a free, high-precision mathematical suite engineered to make square root, cube root, and nth root calculations fast, transparent, and universally accessible. Whether you are solving algebraic equations, verifying geometry homework, or modeling engineering problems, our platform delivers instant exact decimal values, simplified radical expressions, and full step-by-step mathematical reasoning.
+                    Racine Carree Calculator is a free, high-precision mathematical suite engineered to make square root, cube root, and nth root calculations fast, transparent, and universally accessible. Whether you are solving algebraic equations, verifying geometry homework, or modeling engineering problems, our platform delivers instant decimal approximations, simplified radical expressions, and full step-by-step mathematical reasoning.
                 </p>
 
                 <!-- Social Proof Stats Displayed -->
@@ -52,7 +52,7 @@ const alternateLinks = [
                     </div>
                     <div class="stat-card" style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 24px; text-align: center; box-shadow: var(--shadow-sm);">
                         <div style="font-size: 2.2rem; font-weight: 800; color: var(--accent-500); line-height: 1;">Precise</div>
-                        <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-top: 8px;">10+ decimal place accuracy</div>
+                        <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-top: 8px;">Up to 12 significant digits</div>
                     </div>
                     <div class="stat-card" style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 24px; text-align: center; box-shadow: var(--shadow-sm);">
                         <div style="font-size: 2.2rem; font-weight: 800; color: var(--warm-500); line-height: 1;">Clear</div>
@@ -125,19 +125,19 @@ const alternateLinks = [
                     <li><strong>Too complex:</strong> High-end computer algebra systems are heavy, difficult on mobile devices, and require learning specialized syntax.</li>
                 </ul>
                 <p>
-                    We set out to build the definitive solution: a lightning-fast web calculator that instantly shows exact decimals, simplified radical forms, step-by-step prime factorizations, and manual long division steps, all wrapped in an elegant, responsive, dark-mode-ready interface.
+                    We set out to build the definitive solution: a lightning-fast web calculator that instantly shows decimal approximations, simplified radical forms, step-by-step prime factorizations, and a guide to manual long division, all wrapped in an elegant, responsive, dark-mode-ready interface.
                 </p>
 
                 <!-- Trusted Source Statement -->
                 <h2 class="article-h2" style="margin-top: 48px;" id="methodology">Trusted Source Statement &amp; Calculation Methodology</h2>
                 <div class="callout callout--info" style="margin-bottom: 32px; background: rgba(124, 58, 237, 0.05); border-left: 4px solid var(--primary-500); padding: 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0;">
-                    <h3 style="margin-top: 0; font-size: 1.15rem; color: var(--text-primary);">Our Mathematical Verification Guarantee</h3>
+                    <h3 style="margin-top: 0; font-size: 1.15rem; color: var(--text-primary);">How Results Are Calculated and Checked</h3>
                     <p style="margin-bottom: 8px; color: var(--text-secondary); line-height: 1.7;">
-                        Accuracy is our highest priority. All calculation engines on Racine Carree Calculator are implemented using industry-standard floating-point arithmetic (IEEE 754) and cross-verified against established symbolic algebra algorithms.
+                        Decimal calculations use JavaScript floating-point arithmetic (IEEE 754). The square-root and cube-root tools use Math.sqrt and Math.cbrt; other degrees use exponentiation. A rounded decimal is an approximation, not an exact symbolic value.
                     </p>
                     <ul style="margin: 8px 0 0 16px; color: var(--text-secondary); line-height: 1.6;">
-                        <li><strong>Multi-Method Cross-Checking:</strong> Decimal roots are computed using Newton-Raphson approximation iterations verified to 10+ decimal places.</li>
-                        <li><strong>Exact Radical Simplification:</strong> Radical reductions use canonical prime factorization trees, ensuring exact simplified forms with no rounding error.</li>
+                        <li><strong>Integer verification:</strong> Within the supported range, integer root candidates are checked using exact integer exponentiation. Decimal results display up to 12 significant digits, not a guaranteed number of decimal places.</li>
+                        <li><strong>Supported ranges:</strong> Root inputs are bounded by 9,007,199,254,740,991 in magnitude. Exact radical simplification and the perfect-power checkers support integer inputs up to 1,000,000,000,000 in magnitude. Decimal and fraction inputs are evaluated numerically; they are not silently rounded into exact radicals.</li>
                         <li><strong>Zero Data Telemetry:</strong> All user inputs and calculations are processed securely in your browser session and never stored or sold.</li>
                     </ul>
                 </div>

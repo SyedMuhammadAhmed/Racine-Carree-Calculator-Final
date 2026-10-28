@@ -342,10 +342,10 @@ const simVerdicts = {
 
             <!-- Interactive Method Switcher Tabs -->
             <div class="method-tabs-wrapper">
-                <div class="method-tabs-nav" role="tablist">
-                    <button type="button" class="method-tab-btn active" data-method="factorization" role="tab">{ui.method1Tab}</button>
-                    <button type="button" class="method-tab-btn" data-method="calculator" role="tab">{ui.method2Tab}</button>
-                    <button type="button" class="method-tab-btn" data-method="newton" role="tab">{ui.method3Tab}</button>
+                <div class="method-tabs-nav" role="group">
+                    <button type="button" class="method-tab-btn active" data-method="factorization">{ui.method1Tab}</button>
+                    <button type="button" class="method-tab-btn" data-method="calculator">{ui.method2Tab}</button>
+                    <button type="button" class="method-tab-btn" data-method="newton">{ui.method3Tab}</button>
                 </div>
 
                 <div class="method-panels">
@@ -567,7 +567,7 @@ const simVerdicts = {
             </div>
 
             <!-- Section 9: Recap / Key Takeaway Box -->
-            <div class="warning-box" style="margin-top: var(--space-xl); background: var(--surface-card); border-color: var(--primary-300);">
+            <div class="warning-box" id="section-nth-recap" style="margin-top: var(--space-xl); background: var(--surface-card); border-color: var(--primary-300);">
                 <div class="warning-icon" style="color: var(--primary-600);">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
                 </div>
@@ -580,7 +580,7 @@ const simVerdicts = {
             <!-- Author Byline & Social Sharing Bar below FAQs -->
             <div class="article-header-meta" style="margin-top: 40px; margin-bottom: 0;">
                 <div class="article-author-byline">
-                    <a href={localizedUrl('/about-us/')} class="author-avatar-link" aria-label="Syed Muhammad Ahmed, Founder and Creator">
+                    <a href="/about-us/" class="author-avatar-link" aria-label="Syed Muhammad Ahmed, Founder and Creator">
                         <img src="/images/syed-muhammad-ahmed-racine-carree-calculator.jpg" alt="Syed Muhammad Ahmed, Founder and Creator of Racine Carree Calculator" width="44" height="44" loading="lazy" decoding="async" class="author-avatar" />
                     </a>
                     <div class="author-details">
@@ -588,7 +588,7 @@ const simVerdicts = {
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
                             {authorByline.writtenBy}
                         </span>
-                        <a href={localizedUrl('/about-us/')} class="author-name-link">Syed Muhammad Ahmed</a>
+                        <a href="/about-us/" class="author-name-link">Syed Muhammad Ahmed</a>
                         <span class="author-title">{authorByline.founderTitle}</span>
                     </div>
                 </div>

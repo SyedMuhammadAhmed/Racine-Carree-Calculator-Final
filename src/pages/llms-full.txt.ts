@@ -9,7 +9,7 @@ export async function GET() {
 > Comprehensive documentation, mathematical formulas, and tool reference for ${site.siteName}.
 
 ## About the Application
-${site.siteName} (${baseUrl}) is a specialized math platform designed to compute square roots, cube roots, and nth roots with maximum precision. It provides exact decimal results, simplified radical expressions (e.g., √72 = 6√2), and step-by-step mathematical reasoning.
+${site.siteName} (${baseUrl}) is a specialized math platform designed to compute square roots, cube roots, and nth roots with maximum precision. It provides decimal approximations, simplified radical expressions (e.g., √72 = 6√2), and step-by-step mathematical reasoning.
 
 ## Tools & Endpoints
 
