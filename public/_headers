@@ -64,16 +64,6 @@
 /og-image.png
   Cache-Control: public, max-age=86400, must-revalidate
 
-# Sitemaps & robots
-/sitemap-index.xml
-  Cache-Control: public, max-age=86400, must-revalidate
-
-/sitemap-*.xml
-  Cache-Control: public, max-age=86400, must-revalidate
-
-/robots.txt
-  Cache-Control: public, max-age=86400, must-revalidate
-
 # AI & LLM discovery files
 /llms.txt
   Cache-Control: public, max-age=86400, must-revalidate
