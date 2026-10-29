@@ -1,0 +1,156 @@
+{
+  "pages": 114,
+  "errors": [],
+  "flagged_pages": {
+    "unbounded_or_precision_claim": 75,
+    "search_engine_filler": 1,
+    "advanced_jargon": 11,
+    "english_ui": 0
+  },
+  "english_pages": [
+    {
+      "url": "https://www.racinecarreecalculatorr.com/",
+      "paragraph_words": 1632,
+      "avg_sentence_words": 14.8,
+      "sentences_over_25_words": 9,
+      "flags": {
+        "unbounded_or_precision_claim": 13,
+        "search_engine_filler": 2,
+        "advanced_jargon": 1,
+        "english_ui": 0
+      }
+    },
+    {
+      "url": "https://www.racinecarreecalculatorr.com/about-us/",
+      "paragraph_words": 411,
+      "avg_sentence_words": 25.3,
+      "sentences_over_25_words": 6,
+      "flags": {
+        "unbounded_or_precision_claim": 2,
+        "search_engine_filler": 0,
+        "advanced_jargon": 0,
+        "english_ui": 0
+      }
+    },
+    {
+      "url": "https://www.racinecarreecalculatorr.com/contact-us/",
+      "paragraph_words": 243,
+      "avg_sentence_words": 15.1,
+      "sentences_over_25_words": 3,
+      "flags": {
+        "unbounded_or_precision_claim": 0,
+        "search_engine_filler": 0,
+        "advanced_jargon": 0,
+        "english_ui": 0
+      }
+    },
+    {
+      "url": "https://www.racinecarreecalculatorr.com/disclaimer/",
+      "paragraph_words": 317,
+      "avg_sentence_words": 17.7,
+      "sentences_over_25_words": 2,
+      "flags": {
+        "unbounded_or_precision_claim": 0,
+        "search_engine_filler": 0,
+        "advanced_jargon": 0,
+        "english_ui": 0
+      }
+    },
+    {
+      "url": "https://www.racinecarreecalculatorr.com/nth-root-calculator/",
+      "paragraph_words": 787,
+      "avg_sentence_words": 14.8,
+      "sentences_over_25_words": 4,
+      "flags": {
+        "unbounded_or_precision_claim": 3,
+        "search_engine_filler": 0,
+        "advanced_jargon": 1,
+        "english_ui": 0
+      }
+    },
+    {
+      "url": "https://www.racinecarreecalculatorr.com/perfect-cube-calculator/",
+      "paragraph_words": 1465,
+      "avg_sentence_words": 13.3,
+      "sentences_over_25_words": 8,
+      "flags": {
+        "unbounded_or_precision_claim": 4,
+        "search_engine_filler": 0,
+        "advanced_jargon": 1,
+        "english_ui": 0
+      }
+    },
+    {
+      "url": "https://www.racinecarreecalculatorr.com/perfect-square-calculator/",
+      "paragraph_words": 1096,
+      "avg_sentence_words": 15.3,
+      "sentences_over_25_words": 6,
+      "flags": {
+        "unbounded_or_precision_claim": 2,
+        "search_engine_filler": 0,
+        "advanced_jargon": 0,
+        "english_ui": 0
+      }
+    },
+    {
+      "url": "https://www.racinecarreecalculatorr.com/privacy/",
+      "paragraph_words": 390,
+      "avg_sentence_words": 17.0,
+      "sentences_over_25_words": 2,
+      "flags": {
+        "unbounded_or_precision_claim": 0,
+        "search_engine_filler": 0,
+        "advanced_jargon": 0,
+        "english_ui": 0
+      }
+    },
+    {
+      "url": "https://www.racinecarreecalculatorr.com/racine-cubique-calculator/",
+      "paragraph_words": 1685,
+      "avg_sentence_words": 14.7,
+      "sentences_over_25_words": 8,
+      "flags": {
+        "unbounded_or_precision_claim": 5,
+        "search_engine_filler": 0,
+        "advanced_jargon": 0,
+        "english_ui": 0
+      }
+    },
+    {
+      "url": "https://www.racinecarreecalculatorr.com/sitemap/",
+      "paragraph_words": 27,
+      "avg_sentence_words": 13.5,
+      "sentences_over_25_words": 0,
+      "flags": {
+        "unbounded_or_precision_claim": 0,
+        "search_engine_filler": 0,
+        "advanced_jargon": 0,
+        "english_ui": 0
+      }
+    },
+    {
+      "url": "https://www.racinecarreecalculatorr.com/square-root-chart/",
+      "paragraph_words": 1196,
+      "avg_sentence_words": 18.1,
+      "sentences_over_25_words": 10,
+      "flags": {
+        "unbounded_or_precision_claim": 4,
+        "search_engine_filler": 0,
+        "advanced_jargon": 1,
+        "english_ui": 0
+      }
+    },
+    {
+      "url": "https://www.racinecarreecalculatorr.com/terms/",
+      "paragraph_words": 477,
+      "avg_sentence_words": 16.9,
+      "sentences_over_25_words": 4,
+      "flags": {
+        "unbounded_or_precision_claim": 0,
+        "search_engine_filler": 0,
+        "advanced_jargon": 0,
+        "english_ui": 0
+      }
+    }
+  ]
+}

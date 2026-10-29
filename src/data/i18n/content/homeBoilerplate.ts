@@ -469,7 +469,7 @@ export const HOME_BOILERPLATE: Record<string, HomeBoilerplate> = {
 
     s1Eyebrow: "Définition & Notions",
     s1Title: "Qu'est-ce que la Racine Carrée (Square Root) ?",
-    s1P1: "La racine carrée (square root en anglais) est l'une des notions mathématiques les plus recherchées au monde. De nombreux étudiants et professionnels recherchent un calculateur de racine carrée pour résoudre rapidement leurs équations.",
+    s1P1: "Pour un nombre positif ou nul, la racine carrée principale est le nombre positif ou nul dont le carré donne le nombre de départ. Par exemple, √49 = 7, tandis que les solutions de l’équation x² = 49 sont 7 et −7.",
     s1P2: "La racine carrée d'un nombre est la valeur qui, multipliée par elle-même, redonne ce nombre de départ. Si vous multipliez 7 par 7, vous obtenez 49. Donc la racine carrée de 49 est 7. Cette opération inverse l'élévation au carré.",
     s1P3: "En termes mathématiques, la racine carrée d'un nombre x est le nombre y tel que y × y = x (ou y² = x).",
     s1Cards: [

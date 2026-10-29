@@ -88,13 +88,13 @@ const displayFaqs = (faqs && faqs.length > 0) ? faqs : content.faqs;
             <div class="anatomy-box" id="radicalAnatomy">
                 <div class="anatomy-header">
                     <span class="anatomy-tag">{content.s1AnatomyTitle}</span>
-                    <span class="anatomy-hint">Click or hover over any part</span>
+                    <span class="anatomy-hint">{lang === 'fr' ? 'Cliquez ou survolez une partie' : 'Click or hover over any part'}</span>
                 </div>
                 <div class="anatomy-visual">
-                    <span class="anatomy-part anatomy-part--symbol" data-part="symbol" tabindex="0" role="button" aria-label="Radical Symbol">√</span>
-                    <span class="anatomy-part anatomy-part--radicand" data-part="radicand" tabindex="0" role="button" aria-label="Radicand">49</span>
+                    <span class="anatomy-part anatomy-part--symbol" data-part="symbol" tabindex="0" role="button" aria-label={lang === 'fr' ? 'Symbole du radical' : 'Radical Symbol'}>√</span>
+                    <span class="anatomy-part anatomy-part--radicand" data-part="radicand" tabindex="0" role="button" aria-label={lang === 'fr' ? 'Radicande' : 'Radicand'}>49</span>
                     <span class="anatomy-equals">=</span>
-                    <span class="anatomy-part anatomy-part--root" data-part="root" tabindex="0" role="button" aria-label="Root Result">7</span>
+                    <span class="anatomy-part anatomy-part--root" data-part="root" tabindex="0" role="button" aria-label={lang === 'fr' ? 'Résultat' : 'Root Result'}>7</span>
                 </div>
                 <div class="anatomy-cards-grid">
                     <div class="anatomy-info-card active" id="info-symbol">
@@ -771,8 +771,8 @@ const displayFaqs = (faqs && faqs.length > 0) ? faqs : content.faqs;
     </section>
 
     <figure class="section-image">
-        <img src="/images/sqrt-pythagorean-theorem.svg" alt="Real-world application: Calculating diagonal distances with the Pythagorean theorem" loading="lazy" decoding="async" fetchpriority="low" width="800" height="420">
-        <figcaption>Real-world application: Finding diagonal distances and ensuring square corners using square roots (a² + b² = c²)</figcaption>
+        <img src="/images/sqrt-pythagorean-theorem.svg" alt={lang === 'fr' ? 'Application : calculer une diagonale avec le théorème de Pythagore' : 'Real-world application: Calculating diagonal distances with the Pythagorean theorem'} loading="lazy" decoding="async" fetchpriority="low" width="800" height="420">
+        <figcaption>{lang === 'fr' ? 'Application : calculer les diagonales et vérifier les angles droits (a² + b² = c²)' : 'Real-world application: Finding diagonal distances and ensuring square corners using square roots (a² + b² = c²)'}</figcaption>
     </figure>
 
     <!-- Section 15: Frequently Asked Questions (All 10 FAQs) -->

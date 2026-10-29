@@ -37,7 +37,6 @@ const staticPages = [
 const localeRedirects = {};
 Object.keys(sitemapLocales).filter(loc => loc !== 'en').forEach(loc => {
   staticPages.forEach(page => {
-    localeRedirects[`/${loc}/${page}`] = `/${page}/`;
     localeRedirects[`/${loc}/${page}/`] = `/${page}/`;
   });
 });

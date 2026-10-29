@@ -8,9 +8,10 @@ import { getHtmlDir } from '../../theme/i18n/utils';
 import site from '../config/site.json';
 import { getPageAlternateLinks } from '../utils/seo';
 
-import { getLocaleFaqs } from '../../theme/i18n/translations';
+import { getLocaleFaqs, useTranslations } from '../../theme/i18n/translations';
 
 const lang = 'en';
+const t = await useTranslations(lang);
 const title = 'Nth Root Calculator — Integer Degrees & Steps';
 const description = 'Calculate real roots with integer degrees from 1 to 10,000. Get rounded results and factor-based steps for supported integers.';
 const canonicalUrl = `${site.siteUrl}/nth-root-calculator/`;
@@ -105,8 +106,8 @@ const quickNthPairs = [
                         <div class="input-wrapper">
                           <span class="input-prefix" aria-hidden="true">x</span>
                           <input type="text" inputmode="text" id="nthValue" class="calc-input" placeholder="625, 0.25, 1/16" step="any" autocomplete="off" aria-label="Number (x)">
-                                <p class="input-format-help">{t("calc.inputHelp")}</p>
                         </div>
+                                <p class="input-format-help">{t("calc.inputHelp")}</p>
                       </div>
                     </div>
                   </section>

@@ -1,0 +1,17 @@
+
+> racine-carree-calculator-final@0.0.1 test
+> node --test tests/*.test.js
+
+✔ accepts complete decimal, scientific and fraction inputs, including French commas (0.9728ms)
+✔ rejects malformed, ambiguous, infinite, unsafe and underflowing inputs (0.4873ms)
+✔ does not fabricate exact radicals by rounding decimal radicands (0.2076ms)
+✔ recognizes perfect integer powers despite floating-point exponent errors (0.9146ms)
+✔ handles domain boundaries, tiny roots and degree limits (0.2224ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.8571

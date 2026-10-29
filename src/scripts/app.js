@@ -627,7 +627,7 @@ function formatNum(n) {
     return new Intl.NumberFormat(resultLocale, { maximumSignificantDigits: 17, useGrouping: false }).format(n);
 }
 function formatResult(n) {
-    return new Intl.NumberFormat(resultLocale, { maximumSignificantDigits: 12, useGrouping: false, notation: Math.abs(n) > 0 && Math.abs(n) < 1e-6 ? 'scientific' : 'standard' }).format(n);
+    return new Intl.NumberFormat(resultLocale, { maximumSignificantDigits: Number.isSafeInteger(n) ? 17 : 12, useGrouping: false, notation: Math.abs(n) > 0 && Math.abs(n) < 1e-6 ? 'scientific' : 'standard' }).format(n);
 }
 
 function renderHistory(type) {

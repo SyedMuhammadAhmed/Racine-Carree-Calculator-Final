@@ -9,8 +9,10 @@ import site from '../config/site.json';
 import { getPageAlternateLinks } from '../utils/seo';
 
 import { getCbrtContent } from '../data/i18n/content/cbrtContent';
+import { useTranslations } from '../../theme/i18n/translations';
 
 const lang = 'en';
+const t = await useTranslations(lang);
 const content = getCbrtContent(lang);
 const title = 'Cube Root Calculator — Negative Numbers & Steps';
 const description = 'Calculate cube roots instantly with our free Racine Cubique Calculator. Get decimal approximations, simplified radicals, and step-by-step workings.';
@@ -85,8 +87,8 @@ const cbrtFaqs = content.faqs;
                       <div class="input-wrapper">
                         <span class="input-prefix" aria-hidden="true">∛</span>
                         <input type="text" inputmode="text" id="cbrtInput" class="calc-input" placeholder="27, -8, 8/27" step="any" autocomplete="off" aria-label="Number to calculate">
-                                <p class="input-format-help">{t("calc.inputHelp")}</p>
                       </div>
+                                <p class="input-format-help">{t("calc.inputHelp")}</p>
                     </div>
                   </section>
                   <section class="calc-step calc-step--action" aria-label="Calculate action">
